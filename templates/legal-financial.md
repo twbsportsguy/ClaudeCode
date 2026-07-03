@@ -18,6 +18,8 @@ dozen scattered entertainment spends.
 
 Worth 15 minutes to see the numbers? I can do Tuesday or Thursday.
 
-[YOUR NAME]
-[YOUR TITLE], [YOUR ORGANIZATION]
-[PHONE]
+Tyler Baity
+Senior Manager | Business Development & Operations
+Finley Golf Club — Home of Carolina Golf
+twbaity@alumni.unc.edu | (336) 225-6396
+Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9

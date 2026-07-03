@@ -1,13 +1,16 @@
 # Sales Prospecting Workspace
 
-This repo powers a corporate-partnerships prospecting workflow. The user sells
-**corporate partnerships** for a sports/golf property: marketing real estate
-(signage/branding), rounds of golf, golf outings, event tickets, merch credit,
-and hosted events.
+This repo powers a corporate-partnerships prospecting workflow for Tyler Baity
+(Senior Manager, Business Development & Operations at **Finley Golf Club —
+Home of Carolina Golf**, Chapel Hill NC). He sells **corporate partnerships**:
+marketing real estate (signage/branding), rounds of golf, golf outings, event
+tickets, merch credit, and hosted events.
 
 ## How the user works with this repo
 
-The user gives any combination of: **city, state, industry, company, person**.
+The user gives **any one or more** of: city, state, industry, company, person
+— a single input alone is a complete request (default market: Chapel Hill /
+Triangle, NC).
 Run the `/prospect` skill (`.claude/skills/prospect/SKILL.md`) with those
 inputs. It pulls companies/contacts from ZoomInfo, researches ad/marketing
 spend on the web, scores prospects A/B/C, appends them to the master tracker,

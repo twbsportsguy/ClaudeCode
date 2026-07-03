@@ -1,20 +1,28 @@
 # Seller Profile
 
-> Fill in the bracketed items (or just tell Claude once — it will update this
-> file). Everything here gets merged into outreach emails and Gmail drafts.
+- **Name:** Tyler Baity
+- **Title:** Senior Manager | Business Development & Operations
+- **Organization / property:** Finley Golf Club — Home of Carolina Golf (https://www.finleygolfclub.com/)
+- **Market:** Chapel Hill / Triangle, North Carolina
+- **Phone:** (336) 225-6396
+- **Email:** twbaity@alumni.unc.edu
+- **Scheduling link:** https://calendar.app.google/M9bXpDQ4sib6ekjq9
 
-- **Name:** [YOUR NAME]
-- **Title:** [YOUR TITLE]
-- **Organization / property:** [YOUR ORGANIZATION]
-- **Market:** [YOUR CITY/REGION]
-- **Phone:** [PHONE]
-- **Email:** twbsportsguy@gmail.com
+## Email signature (use verbatim in every draft)
+
+```
+Tyler Baity
+Senior Manager | Business Development & Operations
+Finley Golf Club — Home of Carolina Golf
+twbaity@alumni.unc.edu | (336) 225-6396
+Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+```
 
 ## What we sell (the offer)
 
-Corporate partnerships, including:
+Corporate partnerships at Finley Golf Club, including:
 
-- Marketing real estate — signage, branding, digital placements at the property
+- Marketing real estate — signage, branding, digital placements at the club
 - Rounds of golf and hosted golf outings
 - Event tickets and hospitality
 - Merchandise credit
@@ -25,4 +33,5 @@ Corporate partnerships, including:
 Partnerships put a company's brand in front of an engaged local audience AND
 give them a client-entertainment engine (golf, tickets, events) their
 competitors don't have. Emails should sell the *business outcome* (visibility,
-client relationships, employee rewards), not the inventory list.
+client relationships, employee rewards), not the inventory list. The Carolina
+Golf association is a differentiator — lean on it.

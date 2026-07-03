@@ -5,7 +5,16 @@ description: End-to-end sales prospecting pipeline. Give it any combination of c
 
 # /prospect — Corporate Partnerships Prospecting Pipeline
 
-Inputs (any combination, in any order): **city, state, industry, company, person**.
+Inputs: **city, state, industry, company, person** — any combination, in any
+order, and **a single one alone is enough**. "Charlotte", "dentists",
+"North Carolina", "Acme Motors", or "Jane Smith" are each a valid full
+request. Fill sensible defaults for whatever is missing (home market is
+Chapel Hill / Triangle, NC — see `config/profile.md`) rather than asking:
+- Industry only → sweep the home market for that industry.
+- City/state only → sweep all four core industries there (home services,
+  healthcare, auto, legal/financial), a few top companies each.
+- Person only → person lookup by name; ask for the company only if the name
+  is too ambiguous to resolve.
 
 Decide the mode:
 - **Market sweep** — city/state and/or industry given, no specific company →
@@ -14,8 +23,8 @@ Decide the mode:
 - **Person lookup** — a person named → find/enrich that contact and their company.
 
 Read `config/profile.md`, `scoring.md`, and the relevant `templates/*.md`
-before drafting anything. If `config/profile.md` still has bracketed
-placeholders, ask the user for name/title/organization ONCE and update the file.
+before drafting anything. Use the email signature from `config/profile.md`
+verbatim (it includes the scheduling link).
 
 ## Step 1 — ZoomInfo lookups (get exact filter values)
 
