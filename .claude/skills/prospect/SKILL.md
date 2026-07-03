@@ -88,12 +88,16 @@ Record numeric score, A/B/C rank, and a one-line "Why This Rank".
 1. Append new rows to `tracker/prospects.csv` — **one row per contact**,
    never dropping existing rows. Skip contacts already in the tracker
    (match on email).
-2. Regenerate the Google Sheet: read the FULL csv and upload via
-   `mcp__Google_Drive__create_file` with `contentMimeType: "text/csv"`,
-   title `Sales Tracker (updated YYYY-MM-DD)` (converts to a Google Sheet
-   automatically). Drive tools can't edit cells in place — full regeneration
-   is intentional. Tell the user the previous copy is superseded and can be
-   deleted, and give them the new sheet link.
+2. Commit and push (Step 8). **That's all** — the user's ONE permanent
+   Google Sheet ("Finley Golf Club — Sales Tracker") pulls this CSV live
+   from GitHub raw via IMPORTDATA, so pushing the CSV updates the sheet
+   automatically (refreshes ~hourly and on open). NEVER create a new
+   Google Sheet per run.
+   - The sheet was built from `tools/build_live_tracker_xlsx.py`. Only
+     rebuild + re-import it if the raw CSV URL changes (branch rename/merge)
+     or columns change.
+   - If the tracker ever exceeds ~295 rows, bump MAX_ROWS in that script
+     and rebuild so formatting covers the new rows.
 
 ## Step 7 — Gmail drafts
 

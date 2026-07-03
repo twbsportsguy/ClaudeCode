@@ -31,10 +31,11 @@ draft per decision-maker contact.
 
 - **Tracker is append-only source of truth.** Never drop existing rows when
   adding a batch. One row per contact.
-- **Google Sheets can't be edited in place** with the available Drive tools —
-  always regenerate the full sheet from `tracker/prospects.csv` and upload as
-  a new "Sales Tracker" file (title includes the update date). Tell the user
-  the old copy can be deleted.
+- **ONE permanent Google Sheet.** "Finley Golf Club — Sales Tracker" pulls
+  `tracker/prospects.csv` live from GitHub raw (IMPORTDATA). Updating the
+  tracker = append to CSV + push. Never create new sheets per run. The sheet
+  originates from `tools/build_live_tracker_xlsx.py` (see the /prospect
+  skill, Step 6, for when to rebuild).
 - **Gmail drafts only, never send.** The user reviews and sends everything.
 - **Decision-makers only** from ZoomInfo: C-level, VP, Director, Owner,
   President, GM. No managers or below unless the user asks.
