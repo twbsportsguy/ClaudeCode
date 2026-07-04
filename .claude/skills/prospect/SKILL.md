@@ -59,8 +59,10 @@ top candidates for hooks and spend signals.
 `jobTitle: "Owner OR President OR General Manager OR Principal"` for small
 local firms where management level tagging is thin.
 
-Take **all decision makers found, up to 3 per company** (marketing-titled
-contacts first, then owner/C-level). Never include below-Director contacts.
+Take **ALL decision-makers found — no cap** (marketing-titled contacts
+first, then owner/C-level/VP/GM/Director). Skip only support-function
+roles that never buy sponsorships (HR, IT, recruiting, training) and
+below-Director titles (GM/GSM at dealerships counts as decision-maker).
 `mcp__ZoomInfo__enrich_contacts` (batches of ≤10) for verified email, phone,
 jobTitle, managementLevel.
 
