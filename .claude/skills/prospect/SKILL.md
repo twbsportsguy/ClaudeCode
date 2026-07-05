@@ -116,6 +116,13 @@ For every A and B ranked contact (C only if the user asks):
 If a contact has no verified email, still log them (Draft Created = N,
 note "no email — phone only").
 
+**If Gmail is unreachable** (connection errors): write the finished drafts
+to `outbox/YYYY-MM-DD-<batch>-drafts.md` (To/Subject/Body per entry),
+commit it, and tell the user. At the START of every run, check `outbox/`
+— if files exist, create those Gmail drafts first, set Draft Created = Y
+in the tracker, and delete the file. Same for tracker rows marked
+"Email pending - enrich next run": enrich them and create their drafts.
+
 ## Step 8 — Commit and report
 
 1. `git add tracker/ config/ && git commit` (message:
