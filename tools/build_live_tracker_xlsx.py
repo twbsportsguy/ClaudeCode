@@ -16,7 +16,7 @@ from openpyxl.utils import get_column_letter
 
 CSV_URL = (
     "https://raw.githubusercontent.com/twbsportsguy/ClaudeCode/"
-    "claude/sales-prospecting-workflow-wcsfty/tracker/prospects.csv"
+    "main/tracker/prospects.csv"
 )
 
 NAVY = "13294B"
