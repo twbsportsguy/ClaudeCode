@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finley Golf Club — 2026 Day-Grid Calendar</title>
+<style>
+  :root{
+    --navy:#13294B; --blue:#4B9CD3; --gold:#B5A36A; --green:#2F5D50; --slate:#7B8794;
+    --pink:#C75B8C; --orange:#C8722A;
+    --ink:#1c2433; --line:#e3e7ee; --wash:#f5f7fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--wash);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .sheet{width:1485px;max-width:100%;margin:24px auto;background:#fff;
+    box-shadow:0 18px 50px rgba(19,41,75,.14);border-radius:6px;overflow:hidden;}
+
+  .masthead{background:var(--navy);color:#fff;padding:20px 34px 18px;position:relative;border-bottom:5px solid var(--gold);}
+  .masthead::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:5px;
+    background:linear-gradient(90deg,var(--gold),var(--blue));}
+  .mark{font-family:Georgia,serif;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  h1{font-family:Georgia,serif;font-size:30px;font-weight:700;line-height:1;margin-top:5px;}
+  h1 .yr{color:var(--blue);}
+  .subtitle{margin-top:6px;font-size:12px;color:#c7d2e2;letter-spacing:.03em;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:8px 24px;padding:11px 34px;border-bottom:1px solid var(--line);background:#fbfcfe;}
+  .legend .li{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:#3a4456;}
+  .swatch{width:13px;height:13px;border-radius:3px;}
+  .sw-golf{background:var(--navy);} .sw-member{background:var(--blue);}
+  .sw-comm{background:var(--gold);} .sw-corp{background:var(--green);} .sw-maint{background:var(--slate);}
+  .sw-pink{background:var(--pink);} .sw-orange{background:var(--orange);}
+  .legend .tint-key{display:flex;align-items:center;gap:8px;font-size:10.5px;color:#6b7689;margin-left:auto;}
+  .tint-box{width:14px;height:14px;border-radius:3px;background:repeating-linear-gradient(135deg,#eef0f4,#eef0f4 4px,#e2e6ec 4px,#e2e6ec 8px);border:1px solid #d7dce4;}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);}
+  .month{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 12px 12px;}
+  .month:nth-child(3n){border-right:none;}
+  .month:nth-last-child(-n+3){border-bottom:none;}
+  .m-head{display:flex;align-items:baseline;justify-content:space-between;
+    border-bottom:2px solid var(--gold);padding-bottom:5px;margin-bottom:6px;}
+  .m-head .mn{font-family:Georgia,serif;font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);}
+  .m-head .yr{font-size:10px;color:var(--slate);letter-spacing:.12em;}
+
+  table.cal{width:100%;border-collapse:collapse;table-layout:fixed;}
+  table.cal th{font-size:8.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:#9aa3b2;padding:2px 0 4px;text-align:center;}
+  table.cal td{border:1px solid var(--line);height:60px;vertical-align:top;width:14.28%;padding:2px 3px;}
+  td.empty{background:#fafbfc;border-color:#eef1f5;}
+  td.tinted{background:repeating-linear-gradient(135deg,#f3f5f8,#f3f5f8 5px,#eaeef3 5px,#eaeef3 10px);}
+  .dn{font-size:10px;font-weight:700;color:#46506a;display:block;line-height:1;margin-bottom:2px;}
+  .chips{display:flex;flex-direction:column;gap:2px;}
+  .chip{display:block;font-size:8px;font-weight:700;line-height:1.18;border-radius:3px;
+    padding:2px 4px;border-left:3px solid var(--slate);background:#eef2f8;color:var(--ink);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .chip.golf{border-left-color:var(--navy);background:#e7eaf2;color:#13294B;font-weight:800;}
+  .chip.member{border-left-color:var(--blue);background:#eaf5fc;color:#235d83;}
+  .chip.comm{border-left-color:var(--gold);background:#f8f4ea;color:#7a6a3e;}
+  .chip.corp{border-left-color:var(--green);background:#eef4f1;color:#2f5d50;}
+  .chip.pink{border-left-color:var(--pink);background:#fbeef4;color:#9c3e6a;}
+  .chip.orange{border-left-color:var(--orange);background:#faf1e6;color:#8a4f14;}
+  .chip.maint{border-left-color:var(--slate);background:#eef0f4;color:#5c6678;font-weight:600;}
+
+  .credit{padding:11px 34px 16px;font-size:9.5px;color:#9aa3b2;letter-spacing:.03em;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;border-top:2px solid var(--gold);}
+
+  @page{size:11in 8.5in;margin:0.3in;}
+  @media print{html,body{background:#fff;} .sheet{width:100%;margin:0;box-shadow:none;border-radius:0;}
+    table.cal td{height:54px;} .no-print{display:none;}}
+  .toolbar{max-width:1485px;margin:18px auto -6px;padding:0 8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .toolbar button{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:9px 16px;font-size:12px;font-weight:600;cursor:pointer;}
+  .toolbar button:hover{background:#1d3a64;}
+  .toolbar span{font-size:11.5px;color:#7b8794;}
+  .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2f9e5c;margin-right:6px;vertical-align:middle;}
+  .live-dot.err{background:#c0392b;}
+  .live-dot.loading{background:#c9a227;}
+
+  .addevent{max-width:1485px;margin:10px auto 18px;padding:12px 16px;display:flex;flex-wrap:wrap;
+    gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;}
+  .addevent h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-right:4px;}
+  .addevent select,.addevent input{font-size:12px;padding:7px 9px;border:1px solid var(--line);border-radius:6px;color:var(--ink);}
+  .addevent input[type="text"]{width:150px;}
+  .addevent input#ae-day{width:60px;}
+  .addevent button{background:var(--orange);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;}
+  .addevent button:hover{background:#a95e1e;}
+  .addevent .ae-msg{font-size:11px;color:#9aa3b2;}
+</style>
+</head>
+<body>
+<div class="toolbar no-print">
+  <button onclick="window.print()">Print / Save as PDF</button>
+  <span id="live-status"><span class="live-dot loading" id="live-dot"></span>Loading live calendar data…</span>
+</div>
+
+<div class="addevent no-print">
+  <h3>Add Event</h3>
+  <select id="ae-month">
+    <option>July</option><option>August</option><option>September</option>
+    <option>October</option><option>November</option><option>December</option>
+  </select>
+  <input type="number" id="ae-day" min="1" max="31" placeholder="Day">
+  <input type="text" id="ae-icon" placeholder="Emoji (optional)">
+  <input type="text" id="ae-name" placeholder="Event name">
+  <select id="ae-category">
+    <option value="golf">Teams (navy)</option>
+    <option value="member">Tournaments (blue)</option>
+    <option value="pink">Learning (pink)</option>
+    <option value="comm">VIP Events (gold)</option>
+    <option value="corp">Agronomy (green)</option>
+    <option value="orange" selected>Programming (orange)</option>
+    <option value="maint">Closures / Holidays (slate)</option>
+  </select>
+  <button id="ae-add">Add Event</button>
+  <span class="ae-msg" id="ae-msg">(this session only — refreshing the page reloads the live data)</span>
+</div>
+
+<div class="sheet">
+  <header class="masthead">
+    <span class="mark">Finley Golf Club · Chapel Hill</span>
+    <h1>2026 Events Calendar <span class="yr">Day-Grid Matrix</span></h1>
+    <p class="subtitle">July–December · protect golf operations · predictable recurring events · signature community days</p>
+  </header>
+
+  <div class="legend">
+    <div class="li"><span class="swatch sw-golf"></span>Teams</div>
+    <div class="li"><span class="swatch sw-member"></span>Tournaments</div>
+    <div class="li"><span class="swatch sw-pink"></span>Learning</div>
+    <div class="li"><span class="swatch sw-comm"></span>VIP Events</div>
+    <div class="li"><span class="swatch sw-corp"></span>Agronomy</div>
+    <div class="li"><span class="swatch sw-orange"></span>Programming</div>
+    <div class="li"><span class="swatch sw-maint"></span>Closures / Holidays</div>
+    <div class="tint-key"><span class="tint-box"></span>Holiday / course closure days</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="credit">
+    <span>Finley Golf Club — Official UNC Men's &amp; Women's Golf Facility · Chapel Hill, NC</span>
+    <span>Operations &amp; Events · July–December 2026 · hover any event for full detail</span>
+  </div>
+</div>
+
+<script>
+  var DATA_URL = 'https://raw.githubusercontent.com/twbsportsguy/ClaudeCode/claude/frontend-design-plugin-install-tpzcu5/calendar/events.json';
+  var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function isoDate(year, monthIndex, day){ return year + '-' + pad(monthIndex + 1) + '-' + pad(day); }
+  function daysInMonth(year, monthIndex){ return new Date(year, monthIndex + 1, 0).getDate(); }
+  function firstWeekday(year, monthIndex){ return new Date(year, monthIndex, 1).getDay(); }
+  function inRange(dateStr, start, end){ return dateStr >= start && dateStr <= end; }
+
+  function buildMonthSection(monthName, monthIndex, year, data){
+    var section = document.createElement('section');
+    section.className = 'month';
+
+    var head = document.createElement('div');
+    head.className = 'm-head';
+    head.innerHTML = '<span class="mn">' + monthName + '</span><span class="yr">' + year + '</span>';
+    section.appendChild(head);
+
+    var table = document.createElement('table');
+    table.className = 'cal';
+    var thead = document.createElement('thead');
+    var htr = document.createElement('tr');
+    DOW.forEach(function(d){
+      var th = document.createElement('th');
+      th.textContent = d;
+      htr.appendChild(th);
+    });
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    var total = daysInMonth(year, monthIndex);
+    var lead = firstWeekday(year, monthIndex);
+    var cells = [];
+    for(var i = 0; i < lead; i++) cells.push(null);
+    for(var d = 1; d <= total; d++) cells.push(d);
+    while(cells.length % 7 !== 0) cells.push(null);
+
+    for(var r = 0; r < cells.length; r += 7){
+      var tr = document.createElement('tr');
+      for(var c = r; c < r + 7; c++){
+        var dayNum = cells[c];
+        var td = document.createElement('td');
+        if(dayNum === null){
+          td.className = 'empty';
+          tr.appendChild(td);
+          continue;
+        }
+        var dateStr = isoDate(year, monthIndex, dayNum);
+        var tinted = data.tinted.some(function(t){ return inRange(dateStr, t.start, t.end); });
+        td.className = 'day' + (tinted ? ' tinted' : '');
+
+        var dn = document.createElement('span');
+        dn.className = 'dn';
+        dn.textContent = dayNum;
+        td.appendChild(dn);
+
+        var chips = document.createElement('div');
+        chips.className = 'chips';
+        data.events.filter(function(ev){ return inRange(dateStr, ev.start, ev.end); })
+          .forEach(function(ev){
+            var chip = document.createElement('span');
+            chip.className = 'chip ' + ev.category;
+            chip.title = ev.title;
+            chip.textContent = ev.text;
+            chips.appendChild(chip);
+          });
+        td.appendChild(chips);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    section.appendChild(table);
+    return section;
+  }
+
+  function renderCalendar(data){
+    var grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    var monthNames = data.months;
+    var year = data.year;
+    monthNames.forEach(function(name, idx){
+      var monthIndex = 6 + idx; // July = 6 (0-based)
+      grid.appendChild(buildMonthSection(name, monthIndex, year, data));
+    });
+  }
+
+  function setStatus(state, text){
+    var dot = document.getElementById('live-dot');
+    var status = document.getElementById('live-status');
+    dot.className = 'live-dot ' + state;
+    status.childNodes[status.childNodes.length - 1].textContent = text;
+  }
+
+  fetch(DATA_URL + '?t=' + Date.now())
+    .then(function(res){
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data){
+      renderCalendar(data);
+      setStatus('', 'Live · loaded ' + new Date().toLocaleString());
+    })
+    .catch(function(err){
+      setStatus('err', 'Could not load live calendar data (' + err.message + '). Check your internet connection and reload.');
+    });
+
+  document.getElementById('ae-add').addEventListener('click', function(){
+    var month = document.getElementById('ae-month').value;
+    var day = document.getElementById('ae-day').value.trim();
+    var icon = document.getElementById('ae-icon').value.trim();
+    var name = document.getElementById('ae-name').value.trim();
+    var category = document.getElementById('ae-category').value;
+    var msg = document.getElementById('ae-msg');
+
+    if(!day || !name){
+      msg.textContent = 'Enter a day and event name.';
+      return;
+    }
+    var dayNum = String(parseInt(day, 10));
+
+    var sections = document.querySelectorAll('.grid > section.month');
+    var targetTd = null;
+    for(var i = 0; i < sections.length; i++){
+      var mn = sections[i].querySelector('.m-head .mn').textContent.trim();
+      if(mn.toLowerCase() !== month.toLowerCase()) continue;
+      var dns = sections[i].querySelectorAll('td.day .dn');
+      for(var j = 0; j < dns.length; j++){
+        if(dns[j].textContent.trim() === dayNum){
+          targetTd = dns[j].closest('td');
+          break;
+        }
+      }
+      break;
+    }
+
+    if(!targetTd){
+      msg.textContent = 'Could not find ' + month + ' ' + dayNum + '.';
+      return;
+    }
+
+    var chip = document.createElement('span');
+    chip.className = 'chip ' + category;
+    chip.title = name + ' (' + month + ' ' + dayNum + ')';
+    chip.textContent = (icon ? icon + ' ' : '') + name;
+    targetTd.querySelector('.chips').appendChild(chip);
+
+    msg.textContent = 'Added "' + name + '" on ' + month + ' ' + dayNum + ' (this session only).';
+    document.getElementById('ae-day').value = '';
+    document.getElementById('ae-icon').value = '';
+    document.getElementById('ae-name').value = '';
+  });
+</script>
+</body>
+</html>
