@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Package — Finley Golf Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --carolina-blue: #4B9CD3;
+  --carolina-dark: #13294B;
+  --carolina-navy: #1a3a5c;
+  --gold: #C8A84B;
+  --gold-light: #e8d49a;
+  --gold-dark: #a07830;
+  --cream: #F8F4EE;
+  --cream-dark: #EEE8DF;
+  --white: #ffffff;
+  --text-dark: #13294B;
+  --text-mid: #3a5278;
+  --text-light: #6b8aaa;
+  --border: rgba(19,41,75,0.12);
+  --border-gold: rgba(200,168,75,0.35);
+  --selected-bg: #e8f2fa;
+  --selected-border: #4B9CD3;
+  --shadow-sm: 0 1px 4px rgba(19,41,75,0.08);
+  --shadow-md: 0 4px 16px rgba(19,41,75,0.1);
+  --shadow-lg: 0 8px 32px rgba(19,41,75,0.13);
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+/* ── HERO HEADER ── */
+.hero-logo {
+  height: 120px;
+  width: auto;
+  display: block;
+  mix-blend-mode: screen;
+  filter: brightness(1.4);
+}
+.hero {
+  background: var(--carolina-dark);
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 2.5rem 1.5rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(75,156,211,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 80% at 10% 100%, rgba(200,168,75,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #fff 0px, #fff 1px,
+    transparent 1px, transparent 20px
+  );
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-left {}
+
+.hero-eyebrow {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--carolina-blue);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--carolina-blue);
+  opacity: 0.6;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.hero-divider {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(200,168,75,0.5), transparent);
+  margin: 0 auto 1rem;
+  display: none;
+}
+
+.unc-nc-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 8px 16px 8px 10px;
+}
+
+.unc-nc-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+  mix-blend-mode: screen;
+  filter: brightness(1.1);
+}
+
+.unc-badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: .02em;
+  line-height: 1.4;
+}
+
+/* ── HERO TAGLINES ── */
+.hero-taglines {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1.25rem;
+}
+.hero-tagline-primary {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: .02em;
+}
+.hero-tagline-divider {
+  color: rgba(255,255,255,0.25);
+  font-size: 12px;
+}
+.hero-tagline-secondary {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── GOLD RULE ── */
+.gold-rule {
+  height: 3px;
+  background: linear-gradient(to right, var(--carolina-dark), var(--gold), var(--carolina-blue), var(--carolina-dark));
+  background-size: 200% 100%;
+}
+
+/* ── MAIN LAYOUT ── */
+.main {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* ── SECTION HEADERS ── */
+.section { margin-bottom: 2rem; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.section-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--carolina-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--carolina-blue);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.section-rule {
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+
+/* ── MAIN CATEGORY HEADERS ── */
+.main-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 2rem 0 1.25rem;
+}
+
+.main-cat-header:first-child {
+  margin-top: 0;
+}
+
+.main-cat-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--carolina-dark);
+  white-space: nowrap;
+}
+
+.main-cat-rule {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+.main-cat-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  background: #fdf6e8;
+  border: 0.5px solid var(--gold);
+  border-radius: 4px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+/* ── MENU GRID ── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 10px;
+}
+
+/* ── MENU CARDS ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 15px 15px 13px;
+  cursor: pointer;
+  transition: box-shadow .18s, border-color .18s, transform .12s;
+  position: relative;
+  user-select: none;
+}
+
+.card:hover {
+  border-color: rgba(75,156,211,0.4);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.card.selected {
+  border: 1.5px solid var(--carolina-blue);
+  background: var(--selected-bg);
+  box-shadow: 0 0 0 3px rgba(75,156,211,0.12);
+}
+
+.card-badges {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+  min-height: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+
+.badge-popular {
+  background: #fdf3e0;
+  color: #7a5010;
+  border: 0.5px solid #e8c96a;
+}
+
+.badge-new {
+  background: #e6f4ea;
+  color: #1a6b30;
+  border: 0.5px solid #7fcb90;
+}
+
+.card-icon {
+  margin-bottom: 9px;
+}
+
+.card-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--text-light);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke .15s;
+}
+
+.card.selected .card-icon svg { stroke: var(--carolina-blue); }
+
+.card-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.card.selected .card-name { color: var(--carolina-navy); }
+.card.locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.card.locked:hover { box-shadow: none; transform: none; border-color: var(--border); }
+.card-lock-msg {
+  display: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--carolina-dark);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-top: 10px;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: .01em;
+}
+.card-lock-msg::before {
+  content: "🔒";
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.card.locked .card-lock-msg { display: flex; }
+.card.locked { opacity: 0.6; }
+
+.card-desc {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.card-price {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-family: 'Source Sans 3', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.card-price-ala {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+.card.selected .card-price-ala { color: rgba(75,156,211,0.6); }
+.card-price-arrow {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.card-why {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 0.5px solid var(--border);
+  font-size: 11.5px;
+  color: var(--text-light);
+  line-height: 1.5;
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.card.selected .card-why {
+  border-top-color: rgba(75,156,211,0.25);
+  color: #3272a0;
+}
+
+.card-why svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.check-mark {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--carolina-blue);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.card.selected .check-mark { display: flex; }
+
+.check-mark svg {
+  width: 11px;
+  height: 11px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── SIDEBAR ── */
+.sidebar { position: sticky; top: calc(49px + 1rem); max-height: calc(100vh - 49px - 2rem); overflow-y: auto; }
+
+.summary-card {
+  background: var(--carolina-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.summary-header {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  background: linear-gradient(135deg, rgba(75,156,211,0.15) 0%, transparent 100%);
+}
+
+.summary-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.summary-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.summary-count {
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(75,156,211,0.25);
+  color: var(--carolina-blue);
+  border-radius: 100px;
+  padding: 3px 10px;
+  display: none;
+}
+
+.pkg-name-input {
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: 'Source Sans 3', sans-serif;
+  color: rgba(255,255,255,0.85);
+  outline: none;
+  transition: border-color .15s;
+}
+
+.pkg-name-input::placeholder { color: rgba(255,255,255,0.75); }
+.pkg-name-input:focus { border-color: rgba(75,156,211,0.5); }
+
+.summary-body { padding: 0.75rem 1.25rem; min-height: 80px; }
+
+.summary-empty {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  padding: 1.5rem 0;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+.line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+  gap: 10px;
+}
+
+.line-item:last-child { border-bottom: none; }
+.line-name { font-size: 12.5px; color: rgba(255,255,255,0.75); flex: 1; line-height: 1.35; }
+.line-price { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); white-space: nowrap; }
+
+.summary-footer {
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 0.5px solid rgba(200,168,75,0.25);
+  background: rgba(0,0,0,0.15);
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.total-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.total-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.cta-btn {
+  width: 100%;
+  padding: 11px;
+  background: linear-gradient(135deg, var(--carolina-blue), #3a8bc4);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: .02em;
+  transition: opacity .15s, transform .1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.cta-btn:hover { opacity: .9; transform: translateY(-1px); }
+.cta-btn:active { transform: scale(.99); }
+
+.cta-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── SIDEBAR ACTIONS ── */
+.sidebar-actions { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+
+.sample-btn {
+  width: 100%;
+  padding: 10px;
+  background: var(--white);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  color: var(--gold-dark);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.sample-btn:hover { background: #fdf6e8; }
+
+.sample-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: var(--gold-dark);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.clear-btn {
+  width: 100%;
+  padding: 9px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-light);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.clear-btn:hover { background: var(--cream-dark); }
+
+.sample-note {
+  background: #fdf6e8;
+  border: 0.5px solid var(--gold);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 12px;
+  color: var(--gold-dark);
+  line-height: 1.5;
+  display: none;
+}
+
+/* ── CONTACT FOOTER ── */
+.contact-bar {
+  background: var(--carolina-dark);
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.contact-inner { max-width: 1160px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.contact-name { font-family: 'Playfair Display', serif; font-size: 15px; color: #fff; font-weight: 600; }
+.contact-role { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.contact-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.contact-link { font-size: 13px; color: var(--carolina-blue); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: opacity .15s; }
+.contact-link:hover { opacity: .75; }
+.contact-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── MODAL ── */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,20,40,0.65);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal-backdrop.open { display: flex; }
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.modal-header {
+  background: var(--carolina-dark);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #fff;
+}
+
+.modal-close {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.1);
+  border: none; border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.7);
+  transition: background .15s;
+}
+
+.modal-close:hover { background: rgba(255,255,255,0.2); }
+.modal-close svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
+
+.modal-body { padding: 1.5rem; }
+.modal-body p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 1rem; }
+
+.modal-summary {
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.modal-line { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 0.5px solid var(--border); color: var(--text-dark); }
+.modal-line:last-child { border-bottom: none; }
+.modal-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; padding-top: 10px; color: var(--carolina-dark); }
+
+.email-field {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color .15s;
+  margin-bottom: 1rem;
+}
+
+.email-field:focus { border-color: var(--carolina-blue); }
+
+.modal-send {
+  width: 100%;
+  padding: 11px;
+  background: var(--carolina-dark);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: background .15s;
+}
+
+.modal-send:hover { background: var(--carolina-navy); }
+.modal-send svg { width: 15px; height: 15px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── PACKAGE SUGGESTION ── */
+@keyframes suggSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pkg-suggestion {
+  background: var(--carolina-blue);
+  border: 1px solid rgba(75,156,211,0.5);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 22px rgba(75,156,211,0.18), var(--shadow-md);
+  animation: suggSlide .22s ease;
+}
+.pkg-sugg-hd {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px 8px;
+  background: rgba(0,0,0,0.15);
+  border-bottom: 0.5px solid rgba(255,255,255,0.2);
+}
+.pkg-sugg-icon { font-size: 11px; color: #fff; }
+.pkg-sugg-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: #fff;
+  flex: 1;
+}
+.pkg-sugg-x {
+  width: 20px;
+  height: 20px;
+  background: rgba(255,255,255,0.07);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+  flex-shrink: 0;
+}
+.pkg-sugg-x:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+.pkg-sugg-bd { padding: 12px 14px 14px; }
+.pkg-sugg-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.pkg-sugg-tag {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+  margin-bottom: 11px;
+}
+.pkg-sugg-cmp {
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.25);
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+.pkg-sugg-cmp-col { flex: 1; text-align: center; }
+.pkg-sugg-cmp-lbl {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 3px;
+}
+.pkg-sugg-cmp-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+.pkg-sugg-cmp-val.striked {
+  color: rgba(255,255,255,0.6);
+  text-decoration: line-through;
+  font-size: 13px;
+}
+.pkg-sugg-cmp-val.gold-val { color: var(--gold-light); }
+.pkg-sugg-cmp-arr { color: var(--gold); font-size: 14px; flex-shrink: 0; }
+.pkg-sugg-save {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 4px 8px;
+  margin-bottom: 10px;
+}
+.pkg-sugg-save.green  { background: rgba(255,255,255,0.2); color: #fff; }
+.pkg-sugg-save.amber  { background: rgba(200,168,75,0.25);  color: #f5e09a; }
+.pkg-sugg-btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  border: none;
+  border-radius: 7px;
+  color: var(--carolina-dark);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: .01em;
+  transition: opacity .15s, transform .1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.pkg-sugg-btn:hover  { opacity: .9; transform: translateY(-1px); }
+.pkg-sugg-btn:active { transform: scale(.99); }
+.pkg-sugg-extras {
+  margin-bottom: 10px;
+}
+.pkg-sugg-extras-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 6px;
+}
+.pkg-sugg-extra-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #fff;
+  line-height: 1.35;
+  padding: 3px 0;
+}
+.pkg-sugg-extra-item svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  fill: none;
+  stroke: var(--gold-light);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── PACKAGE INCLUDES LIST ── */
+.card-includes {
+  margin: 8px 0 6px;
+  padding: 8px 10px;
+  background: #f4f8fc;
+  border-radius: 7px;
+  border: 0.5px solid rgba(75,156,211,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card.selected .card-includes {
+  background: rgba(75,156,211,0.08);
+  border-color: rgba(75,156,211,0.3);
+}
+.card-include-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 11.5px;
+  color: var(--text-mid);
+  line-height: 1.35;
+}
+.card-include-item svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  fill: none;
+  stroke: var(--carolina-blue);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card.selected .card-include-item { color: var(--text-dark); }
+
+@media (max-width: 820px) {
+  .main { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .hero-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── TABS ── */
+.tab-nav {
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 12px rgba(19,41,75,0.07);
+}
+.tab-nav-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+}
+.tab-nav-inner::-webkit-scrollbar { display: none; }
+.tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  padding: 14px 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s, border-color .15s;
+  margin-bottom: -1px;
+}
+.tab-btn:hover { color: var(--text-mid); }
+.tab-btn.active {
+  color: var(--carolina-dark);
+  border-bottom: 3px solid var(--carolina-blue);
+  font-weight: 600;
+}
+.tab-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.tab-count {
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--carolina-blue);
+  color: white;
+  border-radius: 100px;
+  padding: 1px 6px;
+  display: none;
+}
+.tab-btn.has-selections .tab-count { display: inline; }
+
+/* ── SECTION PANELS ── */
+.section-panel { display: none; }
+.section-panel.active { display: block; }
+
+/* ── PACKAGE SECTION DIVIDER ── */
+.pkg-section-desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin: -6px 0 16px;
+  max-width: 680px;
+}
+.pkg-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 1.5rem 0 0.5rem;
+}
+.pkg-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border), var(--gold), var(--border));
+}
+.pkg-divider-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════
+   QUOTE MODE — seller-facing additions (Tyler's toolkit)
+   ══════════════════════════════════════════════════════════ */
+
+/* Mode toggle bar */
+.mode-bar { background: var(--white); border-bottom: 1px solid var(--border); }
+.mode-bar-inner {
+  max-width: 1160px; margin: 0 auto; padding: 10px 2rem;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.mode-bar-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-light);
+}
+.mode-seg {
+  display: inline-flex; background: var(--cream-dark);
+  border-radius: 8px; padding: 3px; gap: 2px;
+}
+.mode-seg-btn {
+  border: none; background: transparent;
+  font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text-mid); padding: 6px 15px; border-radius: 6px;
+  cursor: pointer; transition: background .15s, color .15s;
+}
+.mode-seg-btn.active { background: var(--carolina-dark); color: #fff; box-shadow: var(--shadow-sm); }
+.mode-bar-hint { font-size: 12px; color: var(--text-light); font-style: italic; }
+
+/* Prospect-request parser panel */
+.parse-panel {
+  display: none;
+  background: var(--white);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px 16px;
+  margin-bottom: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+body.quote-mode .parse-panel { display: block; }
+.parse-hd { margin-bottom: 12px; }
+.parse-title {
+  font-family: 'Playfair Display', serif; font-size: 1.2rem;
+  font-weight: 600; color: var(--carolina-dark);
+}
+.parse-sub { font-size: 12.5px; color: var(--text-mid); margin-top: 4px; line-height: 1.5; max-width: 640px; }
+.parse-input {
+  width: 100%; min-height: 98px; resize: vertical;
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 11px 13px; font-family: 'Source Sans 3', sans-serif;
+  font-size: 13.5px; color: var(--text-dark); line-height: 1.55; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.parse-input:focus { border-color: var(--carolina-blue); box-shadow: 0 0 0 3px rgba(75,156,211,0.12); }
+.parse-actions { display: flex; gap: 10px; margin-top: 12px; align-items: center; }
+.parse-btn {
+  background: var(--carolina-dark); color: #fff; border: none;
+  border-radius: 8px; padding: 10px 18px; font-family: 'Source Sans 3', sans-serif;
+  font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background .15s;
+}
+.parse-btn:hover { background: var(--carolina-navy); }
+.parse-clear {
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 14px; color: var(--text-light);
+  font-size: 13px; cursor: pointer; transition: background .15s;
+}
+.parse-clear:hover { background: var(--cream-dark); }
+.parse-result { display: none; margin-top: 14px; padding-top: 13px; border-top: 0.5px solid var(--border); }
+.parse-result.show { display: block; }
+.parse-result-lbl {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--gold-dark); margin-bottom: 9px;
+}
+.parse-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.parse-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 500; color: var(--carolina-navy);
+  background: var(--selected-bg); border: 0.5px solid rgba(75,156,211,0.4);
+  border-radius: 100px; padding: 3px 11px;
+}
+.parse-chip svg { width: 11px; height: 11px; stroke: var(--carolina-blue); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.parse-none { font-size: 13px; color: var(--text-mid); font-style: italic; line-height: 1.5; }
+
+/* Printable quote document */
+.quote-backdrop {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,20,40,0.72); z-index: 200;
+  overflow-y: auto; padding: 2.5rem 1.5rem 7rem;
+}
+.quote-backdrop.open { display: block; }
+.quote-sheet {
+  max-width: 720px; margin: 0 auto; background: #fff;
+  border-radius: 12px; box-shadow: 0 24px 64px rgba(0,0,0,0.35); overflow: hidden;
+}
+.quote-band { background: var(--carolina-dark); padding: 26px 34px; position: relative; }
+.quote-band-eyebrow {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--carolina-blue); margin-bottom: 7px;
+}
+.quote-band-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; color: #fff; line-height: 1.12; }
+.quote-band-sub { font-size: 12.5px; color: rgba(255,255,255,0.55); margin-top: 7px; }
+.quote-meta { display: flex; justify-content: space-between; gap: 20px; padding: 20px 34px 6px; flex-wrap: wrap; }
+.qm-lbl { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--text-light); margin-bottom: 5px; }
+.quote-prepared-input {
+  border: none; border-bottom: 1.5px solid var(--border);
+  font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--carolina-dark);
+  padding: 2px 0; outline: none; min-width: 230px; background: transparent;
+}
+.quote-prepared-input:focus { border-bottom-color: var(--carolina-blue); }
+.qm-val { font-size: 14px; color: var(--text-dark); font-family: 'Playfair Display', serif; }
+.quote-body { padding: 14px 34px 26px; }
+.quote-sec-lbl { font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--text-light); margin: 18px 0 8px; }
+.quote-table { width: 100%; border-collapse: collapse; }
+.quote-table td { padding: 10px 0; border-bottom: 0.5px solid var(--border); vertical-align: top; }
+.quote-item-name { font-size: 14px; font-weight: 600; color: var(--carolina-dark); }
+.quote-item-desc { font-size: 12px; color: var(--text-light); margin-top: 2px; line-height: 1.4; }
+.quote-item-price { font-size: 14px; font-weight: 600; color: var(--text-dark); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.quote-subtotal { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0 4px; }
+.qs-lbl { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--text-mid); }
+.qs-val { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--carolina-dark); font-variant-numeric: tabular-nums; }
+.quote-bundle { margin-top: 16px; background: linear-gradient(135deg, #fdf6e8, #fbf0d8); border: 1px solid var(--gold); border-radius: 10px; padding: 14px 16px; }
+.quote-bundle-lbl { font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.quote-bundle-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.quote-bundle-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--carolina-dark); }
+.quote-bundle-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--gold-dark); font-variant-numeric: tabular-nums; }
+.quote-bundle-save { font-size: 12.5px; font-weight: 600; color: #1a6b30; margin-top: 6px; line-height: 1.45; }
+.quote-foot { border-top: 1px solid var(--border); margin-top: 22px; padding-top: 16px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.quote-foot-name { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; color: var(--carolina-dark); }
+.quote-foot-role { font-size: 11.5px; color: var(--text-light); margin-top: 2px; }
+.quote-foot-contact { font-size: 12px; color: var(--text-mid); text-align: right; line-height: 1.6; }
+.quote-actions {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: var(--white); border-top: 1px solid var(--border);
+  padding: 14px 1.5rem; display: flex; gap: 10px; justify-content: center;
+  z-index: 210; box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+}
+.quote-act-btn {
+  font-family: 'Source Sans 3', sans-serif; font-size: 13.5px; font-weight: 600;
+  border-radius: 8px; padding: 10px 18px; cursor: pointer; border: none;
+  display: inline-flex; align-items: center; gap: 7px; transition: opacity .15s, background .15s;
+}
+.quote-act-primary { background: var(--carolina-dark); color: #fff; }
+.quote-act-primary:hover { background: var(--carolina-navy); }
+.quote-act-ghost { background: var(--white); border: 1px solid var(--border); color: var(--text-mid); }
+.quote-act-ghost:hover { background: var(--cream-dark); }
+.quote-act-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Print — isolate the quote sheet into a clean PDF/page */
+@media print {
+  body { background: #fff !important; }
+  body > * { display: none !important; }
+  .quote-backdrop {
+    display: block !important; position: static !important;
+    background: #fff !important; padding: 0 !important; overflow: visible !important;
+  }
+  .quote-sheet { box-shadow: none !important; max-width: 100% !important; border-radius: 0 !important; }
+  .quote-band, .quote-bundle { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .quote-actions, .no-print { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Finley Golf Club · 2026 Golf Programming</div>
+      <h1 class="hero-title">Build your <em>perfect</em><br>Finley package</h1>
+      <p class="hero-sub">Mix and match from our full menu of golf, events, marketing, and Carolina athletics access. No fixed tiers — you choose exactly what fits.</p>
+      <div class="hero-taglines">
+        <span class="hero-tagline-primary">The Home of Carolina Golf</span>
+        <span class="hero-tagline-divider">·</span>
+        <span class="hero-tagline-secondary">Play Where Champions Play</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-logo" style="height:120px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:#fff;letter-spacing:.02em;">Finley<span style="color:var(--gold-light);font-style:italic;">&nbsp;Golf</span></div>
+      <div class="unc-nc-logo" style="margin-top: auto;">
+        <span class="unc-badge-text">Official UNC Men&#39;s &amp; Women&#39;s<br>Golf Facility</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="gold-rule"></div>
+
+<!-- MODE BAR (seller toggle) -->
+<div class="mode-bar">
+  <div class="mode-bar-inner">
+    <span class="mode-bar-label">Viewing as</span>
+    <div class="mode-seg">
+      <button class="mode-seg-btn active" data-mode="client" onclick="setMode('client')">Client view</button>
+      <button class="mode-seg-btn" data-mode="quote" onclick="setMode('quote')">Quote builder</button>
+    </div>
+    <span class="mode-bar-hint" id="mode-hint">What a prospect sees when they build their own package.</span>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" data-tab="packages" onclick="switchTab('packages')">
+      <svg viewBox="0 0 24 24"><path d="M2 20h20M4 20L2 8l5 5 5-8 5 8 5-5-2 12"/></svg>
+      Packages
+      <span class="tab-count" id="tc-packages">0</span>
+    </button>
+    <button class="tab-btn" data-tab="rounds" onclick="switchTab('rounds')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="20"/><path d="M12 3l6 3.5-6 3.5V3z"/><ellipse cx="12" cy="20" rx="5" ry="1.5"/></svg>
+      Golf Rounds
+      <span class="tab-count" id="tc-rounds">0</span>
+    </button>
+    <button class="tab-btn" data-tab="events" onclick="switchTab('events')">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Events
+      <span class="tab-count" id="tc-events">0</span>
+    </button>
+    <button class="tab-btn" data-tab="perks" onclick="switchTab('perks')">
+      <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg>
+      Credits & Perks
+      <span class="tab-count" id="tc-perks">0</span>
+    </button>
+    <button class="tab-btn" data-tab="marketing" onclick="switchTab('marketing')">
+      <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Marketing
+      <span class="tab-count" id="tc-marketing">0</span>
+    </button>
+    <button class="tab-btn" data-tab="carolina" onclick="switchTab('carolina')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4H4a1 1 0 00-1 1v2a4 4 0 004 4h1"/><path d="M17 4h3a1 1 0 011 1v2a4 4 0 01-4 4h-1"/><path d="M7 4h10v9a5 5 0 01-10 0V4z"/></svg>
+      Carolina Athletics
+      <span class="tab-count" id="tc-carolina">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+<div class="left-col">
+
+  <!-- QUOTE BUILDER: prospect-request parser (seller mode only) -->
+  <div class="parse-panel" id="parse-panel">
+    <div class="parse-hd">
+      <div class="parse-title">Paste what the prospect asked for</div>
+      <div class="parse-sub">Drop in their email or your notes — this matches it to the menu, prices every item, and flags the cheapest bundle. Fine-tune anything on the cards below, then generate a clean quote to send.</div>
+    </div>
+    <textarea class="parse-input" id="parse-input" placeholder="e.g.  &quot;We&#39;d want an 80-player outing, about 60 rounds through the year, a Night on the Range, cart signage, $2,500 in food &amp; beverage, and some basketball tickets for clients.&quot;"></textarea>
+    <div class="parse-actions">
+      <button class="parse-btn" onclick="parseRequest()">Build the quote &rarr;</button>
+      <button class="parse-clear" onclick="clearParse()">Clear</button>
+    </div>
+    <div class="parse-result" id="parse-result"></div>
+  </div>
+
+  <!-- PACKAGES TAB -->
+  <div class="section-panel active" id="panel-packages">
+
+    <div class="main-cat-header">
+      <span class="main-cat-title">Patron Packages</span>
+      <div class="main-cat-rule"></div>
+      <span class="main-cat-badge">Individual &amp; family</span>
+    </div>
+    <p class="pkg-section-desc">For individuals and families who want a premium golf lifestyle at Finley. Enjoy priority access, exclusive events, and concierge-level service year-round.</p>
+    <div class="menu-grid" id="g-patrons" style="margin-bottom:2rem"></div>
+
+    <div class="pkg-divider">
+      <div class="pkg-divider-line"></div>
+      <span class="pkg-divider-label">Corporate Partnerships</span>
+      <div class="pkg-divider-line"></div>
+    </div>
+
+    <div class="main-cat-header" style="margin-top:1.5rem">
+      <span class="main-cat-title">Partner Packages</span>
+      <div class="main-cat-rule"></div>
+      <span class="main-cat-badge">Business &amp; corporate</span>
+    </div>
+    <p class="pkg-section-desc">Designed for businesses looking to entertain clients, engage employees, and grow brand visibility through Finley&#39;s championship course and UNC connection.</p>
+    <div class="menu-grid" id="g-partners"></div>
+
+  </div>
+
+  <!-- ROUNDS TAB -->
+  <div class="section-panel" id="panel-rounds">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+        </div>
+        <span class="section-label">Golf rounds &amp; access</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="menu-grid" id="g-rounds"></div>
+    </div>
+  </div>
+
+  <!-- EVENTS TAB -->
+  <div class="section-panel" id="panel-events">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <span class="section-label">Events &amp; outings</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="menu-grid" id="g-events"></div>
+    </div>
+  </div>
+
+  <!-- PERKS TAB -->
+  <div class="section-panel" id="panel-perks">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <span class="section-label">Credits &amp; perks</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="menu-grid" id="g-perks"></div>
+    </div>
+  </div>
+
+  <!-- MARKETING TAB -->
+  <div class="section-panel" id="panel-marketing">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <span class="section-label">Marketing exposure</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="menu-grid" id="g-marketing"></div>
+    </div>
+  </div>
+
+  <!-- CAROLINA TAB -->
+  <div class="section-panel" id="panel-carolina">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 000 5H6"/><path d="M18 9h1.5a2.5 2.5 0 010 5H18"/><path d="M8 9h8v7a4 4 0 01-8 0V9z"/><path d="M8 9V7a4 4 0 018 0v2"/></svg>
+        </div>
+        <span class="section-label">Carolina athletics access</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="menu-grid" id="g-carolina"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="summary-card">
+    <div class="summary-header">
+      <div class="summary-header-top">
+        <div class="summary-title">Your package</div>
+        <div class="summary-count" id="sel-count">0 items</div>
+      </div>
+      <input class="pkg-name-input" id="pkg-name" type="text" placeholder="Name this package (optional)" />
+    </div>
+    <div class="summary-body">
+      <div id="summary-list"><div class="summary-empty">Select items from the menu<br>to build your package.</div></div>
+    </div>
+    <div class="summary-footer" id="summary-footer" style="display:none">
+      <div class="total-row">
+        <span class="total-label">Estimated total</span>
+        <span class="total-price" id="total-price">$0</span>
+      </div>
+      <button class="cta-btn" id="cta-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 014.96 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Request a proposal
+      </button>
+    </div>
+  </div>
+
+  <!-- PACKAGE SUGGESTION (shown when individual selections match a package) -->
+  <div class="pkg-suggestion" id="pkg-suggestion" style="display:none">
+    <div class="pkg-sugg-hd">
+      <span class="pkg-sugg-icon">✦</span>
+      <span class="pkg-sugg-lbl">Package suggestion</span>
+      <button class="pkg-sugg-x" onclick="dismissSuggestion()" title="Dismiss">
+        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pkg-sugg-bd">
+      <div class="pkg-sugg-name" id="sugg-pkg-name"></div>
+      <div class="pkg-sugg-tag">Your selections align with this all-inclusive package</div>
+      <div class="pkg-sugg-cmp">
+        <div class="pkg-sugg-cmp-col">
+          <div class="pkg-sugg-cmp-lbl">À la carte</div>
+          <div class="pkg-sugg-cmp-val striked" id="sugg-ala"></div>
+        </div>
+        <div class="pkg-sugg-cmp-arr">→</div>
+        <div class="pkg-sugg-cmp-col">
+          <div class="pkg-sugg-cmp-lbl">Package price</div>
+          <div class="pkg-sugg-cmp-val gold-val" id="sugg-price"></div>
+        </div>
+      </div>
+      <div class="pkg-sugg-extras" id="sugg-extras" style="display:none">
+        <div class="pkg-sugg-extras-lbl">Also included in this package</div>
+        <div id="sugg-extras-list"></div>
+      </div>
+      <div class="pkg-sugg-save" id="sugg-save"></div>
+      <button class="pkg-sugg-btn" onclick="applySuggestion()">
+        Switch to this package
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="sidebar-actions">
+    <div class="sample-note" id="sample-note">✦ Sample package loaded — a solid starting point for a mid-size business.</div>
+    <button class="sample-btn" onclick="loadSample()">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Load sample package
+    </button>
+    <button class="clear-btn" onclick="clearAll()">Clear selections</button>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT FOOTER -->
+<div class="contact-bar">
+  <div class="contact-inner">
+    <div>
+      <div class="contact-name">Tyler Baity</div>
+      <div class="contact-role">Senior Manager · Operations &amp; Business Development</div>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:twbaity@alumni.unc.edu">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        twbaity@alumni.unc.edu
+      </a>
+      <a class="contact-link" href="tel:3362256396">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 014.96 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (336) 225-6396
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PROPOSAL MODAL (client view) -->
+<div class="modal-backdrop" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Request a proposal</div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Your selections will be sent to Tyler Baity, who will follow up with a custom proposal within 1–2 business days.</p>
+      <div class="modal-summary" id="modal-summary"></div>
+      <input class="email-field" id="requester-email" type="email" placeholder="Your email address" />
+      <input class="email-field" id="requester-name" type="text" placeholder="Your name &amp; company" />
+      <button class="modal-send" onclick="sendProposal()">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send to Tyler at Finley
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PRINTABLE QUOTE DOCUMENT (quote builder view) -->
+<div class="quote-backdrop" id="quote-modal">
+  <div class="quote-sheet" id="quote-sheet"></div>
+  <div class="quote-actions no-print">
+    <button class="quote-act-btn quote-act-primary" onclick="printQuote()">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / Save as PDF
+    </button>
+    <button class="quote-act-btn quote-act-ghost" id="copy-quote-btn" onclick="copyQuoteText()">
+      <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copy as text
+    </button>
+    <button class="quote-act-btn quote-act-ghost" onclick="closeQuote()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Close
+    </button>
+  </div>
+</div>
+
+<script>
+const svgIcons = {
+  golf: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M12 2l7 4-7 4V2z"/><ellipse cx="9" cy="20" rx="5" ry="2"/></svg>',
+  target: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+  crown: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20L2 8l5 5 5-8 5 8 5-5-2 12"/></svg>',
+  trophy: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4H4a1 1 0 00-1 1v2a4 4 0 004 4h1"/><path d="M17 4h3a1 1 0 011 1v2a4 4 0 01-4 4h-1"/><path d="M7 4h10v9a5 5 0 01-10 0V4z"/></svg>',
+  users: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
+  user: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>',
+  sun: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+  award: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>',
+  coffee: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>',
+  shirt: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>',
+  tag: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+  bar: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  radio: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z"/><path d="M19 10a7 7 0 01-14 0"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
+  rocket: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>',
+  ticket: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 010-6h20a3 3 0 010 6"/><path d="M2 15a3 3 0 000 6h20a3 3 0 000-6"/><path d="M2 9h20M2 15h20"/></svg>',
+  ball: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/><path d="M19.07 4.93L4.93 19.07"/></svg>',
+  stadium: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V10c0-3.31 3.58-6 8-6s8 2.69 8 6v10"/><path d="M9 20v-5a3 3 0 016 0v5"/></svg>',
+};
+
+const C = {
+  patrons:[
+    {id:'legacy',name:'Legacy Patron',desc:'Best for individuals & families wanting a premium year-round golf lifestyle',price:10000,icon:'crown',includes:['50 rounds (shareable)','Boutique outing (16 players)','Practice facility access','Carolina Classic invitation','Priority tee time booking (14 days)','Invitations to exclusive events','Concierge-level service'],why:'Best for individuals or families who want a premium year-round golf lifestyle at Finley.'},
+    {id:'champion',name:'Champion Patron',desc:'Best for those who want the ultimate Finley experience with full VIP access',price:25000,icon:'trophy',includes:['100 rounds (shareable)','Boutique outing (24 players)','Practice facility access','VIP hospitality at events','Private Finley Gameday experience','Priority tee time booking (14 days)','Concierge-level service'],why:'Our flagship individual experience — full access, concierge service, and exclusive events.'},
+  ],
+  partners:[
+    {id:'official-partner',name:'Official Partner',desc:'Best for full brand ownership & premium events',price:40000,icon:'bar',includes:['80-player outing','1 night on the range','36-player boutique outing','80 hosted rounds','$2,500 F&B credit','$1,000 merch credit','Premium marketing exposure','Football, basketball & 80 Olympic sports tickets'],why:'Best for full brand ownership & premium events — the highest-touch partnership Finley offers.'},
+    {id:'premier-partner',name:'Premier Partner',desc:'Best for balanced exposure & entertainment',price:27500,icon:'radio',popular:true,includes:['80-player outing','1 night on the range','Boutique outing (16 players)','60 hosted rounds','$1,000 F&B credit','Standard marketing exposure','Basketball tickets','60 Olympic sports tickets'],why:'Best for balanced exposure & entertainment — strong value across golf, events, and Carolina athletics.'},
+    {id:'gold-partner',name:'Gold Partner',desc:'Best for entry-level partnership access',price:17500,icon:'rocket',includes:['80-player outing','24 hosted rounds','Basic marketing exposure','40 Olympic sports tickets','Watch party'],why:'Best for entry-level access — a focused package with golf and Carolina sports perks to get started.'},
+  ],
+  rounds:[
+    {id:'r24',name:'24 hosted rounds',desc:'Shareable among guests & clients',price:3800,icon:'golf',why:'Great entry point — enough for quarterly client outings throughout the year.'},
+    {id:'r60',name:'60 hosted rounds',desc:'Shareable among guests & clients',price:9000,icon:'golf',popular:true,why:'Our most common choice — covers regular client entertainment without overpaying.'},
+    {id:'r80',name:'80 hosted rounds',desc:'Shareable among guests & clients',price:11200,icon:'golf',why:'Ideal for active client entertainment programs and larger teams.'},
+    {id:'r100',name:'100 hosted rounds',desc:'Shareable among guests & clients',price:12000,icon:'golf',why:'Maximum flexibility — pairs well with Champion Patron or an Official partnership.'},
+  ],
+  events:[
+    {id:'premium80',name:'Premium outing (80 players)',desc:'Full-course corporate event, fully managed',price:15000,icon:'users',popular:true,why:'The signature Finley outing experience — perfect for annual client appreciation events.'},
+    {id:'boutique16',name:'Boutique outing (16 players)',desc:'Intimate hosted round with F&B',price:3500,icon:'user',why:'Ideal for high-value client dinners or small executive retreats.'},
+    {id:'boutique24',name:'Boutique outing (24 players)',desc:'Mid-size hosted experience',price:5500,icon:'user',why:'A sweet spot for team-building or prospect entertainment.'},
+    {id:'boutique36',name:'Boutique outing (36 players)',desc:'Larger boutique event with premium service',price:8000,icon:'user',why:'Great for department-level events or regional client gatherings.'},
+    {id:'notr',name:'Night on the Range',desc:'TrackMan games + food & beverage + music',price:4500,icon:'moon',popular:true,isnew:true,why:'Our most talked-about new offering — non-golfers love it too.'},
+  ],
+  perks:[
+    {id:'fb1k',name:'F&B credit — $1,000',desc:'Clubhouse food & beverage',price:1000,icon:'coffee',why:'Covers hosting costs for smaller outings or client rounds with lunch.'},
+    {id:'fb2500',name:'F&B credit — $2,500',desc:'Clubhouse food & beverage',price:2500,icon:'coffee',popular:true,why:'Most popular F&B tier — covers a full outing or several smaller events comfortably.'},
+    {id:'merch1k',name:'Merch credit — $1,000',desc:'Pro shop merchandise & branded gifts',price:1000,icon:'shirt',why:'Great for client gifts or branded merchandise for your team.'},
+    {id:'heels',name:'Heels Club prepaid credits',desc:'$1,000 in credits from $850 (public rate)',price:850,icon:'tag',isnew:true,why:'Preload credits and get bonus value for golf, practice, and merchandise.'},
+    {id:'practice',name:'Practice facility access',desc:'Range, short game & TrackMan bays',price:1200,icon:'target',why:'A low-cost add-on that employees love. Great for recurring team perks.'},
+    {id:'tournament',name:'VIP tournament hospitality',desc:'Carolina Classic access + assets',price:4000,icon:'award',why:'Puts your brand in front of the Carolina golf community at one of the premier collegiate events in the region.'},
+  ],
+  marketing:[
+    {id:'mkt-basic',name:'Basic marketing',desc:'Best for entry-level brand visibility on property and online',price:1500,icon:'bar',includes:['Logo recognition in clubhouse','Website logo listing'],why:'Keeps your brand present year-round with minimal investment.'},
+    {id:'mkt-standard',name:'Standard marketing',desc:'Best for businesses wanting consistent reach across multiple channels',price:4500,icon:'radio',popular:true,includes:['Cart advertising — standard placement','Email campaign inclusion','Digital & physical clubhouse signage','Website brand placement'],why:'Strong ROI — cart advertising alone generates 100k+ impressions annually.'},
+    {id:'mkt-premium',name:'Premium marketing',desc:'Best for maximum brand reach and top-tier event visibility',price:7500,icon:'rocket',includes:['Cart advertising — premium placement (100k+ impressions)','Featured email campaigns to golf database','VIP tournament assets & hospitality','Premium digital & physical clubhouse placement','Full à la carte access'],why:'Maximum brand reach — featured placement across every channel Finley uses.'},
+    {id:'summer',name:'Summer Series sponsorship',desc:'Best for owning a recurring social event with full brand activation',price:5000,icon:'sun',isnew:true,includes:['Naming rights to the event series','On-site brand activation','Digital and on-property promotion'],why:'Reaches young professionals, UNC community, and Triangle residents — a unique sponsorship that goes beyond a logo placement.'},
+  ],
+  carolina:[
+    {id:'olympic40',name:'40 Olympic sport tickets',desc:'+ Watch party access',price:2000,icon:'ticket',why:'Access to UNC Olympic sports — great for clients and employees who are Carolina fans.'},
+    {id:'bball60',name:'Basketball + 60 Olympic tickets',desc:"Men's basketball + Olympic sports access",price:4500,icon:'ball',popular:true,why:"Basketball tickets are among the most coveted perks in the Triangle — clients consistently cite these as a highlight."},
+    {id:'full-carolina',name:'Full Carolina access',desc:'Football + basketball + 80 Olympic tickets',price:7500,icon:'stadium',why:'The ultimate Carolina fan experience — football, basketball, and Olympic sports all year.'},
+  ]
+};
+
+const GRIDS = {patrons:'g-patrons',partners:'g-partners',rounds:'g-rounds',events:'g-events',perks:'g-perks',marketing:'g-marketing',carolina:'g-carolina'};
+const SAMPLE = ['r60','premium80','notr','boutique16','fb2500','mkt-standard','bball60'];
+let selected = new Set();
+const dismissedSuggestions = new Set();
+let currentSuggestion = null;
+let lastSuggId = null;
+let allItems = {};
+Object.values(C).flat().forEach(i => allItems[i.id] = i); // includes patrons + partners
+
+// Pre-compute à la carte totals for package cards
+const ALA_CARTE = {
+  'legacy':          ['r60','boutique16','practice'],
+  'champion':        ['r100','boutique24','practice','tournament','notr'],
+  'gold-partner':    ['premium80','r24','mkt-basic','olympic40'],
+  'premier-partner': ['premium80','notr','boutique16','r60','fb2500','mkt-standard','bball60'],
+  'official-partner':['premium80','notr','boutique36','r80','fb2500','merch1k','mkt-premium','full-carolina'],
+};
+Object.entries(ALA_CARTE).forEach(([pkgId, ids]) => {
+  const pkg = allItems[pkgId];
+  if(!pkg) return;
+  pkg.alaCarteTotal = ids.reduce((sum, id) => sum + (allItems[id] ? allItems[id].price : 0), 0);
+});
+
+const PACKAGE_TRIGGERS = [
+  {
+    pkgId: 'legacy',
+    components: ['r24','r60','r80','boutique16','boutique24','boutique36','practice','tournament'],
+    threshold: 2,
+    requiredGroups: [['r24','r60','r80'], ['boutique16','boutique24','boutique36']]
+  },
+  {
+    pkgId: 'champion',
+    components: ['r100','premium80','boutique24','boutique36','olympic40','bball60','full-carolina'],
+    threshold: 2,
+    requiredGroups: [['r100'], ['premium80','boutique24','boutique36','olympic40','bball60','full-carolina']]
+  },
+  {
+    pkgId: 'gold-partner',
+    components: ['premium80','r24','r60','mkt-basic','olympic40'],
+    threshold: 2,
+    requiredGroups: [['premium80'], ['r24','r60','olympic40','mkt-basic']]
+  },
+  {
+    pkgId: 'premier-partner',
+    components: ['premium80','notr','boutique16','r60','r80','fb1k','fb2500','mkt-standard','bball60','olympic40'],
+    threshold: 3,
+    requiredGroups: [['premium80'], ['r60','r80','notr'], ['mkt-standard','bball60','fb1k','fb2500','boutique16']]
+  },
+  {
+    pkgId: 'official-partner',
+    components: ['premium80','notr','boutique36','r80','r100','fb2500','merch1k','mkt-premium','full-carolina','bball60'],
+    threshold: 3,
+    requiredGroups: [['premium80'], ['r80','r100'], ['mkt-premium','full-carolina','notr','boutique36']]
+  }
+];
+
+function fmt(n){ return '$' + n.toLocaleString(); }
+
+function renderGrid(key){
+  const el = document.getElementById(GRIDS[key]);
+  el.innerHTML = '';
+  C[key].forEach(item => {
+    const sel = selected.has(item.id);
+    const d = document.createElement('div');
+    d.setAttribute('data-id', item.id);
+    const REQUIRES_BASE = ['olympic40','bball60','full-carolina','practice'];
+    const hasBase = [...selected].some(id => {
+      if(C.rounds.find(r=>r.id===id) || C.events.find(e=>e.id===id)) return true;
+      const pkg = [...C.patrons, ...C.partners].find(p=>p.id===id);
+      if(pkg && pkg.includes) return pkg.includes.some(inc => inc.toLowerCase().includes('round') || inc.toLowerCase().includes('outing'));
+      return false;
+    });
+    const isLocked = REQUIRES_BASE.includes(item.id) && !hasBase && !sel;
+    d.className = 'card' + (sel ? ' selected' : '') + (isLocked ? ' locked' : '');
+    let badges = '';
+    if(item.popular) badges += '<span class="badge badge-popular">★ Popular</span>';
+    if(item.isnew) badges += '<span class="badge badge-new">✦ New</span>';
+    const badgeRow = badges ? `<div class="card-badges">${badges}</div>` : '<div class="card-badges" style="min-height:0;margin:0"></div>';
+    d.innerHTML = `
+      ${badgeRow}
+      <div class="card-icon">${svgIcons[item.icon] || svgIcons.golf}</div>
+      <div class="card-name">${item.name}</div>
+      <div class="card-desc">${item.desc}</div>
+      ${item.includes && item.includes.length ? `<div class="card-includes">${item.includes.map(inc => `<div class="card-include-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>${inc}</div>`).join('')}</div>` : ''}
+      <div class="card-price">${
+        (key === 'packages' && item.alaCarteTotal)
+          ? `<span class="card-price-ala">${fmt(item.alaCarteTotal)}</span> <span class="card-price-arrow">→</span> ${fmt(item.price)}`
+          : fmt(item.price)
+      }</div>
+      <div class="card-lock-msg">Requires a rounds or events selection first</div>
+      <div class="card-why">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        ${item.why}
+      </div>
+      <div class="check-mark">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    `;
+    d.onclick = () => toggle(item.id);
+    el.appendChild(d);
+  });
+}
+
+function checkPackageSuggestions(){
+  const el = document.getElementById('pkg-suggestion');
+  let bestMatch = null;
+  let bestScore = -Infinity;
+
+  for(const trigger of PACKAGE_TRIGGERS){
+    if(dismissedSuggestions.has(trigger.pkgId)) continue;
+    if(selected.has(trigger.pkgId)) continue;
+
+    const allMet = trigger.requiredGroups.every(g => g.some(id => selected.has(id)));
+    if(!allMet) continue;
+
+    const matchCount = trigger.components.filter(id => selected.has(id)).length;
+    if(matchCount < trigger.threshold) continue;
+
+    let alaCarteTotal = 0;
+    selected.forEach(id => {
+      const item = allItems[id];
+      if(item && ![...C.patrons, ...C.partners].find(p => p.id === id)) alaCarteTotal += item.price;
+    });
+
+    const pkg = allItems[trigger.pkgId];
+    if(!pkg) continue;
+
+    const savings = alaCarteTotal - pkg.price;
+    const score = matchCount * 100000 + savings;
+
+    if(score > bestScore){
+      bestScore = score;
+      bestMatch = {trigger, pkg, alaCarteTotal, savings};
+    }
+  }
+
+  if(!bestMatch){
+    if(el.style.display !== 'none') el.style.display = 'none';
+    currentSuggestion = null;
+    lastSuggId = null;
+    return;
+  }
+
+  currentSuggestion = bestMatch;
+  const newId = bestMatch.trigger.pkgId;
+
+  document.getElementById('sugg-pkg-name').textContent = bestMatch.pkg.name;
+  document.getElementById('sugg-ala').textContent = fmt(bestMatch.alaCarteTotal);
+  document.getElementById('sugg-price').textContent = fmt(bestMatch.pkg.price);
+
+  const saveEl = document.getElementById('sugg-save');
+  if(bestMatch.savings > 0){
+    saveEl.textContent = 'Save ' + fmt(bestMatch.savings) + ' with this package';
+    saveEl.className = 'pkg-sugg-save green';
+  } else if(bestMatch.savings === 0){
+    saveEl.textContent = 'Same price — more benefits included';
+    saveEl.className = 'pkg-sugg-save amber';
+  } else {
+    saveEl.textContent = fmt(-bestMatch.savings) + ' more — expanded access & perks';
+    saveEl.className = 'pkg-sugg-save amber';
+  }
+
+  const extrasEl = document.getElementById('sugg-extras');
+  const extrasListEl = document.getElementById('sugg-extras-list');
+  const pkg = bestMatch.pkg;
+  if(pkg.includes && pkg.includes.length){
+    const selectedNames = new Set();
+    selected.forEach(id => {
+      const it = allItems[id];
+      if(it) selectedNames.add(it.name.toLowerCase());
+    });
+    const extras = pkg.includes.filter(inc => {
+      const incLower = inc.toLowerCase();
+      for(const name of selectedNames){
+        if(incLower.includes(name.split(' ')[0].toLowerCase()) || name.includes(incLower.split(' ')[0].toLowerCase())) return false;
+      }
+      return true;
+    });
+    if(extras.length){
+      extrasListEl.innerHTML = extras.map(e =>
+        `<div class="pkg-sugg-extra-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>${e}</div>`
+      ).join('');
+      extrasEl.style.display = 'block';
+    } else {
+      extrasEl.style.display = 'none';
+    }
+  } else {
+    extrasEl.style.display = 'none';
+  }
+
+  if(newId !== lastSuggId){
+    el.style.display = 'none';
+    void el.offsetWidth;
+    lastSuggId = newId;
+  }
+  el.style.display = 'block';
+}
+
+function applySuggestion(){
+  if(!currentSuggestion) return;
+  const {trigger, pkg} = currentSuggestion;
+  trigger.components.forEach(id => selected.delete(id));
+  selected.add(pkg.id);
+  dismissedSuggestions.delete(pkg.id);
+  currentSuggestion = null;
+  lastSuggId = null;
+  renderAll();
+}
+
+function dismissSuggestion(){
+  if(!currentSuggestion) return;
+  dismissedSuggestions.add(currentSuggestion.trigger.pkgId);
+  currentSuggestion = null;
+  document.getElementById('pkg-suggestion').style.display = 'none';
+}
+
+function renderAll(){
+  Object.keys(C).forEach(renderGrid);
+  renderSummary();
+  checkPackageSuggestions();
+  updateTabCounts();
+}
+
+function toggle(id){
+  const REQUIRES_BASE = ['olympic40','bball60','full-carolina','practice'];
+  const isPackage = [...C.patrons, ...C.partners].find(p => p.id === id);
+  const hasBase = [...selected].some(sid => {
+    if(C.rounds.find(r=>r.id===sid) || C.events.find(e=>e.id===sid)) return true;
+    const pkg = [...C.patrons, ...C.partners].find(p=>p.id===sid);
+    if(pkg && pkg.includes) return pkg.includes.some(inc => inc.toLowerCase().includes('round') || inc.toLowerCase().includes('outing'));
+    return false;
+  });
+
+  if(REQUIRES_BASE.includes(id) && !hasBase && !selected.has(id)) return;
+
+  if(isPackage && !selected.has(id)){
+    const trigger = PACKAGE_TRIGGERS.find(t => t.pkgId === id);
+    if(trigger) trigger.components.forEach(cid => selected.delete(cid));
+  }
+
+  if(!isPackage && !selected.has(id)){
+    PACKAGE_TRIGGERS.forEach(trigger => {
+      if(trigger.components.includes(id) && selected.has(trigger.pkgId)){
+        selected.delete(trigger.pkgId);
+      }
+    });
+  }
+
+  selected.has(id) ? selected.delete(id) : selected.add(id);
+
+  const stillHasBase = [...selected].some(sid => {
+    if(C.rounds.find(r=>r.id===sid) || C.events.find(e=>e.id===sid)) return true;
+    const pkg = [...C.patrons, ...C.partners].find(p=>p.id===sid);
+    if(pkg && pkg.includes) return pkg.includes.some(inc => inc.toLowerCase().includes('round') || inc.toLowerCase().includes('outing'));
+    return false;
+  });
+  if(!stillHasBase) REQUIRES_BASE.forEach(rid => selected.delete(rid));
+
+  document.getElementById('sample-note').style.display = 'none';
+  renderAll();
+}
+
+function renderSummary(){
+  const list = document.getElementById('summary-list');
+  const footer = document.getElementById('summary-footer');
+  const count = document.getElementById('sel-count');
+  if(selected.size === 0){
+    list.innerHTML = '<div class="summary-empty">Select items from the menu<br>to build your package.</div>';
+    footer.style.display = 'none';
+    count.style.display = 'none';
+    return;
+  }
+  let total = 0, html = '';
+  selected.forEach(id => {
+    const item = allItems[id];
+    if(!item) return;
+    html += `<div class="line-item"><span class="line-name">${item.name}</span><span class="line-price">${fmt(item.price)}</span></div>`;
+    total += item.price;
+  });
+  list.innerHTML = html;
+  document.getElementById('total-price').textContent = fmt(total);
+  footer.style.display = 'block';
+  count.style.display = 'inline';
+  count.textContent = selected.size + (selected.size === 1 ? ' item' : ' items');
+}
+
+function loadSample(){
+  selected = new Set(SAMPLE);
+  dismissedSuggestions.clear();
+  lastSuggId = null;
+  document.getElementById('sample-note').style.display = 'block';
+  document.getElementById('pkg-name').value = 'Sample — mid-size business';
+  renderAll();
+}
+
+function clearAll(){
+  selected.clear();
+  dismissedSuggestions.clear();
+  lastSuggId = null;
+  document.getElementById('sample-note').style.display = 'none';
+  document.getElementById('pkg-name').value = '';
+  renderAll();
+}
+
+function openModal(){
+  if(selected.size === 0) return;
+  let total = 0, html = '';
+  selected.forEach(id => {
+    const item = allItems[id];
+    if(!item) return;
+    html += `<div class="modal-line"><span>${item.name}</span><span>${fmt(item.price)}</span></div>`;
+    total += item.price;
+  });
+  html += `<div class="modal-total"><span>Estimated total</span><span>${fmt(total)}</span></div>`;
+  document.getElementById('modal-summary').innerHTML = html;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+}
+
+function sendProposal(){
+  const email = document.getElementById('requester-email').value.trim();
+  const name = document.getElementById('requester-name').value.trim();
+  const pkgName = document.getElementById('pkg-name').value.trim();
+  let total = 0;
+  const lines = [];
+  selected.forEach(id => {
+    const item = allItems[id];
+    if(!item) return;
+    lines.push(`• ${item.name} — ${fmt(item.price)}`);
+    total += item.price;
+  });
+  const subject = encodeURIComponent(`Finley Golf Club Package Inquiry${pkgName ? ' — ' + pkgName : ''}`);
+  const body = encodeURIComponent(
+    `Hi Tyler,\n\nI'd like to request a proposal for a custom Finley Golf Club package.\n\n${name ? 'From: ' + name + '\n' : ''}${email ? 'Email: ' + email + '\n' : ''}\nSelected items:\n${lines.join('\n')}\n\nEstimated total: ${fmt(total)}\n\nPlease reach out to discuss next steps.\n\nThank you!`
+  );
+  window.location.href = `mailto:twbaity@alumni.unc.edu?subject=${subject}&body=${body}`;
+  closeModal();
+}
+
+// ── TAB SWITCHING ──
+let activeTab = 'packages';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tab);
+  });
+  window.scrollTo({ top: document.querySelector('.tab-nav').offsetTop - 2, behavior: 'smooth' });
+}
+
+function updateTabCounts() {
+  const tabKeys = ['packages','rounds','events','perks','marketing','carolina'];
+  const packagesCount = [...(C.patrons||[]), ...(C.partners||[])].filter(item => selected.has(item.id)).length;
+  const packagesBtn = document.querySelector('.tab-btn[data-tab="packages"]');
+  const packagesTc = document.getElementById('tc-packages');
+  if(packagesBtn && packagesTc){ packagesTc.textContent = packagesCount; packagesBtn.classList.toggle('has-selections', packagesCount > 0); }
+  tabKeys.forEach(key => {
+    const items = C[key] || [];
+    const count = items.filter(item => selected.has(item.id)).length;
+    const btn = document.querySelector(`.tab-btn[data-tab="${key}"]`);
+    const countEl = document.getElementById('tc-' + key);
+    if (countEl) countEl.textContent = count;
+    if (btn) btn.classList.toggle('has-selections', count > 0);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   QUOTE MODE — seller-facing logic
+   ══════════════════════════════════════════════════════════ */
+
+let pageMode = 'client';
+function isPkgId(id){ return [...C.patrons, ...C.partners].some(p => p.id === id); }
+
+function setMode(m){
+  pageMode = m;
+  document.body.classList.toggle('quote-mode', m === 'quote');
+  document.querySelectorAll('.mode-seg-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+  const hint = document.getElementById('mode-hint');
+  const cta = document.getElementById('cta-btn');
+  if(m === 'quote'){
+    hint.textContent = 'Paste a prospect’s ask, price it, and generate a clean quote to send.';
+    cta.innerHTML = '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Generate quote';
+    cta.onclick = generateQuote;
+  } else {
+    hint.textContent = 'What a prospect sees when they build their own package.';
+    cta.innerHTML = '<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 014.96 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> Request a proposal';
+    cta.onclick = openModal;
+  }
+}
+
+function nearestId(n, pairs){
+  let bestId = pairs[0][1], bd = Infinity;
+  for(const [v, id] of pairs){ const d = Math.abs(n - v); if(d < bd){ bd = d; bestId = id; } }
+  return bestId;
+}
+
+// Keyword → catalog item map (grouped so one tier wins per category)
+const PARSE_RULES = [
+  {id:'premium80',  group:'event-big', kw:['premium outing','full course','full-course','company outing','corporate outing','tournament outing','golf tournament','shotgun','scramble','big outing']},
+  {id:'boutique36', group:'boutique',  kw:['boutique 36','36 boutique']},
+  {id:'boutique24', group:'boutique',  kw:['boutique 24','24 boutique']},
+  {id:'boutique16', group:'boutique',  kw:['boutique','intimate outing','small outing','executive round']},
+  {id:'notr',       group:'notr',      kw:['night on the range','range night','trackman event','topgolf','top golf','range party']},
+  {id:'fb2500',     group:'fb',        kw:['$2,500 f','$2500','2,500 in food','2500 food','2,500 food']},
+  {id:'fb1k',       group:'fb',        kw:['food and beverage','food & beverage','f&b','catering credit','clubhouse credit','dining credit']},
+  {id:'merch1k',    group:'merch',     kw:['merch','merchandise','pro shop','pro-shop','branded gift','logo balls','apparel']},
+  {id:'heels',      group:'heels',     kw:['heels club','prepaid credit','prepaid credits']},
+  {id:'practice',   group:'practice',  kw:['practice facility','range access','short game','trackman bay','driving range']},
+  {id:'tournament', group:'tournament',kw:['vip hospitality','tournament hospitality','carolina classic','hospitality tent','vip tournament']},
+  {id:'mkt-premium',group:'marketing', kw:['premium marketing','maximum exposure','premium branding','top-tier marketing','full marketing']},
+  {id:'summer',     group:'summer',    kw:['summer series','summer sponsorship']},
+  {id:'mkt-basic',  group:'marketing', kw:['basic marketing','entry marketing','logo recognition','website logo','logo listing']},
+  {id:'mkt-standard',group:'marketing',kw:['standard marketing','cart advertising','cart signage','cart branding','email campaign','signage','banner','branding','advertising','marketing','logo placement','brand visibility']},
+  {id:'full-carolina',group:'carolina',kw:['full carolina','football','all carolina sports','football and basketball','football tickets']},
+  {id:'bball60',    group:'carolina',  kw:['basketball','hoops','unc basketball','tar heel basketball']},
+  {id:'olympic40',  group:'carolina',  kw:['olympic','watch party','sports tickets','game tickets','athletics tickets']},
+  {id:'legacy',          group:'package', kw:['legacy patron','legacy package']},
+  {id:'champion',        group:'package', kw:['champion patron','champion package']},
+  {id:'official-partner',group:'package', kw:['official partner']},
+  {id:'premier-partner', group:'package', kw:['premier partner']},
+  {id:'gold-partner',    group:'package', kw:['gold partner']},
+];
+
+function parseRequest(){
+  const raw = document.getElementById('parse-input').value || '';
+  const text = raw.toLowerCase();
+  const resEl = document.getElementById('parse-result');
+
+  if(!text.trim()){
+    resEl.className = 'parse-result show';
+    resEl.innerHTML = '<div class="parse-none">Paste the prospect’s note above, then press Build the quote.</div>';
+    return;
+  }
+
+  const found = [];
+  const groups = new Set();
+  function take(id, group){ if(groups.has(group)) return; if(!allItems[id]) return; found.push(id); groups.add(group); }
+
+  // Rounds by number (nearest tier)
+  const rm = text.match(/(\d{1,3})\s*(?:hosted\s*)?rounds?/);
+  if(rm){ take(nearestId(+rm[1], [[24,'r24'],[60,'r60'],[80,'r80'],[100,'r100']]), 'rounds'); }
+  else if(/rounds?\b/.test(text)){ take('r60','rounds'); }
+
+  // Players / outing by number
+  const pm = text.match(/(\d{1,3})\s*[- ]?players?/);
+  if(pm){
+    const n = +pm[1];
+    if(n >= 50) take('premium80','event-big');
+    else take(nearestId(n, [[16,'boutique16'],[24,'boutique24'],[36,'boutique36']]), 'boutique');
+  } else if(/\bouting\b|\bscramble\b|\bshotgun\b/.test(text)){
+    take('premium80','event-big');
+  }
+
+  // F&B by explicit dollar amount
+  const fbm = text.match(/\$?\s?([\d,]{3,6})\s*(?:in\s*)?(?:f&b|f and b|food)/);
+  if(fbm){ const amt = +fbm[1].replace(/,/g,''); take(amt >= 1800 ? 'fb2500' : 'fb1k', 'fb'); }
+
+  // Keyword rules
+  for(const r of PARSE_RULES){ if(r.kw.some(k => text.includes(k))) take(r.id, r.group); }
+
+  // Apply to the builder
+  selected = new Set(found);
+  dismissedSuggestions.clear();
+  lastSuggId = null;
+  document.getElementById('sample-note').style.display = 'none';
+  renderAll();
+
+  // Result summary
+  resEl.className = 'parse-result show';
+  if(found.length){
+    resEl.innerHTML = '<div class="parse-result-lbl">Matched ' + found.length + ' item' + (found.length > 1 ? 's' : '') + ' — review &amp; adjust on the menu below</div>'
+      + '<div class="parse-chips">' + found.map(id => {
+          const it = allItems[id];
+          return '<span class="parse-chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>' + it.name + '</span>';
+        }).join('') + '</div>';
+  } else {
+    resEl.innerHTML = '<div class="parse-none">Couldn’t match anything specific — add items from the menu below and they’ll price automatically.</div>';
+  }
+}
+
+function clearParse(){
+  document.getElementById('parse-input').value = '';
+  document.getElementById('parse-result').className = 'parse-result';
+  clearAll();
+}
+
+function bestPackageForSelection(){
+  let best = null, bestScore = -Infinity;
+  for(const t of PACKAGE_TRIGGERS){
+    if(selected.has(t.pkgId)) continue;
+    if(!t.requiredGroups.every(g => g.some(id => selected.has(id)))) continue;
+    const matchCount = t.components.filter(id => selected.has(id)).length;
+    if(matchCount < t.threshold) continue;
+    let ala = 0;
+    selected.forEach(id => { const it = allItems[id]; if(it && !isPkgId(id)) ala += it.price; });
+    const pkg = allItems[t.pkgId];
+    const savings = ala - pkg.price;
+    const score = matchCount * 100000 + savings;
+    if(score > bestScore){ bestScore = score; best = {pkg, ala, savings}; }
+  }
+  return best;
+}
+
+function todayStr(){ return new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}); }
+
+function generateQuote(){
+  if(selected.size === 0) return;
+  const sheet = document.getElementById('quote-sheet');
+  const items = [...selected].map(id => allItems[id]).filter(Boolean);
+  let total = 0; items.forEach(i => total += i.price);
+  const hasPkgSelected = [...selected].some(isPkgId);
+  const bundle = hasPkgSelected ? null : bestPackageForSelection();
+  const pkgName = (document.getElementById('pkg-name').value || '').trim();
+
+  const rows = items.map(i => (
+    '<tr><td><div class="quote-item-name">' + i.name + '</div><div class="quote-item-desc">' + i.desc + '</div></td>'
+    + '<td class="quote-item-price">' + fmt(i.price) + '</td></tr>'
+  )).join('');
+
+  let bundleHtml = '';
+  if(bundle && bundle.savings > 0){
+    bundleHtml = '<div class="quote-bundle"><div class="quote-bundle-lbl">✦ Bundle &amp; save</div>'
+      + '<div class="quote-bundle-row"><span class="quote-bundle-name">' + bundle.pkg.name + '</span><span class="quote-bundle-price">' + fmt(bundle.pkg.price) + '</span></div>'
+      + '<div class="quote-bundle-save">Bundling these as the ' + bundle.pkg.name + ' brings the total to ' + fmt(bundle.pkg.price) + ' — a savings of ' + fmt(bundle.savings) + ' versus à la carte.</div></div>';
+  }
+
+  sheet.innerHTML =
+    '<div class="quote-band"><div class="quote-band-eyebrow">Finley Golf Club · Partnership Proposal</div>'
+      + '<div class="quote-band-title">' + (pkgName || 'Custom Partnership Package') + '</div>'
+      + '<div class="quote-band-sub">The Home of Carolina Golf · Chapel Hill, NC</div></div>'
+    + '<div class="quote-meta">'
+      + '<div class="quote-meta-block"><div class="qm-lbl">Prepared for</div>'
+        + '<input class="quote-prepared-input" id="quote-prepared" type="text" placeholder="Company / contact name" /></div>'
+      + '<div class="quote-meta-block" style="text-align:right"><div class="qm-lbl">Date</div><div class="qm-val">' + todayStr() + '</div></div>'
+    + '</div>'
+    + '<div class="quote-body">'
+      + '<div class="quote-sec-lbl">Package components</div>'
+      + '<table class="quote-table"><tbody>' + rows + '</tbody></table>'
+      + '<div class="quote-subtotal"><span class="qs-lbl">' + (bundle && bundle.savings > 0 ? 'À la carte total' : 'Total investment') + '</span><span class="qs-val">' + fmt(total) + '</span></div>'
+      + bundleHtml
+      + '<div class="quote-foot"><div><div class="quote-foot-name">Tyler Baity</div><div class="quote-foot-role">Senior Manager · Business Development &amp; Operations</div></div>'
+        + '<div class="quote-foot-contact">twbaity@alumni.unc.edu<br>(336) 225-6396</div></div>'
+    + '</div>';
+
+  document.getElementById('quote-modal').classList.add('open');
+}
+
+function closeQuote(){ document.getElementById('quote-modal').classList.remove('open'); }
+function printQuote(){ window.print(); }
+
+function copyQuoteText(){
+  const items = [...selected].map(id => allItems[id]).filter(Boolean);
+  let total = 0;
+  const lines = items.map(i => { total += i.price; return '• ' + i.name + ' — ' + fmt(i.price); });
+  const preparedEl = document.getElementById('quote-prepared');
+  const prepared = preparedEl ? preparedEl.value.trim() : '';
+  const pkgName = (document.getElementById('pkg-name').value || '').trim();
+  const hasPkgSelected = [...selected].some(isPkgId);
+  const bundle = hasPkgSelected ? null : bestPackageForSelection();
+
+  let txt = 'FINLEY GOLF CLUB — PARTNERSHIP PROPOSAL\n'
+    + (pkgName ? pkgName + '\n' : '')
+    + (prepared ? 'Prepared for: ' + prepared + '\n' : '')
+    + 'Date: ' + todayStr() + '\n\n'
+    + 'Package components:\n' + lines.join('\n')
+    + '\n\nÀ la carte total: ' + fmt(total);
+  if(bundle && bundle.savings > 0){
+    txt += '\n\nBundle option: ' + bundle.pkg.name + ' — ' + fmt(bundle.pkg.price) + ' (save ' + fmt(bundle.savings) + ')';
+  }
+  txt += '\n\nTyler Baity | Senior Manager, Business Development & Operations\ntwbaity@alumni.unc.edu | (336) 225-6396';
+
+  navigator.clipboard.writeText(txt).then(() => {
+    const b = document.getElementById('copy-quote-btn');
+    if(b){ const o = b.innerHTML; b.innerHTML = o.replace('Copy as text', 'Copied!'); setTimeout(() => b.innerHTML = o, 1600); }
+  });
+}
+
+renderAll();
+setMode('client');
+</script>
+</body>
+</html>
