@@ -37,6 +37,17 @@ draft per decision-maker contact.
   originates from `tools/build_live_tracker_xlsx.py` (see the /prospect
   skill, Step 6, for when to rebuild).
 - **Gmail drafts only, never send.** The user reviews and sends everything.
+- **Proofread every email before creating its draft** — no unfilled merge
+  fields, correct name/company/city, factually true hook, clean grammar, and
+  the verbatim signature (SKILL.md Step 7).
+- **Pipeline stages live in the Status column.** New prospects are `New`.
+  Sync inbox replies (SKILL.md Step 0) into stages: any real reply →
+  `Interested: 50%`; explicit no → `Not Interested: 0%`; advance to
+  `Red-Hots: 75%` / `Agreements: 90%` / `Signed: 100%` only when the reply
+  clearly warrants it. Stage colors are defined in
+  `tools/build_live_tracker_xlsx.py`.
+- **`Potential Revenue` is the user's column** — never overwrite it; only fill
+  it from a concrete number the prospect gives.
 - **Decision-makers only** from ZoomInfo: C-level, VP, Director, Owner,
   President, GM. No managers or below unless the user asks.
 - Commit tracker updates to this repo after every run so nothing is lost when

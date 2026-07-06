@@ -26,6 +26,38 @@ Read `config/profile.md`, `scoring.md`, and the relevant `templates/*.md`
 before drafting anything. Use the email signature from `config/profile.md`
 verbatim (it includes the scheduling link).
 
+## Step 0 — Sync inbox replies into the pipeline (run first, every time)
+
+Before prospecting, reconcile replies so the tracker reflects reality. Also
+run this on its own whenever the user asks to "check replies" / "update the
+pipeline."
+
+1. `mcp__Gmail__search_threads` for replies to outreach, e.g.
+   `in:inbox newer_than:60d` (and/or the template subject lines). For any
+   promising thread, `mcp__Gmail__get_thread` to read the full latest message.
+2. Match the sender to a tracker row by email (Contact Email column). If the
+   reply is from someone not yet in the tracker but clearly at a prospect
+   company, still act on it and note it.
+3. Read the reply and set that contact's **Status** (pipeline stage):
+   - Any genuine reply that isn't a rejection → `Interested: 50%`.
+   - Explicit "not interested" / "no thanks" / unsubscribe / "remove me" →
+     `Not Interested: 0%`.
+   - Only escalate beyond `Interested: 50%` when the content clearly warrants
+     it: strong buying signals / wants a proposal → `Red-Hots: 75%`; verbal
+     or written yes on terms → `Agreements: 90%`; signed deal → `Signed: 100%`.
+     When unsure, stay at `Interested: 50%` and let the user advance it.
+   - Auto-replies / out-of-office / bounces are **not** replies — leave the
+     stage unchanged (note the bounce if the address is dead).
+4. Update the row's `Next Step` and `Notes` accordingly (e.g., "Replied 7/9 —
+   wants pricing; send proposal"). Leave the user-filled `Potential Revenue`
+   column untouched unless the reply gives you a concrete number.
+5. Commit + push so the Google Sheet reflects the new stages (Step 8).
+
+The pipeline stages and their sheet colors are defined once in
+`tools/build_live_tracker_xlsx.py` (`STAGES`): Interested 50% = light yellow,
+Red-Hots 75% = pink, Agreements 90% = light blue, Signed 100% = light green,
+Not Interested 0% = light orange. Fresh prospects stay `New` until they reply.
+
 ## Step 1 — ZoomInfo lookups (get exact filter values)
 
 Use `mcp__ZoomInfo__lookup` first — never guess filter values:
@@ -89,7 +121,15 @@ Record numeric score, A/B/C rank, and a one-line "Why This Rank".
 
 1. Append new rows to `tracker/prospects.csv` — **one row per contact**,
    never dropping existing rows. Skip contacts already in the tracker
-   (match on email).
+   (match on email). New prospects start with `Status = New` and a blank
+   `Potential Revenue` (the user fills that column in). Columns are, in order:
+   Date Added, Rank, Score, Company, Industry, City, State, Website, Revenue,
+   Employees, Marketing Budget, Ad Spend Signals, Why This Rank, Contact Name,
+   Contact Title, Contact Email, Contact Phone, ZoomInfo Company ID,
+   Draft Created, **Status**, Next Step, Notes, **Potential Revenue**.
+   The **Status** column doubles as the pipeline stage — see Step 0 for the
+   values (`New` → `Interested: 50%` → `Red-Hots: 75%` → `Agreements: 90%` →
+   `Signed: 100%`, or `Not Interested: 0%`).
 2. Commit and push (Step 8). **That's all** — the user's ONE permanent
    Google Sheet ("Finley Golf Club — Sales Tracker") pulls this CSV live
    from GitHub raw via IMPORTDATA, so pushing the CSV updates the sheet
@@ -109,9 +149,22 @@ For every A and B ranked contact (C only if the user asks):
    research — if nothing real was found, open with a market-specific line
    instead, never a fabricated claim.
 3. Keep it under 120 words, seller signature from `config/profile.md`.
-4. `mcp__Gmail__create_draft` — to: the contact's verified email, subject
+4. **Proofread every email before creating the draft** (drafts are what the
+   user sends, so this is the last quality gate). Check each one against:
+   - No unfilled merge fields left (`{{FirstName}}`, `{{Company}}`,
+     `{{City}}`, `{{Hook}}` all resolved — search the body for `{{`).
+   - `{{FirstName}}` is the contact's actual first name; `{{Company}}` and
+     `{{City}}` match the tracker row.
+   - The hook is factually true per Step 2/4 research — no invented awards,
+     sponsorships, or numbers.
+   - Spelling/grammar clean, tone professional, under 120 words.
+   - Signature block matches `config/profile.md` verbatim (name, title,
+     email, phone, scheduling link).
+   Fix anything that fails before drafting. If a hook can't be verified,
+   replace it with a market-specific line rather than shipping a guess.
+5. `mcp__Gmail__create_draft` — to: the contact's verified email, subject
    from the template. **Drafts only. Never send.**
-5. Mark `Draft Created = Y` in the tracker row.
+6. Mark `Draft Created = Y` in the tracker row.
 
 If a contact has no verified email, still log them (Draft Created = N,
 note "no email — phone only").

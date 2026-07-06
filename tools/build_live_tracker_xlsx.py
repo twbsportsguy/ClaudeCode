@@ -4,7 +4,9 @@
 Creates an XLSX that, once uploaded to Google Drive (converted to a Google
 Sheet), pulls tracker/prospects.csv from GitHub raw via IMPORTDATA. The
 resulting Google Sheet is permanent: every `git push` of the tracker CSV
-refreshes it automatically. Only run this again if the CSV URL changes.
+refreshes it automatically. Only run this again if the CSV URL changes, the
+columns change, or the summary / conditional formatting changes (then
+re-import so the new layout takes effect).
 """
 from pathlib import Path
 import sys
@@ -28,12 +30,31 @@ AMBER_TEXT = "7A5C00"
 GRAY_FILL = "ECEFF1"
 GRAY_TEXT = "455A64"
 
-# CSV column order -> sheet columns A..V
+# Pipeline stages (value stored in the Status column) -> fill color.
+# Order matters for the summary funnel (least to most committed).
+STAGES = [
+    ("Interested: 50%", 0.50, "FFF9C4"),    # light yellow
+    ("Red-Hots: 75%", 0.75, "F8BBD0"),       # pink
+    ("Agreements: 90%", 0.90, "BBDEFB"),     # light blue
+    ("Signed: 100%", 1.00, "C8E6C9"),        # light green
+    ("Not Interested: 0%", 0.00, "FFE0B2"),  # light orange
+]
+
+CURRENCY_FMT = '"$"#,##0'
+
+# CSV column order -> sheet columns A..W
+#  A Date Added   B Rank      C Score      D Company       E Industry
+#  F City         G State     H Website    I Revenue       J Employees
+#  K Mktg Budget  L Ad Spend  M Why Rank   N Contact Name  O Contact Title
+#  P Email        Q Phone     R ZI Co ID   S Draft Created T Status
+#  U Next Step    V Notes     W Potential Revenue
 WIDTHS = {
     "A": 11, "B": 6, "C": 6, "D": 32, "E": 14, "F": 13, "G": 6, "H": 26,
     "I": 9, "J": 10, "K": 14, "L": 42, "M": 40, "N": 19, "O": 24, "P": 30,
-    "Q": 14, "R": 12, "S": 7, "T": 9, "U": 28, "V": 34,
+    "Q": 14, "R": 12, "S": 7, "T": 18, "U": 28, "V": 34, "W": 16,
 }
+LAST_COL = 23  # W
+LAST_COL_LETTER = get_column_letter(LAST_COL)
 MAX_ROWS = 300
 
 
@@ -43,7 +64,7 @@ def build_prospects(ws):
     for col, w in WIDTHS.items():
         ws.column_dimensions[col].width = w
     ws.row_dimensions[1].height = 26
-    for c in range(1, 23):
+    for c in range(1, LAST_COL + 1):
         cell = ws.cell(row=1, column=c)
         cell.fill = PatternFill("solid", fgColor=NAVY)
         cell.font = Font(bold=True, color="FFFFFF", size=10)
@@ -53,8 +74,10 @@ def build_prospects(ws):
             ws[f"{col}{r}"].alignment = Alignment(vertical="top", wrap_text=True)
         for col in ("B", "C", "G", "S"):
             ws[f"{col}{r}"].alignment = Alignment(horizontal="center", vertical="top")
+        ws[f"W{r}"].alignment = Alignment(horizontal="right", vertical="top")
+        ws[f"W{r}"].number_format = CURRENCY_FMT
 
-    body = f"A2:V{MAX_ROWS}"
+    body = f"A2:{LAST_COL_LETTER}{MAX_ROWS}"
     ws.conditional_formatting.add(body, FormulaRule(
         formula=['AND($D2<>"",ISEVEN(ROW()))'], stopIfTrue=False,
         fill=PatternFill("solid", fgColor=LIGHT_BLUE)))
@@ -74,6 +97,15 @@ def build_prospects(ws):
     ws.conditional_formatting.add(f"S2:S{MAX_ROWS}", FormulaRule(
         formula=['$S2="Y"'], stopIfTrue=True,
         font=Font(bold=True, color=GREEN_TEXT)))
+
+    # Pipeline stage color-coding on the Status column (T). Exact-match each
+    # stage string so "Not Interested: 0%" never trips the "Interested" rule.
+    status = f"T2:T{MAX_ROWS}"
+    for label, _prob, fill in STAGES:
+        ws.conditional_formatting.add(status, FormulaRule(
+            formula=[f'$T2="{label}"'], stopIfTrue=True,
+            fill=PatternFill("solid", fgColor=fill),
+            font=Font(bold=True, color="222222")))
 
 
 def build_summary(ws):
@@ -100,19 +132,62 @@ def build_summary(ws):
         v.font = Font(bold=True, size=22, color=color)
         l.font = Font(size=10, color="666666")
         v.alignment = l.alignment = Alignment(horizontal="center")
-        ws.column_dimensions[get_column_letter(col)].width = 15
 
-    ws["B9"] = "Latest activity (most recent first)"
+    # --- Pipeline funnel (counts + potential + probability-weighted revenue) ---
+    ws["B9"] = "Pipeline by stage"
     ws["B9"].font = Font(bold=True, size=12, color=NAVY)
-    ws["B10"] = ('=QUERY(Prospects!A2:V,"select A, B, D, N, T, U where D is not null '
-                 'order by A desc, B asc limit 15 '
-                 'label A \'Date\', B \'Rank\', D \'Company\', N \'Contact\', T \'Status\', U \'Next Step\'",1)')
-    for col, w in {"B": 12, "C": 7, "D": 36, "E": 20, "F": 12, "G": 30}.items():
-        ws.column_dimensions[col].width = max(ws.column_dimensions[col].width or 0, w)
-    for c in range(2, 8):
-        cell = ws.cell(row=10, column=c)
+    hdr = ["Stage", "Contacts", "Potential $", "Weighted $"]
+    for j, text in enumerate(hdr):
+        cell = ws.cell(row=10, column=2 + j)
+        cell.value = text
         cell.fill = PatternFill("solid", fgColor=NAVY)
         cell.font = Font(bold=True, color="FFFFFF")
+        cell.alignment = Alignment(horizontal="left" if j == 0 else "center")
+
+    row = 11
+    for label, prob, fill in STAGES:
+        s = ws.cell(row=row, column=2)  # B: Stage
+        s.value = label
+        s.fill = PatternFill("solid", fgColor=fill)
+        s.font = Font(bold=True, color="222222")
+        ws.cell(row=row, column=3).value = f'=COUNTIF(Prospects!T2:T,"{label}")'
+        ws.cell(row=row, column=4).value = f'=SUMIF(Prospects!T2:T,"{label}",Prospects!W2:W)'
+        ws.cell(row=row, column=5).value = f'={prob}*SUMIF(Prospects!T2:T,"{label}",Prospects!W2:W)'
+        ws.cell(row=row, column=3).alignment = Alignment(horizontal="center")
+        ws.cell(row=row, column=4).number_format = CURRENCY_FMT
+        ws.cell(row=row, column=5).number_format = CURRENCY_FMT
+        row += 1
+
+    # Totals row (open pipeline = everything except Not Interested).
+    first, last = 11, row - 1
+    t = ws.cell(row=row, column=2)
+    t.value = "Open pipeline"
+    t.font = Font(bold=True, color=NAVY)
+    ws.cell(row=row, column=3).value = f'=SUM(C{first}:C{last})-C{last}'  # exclude Not Interested count
+    ws.cell(row=row, column=3).alignment = Alignment(horizontal="center")
+    ws.cell(row=row, column=3).font = Font(bold=True, color=NAVY)
+    ws.cell(row=row, column=4).value = f'=SUM(D{first}:D{last-1})'  # potential, excl. Not Interested
+    ws.cell(row=row, column=5).value = f'=SUM(E{first}:E{last})'    # weighted (Not Interested weights to 0 anyway)
+    for c in (4, 5):
+        ws.cell(row=row, column=c).number_format = CURRENCY_FMT
+        ws.cell(row=row, column=c).font = Font(bold=True, color=NAVY)
+
+    # --- Latest activity ---
+    act = row + 2
+    ws.cell(row=act, column=2).value = "Latest activity (most recent first)"
+    ws.cell(row=act, column=2).font = Font(bold=True, size=12, color=NAVY)
+    ws.cell(row=act + 1, column=2).value = (
+        '=QUERY(Prospects!A2:W,"select A, B, D, N, T, U where D is not null '
+        'order by A desc, B asc limit 15 '
+        "label A 'Date', B 'Rank', D 'Company', N 'Contact', T 'Status', U 'Next Step'\",1)"
+    )
+    for c in range(2, 8):
+        cell = ws.cell(row=act + 1, column=c)
+        cell.fill = PatternFill("solid", fgColor=NAVY)
+        cell.font = Font(bold=True, color="FFFFFF")
+
+    for col, w in {"B": 22, "C": 12, "D": 28, "E": 20, "F": 14, "G": 30, "H": 12}.items():
+        ws.column_dimensions[col].width = w
 
 
 def main():
