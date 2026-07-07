@@ -79,12 +79,16 @@
 
   .addevent{max-width:1485px;margin:10px auto 18px;padding:12px 16px;display:flex;flex-wrap:wrap;
     gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;}
+  .addevent[hidden]{display:none;}
   .addevent h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-right:4px;}
   .addevent select,.addevent input{font-size:12px;padding:7px 9px;border:1px solid var(--line);border-radius:6px;color:var(--ink);}
   .addevent input[type="text"]{width:150px;}
+  .addevent input[type="password"]{width:160px;}
   .addevent input#ae-day{width:60px;}
   .addevent button{background:var(--orange);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;}
   .addevent button:hover{background:#a95e1e;}
+  .addevent button#admin-signout{background:var(--slate);}
+  .addevent button#admin-signout:hover{background:#5c6678;}
   .addevent .ae-msg{font-size:11px;color:#9aa3b2;}
 
   .chip{cursor:pointer;}
@@ -116,7 +120,14 @@
   <span id="live-status"><span class="live-dot loading" id="live-dot"></span>Loading live calendar data…</span>
 </div>
 
-<div class="addevent no-print">
+<div class="addevent no-print" id="admin-bar">
+  <h3>Admin</h3>
+  <input type="password" id="admin-password" placeholder="Admin password">
+  <button id="admin-signin" type="button">Sign In</button>
+  <span class="ae-msg" id="admin-msg"></span>
+</div>
+
+<div class="addevent no-print" id="addevent-panel" hidden>
   <h3>Add Event</h3>
   <select id="ae-month">
     <option>July</option><option>August</option><option>September</option>
@@ -135,6 +146,7 @@
     <option value="maint">Closures / Holidays (slate)</option>
   </select>
   <button id="ae-add">Add Event</button>
+  <button id="admin-signout" type="button">Sign Out</button>
   <span class="ae-msg" id="ae-msg">(saves to the shared calendar — everyone sees it)</span>
 </div>
 
@@ -201,7 +213,7 @@
   function normalizeDateStr(v){ return String(v).slice(0, 10); }
   function normalizeData(data){
     data.events = data.events.map(function(ev){
-      return { start: normalizeDateStr(ev.start), end: normalizeDateStr(ev.end), category: ev.category, text: ev.text, title: ev.title };
+      return { id: ev.id, start: normalizeDateStr(ev.start), end: normalizeDateStr(ev.end), category: ev.category, text: ev.text, title: ev.title };
     });
     data.tinted = data.tinted.map(function(t){
       return { start: normalizeDateStr(t.start), end: normalizeDateStr(t.end) };
@@ -289,8 +301,50 @@
     });
   }
 
-  var currentAdminEmail = null;
+  var adminPassword = sessionStorage.getItem('finley-admin-password') || null;
   var currentModalEvent = null;
+
+  function isAdmin(){ return !!adminPassword; }
+
+  function setAdminUI(signedIn){
+    document.getElementById('admin-bar').hidden = signedIn;
+    document.getElementById('addevent-panel').hidden = !signedIn;
+  }
+  setAdminUI(isAdmin());
+
+  document.getElementById('admin-signin').addEventListener('click', function(){
+    var pwInput = document.getElementById('admin-password');
+    var msg = document.getElementById('admin-msg');
+    var pw = pwInput.value;
+    if(!pw){ msg.textContent = 'Enter the admin password.'; return; }
+
+    msg.textContent = 'Checking…';
+    fetch(DATA_URL, { method: 'POST', body: JSON.stringify({ action: 'verify', password: pw }) })
+      .then(function(res){
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function(result){
+        if(!result.ok){
+          msg.textContent = 'Incorrect password.';
+          return;
+        }
+        adminPassword = pw;
+        sessionStorage.setItem('finley-admin-password', pw);
+        pwInput.value = '';
+        msg.textContent = '';
+        setAdminUI(true);
+      })
+      .catch(function(err){
+        msg.textContent = 'Could not verify (' + err.message + ').';
+      });
+  });
+
+  document.getElementById('admin-signout').addEventListener('click', function(){
+    adminPassword = null;
+    sessionStorage.removeItem('finley-admin-password');
+    setAdminUI(false);
+  });
 
   function formatDateRange(start, end){
     var opts = { month: 'short', day: 'numeric' };
@@ -308,7 +362,7 @@
     cat.style.color = CATEGORY_TEXT[ev.category] || '#333';
     document.getElementById('event-modal-date').textContent = formatDateRange(ev.start, ev.end);
     document.getElementById('event-modal-title').textContent = ev.title;
-    document.getElementById('event-modal-admin').hidden = !currentAdminEmail;
+    document.getElementById('event-modal-admin').hidden = !isAdmin();
     document.getElementById('event-modal').hidden = false;
   }
 
@@ -323,6 +377,32 @@
   });
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape') closeEventModal();
+  });
+
+  document.getElementById('event-modal-delete').addEventListener('click', function(){
+    if(!currentModalEvent || !isAdmin()) return;
+    var delBtn = document.getElementById('event-modal-delete');
+    var id = currentModalEvent.id;
+    delBtn.disabled = true;
+    delBtn.textContent = 'Deleting…';
+
+    fetch(DATA_URL, { method: 'POST', body: JSON.stringify({ action: 'delete', id: id, password: adminPassword }) })
+      .then(function(res){
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function(result){
+        if(!result.ok) throw new Error(result.error || 'Delete failed');
+        closeEventModal();
+        return loadAndRender();
+      })
+      .catch(function(err){
+        alert('Could not delete: ' + err.message);
+      })
+      .finally(function(){
+        delBtn.disabled = false;
+        delBtn.textContent = 'Delete Event';
+      });
   });
 
   function setStatus(state, text){
@@ -384,6 +464,8 @@
     var dateStr = isoDate(2026, MONTH_INDEX[month], dayNum);
 
     var payload = {
+      action: 'add',
+      password: adminPassword,
       start: dateStr,
       end: dateStr,
       category: category,
@@ -399,7 +481,8 @@
         if(!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
       })
-      .then(function(){
+      .then(function(result){
+        if(!result.ok) throw new Error(result.error || 'Save failed');
         return loadAndRender();
       })
       .then(function(){
