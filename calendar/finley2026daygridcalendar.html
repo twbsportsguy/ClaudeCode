@@ -152,6 +152,16 @@
   function daysInMonth(year, monthIndex){ return new Date(year, monthIndex + 1, 0).getDate(); }
   function firstWeekday(year, monthIndex){ return new Date(year, monthIndex, 1).getDay(); }
   function inRange(dateStr, start, end){ return dateStr >= start && dateStr <= end; }
+  function normalizeDateStr(v){ return String(v).slice(0, 10); }
+  function normalizeData(data){
+    data.events = data.events.map(function(ev){
+      return { start: normalizeDateStr(ev.start), end: normalizeDateStr(ev.end), category: ev.category, text: ev.text, title: ev.title };
+    });
+    data.tinted = data.tinted.map(function(t){
+      return { start: normalizeDateStr(t.start), end: normalizeDateStr(t.end) };
+    });
+    return data;
+  }
 
   function buildMonthSection(monthName, monthIndex, year, data){
     var section = document.createElement('section');
@@ -246,7 +256,7 @@
         return res.json();
       })
       .then(function(data){
-        renderCalendar(data);
+        renderCalendar(normalizeData(data));
         setStatus('', 'Live · loaded ' + new Date().toLocaleString());
       })
       .catch(function(err){
