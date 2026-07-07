@@ -86,6 +86,27 @@
   .addevent button{background:var(--orange);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;}
   .addevent button:hover{background:#a95e1e;}
   .addevent .ae-msg{font-size:11px;color:#9aa3b2;}
+
+  .chip{cursor:pointer;}
+  .event-modal{position:fixed;inset:0;background:rgba(19,41,75,.45);display:flex;
+    align-items:center;justify-content:center;z-index:100;}
+  .event-modal[hidden]{display:none;}
+  .event-modal-card{background:#fff;border-radius:10px;max-width:420px;width:90%;
+    padding:22px 24px;box-shadow:0 24px 60px rgba(19,41,75,.35);position:relative;}
+  .event-modal-close{position:absolute;top:10px;right:12px;border:none;background:none;
+    font-size:20px;line-height:1;color:#9aa3b2;cursor:pointer;padding:4px;}
+  .event-modal-close:hover{color:var(--ink);}
+  .event-modal-category{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;
+    text-transform:uppercase;padding:3px 9px;border-radius:12px;margin-bottom:10px;}
+  .event-modal-date{font-size:11.5px;color:#7b8794;margin-bottom:6px;}
+  .event-modal-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:var(--ink);
+    line-height:1.35;}
+  .event-modal-admin{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+    display:flex;justify-content:flex-end;}
+  .event-modal-admin[hidden]{display:none;}
+  .event-modal-delete{background:#b3261e;color:#fff;border:none;border-radius:6px;
+    padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;}
+  .event-modal-delete:hover{background:#8f1e18;}
 </style>
 </head>
 <body>
@@ -139,7 +160,19 @@
 
   <div class="credit">
     <span>Finley Golf Club — Official UNC Men's &amp; Women's Golf Facility · Chapel Hill, NC</span>
-    <span>Operations &amp; Events · July–December 2026 · hover any event for full detail</span>
+    <span>Operations &amp; Events · July–December 2026 · click any event for full detail</span>
+  </div>
+</div>
+
+<div class="event-modal no-print" id="event-modal" hidden>
+  <div class="event-modal-card">
+    <button class="event-modal-close" id="event-modal-close" aria-label="Close">&times;</button>
+    <div class="event-modal-category" id="event-modal-category"></div>
+    <div class="event-modal-date" id="event-modal-date"></div>
+    <div class="event-modal-title" id="event-modal-title"></div>
+    <div class="event-modal-admin no-print" id="event-modal-admin" hidden>
+      <button class="event-modal-delete" id="event-modal-delete" type="button">Delete Event</button>
+    </div>
   </div>
 </div>
 
@@ -147,6 +180,18 @@
   var DATA_URL = 'https://script.google.com/macros/s/AKfycbzWiLRXdCDUbN6RIgJ9Wp_phOXzeaQmihw-yDYIKM1fiYe3JLkfXnk8APW8u2lzrknR/exec';
   var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var MONTH_INDEX = { July: 6, August: 7, September: 8, October: 9, November: 10, December: 11 };
+  var CATEGORY_LABELS = {
+    golf: 'Teams', member: 'Tournaments', pink: 'Learning', comm: 'VIP Events',
+    corp: 'Agronomy', orange: 'Programming', maint: 'Closures / Holidays'
+  };
+  var CATEGORY_COLORS = {
+    golf: '#e7eaf2', member: '#eaf5fc', pink: '#fbeef4', comm: '#f8f4ea',
+    corp: '#eef4f1', orange: '#faf1e6', maint: '#eef0f4'
+  };
+  var CATEGORY_TEXT = {
+    golf: '#13294B', member: '#235d83', pink: '#9c3e6a', comm: '#7a6a3e',
+    corp: '#2f5d50', orange: '#8a4f14', maint: '#5c6678'
+  };
 
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
   function isoDate(year, monthIndex, day){ return year + '-' + pad(monthIndex + 1) + '-' + pad(day); }
@@ -220,6 +265,7 @@
             chip.className = 'chip ' + ev.category;
             chip.title = ev.title;
             chip.textContent = ev.text;
+            chip.addEventListener('click', function(){ openEventModal(ev); });
             chips.appendChild(chip);
           });
         td.appendChild(chips);
@@ -242,6 +288,42 @@
       grid.appendChild(buildMonthSection(name, monthIndex, year, data));
     });
   }
+
+  var currentAdminEmail = null;
+  var currentModalEvent = null;
+
+  function formatDateRange(start, end){
+    var opts = { month: 'short', day: 'numeric' };
+    var s = new Date(start + 'T00:00:00').toLocaleDateString('en-US', opts);
+    if(start === end) return s;
+    var e = new Date(end + 'T00:00:00').toLocaleDateString('en-US', opts);
+    return s + ' – ' + e;
+  }
+
+  function openEventModal(ev){
+    currentModalEvent = ev;
+    var cat = document.getElementById('event-modal-category');
+    cat.textContent = CATEGORY_LABELS[ev.category] || ev.category;
+    cat.style.background = CATEGORY_COLORS[ev.category] || '#eef2f8';
+    cat.style.color = CATEGORY_TEXT[ev.category] || '#333';
+    document.getElementById('event-modal-date').textContent = formatDateRange(ev.start, ev.end);
+    document.getElementById('event-modal-title').textContent = ev.title;
+    document.getElementById('event-modal-admin').hidden = !currentAdminEmail;
+    document.getElementById('event-modal').hidden = false;
+  }
+
+  function closeEventModal(){
+    document.getElementById('event-modal').hidden = true;
+    currentModalEvent = null;
+  }
+
+  document.getElementById('event-modal-close').addEventListener('click', closeEventModal);
+  document.getElementById('event-modal').addEventListener('click', function(e){
+    if(e.target.id === 'event-modal') closeEventModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeEventModal();
+  });
 
   function setStatus(state, text){
     var dot = document.getElementById('live-dot');
