@@ -52,9 +52,11 @@
   td.tinted{background:repeating-linear-gradient(135deg,#f3f5f8,#f3f5f8 5px,#eaeef3 5px,#eaeef3 10px);}
   .dn{font-size:10px;font-weight:700;color:#46506a;display:block;line-height:1;margin-bottom:2px;}
   .chips{display:flex;flex-direction:column;gap:2px;}
-  .chip{display:block;font-size:8px;font-weight:700;line-height:1.18;border-radius:3px;
+  .chip{display:block;font-size:8px;font-weight:700;line-height:1.18;
     padding:2px 4px;border-left:3px solid var(--slate);background:#eef2f8;color:var(--ink);
-    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-height:12px;}
+  .chip.seg-start{border-top-left-radius:3px;border-bottom-left-radius:3px;}
+  .chip.seg-end{border-top-right-radius:3px;border-bottom-right-radius:3px;}
   .chip.golf{border-left-color:var(--navy);background:#e7eaf2;color:#13294B;font-weight:800;}
   .chip.member{border-left-color:var(--blue);background:#eaf5fc;color:#235d83;}
   .chip.comm{border-left-color:var(--gold);background:#f8f4ea;color:#7a6a3e;}
@@ -62,6 +64,8 @@
   .chip.pink{border-left-color:var(--pink);background:#fbeef4;color:#9c3e6a;}
   .chip.orange{border-left-color:var(--orange);background:#faf1e6;color:#8a4f14;}
   .chip.maint{border-left-color:var(--slate);background:#eef0f4;color:#5c6678;font-weight:600;}
+  .chip.seg-continue{border-left:none;padding-left:6px;margin-left:-3px;}
+  .chip:not(.seg-end){margin-right:-3px;}
 
   .credit{padding:11px 34px 16px;font-size:9.5px;color:#9aa3b2;letter-spacing:.03em;
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;border-top:2px solid var(--gold);}
@@ -252,7 +256,13 @@
 
     for(var r = 0; r < cells.length; r += 7){
       var tr = document.createElement('tr');
+      var rowDates = [];
+      for(var k = 0; k < 7; k++){
+        var rd = cells[r + k];
+        rowDates.push(rd === null ? null : isoDate(year, monthIndex, rd));
+      }
       for(var c = r; c < r + 7; c++){
+        var col = c - r;
         var dayNum = cells[c];
         var td = document.createElement('td');
         if(dayNum === null){
@@ -260,7 +270,7 @@
           tr.appendChild(td);
           continue;
         }
-        var dateStr = isoDate(year, monthIndex, dayNum);
+        var dateStr = rowDates[col];
         var tinted = data.tinted.some(function(t){ return inRange(dateStr, t.start, t.end); });
         td.className = 'day' + (tinted ? ' tinted' : '');
 
@@ -273,10 +283,14 @@
         chips.className = 'chips';
         data.events.filter(function(ev){ return inRange(dateStr, ev.start, ev.end); })
           .forEach(function(ev){
+            var prevDate = rowDates[col - 1];
+            var nextDate = rowDates[col + 1];
+            var segStart = !(prevDate && inRange(prevDate, ev.start, ev.end));
+            var segEnd = !(nextDate && inRange(nextDate, ev.start, ev.end));
             var chip = document.createElement('span');
-            chip.className = 'chip ' + ev.category;
+            chip.className = 'chip ' + ev.category + (segStart ? ' seg-start' : ' seg-continue') + (segEnd ? ' seg-end' : '');
             chip.title = ev.title;
-            chip.textContent = ev.text;
+            chip.textContent = segStart ? ev.text : '';
             chip.addEventListener('click', function(){ openEventModal(ev); });
             chips.appendChild(chip);
           });
