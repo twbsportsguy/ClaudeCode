@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finley Golf Club — 2026 Day-Grid Calendar</title>
+<title>Finley Golf Club — Events Calendar</title>
 <style>
   :root{
     --navy:#13294B; --blue:#4B9CD3; --gold:#B5A36A; --green:#2F5D50; --slate:#7B8794;
@@ -118,6 +118,47 @@
   .event-modal-delete{background:#b3261e;color:#fff;border:none;border-radius:6px;
     padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;}
   .event-modal-delete:hover{background:#8f1e18;}
+
+  /* --- view navigation controls --- */
+  .controls{max-width:1485px;margin:10px auto 0;padding:9px 16px;display:flex;flex-wrap:wrap;
+    gap:8px 14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;}
+  .controls .grp{display:flex;align-items:center;gap:6px;}
+  .controls .spacer{flex:1;}
+  .controls label{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);}
+  .controls select,.controls button{font-size:12px;padding:7px 10px;border:1px solid var(--line);
+    border-radius:6px;background:#fff;color:var(--ink);cursor:pointer;font-weight:600;}
+  .controls select:hover,.controls button:hover{background:var(--wash);}
+  .controls .nav-btn{min-width:34px;font-size:11px;}
+  .controls .today-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .controls .today-btn:hover{background:#1d3a64;}
+  .controls .period{font-family:Georgia,serif;font-size:15px;font-weight:700;color:var(--navy);
+    min-width:170px;text-align:center;}
+
+  /* --- per-view grid layouts --- */
+  .grid .month{border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .grid.view-month{grid-template-columns:1fr;}
+  .grid.view-quarter{grid-template-columns:repeat(3,1fr);}
+  .grid.view-halfyear{grid-template-columns:repeat(3,1fr);}
+  .grid.view-year{grid-template-columns:repeat(4,1fr);}
+  .grid.view-week,.grid.view-day{grid-template-columns:1fr;}
+  .grid.view-month table.cal td{height:104px;}
+  .grid.view-quarter table.cal td{height:74px;}
+  .grid.view-week table.cal td{height:150px;}
+
+  /* --- day (agenda) view --- */
+  .dayview{padding:20px 34px 26px;}
+  .dayview h2{font-family:Georgia,serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:16px;}
+  .agenda{display:flex;flex-direction:column;gap:8px;max-width:640px;}
+  .agenda-item{display:flex;flex-direction:column;gap:3px;padding:11px 14px;border-radius:8px;
+    border-left:5px solid var(--slate);background:#f7f9fc;cursor:pointer;}
+  .agenda-item:hover{background:#eef2f8;}
+  .agenda-item .cat{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);}
+  .agenda-item .ttl{font-size:14px;font-weight:600;color:var(--ink);}
+  .agenda-item.golf{border-left-color:var(--navy);} .agenda-item.member{border-left-color:var(--blue);}
+  .agenda-item.comm{border-left-color:var(--gold);} .agenda-item.corp{border-left-color:var(--green);}
+  .agenda-item.pink{border-left-color:var(--pink);} .agenda-item.orange{border-left-color:var(--orange);}
+  .agenda-item.maint{border-left-color:var(--slate);}
+  .agenda-empty{font-size:13px;color:var(--slate);padding:14px 4px;}
 </style>
 </head>
 <body>
@@ -125,6 +166,32 @@
   <button onclick="window.print()">Print / Save as PDF</button>
   <button id="refresh-now" type="button">Refresh Now</button>
   <span id="live-status"><span class="live-dot loading" id="live-dot"></span>Loading live calendar data…</span>
+</div>
+
+<div class="controls no-print" id="controls">
+  <div class="grp">
+    <button class="nav-btn" id="nav-prev" type="button" aria-label="Previous">◀</button>
+    <span class="period" id="period-label">…</span>
+    <button class="nav-btn" id="nav-next" type="button" aria-label="Next">▶</button>
+    <button class="today-btn" id="nav-today" type="button">Today</button>
+  </div>
+  <div class="grp">
+    <label for="jump-month">Jump to</label>
+    <select id="jump-month"></select>
+    <select id="jump-year"></select>
+  </div>
+  <div class="spacer"></div>
+  <div class="grp">
+    <label for="view-select">View</label>
+    <select id="view-select">
+      <option value="day">Day</option>
+      <option value="week">Week</option>
+      <option value="month">Month</option>
+      <option value="quarter">3 Months</option>
+      <option value="halfyear" selected>6 Months</option>
+      <option value="year">Year</option>
+    </select>
+  </div>
 </div>
 
 <div class="addevent no-print" id="admin-bar">
@@ -136,8 +203,8 @@
 
 <div class="addevent no-print" id="addevent-panel" hidden>
   <h3>Add Event</h3>
-  <label>Start <input type="date" id="ae-start" min="2026-07-01" max="2026-12-31"></label>
-  <label>End <input type="date" id="ae-end" min="2026-07-01" max="2026-12-31"></label>
+  <label>Start <input type="date" id="ae-start"></label>
+  <label>End <input type="date" id="ae-end"></label>
   <input type="text" id="ae-icon" placeholder="Emoji (optional)">
   <input type="text" id="ae-name" placeholder="Event name">
   <select id="ae-category">
@@ -157,8 +224,8 @@
 <div class="sheet">
   <header class="masthead">
     <span class="mark">Finley Golf Club · Chapel Hill</span>
-    <h1>2026 Events Calendar <span class="yr">Day-Grid Matrix</span></h1>
-    <p class="subtitle">July–December · protect golf operations · predictable recurring events · signature community days</p>
+    <h1>Events Calendar <span class="yr" id="mast-period"></span></h1>
+    <p class="subtitle">Operations, tournaments, programming &amp; agronomy · protect golf operations · signature community days</p>
   </header>
 
   <div class="legend">
@@ -176,7 +243,7 @@
 
   <div class="credit">
     <span>Finley Golf Club — Official UNC Men's &amp; Women's Golf Facility · Chapel Hill, NC</span>
-    <span>Operations &amp; Events · July–December 2026 · click any event for full detail</span>
+    <span id="credit-period">Operations &amp; Events · click any event for full detail</span>
   </div>
 </div>
 
@@ -222,6 +289,37 @@
       return { start: normalizeDateStr(t.start), end: normalizeDateStr(t.end) };
     });
     return data;
+  }
+
+  var MONTH_NAMES = ['January','February','March','April','May','June',
+    'July','August','September','October','November','December'];
+  var VIEW_COUNTS = { quarter: 3, halfyear: 6, year: 12 };
+
+  var calendarData = { events: [], tinted: [] };
+  var state = { view: 'halfyear', anchor: new Date() };
+
+  function startOfWeek(d){
+    var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    x.setDate(x.getDate() - x.getDay());
+    return x;
+  }
+
+  // Render the events overlapping a given day into a chips container, computing
+  // spanning-bar segments relative to the day's position in its row (rowDates).
+  function appendChips(chips, data, dateStr, rowDates, col){
+    data.events.filter(function(ev){ return inRange(dateStr, ev.start, ev.end); })
+      .forEach(function(ev){
+        var prevDate = rowDates[col - 1];
+        var nextDate = rowDates[col + 1];
+        var segStart = !(prevDate && inRange(prevDate, ev.start, ev.end));
+        var segEnd = !(nextDate && inRange(nextDate, ev.start, ev.end));
+        var chip = document.createElement('span');
+        chip.className = 'chip ' + ev.category + (segStart ? ' seg-start' : ' seg-continue') + (segEnd ? ' seg-end' : '');
+        chip.title = ev.title;
+        chip.textContent = segStart ? ev.text : '';
+        chip.addEventListener('click', function(){ openEventModal(ev); });
+        chips.appendChild(chip);
+      });
   }
 
   function buildMonthSection(monthName, monthIndex, year, data){
@@ -280,19 +378,7 @@
 
         var chips = document.createElement('div');
         chips.className = 'chips';
-        data.events.filter(function(ev){ return inRange(dateStr, ev.start, ev.end); })
-          .forEach(function(ev){
-            var prevDate = rowDates[col - 1];
-            var nextDate = rowDates[col + 1];
-            var segStart = !(prevDate && inRange(prevDate, ev.start, ev.end));
-            var segEnd = !(nextDate && inRange(nextDate, ev.start, ev.end));
-            var chip = document.createElement('span');
-            chip.className = 'chip ' + ev.category + (segStart ? ' seg-start' : ' seg-continue') + (segEnd ? ' seg-end' : '');
-            chip.title = ev.title;
-            chip.textContent = segStart ? ev.text : '';
-            chip.addEventListener('click', function(){ openEventModal(ev); });
-            chips.appendChild(chip);
-          });
+        appendChips(chips, data, dateStr, rowDates, col);
         td.appendChild(chips);
         tr.appendChild(td);
       }
@@ -303,15 +389,210 @@
     return section;
   }
 
-  function renderCalendar(data){
+  function buildWeekSection(weekStart, data){
+    var section = document.createElement('section');
+    section.className = 'month';
+    var table = document.createElement('table');
+    table.className = 'cal';
+    var dates = [];
+    var thead = document.createElement('thead');
+    var htr = document.createElement('tr');
+    for(var i = 0; i < 7; i++){
+      var d = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + i);
+      dates.push(d);
+      var th = document.createElement('th');
+      th.textContent = DOW[i] + ' ' + (d.getMonth() + 1) + '/' + d.getDate();
+      htr.appendChild(th);
+    }
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    var tr = document.createElement('tr');
+    var rowDates = dates.map(function(d){ return isoDate(d.getFullYear(), d.getMonth(), d.getDate()); });
+    for(var c = 0; c < 7; c++){
+      var dateStr = rowDates[c];
+      var td = document.createElement('td');
+      var tinted = data.tinted.some(function(t){ return inRange(dateStr, t.start, t.end); });
+      td.className = 'day' + (tinted ? ' tinted' : '');
+      var dn = document.createElement('span');
+      dn.className = 'dn';
+      dn.textContent = dates[c].getDate();
+      td.appendChild(dn);
+      var chips = document.createElement('div');
+      chips.className = 'chips';
+      appendChips(chips, data, dateStr, rowDates, c);
+      td.appendChild(chips);
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
+    section.appendChild(table);
+    return section;
+  }
+
+  function buildDayView(anchor, data){
+    var wrap = document.createElement('div');
+    wrap.className = 'dayview';
+    var h = document.createElement('h2');
+    h.textContent = anchor.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    wrap.appendChild(h);
+
+    var dateStr = isoDate(anchor.getFullYear(), anchor.getMonth(), anchor.getDate());
+    var todays = data.events.filter(function(ev){ return inRange(dateStr, ev.start, ev.end); })
+      .sort(function(a, b){ return a.start < b.start ? -1 : (a.start > b.start ? 1 : 0); });
+
+    var agenda = document.createElement('div');
+    agenda.className = 'agenda';
+    if(!todays.length){
+      var empty = document.createElement('div');
+      empty.className = 'agenda-empty';
+      empty.textContent = 'No events on this day.';
+      agenda.appendChild(empty);
+    } else {
+      todays.forEach(function(ev){
+        var item = document.createElement('div');
+        item.className = 'agenda-item ' + ev.category;
+        var cat = document.createElement('span');
+        cat.className = 'cat';
+        cat.textContent = (CATEGORY_LABELS[ev.category] || ev.category) + ' · ' + formatDateRange(ev.start, ev.end);
+        var ttl = document.createElement('span');
+        ttl.className = 'ttl';
+        ttl.textContent = ev.text;
+        item.appendChild(cat);
+        item.appendChild(ttl);
+        item.addEventListener('click', function(){ openEventModal(ev); });
+        agenda.appendChild(item);
+      });
+    }
+    wrap.appendChild(agenda);
+    return wrap;
+  }
+
+  function render(){
     var grid = document.getElementById('grid');
+    grid.className = 'grid view-' + state.view;
     grid.innerHTML = '';
-    var monthNames = data.months;
-    var year = data.year;
-    monthNames.forEach(function(name, idx){
-      var monthIndex = 6 + idx; // July = 6 (0-based)
-      grid.appendChild(buildMonthSection(name, monthIndex, year, data));
+    var data = calendarData;
+    var a = state.anchor;
+
+    if(state.view === 'day'){
+      grid.appendChild(buildDayView(a, data));
+    } else if(state.view === 'week'){
+      grid.appendChild(buildWeekSection(startOfWeek(a), data));
+    } else if(state.view === 'month'){
+      grid.appendChild(buildMonthSection(MONTH_NAMES[a.getMonth()], a.getMonth(), a.getFullYear(), data));
+    } else {
+      var count = VIEW_COUNTS[state.view];
+      var start = (state.view === 'year')
+        ? new Date(a.getFullYear(), 0, 1)
+        : new Date(a.getFullYear(), a.getMonth(), 1);
+      for(var i = 0; i < count; i++){
+        var m = new Date(start.getFullYear(), start.getMonth() + i, 1);
+        grid.appendChild(buildMonthSection(MONTH_NAMES[m.getMonth()], m.getMonth(), m.getFullYear(), data));
+      }
+    }
+    updatePeriodLabel();
+    syncControls();
+  }
+
+  function monthDay(d){ return MONTH_NAMES[d.getMonth()].slice(0, 3) + ' ' + d.getDate(); }
+
+  function periodText(){
+    var a = state.anchor;
+    if(state.view === 'day'){
+      return a.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+    }
+    if(state.view === 'week'){
+      var s = startOfWeek(a);
+      var e = new Date(s.getFullYear(), s.getMonth(), s.getDate() + 6);
+      return monthDay(s) + ' – ' + monthDay(e) + ', ' + e.getFullYear();
+    }
+    if(state.view === 'month'){ return MONTH_NAMES[a.getMonth()] + ' ' + a.getFullYear(); }
+    if(state.view === 'year'){ return '' + a.getFullYear(); }
+    var count = VIEW_COUNTS[state.view];
+    var start = new Date(a.getFullYear(), a.getMonth(), 1);
+    var endM = new Date(start.getFullYear(), start.getMonth() + count - 1, 1);
+    var sN = MONTH_NAMES[start.getMonth()].slice(0, 3);
+    var eN = MONTH_NAMES[endM.getMonth()].slice(0, 3);
+    if(start.getFullYear() === endM.getFullYear()) return sN + ' – ' + eN + ' ' + endM.getFullYear();
+    return sN + ' ' + start.getFullYear() + ' – ' + eN + ' ' + endM.getFullYear();
+  }
+
+  function updatePeriodLabel(){
+    var t = periodText();
+    document.getElementById('period-label').textContent = t;
+    document.getElementById('mast-period').textContent = t;
+    document.getElementById('credit-period').textContent = 'Operations & Events · ' + t + ' · click any event for full detail';
+  }
+
+  function syncControls(){
+    document.getElementById('jump-month').value = String(state.anchor.getMonth());
+    ensureYearOption(state.anchor.getFullYear());
+    document.getElementById('jump-year').value = String(state.anchor.getFullYear());
+    document.getElementById('view-select').value = state.view;
+  }
+
+  function initMonthDropdown(){
+    var mSel = document.getElementById('jump-month');
+    mSel.innerHTML = '';
+    MONTH_NAMES.forEach(function(n, i){
+      var o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = n;
+      mSel.appendChild(o);
     });
+  }
+
+  function buildYearDropdown(){
+    var ySel = document.getElementById('jump-year');
+    var years = {};
+    var now = new Date().getFullYear();
+    for(var y = now - 1; y <= now + 6; y++) years[y] = true;
+    calendarData.events.forEach(function(ev){
+      var a = parseInt(String(ev.start).slice(0, 4), 10);
+      var b = parseInt(String(ev.end).slice(0, 4), 10);
+      if(a) years[a] = true;
+      if(b) years[b] = true;
+    });
+    years[state.anchor.getFullYear()] = true;
+    var list = Object.keys(years).map(Number).sort(function(a, b){ return a - b; });
+    ySel.innerHTML = '';
+    list.forEach(function(y){
+      var o = document.createElement('option');
+      o.value = String(y);
+      o.textContent = String(y);
+      ySel.appendChild(o);
+    });
+  }
+
+  function ensureYearOption(y){
+    var ySel = document.getElementById('jump-year');
+    var exists = [].some.call(ySel.options, function(o){ return o.value === String(y); });
+    if(exists) return;
+    var o = document.createElement('option');
+    o.value = String(y);
+    o.textContent = String(y);
+    ySel.appendChild(o);
+    var opts = [].slice.call(ySel.options).sort(function(a, b){ return Number(a.value) - Number(b.value); });
+    ySel.innerHTML = '';
+    opts.forEach(function(op){ ySel.appendChild(op); });
+  }
+
+  function shiftAnchor(dir){
+    var a;
+    if(state.view === 'day'){ a = new Date(state.anchor); a.setDate(a.getDate() + dir); }
+    else if(state.view === 'week'){ a = new Date(state.anchor); a.setDate(a.getDate() + 7 * dir); }
+    else {
+      a = new Date(state.anchor.getFullYear(), state.anchor.getMonth(), 1);
+      if(state.view === 'year'){ a.setFullYear(a.getFullYear() + dir); }
+      else {
+        var step = state.view === 'month' ? 1 : state.view === 'quarter' ? 3 : 6;
+        a.setMonth(a.getMonth() + dir * step);
+      }
+    }
+    state.anchor = a;
+    render();
   }
 
   var adminPassword = sessionStorage.getItem('finley-admin-password') || null;
@@ -407,7 +688,7 @@
       .then(function(result){
         if(!result.ok) throw new Error(result.error || 'Delete failed');
         closeEventModal();
-        return loadAndRender();
+        return loadData();
       })
       .catch(function(err){
         alert('Could not delete: ' + err.message);
@@ -425,14 +706,16 @@
     status.childNodes[status.childNodes.length - 1].textContent = text;
   }
 
-  function loadAndRender(){
+  function loadData(){
     return fetch(DATA_URL + '?t=' + Date.now())
       .then(function(res){
         if(!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
       })
       .then(function(data){
-        renderCalendar(normalizeData(data));
+        calendarData = normalizeData(data);
+        buildYearDropdown();
+        render();
         setStatus('', 'Live · loaded ' + new Date().toLocaleString());
       })
       .catch(function(err){
@@ -441,19 +724,37 @@
       });
   }
 
-  loadAndRender();
+  // --- navigation wiring ---
+  document.getElementById('nav-prev').addEventListener('click', function(){ shiftAnchor(-1); });
+  document.getElementById('nav-next').addEventListener('click', function(){ shiftAnchor(1); });
+  document.getElementById('nav-today').addEventListener('click', function(){ state.anchor = new Date(); render(); });
+  document.getElementById('view-select').addEventListener('change', function(){ state.view = this.value; render(); });
+  document.getElementById('jump-month').addEventListener('change', function(){
+    state.anchor = new Date(state.anchor.getFullYear(), parseInt(this.value, 10), 1);
+    render();
+  });
+  document.getElementById('jump-year').addEventListener('change', function(){
+    state.anchor = new Date(parseInt(this.value, 10), state.anchor.getMonth(), 1);
+    render();
+  });
+
+  // --- initial paint (structure shows immediately; events fill in on load) ---
+  initMonthDropdown();
+  buildYearDropdown();
+  render();
+  loadData();
 
   setInterval(function(){
     if(document.hidden) return;
-    loadAndRender().catch(function(){});
+    loadData().catch(function(){});
   }, 30000);
 
   document.addEventListener('visibilitychange', function(){
-    if(!document.hidden) loadAndRender().catch(function(){});
+    if(!document.hidden) loadData().catch(function(){});
   });
 
   document.getElementById('refresh-now').addEventListener('click', function(){
-    loadAndRender().catch(function(){});
+    loadData().catch(function(){});
   });
 
   document.getElementById('ae-add').addEventListener('click', function(){
@@ -472,10 +773,6 @@
     if(!end) end = start; // single-day if no end given
     if(end < start){
       msg.textContent = 'End date can’t be before the start date.';
-      return;
-    }
-    if(start < '2026-07-01' || end > '2026-12-31'){
-      msg.textContent = 'Dates must fall within July–December 2026.';
       return;
     }
 
@@ -499,7 +796,8 @@
       })
       .then(function(result){
         if(!result.ok) throw new Error(result.error || 'Save failed');
-        return loadAndRender();
+        state.anchor = new Date(start + 'T00:00:00'); // jump the view to show the new event
+        return loadData();
       })
       .then(function(){
         msg.textContent = 'Added "' + name + '" (' + formatDateRange(start, end) + ') — live for everyone.';
