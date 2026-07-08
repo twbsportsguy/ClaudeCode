@@ -54,9 +54,12 @@
   .chips{display:flex;flex-direction:column;gap:2px;}
   .chip{display:block;font-size:8px;font-weight:700;line-height:1.18;
     padding:2px 4px;border-left:3px solid var(--slate);background:#eef2f8;color:var(--ink);
-    white-space:normal;overflow-wrap:break-word;word-break:normal;min-height:12px;}
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:12px;}
   .chip.seg-start{border-top-left-radius:3px;border-bottom-left-radius:3px;}
   .chip.seg-end{border-top-right-radius:3px;border-bottom-right-radius:3px;}
+  /* multi-day: let the label run across the event's own continuous bar,
+     rather than being clipped to just the first day's cell width */
+  .chip.seg-start:not(.seg-end){overflow:visible;text-overflow:clip;position:relative;z-index:1;}
   .chip.golf{border-left-color:var(--navy);background:#e7eaf2;color:#13294B;font-weight:800;}
   .chip.member{border-left-color:var(--blue);background:#eaf5fc;color:#235d83;}
   .chip.comm{border-left-color:var(--gold);background:#f8f4ea;color:#7a6a3e;}
@@ -86,9 +89,9 @@
   .addevent[hidden]{display:none;}
   .addevent h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-right:4px;}
   .addevent select,.addevent input{font-size:12px;padding:7px 9px;border:1px solid var(--line);border-radius:6px;color:var(--ink);}
+  .addevent label{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#55607a;}
   .addevent input[type="text"]{width:150px;}
   .addevent input[type="password"]{width:160px;}
-  .addevent input#ae-day{width:60px;}
   .addevent button{background:var(--orange);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;}
   .addevent button:hover{background:#a95e1e;}
   .addevent button#admin-signout{background:var(--slate);}
@@ -133,11 +136,8 @@
 
 <div class="addevent no-print" id="addevent-panel" hidden>
   <h3>Add Event</h3>
-  <select id="ae-month">
-    <option>July</option><option>August</option><option>September</option>
-    <option>October</option><option>November</option><option>December</option>
-  </select>
-  <input type="number" id="ae-day" min="1" max="31" placeholder="Day">
+  <label>Start <input type="date" id="ae-start" min="2026-07-01" max="2026-12-31"></label>
+  <label>End <input type="date" id="ae-end" min="2026-07-01" max="2026-12-31"></label>
   <input type="text" id="ae-icon" placeholder="Emoji (optional)">
   <input type="text" id="ae-name" placeholder="Event name">
   <select id="ae-category">
@@ -195,7 +195,6 @@
 <script>
   var DATA_URL = 'https://script.google.com/macros/s/AKfycbzWiLRXdCDUbN6RIgJ9Wp_phOXzeaQmihw-yDYIKM1fiYe3JLkfXnk8APW8u2lzrknR/exec';
   var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  var MONTH_INDEX = { July: 6, August: 7, September: 8, October: 9, November: 10, December: 11 };
   var CATEGORY_LABELS = {
     golf: 'Teams', member: 'Tournaments', pink: 'Learning', comm: 'VIP Events',
     corp: 'Agronomy', orange: 'Programming', maint: 'Closures / Holidays'
@@ -459,32 +458,35 @@
 
   document.getElementById('ae-add').addEventListener('click', function(){
     var addBtn = document.getElementById('ae-add');
-    var month = document.getElementById('ae-month').value;
-    var day = document.getElementById('ae-day').value.trim();
+    var start = document.getElementById('ae-start').value;
+    var end = document.getElementById('ae-end').value;
     var icon = document.getElementById('ae-icon').value.trim();
     var name = document.getElementById('ae-name').value.trim();
     var category = document.getElementById('ae-category').value;
     var msg = document.getElementById('ae-msg');
 
-    if(!day || !name){
-      msg.textContent = 'Enter a day and event name.';
+    if(!start || !name){
+      msg.textContent = 'Pick a start date and enter an event name.';
       return;
     }
-    var dayNum = parseInt(day, 10);
-    if(!(dayNum >= 1 && dayNum <= 31)){
-      msg.textContent = 'Day must be between 1 and 31.';
+    if(!end) end = start; // single-day if no end given
+    if(end < start){
+      msg.textContent = 'End date can’t be before the start date.';
       return;
     }
-    var dateStr = isoDate(2026, MONTH_INDEX[month], dayNum);
+    if(start < '2026-07-01' || end > '2026-12-31'){
+      msg.textContent = 'Dates must fall within July–December 2026.';
+      return;
+    }
 
     var payload = {
       action: 'add',
       password: adminPassword,
-      start: dateStr,
-      end: dateStr,
+      start: start,
+      end: end,
       category: category,
       text: (icon ? icon + ' ' : '') + name,
-      title: name + ' (' + month + ' ' + dayNum + ')'
+      title: name + ' (' + formatDateRange(start, end) + ')'
     };
 
     addBtn.disabled = true;
@@ -500,8 +502,9 @@
         return loadAndRender();
       })
       .then(function(){
-        msg.textContent = 'Added "' + name + '" on ' + month + ' ' + dayNum + ' — live for everyone.';
-        document.getElementById('ae-day').value = '';
+        msg.textContent = 'Added "' + name + '" (' + formatDateRange(start, end) + ') — live for everyone.';
+        document.getElementById('ae-start').value = '';
+        document.getElementById('ae-end').value = '';
         document.getElementById('ae-icon').value = '';
         document.getElementById('ae-name').value = '';
       })
