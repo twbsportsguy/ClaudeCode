@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finley Golf Club — Events Calendar</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%2313294B%27/%3E%3Cpath%20d%3D%27M16%208%20C12.5%2014%2013.5%2021%2016%2026%20C18.5%2021%2019.5%2014%2016%208%20Z%27%20fill%3D%27none%27%20stroke%3D%27%239CC0DE%27%20stroke-width%3D%271.5%27/%3E%3Cpath%20d%3D%27M12%2012%20L20%2022%20M20%2012%20L12%2022%20M13%2016%20L19%2016%27%20stroke%3D%27%239CC0DE%27%20stroke-width%3D%271.1%27/%3E%3C/svg%3E">
+
 <style>
   :root{
     --navy:#13294B; --blue:#4B9CD3; --gold:#B5A36A; --green:#2F5D50; --slate:#7B8794;
@@ -18,13 +20,19 @@
   .sheet{width:1485px;max-width:100%;margin:24px auto;background:#fff;
     box-shadow:0 18px 50px rgba(19,41,75,.14);border-radius:6px;overflow:hidden;}
 
-  .masthead{background:var(--navy);color:#fff;padding:20px 34px 18px;position:relative;border-bottom:5px solid var(--gold);}
+  .masthead{background:var(--navy);color:#fff;padding:18px 34px 16px;position:relative;border-bottom:5px solid var(--gold);
+    display:flex;align-items:center;gap:26px;}
   .masthead::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:5px;
     background:linear-gradient(90deg,var(--gold),var(--blue));}
-  .mark{font-family:Georgia,serif;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .brand-badge{flex:none;background:#fff;border-radius:12px;padding:12px 18px;line-height:0;
+    box-shadow:0 6px 18px rgba(0,0,0,.18);}
+  .brand-badge svg{width:180px;height:auto;display:block;}
+  .masthead-text{min-width:0;}
+  .mark{font-family:Georgia,serif;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:700;}
   h1{font-family:Georgia,serif;font-size:30px;font-weight:700;line-height:1;margin-top:5px;}
   h1 .yr{color:var(--blue);}
   .subtitle{margin-top:6px;font-size:12px;color:#c7d2e2;letter-spacing:.03em;}
+  @media(max-width:640px){ .masthead{flex-direction:column;align-items:flex-start;gap:14px;} .brand-badge svg{width:150px;} }
 
   .legend{display:flex;flex-wrap:wrap;gap:8px 24px;padding:11px 34px;border-bottom:1px solid var(--line);background:#fbfcfe;}
   .legend .li{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:#3a4456;}
@@ -223,9 +231,12 @@
 
 <div class="sheet">
   <header class="masthead">
-    <span class="mark">Finley Golf Club · Chapel Hill</span>
-    <h1>Events Calendar <span class="yr" id="mast-period"></span></h1>
-    <p class="subtitle">Operations, tournaments, programming &amp; agronomy · protect golf operations · signature community days</p>
+    <div class="brand-badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 190" width="340" height="190" role="img" aria-label="Finley Golf Club"> <path id="finleyArc" d="M 30,140 Q 170,30 310,140" fill="none"/> <text font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="58" fill="#13294B" letter-spacing="3"> <textPath href="#finleyArc" startOffset="50%" text-anchor="middle">FINLEY</textPath> </text> <line x1="86" y1="122" x2="254" y2="122" stroke="#9CC0DE" stroke-width="2.2" stroke-linecap="round"/> <line x1="90.0" y1="122" x2="77.6" y2="114.9" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="96.4" y1="122" x2="83.2" y2="114.4" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="102.8" y1="122" x2="88.8" y2="113.9" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="109.2" y1="122" x2="94.4" y2="113.4" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="115.6" y1="122" x2="100.0" y2="113.0" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="122.0" y1="122" x2="105.6" y2="112.5" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="128.4" y1="122" x2="111.2" y2="112.0" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="134.8" y1="122" x2="116.7" y2="111.6" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="141.2" y1="122" x2="122.3" y2="111.1" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="147.6" y1="122" x2="127.9" y2="110.6" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="154.0" y1="122" x2="133.5" y2="110.2" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="186.0" y1="122" x2="206.5" y2="110.2" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="192.4" y1="122" x2="212.1" y2="110.6" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="198.8" y1="122" x2="217.7" y2="111.1" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="205.2" y1="122" x2="223.3" y2="111.6" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="211.6" y1="122" x2="228.8" y2="112.0" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="218.0" y1="122" x2="234.4" y2="112.5" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="224.4" y1="122" x2="240.0" y2="113.0" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="230.8" y1="122" x2="245.6" y2="113.4" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="237.2" y1="122" x2="251.2" y2="113.9" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="243.6" y1="122" x2="256.8" y2="114.4" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <line x1="250.0" y1="122" x2="262.4" y2="114.9" stroke="#9CC0DE" stroke-width="1.4" stroke-linecap="round"/> <defs><clipPath id="coneclip"><path d="M152,123 C147,144 155,164 170,177 C185,164 193,144 188,123 C182,114 158,114 152,123 Z"/></clipPath></defs><g clip-path="url(#coneclip)"><line x1="92" y1="108" x2="156" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="156" y1="108" x2="92" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="97" y1="108" x2="161" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="161" y1="108" x2="97" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="102" y1="108" x2="166" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="166" y1="108" x2="102" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="107" y1="108" x2="171" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="171" y1="108" x2="107" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="112" y1="108" x2="176" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="176" y1="108" x2="112" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="117" y1="108" x2="181" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="181" y1="108" x2="117" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="122" y1="108" x2="186" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="186" y1="108" x2="122" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="127" y1="108" x2="191" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="191" y1="108" x2="127" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="132" y1="108" x2="196" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="196" y1="108" x2="132" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="137" y1="108" x2="201" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="201" y1="108" x2="137" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="142" y1="108" x2="206" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="206" y1="108" x2="142" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="147" y1="108" x2="211" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="211" y1="108" x2="147" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="152" y1="108" x2="216" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="216" y1="108" x2="152" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="157" y1="108" x2="221" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="221" y1="108" x2="157" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="162" y1="108" x2="226" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="226" y1="108" x2="162" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="167" y1="108" x2="231" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="231" y1="108" x2="167" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="172" y1="108" x2="236" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="236" y1="108" x2="172" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="177" y1="108" x2="241" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="241" y1="108" x2="177" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="182" y1="108" x2="246" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="246" y1="108" x2="182" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="187" y1="108" x2="251" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="251" y1="108" x2="187" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="192" y1="108" x2="256" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="256" y1="108" x2="192" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="197" y1="108" x2="261" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="261" y1="108" x2="197" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="202" y1="108" x2="266" y2="186" stroke="#9CC0DE" stroke-width="1.5"/> <line x1="266" y1="108" x2="202" y2="186" stroke="#9CC0DE" stroke-width="1.5"/></g><path d="M152,123 C147,144 155,164 170,177 C185,164 193,144 188,123 C182,114 158,114 152,123 Z" fill="none" stroke="#9CC0DE" stroke-width="2.2"/> <text x="118" y="176" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="21" letter-spacing="3.5" fill="#13294B" text-anchor="middle">GOLF</text> <text x="223" y="176" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="21" letter-spacing="3.5" fill="#13294B" text-anchor="middle">CLUB</text> </svg></div>
+    <div class="masthead-text">
+      <span class="mark">Home of Carolina Golf · Chapel Hill, NC</span>
+      <h1>Events Calendar <span class="yr" id="mast-period"></span></h1>
+      <p class="subtitle">Operations, tournaments, programming &amp; agronomy · protect golf operations · signature community days</p>
+    </div>
   </header>
 
   <div class="legend">
@@ -242,7 +253,7 @@
   <div class="grid" id="grid"></div>
 
   <div class="credit">
-    <span>Finley Golf Club — Official UNC Men's &amp; Women's Golf Facility · Chapel Hill, NC</span>
+    <span>Finley Golf Club — Home of Carolina Golf · Chapel Hill, NC · finleygolfclub.com</span>
     <span id="credit-period">Operations &amp; Events · click any event for full detail</span>
   </div>
 </div>
