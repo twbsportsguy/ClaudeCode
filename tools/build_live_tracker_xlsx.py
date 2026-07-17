@@ -12,6 +12,7 @@ from pathlib import Path
 import sys
 
 from openpyxl import Workbook
+from openpyxl.drawing.image import Image as XLImage
 from openpyxl.formatting.rule import FormulaRule
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
@@ -21,8 +22,12 @@ CSV_URL = (
     "main/tracker/prospects.csv"
 )
 
-NAVY = "13294B"
+NAVY = "13294B"          # Finley wordmark navy
+BRAND_BLUE = "9FC2E6"    # Finley pine-sprig / pinecone light blue
 LIGHT_BLUE = "E8F1F8"
+# Drop the club logo here (PNG, transparent bg) and it's embedded on the
+# Summary tab automatically; otherwise a styled wordmark stands in.
+LOGO_PATH = Path(__file__).resolve().parent.parent / "assets" / "finley-logo.png"
 GREEN_FILL = "C8E6C9"
 GREEN_TEXT = "1B5E20"
 AMBER_FILL = "FFF3CD"
@@ -108,14 +113,42 @@ def build_prospects(ws):
             font=Font(bold=True, color="222222")))
 
 
+def _brand_header(ws):
+    """Finley branding band across the top of the Summary sheet: the club
+    logo if assets/finley-logo.png exists, else a styled wordmark, plus a
+    light-blue accent rule."""
+    ws.row_dimensions[1].height = 60
+    logo_added = False
+    if LOGO_PATH.exists():
+        try:
+            img = XLImage(str(LOGO_PATH))
+            ratio = (img.width / img.height) if img.height else 2.0
+            img.height = 68
+            img.width = int(68 * ratio)
+            ws.add_image(img, "B1")
+            logo_added = True
+        except Exception:
+            logo_added = False
+    if not logo_added:
+        ws.merge_cells("B1:H1")
+        ws["B1"] = "FINLEY  ·  GOLF CLUB"
+        ws["B1"].font = Font(bold=True, size=22, color=NAVY)
+        ws["B1"].alignment = Alignment(vertical="center")
+    # Light-blue accent rule under the header band.
+    ws.row_dimensions[2].height = 5
+    for c in range(2, 9):
+        ws.cell(row=2, column=c).fill = PatternFill("solid", fgColor=BRAND_BLUE)
+
+
 def build_summary(ws):
     ws.sheet_view.showGridLines = False
-    ws.merge_cells("B2:H2")
-    ws["B2"] = "Finley Golf Club — Corporate Partnerships Pipeline"
-    ws["B2"].font = Font(bold=True, size=18, color=NAVY)
+    _brand_header(ws)
     ws.merge_cells("B3:H3")
-    ws["B3"] = 'Tyler Baity · live view — updates automatically from the prospect tracker'
-    ws["B3"].font = Font(size=11, color="666666")
+    ws["B3"] = "Corporate Partnerships Pipeline"
+    ws["B3"].font = Font(bold=True, size=18, color=NAVY)
+    ws.merge_cells("B4:H4")
+    ws["B4"] = 'Tyler Baity · live view — updates automatically from the prospect tracker'
+    ws["B4"].font = Font(size=11, color="666666")
 
     kpis = [
         ("Companies", '=COUNTUNIQUE(Prospects!D2:D)', NAVY),
