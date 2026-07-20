@@ -17,6 +17,12 @@ spend on the web, scores prospects A/B/C, appends them to the master tracker,
 republishes the tracker to Google Sheets, and creates one personalized Gmail
 draft per decision-maker contact.
 
+**Autopilot:** running `/prospect` with **no input** (or `auto`) makes it
+choose its own targets via `config/autopilot.md` (dedupe + rotate + double
+down on segments that are replying) and log the reasoning to
+`tracker/autopilot-log.md`. A scheduled Routine fires this 2–3×/week. Email
+voice is tuned in `config/voice.md`.
+
 ## Key files
 
 | File | Purpose |

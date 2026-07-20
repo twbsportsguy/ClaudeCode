@@ -26,6 +26,15 @@ Read `config/profile.md`, `scoring.md`, and the relevant `templates/*.md`
 before drafting anything. Use the email signature from `config/profile.md`
 verbatim (it includes the scheduling link).
 
+## Autopilot mode (no input given)
+
+If invoked with **no** city/industry/company/person (or the literal input
+`auto`), **do not ask** for keywords. Pick the next targets yourself using
+`config/autopilot.md`: dedupe against `tracker/prospects.csv`, choose 2
+segments (industry × Triangle sub-market), append your choice + one-line
+rationale to `tracker/autopilot-log.md`, then run Steps 0–8 for those
+segments. This is what the scheduled Routine fires 2–3×/week.
+
 ## Step 0 — Sync inbox replies into the pipeline (run first, every time)
 
 Before prospecting, reconcile replies so the tracker reflects reality. Also
@@ -148,7 +157,8 @@ For every A and B ranked contact (C only if the user asks):
 2. Fill merge fields. `{{Hook}}` must be a real, specific fact from Step 2/4
    research — if nothing real was found, open with a market-specific line
    instead, never a fabricated claim.
-3. Keep it under 120 words, seller signature from `config/profile.md`.
+3. Keep it under 120 words and follow `config/voice.md` for tone/style;
+   seller signature verbatim from `config/profile.md`.
 4. **Proofread every email before creating the draft** (drafts are what the
    user sends, so this is the last quality gate). Check each one against:
    - No unfilled merge fields left (`{{FirstName}}`, `{{Company}}`,
