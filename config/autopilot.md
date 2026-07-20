@@ -1,12 +1,15 @@
 # Autopilot — autonomous target selection
 
 When `/prospect` runs with **no input** (or input `auto`), don't ask for
-keywords — choose the next targets here, act, and log why. This is what the
-scheduled Routine fires 2–3×/week.
+keywords — choose the next targets here, act, and log why.
+
+**Weekly rhythm:** Mon/Wed/Fri = new prospecting (this file). Tue/Thu =
+follow-ups to non-repliers (`config/followups.md`), not new prospecting.
 
 ## Per-run budget
 - **2 segments** per run (a segment = one industry × one Triangle sub-market).
-- ~8–10 companies per segment (~15–20 companies total), all decision-makers.
+- ~8–10 companies per segment (~15–20 companies total); pull every useful
+  contact per company, not just decision-makers (see SKILL.md Step 3).
 - Hard stop: don't enrich a 3rd segment in one run (ZoomInfo credit control).
 
 ## The universe

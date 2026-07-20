@@ -35,6 +35,15 @@ segments (industry × Triangle sub-market), append your choice + one-line
 rationale to `tracker/autopilot-log.md`, then run Steps 0–8 for those
 segments. This is what the scheduled Routine fires 2–3×/week.
 
+## Follow-up mode (Tuesdays & Thursdays / input `followups`)
+
+Tue/Thu are for **follow-ups, not new prospecting.** Run Step 0 (reply-sync)
+first, then follow `config/followups.md`: find contacts already emailed who
+haven't replied and are due a bump, draft short follow-ups per
+`config/voice.md`, record `FU#`+date in each row's Notes, update Next Step,
+and stage/create drafts per the gate. Mon/Wed/Fri stay new-prospecting
+(autopilot) days.
+
 ## Step 0 — Sync inbox replies into the pipeline (run first, every time)
 
 Before prospecting, reconcile replies so the tracker reflects reality. Also
@@ -94,18 +103,29 @@ top candidates for hooks and spend signals.
 
 ## Step 3 — Pull decision-maker contacts
 
-`mcp__ZoomInfo__search_contacts` per company (companyId filter) with
-`managementLevel: "C Level Exec,VP Level Exec,Director"`, sorted by
-`-contactAccuracyScore`, `requiredFields: "email"`. Also try
-`jobTitle: "Owner OR President OR General Manager OR Principal"` for small
-local firms where management level tagging is thin.
+`mcp__ZoomInfo__search_contacts` per company (companyId filter), sorted by
+`-contactAccuracyScore`, `requiredFields: "email"`. **Cast wide — reach every
+useful contact, not just top brass.** Pull people at ANY level whose role
+could buy, influence, or champion a partnership:
+- Marketing, brand, creative, digital
+- Events, sponsorship, partnerships, community, PR / communications
+- Sales leadership and business development
+- Owners, founders, and C-level / VP / GM / President
 
-Take **ALL decision-makers found — no cap** (marketing-titled contacts
-first, then owner/C-level/VP/GM/Director). Skip only support-function
-roles that never buy sponsorships (HR, IT, recruiting, training) and
-below-Director titles (GM/GSM at dealerships counts as decision-maker).
+Search these via `department`/`jobFunction` (e.g. Marketing, Sales) and
+`jobTitle` (e.g. `"Marketing OR Brand OR Events OR Sponsorship OR Partnerships
+OR Community OR Communications OR Sales OR Owner OR President OR General
+Manager"`). Include managers and individual contributors, not only Director+.
+
+Skip only genuinely irrelevant roles (IT, HR/recruiting, accounting/finance
+back-office, engineering, legal, warehouse/logistics) **unless** that person
+is the owner/GM. Priority order: marketing/events/sponsorship titles → owners/
+execs → sales/BD → other useful functions.
 `mcp__ZoomInfo__enrich_contacts` (batches of ≤10) for verified email, phone,
 jobTitle, managementLevel.
+
+Credit guardrail: pull everyone plausibly useful, but don't enrich obviously
+irrelevant roles.
 
 **Person lookup mode:** `search_contacts` by name (+company), then
 `mcp__ZoomInfo__contact_research` for background and `enrich_contacts` for
