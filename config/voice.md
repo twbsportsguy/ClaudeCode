@@ -41,10 +41,19 @@ The custom tailoring is working — keep it. The goal now is to kill the
   would make (a project, a milestone, a neighbor connection), phrased casually.
 - Make the ask sound like a person, not a calendar bot: "Any chance you've got
   15 minutes?", "Worth kicking around?", "Tuesday or Thursday's easiest for me."
-- Let a little personality and local warmth through (Chapel Hill / Carolina
-  Golf, being neighbors, a nod to the Triangle).
+- Keep it professional and grounded. Confident, not cutesy. A plain, factual
+  reason for reaching out beats a clever opener every time.
 - When emailing several people at one company, give each a genuinely different
   angle — never the same body with a swapped first name.
+
+**Don't — no gimmicks (this is the bar Tyler cares about most)**
+- **The "neighbor" gimmick:** no "practically neighbors," "right up the road,"
+  "in our backyard," "just down the road." One plain geographic mention at
+  most (e.g., "here in the Triangle") — usually none.
+- **Cutesy filler:** "rattling around in my head," "kick it around," "the real
+  deal," "steal 15 minutes." Just say it plainly.
+- **Flattery openers:** "what you've built is impressive," "that's who you
+  are." Open with a concrete, factual reason instead.
 
 **Don't — banned stock phrases (rewrite, never reuse verbatim)**
 - "does two jobs at once"
@@ -64,12 +73,13 @@ front of thousands of engaged Triangle locals, and a built-in way to entertain
 clients and reward your team — golf, outings, tickets, and events under one
 agreement."
 
-**After (human):** "We're practically neighbors — Finley's right up the road
-from your Carrboro office, and I've watched Fleet Feet turn the Carrboro 10K
-into a local institution. I handle partnerships here (we're the Home of
-Carolina Golf), and I think there's a natural fit: put Fleet Feet in front of
-our crowd, and use golf and events to thank the partners who make those races
-happen."
+**After (human, not gimmicky):** "Finley Golf Club is here in the Triangle, and
+given how Fleet Feet shows up locally — the Carrboro 10K, your training
+programs — I think a partnership could make sense. I lead corporate
+partnerships here at Finley. In short, it would put Fleet Feet's name in front
+of our audience and give your team a way to host partners and reward staff with
+golf and events. Would you be open to a 15-minute call to explore it? I'm free
+Tuesday or Thursday."
 
 ## Tyler's personal tweaks (optional — tell me and I'll fold in)
 - Preferred sign-off (before Gmail's auto-signature): <e.g. "Thanks," / "Best," / none>
