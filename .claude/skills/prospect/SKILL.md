@@ -177,8 +177,9 @@ For every A and B ranked contact (C only if the user asks):
 2. Fill merge fields. `{{Hook}}` must be a real, specific fact from Step 2/4
    research — if nothing real was found, open with a market-specific line
    instead, never a fabricated claim.
-3. Keep it under 120 words and follow `config/voice.md` for tone/style;
-   seller signature verbatim from `config/profile.md`.
+3. Keep it under 120 words and follow `config/voice.md` for tone/style.
+   **No signature block** — end after the ask; Gmail appends Tyler's own
+   signature automatically (see `config/voice.md`).
 4. **Proofread every email before creating the draft** (drafts are what the
    user sends, so this is the last quality gate). Check each one against:
    - No unfilled merge fields left (`{{FirstName}}`, `{{Company}}`,
@@ -188,12 +189,13 @@ For every A and B ranked contact (C only if the user asks):
    - The hook is factually true per Step 2/4 research — no invented awards,
      sponsorships, or numbers.
    - Spelling/grammar clean, tone professional, under 120 words.
-   - Signature block matches `config/profile.md` verbatim (name, title,
-     email, phone, scheduling link).
+   - No signature block in the body (Gmail appends Tyler's); the email ends
+     cleanly on the ask, no name/title/contact typed out.
    Fix anything that fails before drafting. If a hook can't be verified,
    replace it with a market-specific line rather than shipping a guess.
 5. `mcp__Gmail__create_draft` — to: the contact's verified email, subject
-   from the template. **Drafts only. Never send.**
+   per `config/voice.md` (specific-hook style, not the template's placeholder).
+   **Drafts only. Never send.**
 6. Mark `Draft Created = Y` in the tracker row.
 
 If a contact has no verified email, still log them (Draft Created = N,

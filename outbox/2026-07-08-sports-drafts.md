@@ -1,286 +1,231 @@
-# Outbox — Sports batch (2026-07-08)
+# Outbox — Sports batch (2026-07-08, humanized v2)
 
 Gmail was unauthorized at run time, so these finished, proofread drafts are
 staged here. On the next run (after Gmail re-auth), create each as a Gmail
 **draft** (never send), set `Draft Created = Y` in the tracker, and delete
-this file. All 14 are personalized, under 120 words, signature verbatim.
+this file. Voice per `config/voice.md`: humanized, specific-hook subjects,
+**no signature block** (Gmail appends Tyler's automatically).
 
 ---
 
 ## 1. Fleet Feet — Tiffany Lee
 **To:** tiffany.lee@fleetfeet.com
-**Subject:** Partnership idea for Fleet Feet
+**Subject:** Getting Fleet Feet in front of the Triangle
 
 Hi Tiffany,
 
-Fleet Feet running its national HQ out of Carrboro — and putting on community races like the Carrboro 10K — caught my attention.
+We're practically neighbors — Finley's right up the road from your Carrboro office, and I've watched Fleet Feet turn the Carrboro 10K into a local institution.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a brand like Fleet Feet, a partnership does two jobs at once: your name in front of thousands of engaged Triangle locals, and a built-in way to entertain partners and reward your team — golf, outings, tickets, and events under one agreement. It could dovetail nicely with the race community you already build.
+I handle partnerships here (we're the Home of Carolina Golf), and there's a natural fit rattling around in my head. You already know how to build a crowd; I could put Fleet Feet in front of ours, and give you golf and events to thank the partners and staff who pull those races off.
 
-Could I grab 15 minutes to show you how Triangle brands are using it? Tuesday or Thursday afternoon works on my end.
+Any chance you've got 15 minutes to kick it around? Tuesday or Thursday's easiest on my end.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 2. Fleet Feet — Nora Ayers
 **To:** nora.ayers@fleetfeet.com
-**Subject:** Partnership idea for Fleet Feet
+**Subject:** A neighborly idea for Fleet Feet's community crew
 
 Hi Nora,
 
-The community running programs Fleet Feet builds out of Carrboro — the Carrboro 10K, your training groups — are exactly the kind of local energy I look for.
+The community you've built around Fleet Feet's Carrboro programs is the real deal — the training groups, the 10K, all of it.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. A partnership could put Fleet Feet in front of thousands of engaged Triangle families, plus give you golf outings, tickets, and events to reward your teams and community partners — all under one agreement.
+I run partnerships at Finley Golf Club just up the road. I think there's a way to get Fleet Feet's name in front of more local families, and to give you golf outings and events to thank the folks who show up for you week after week.
 
-Could I grab 15 minutes to show you how it works? Tuesday or Thursday afternoon is open on my end.
+Would it be worth 15 minutes? I'm around Tuesday and Thursday.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 3. Fleet Feet — Joey Pointer
 **To:** joey.pointer@fleetfeet.com
-**Subject:** Partnership idea for Fleet Feet
+**Subject:** Your Carrboro neighbor at Finley
 
 Hi Joey,
 
-Fleet Feet running its national HQ out of Carrboro — right next door to us — is why I'm reaching out.
+Running Fleet Feet's national HQ out of Carrboro makes us just about neighbors, which is part of why I'm writing.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a company like Fleet Feet, a partnership does two jobs at once: your brand in front of thousands of engaged Triangle locals, and a built-in way to entertain clients and reward your team — golf, outings, tickets, and events under one agreement.
+I lead corporate partnerships at Finley Golf Club, the Home of Carolina Golf. A partnership gets Fleet Feet in front of a local crowd and gives your team somewhere to host and reward the people who matter to the business.
 
-Could I grab 15 minutes to show you how Triangle businesses are using it? Tuesday or Thursday afternoon works on my end.
+Could I borrow 15 minutes? Tuesday or Thursday works well for me.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 4. Implus Footcare — Courtney Ahearn
 **To:** cahearn@implus.com
-**Subject:** Partnership idea for Implus
+**Subject:** An idea built around Implus's brands
 
 Hi Courtney,
 
-Watching Implus build a 16-brand running and fitness portfolio — Balega, Yaktrax, Sof Sole — out of Durham caught my attention.
+Sixteen brands — Balega, Yaktrax, Sof Sole — all run out of Durham. That's a serious portfolio in our backyard, and it's why I'm reaching out.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a brand family like Implus, a partnership does two jobs at once: your names in front of thousands of engaged Triangle locals, and a built-in way to entertain retail partners and reward your team — golf, outings, tickets, and events under one agreement.
+I handle partnerships at Finley Golf Club, the Home of Carolina Golf. There's room here to put your brands in front of a local, active crowd, and to give your team a place to host retail partners over a round of golf.
 
-Could I grab 15 minutes to show you how Triangle brands are using it? Tuesday or Thursday afternoon works on my end.
+Worth a quick 15 minutes? I'm open Tuesday or Thursday.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 5. Implus Footcare — Théophile Southon
 **To:** tsouthon@implus.com
-**Subject:** Partnership idea for Implus
+**Subject:** A live home for Implus's brand activations
 
 Hi Théophile,
 
-Implus building a 16-brand activation engine — Balega, Yaktrax, Sof Sole — out of Durham is why I'm reaching out.
+Brand activation across sixteen labels is no small job, so this might be up your alley.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. A partnership could put your brands in front of thousands of engaged Triangle locals and give you a live activation and hospitality venue — golf, outings, tickets, and events under one agreement.
+I run partnerships at Finley Golf Club here in Chapel Hill. We could give Implus a live setting to put its brands in front of an active local audience, plus golf and events when you want to host partners or reward the team.
 
-Could I grab 15 minutes to show you how brands are using it? Tuesday or Thursday afternoon works on my end.
+Any chance you've got 15 minutes this week or next? Tuesday and Thursday are easiest for me.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 6. Sports Endeavors — Brian Berklich
 **To:** bberklich@sportsendeavors.com
-**Subject:** Partnership idea for Sports Endeavors
+**Subject:** An idea for Soccer.com in its backyard
 
 Hi Brian,
 
-Sports Endeavors growing Soccer.com into the country's leading grassroots soccer outfitter from Hillsborough caught my attention.
+Building Soccer.com into the country's go-to grassroots soccer shop from Hillsborough is a great story, and it's practically next door to us.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a brand like yours, a partnership does two jobs at once: your name in front of thousands of engaged Triangle locals, and a built-in way to entertain partners and reward your team — golf, outings, tickets, and events under one agreement.
+I lead partnerships at Finley Golf Club (Home of Carolina Golf). I think there's a clean fit: your brand in front of a local, family-heavy audience, and somewhere to host partners or thank the team with a round of golf.
 
-Could I grab 15 minutes to show you how Triangle brands are using it? Tuesday or Thursday afternoon works on my end.
+Could I grab 15 minutes to walk you through it? Tuesday or Thursday suits me.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 7. Sports Endeavors — Tyler Clardy
 **To:** tclardy@sportsendeavors.com
-**Subject:** Partnership idea for Sports Endeavors
+**Subject:** Soccer.com + a local Triangle audience
 
 Hi Tyler,
 
-Soccer.com growing into the nation's leading grassroots soccer outfitter — out of Hillsborough — is why I'm reaching out.
+Not many companies quietly become the nation's leading grassroots soccer outfitter from a town like Hillsborough. Soccer.com did.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. A partnership could put Sports Endeavors in front of thousands of engaged Triangle locals, plus give you golf, outings, tickets, and events to entertain partners and reward your team — all under one agreement.
+I run partnerships at Finley Golf Club nearby. There's a way to get Sports Endeavors in front of a local audience and give you golf and events to entertain partners and reward your people.
 
-Could I grab 15 minutes to show you how it works? Tuesday or Thursday afternoon is open on my end.
+Would 15 minutes be worth it? I'm around Tuesday and Thursday.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 8. Sports Endeavors — Michael Moylan
 **To:** mmoylan@sportsendeavors.com
-**Subject:** Partnership idea for Sports Endeavors
+**Subject:** A Hillsborough neighbor with an idea
 
 Hi Michael,
 
-Sports Endeavors building Soccer.com into the country's leading grassroots soccer outfitter from Hillsborough is why I'm reaching out.
+What you've built with Soccer.com out of Hillsborough is impressive, and it's basically in our backyard.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a company like yours, a partnership does two jobs at once: your brand in front of thousands of engaged Triangle locals, and a built-in way to entertain clients and reward your team — golf, outings, tickets, and events under one agreement.
+I lead corporate partnerships at Finley Golf Club, the Home of Carolina Golf. For a company like yours, we can put your brand in front of a local crowd and give the team a place to host clients or unwind over a round.
 
-Could I grab 15 minutes to show you how Triangle businesses are using it? Tuesday or Thursday afternoon works on my end.
+Could I borrow 15 minutes? Tuesday or Thursday works for me.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 9. Big Rock Sports — Mitch Mitchel
 **To:** mmitchel@bigrocksports.com
-**Subject:** Partnership idea for Big Rock Sports
+**Subject:** Somewhere to host Big Rock's dealers
 
 Hi Mitch,
 
-Big Rock Sports running North America's premier outdoor sporting-goods distribution operation out of Graham caught my attention.
+Running North America's biggest outdoor sporting-goods distribution out of Graham is no small operation, and it's right up the road from us.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a company like Big Rock, a partnership does two jobs at once: your brand in front of thousands of engaged Triangle locals, and a built-in way to entertain dealers and reward your team — golf, outings, tickets, and events under one agreement.
+I handle partnerships at Finley Golf Club, the Home of Carolina Golf. For a business like Big Rock, the real pull is client entertainment: somewhere to host dealers and reward the team over golf, plus your name in front of a local crowd.
 
-Could I grab 15 minutes to show you how Triangle businesses are using it? Tuesday or Thursday afternoon works on my end.
+Worth 15 minutes to talk it through? Tuesday or Thursday's best for me.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 10. Big Rock Sports — Corey Engquist
 **To:** corengquist@bigrocksports.com
-**Subject:** Partnership idea for Big Rock Sports
+**Subject:** A relationship-building idea for Big Rock
 
 Hi Corey,
 
-Big Rock Sports running the continent's premier outdoor sporting-goods distribution operation out of Graham is why I'm reaching out.
+You've built Big Rock into the premier outdoor distributor on the continent, and you did it from Graham, practically our backyard.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a company like Big Rock, a partnership does two jobs at once: your brand in front of thousands of engaged Triangle locals, and a built-in way to entertain dealers and reward your team — golf, outings, tickets, and events under one agreement.
+I run corporate partnerships at Finley Golf Club nearby. For a company like yours, a partnership is really about relationships: a place to host dealers and thank your team with a round of golf, plus local visibility for the brand.
 
-Could I grab 15 minutes to show you how it works? Tuesday or Thursday afternoon works on my end.
+Any chance you've got 15 minutes? I'm open Tuesday and Thursday.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 11. Great Outdoor Provision — Leah Bradley
 **To:** leahb@greatoutdoorprovision.com
-**Subject:** Partnership idea for Great Outdoor Provision
+**Subject:** Great Outdoor + a local, outdoorsy crowd
 
 Hi Leah,
 
-Great Outdoor Provision outfitting North Carolina since 1972 — and backing local trails through the Triangle Land Conservancy — caught my attention.
+The way Great Outdoor shows up for the outdoors — the Mountains-to-Sea Trail, the Triangle Land Conservancy — says a lot about the brand.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a brand like yours, a partnership does two jobs at once: your name in front of thousands of engaged Triangle locals, and a built-in way to entertain partners and reward your team — golf, outings, tickets, and events under one agreement.
+I run partnerships at Finley Golf Club here in Chapel Hill. There's a natural fit: your name in front of a local, outdoorsy crowd, and golf and events for hosting partners or thanking the team.
 
-Could I grab 15 minutes to show you how Triangle brands are using it? Tuesday or Thursday afternoon works on my end.
+Would it be worth 15 minutes? Tuesday or Thursday works on my end.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 12. Great Outdoor Provision — Chuck Millsaps
 **To:** chuckm@greatoutdoorprovision.com
-**Subject:** Partnership idea for Great Outdoor Provision
+**Subject:** An idea for GOPC and the Triangle
 
 Hi Chuck,
 
-Great Outdoor Provision outfitting North Carolina since 1972 — and backing the Mountains-to-Sea Trail and Triangle Land Conservancy — is why I'm reaching out.
+What's always stood out to me about Great Outdoor is that you back it up — the Mountains-to-Sea Trail work, the Triangle Land Conservancy partnership. That's not marketing, that's who you are.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For a company like yours, a partnership does two jobs at once: your brand in front of thousands of engaged Triangle locals, and a built-in way to entertain clients and reward your team — golf, outings, tickets, and events under one agreement.
+I run corporate partnerships at Finley Golf Club over in Chapel Hill. A company like yours could use us a couple of ways: getting your name in front of a local, outdoorsy crowd, and having a spot to host clients or reward the team.
 
-Could I grab 15 minutes to show you how Triangle businesses are using it? Tuesday or Thursday afternoon works on my end.
+Worth 15 minutes to see what it might look like? I'm open Tuesday or Thursday.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 13. USA Baseball — Allison Gupton
 **To:** allisongupton@usabaseball.com
-**Subject:** Partnership idea for USA Baseball
+**Subject:** Somewhere to host USA Baseball's partners
 
 Hi Allison,
 
-USA Baseball running the sport's national governing body — and the National Training Complex in Cary — out of Durham caught my attention.
+Running the sport's national governing body, plus the training complex over in Cary, out of Durham puts you right in our backyard.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. For an organization like USA Baseball, a partnership does two jobs at once: your brand in front of thousands of engaged Triangle locals, and a built-in way to host partners and reward your team — golf, outings, tickets, and events under one agreement.
+I handle partnerships at Finley Golf Club, the Home of Carolina Golf. Given how much of your world is partners and hospitality, I think there's a fit: somewhere to host them over golf, plus events and local visibility for USA Baseball.
 
-Could I grab 15 minutes to show you how Triangle organizations are using it? Tuesday or Thursday afternoon works on my end.
+Could I grab 15 minutes? Tuesday or Thursday's easiest for me.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,
 
 ---
 
 ## 14. USA Baseball — Bradley Young
 **To:** bradyoung@usabaseball.com
-**Subject:** Partnership idea for USA Baseball
+**Subject:** USA Baseball + a Triangle audience
 
 Hi Bradley,
 
-USA Baseball running the sport's national governing body — and the Cary National Training Complex — out of Durham is why I'm reaching out.
+USA Baseball running the national governing body out of Durham, with the complex in Cary, keeps you close to home for us.
 
-I run corporate partnerships at Finley Golf Club, Home of Carolina Golf. A partnership could put USA Baseball's brand in front of thousands of engaged Triangle locals and give you golf, outings, tickets, and events to host partners and reward your team — all under one agreement.
+I run corporate partnerships at Finley Golf Club nearby. There's a way to get USA Baseball in front of a local audience and give you a place to host partners or reward the team with a round of golf.
 
-Could I grab 15 minutes to show you how it works? Tuesday or Thursday afternoon is open on my end.
+Would 15 minutes be worth your time? I'm around Tuesday and Thursday.
 
-Tyler Baity
-Senior Manager | Business Development & Operations
-Finley Golf Club — Home of Carolina Golf
-twbaity@alumni.unc.edu | (336) 225-6396
-Schedule a meeting: https://calendar.app.google/M9bXpDQ4sib6ekjq9
+Thanks,

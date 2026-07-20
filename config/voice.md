@@ -4,7 +4,7 @@ The drafting step (SKILL.md Step 7) must follow this. **This is the one place
 to tune how outreach reads** — edit it and every future draft changes.
 
 ## Core rules
-- Under 120 words; ~3 short paragraphs + signature.
+- Under 120 words; ~3 short paragraphs, ending on the ask (no signature block).
 - Warm, direct, peer-to-peer. No hard sell.
 - Open with a **specific, true** hook about the prospect (their news, HQ,
   sponsorship, milestone). Never a generic compliment.
@@ -12,7 +12,20 @@ to tune how outreach reads** — edit it and every future draft changes.
   and reward the team (golf, outings, events) — not the inventory list.
 - Lean on the Carolina Golf differentiator.
 - One clear ask: 15 minutes, Tuesday or Thursday.
-- Signature verbatim from `config/profile.md`.
+- **No signature block** — end right after the ask. Gmail appends Tyler's
+  signature automatically, so don't add name/title/phone/scheduling link
+  yourself. A short sign-off like "Thanks," is fine.
+
+## Subject lines (specific-hook style)
+Build the subject from **this** email's specific angle — unique per company,
+never a reused template. ~4–8 words, sentence case, no exclamation marks, no
+"Re:", nothing salesy. It should preview the hook, not shout an offer.
+Good:
+- Getting Fleet Feet in front of the Triangle
+- An idea built around Implus's brands
+- Great Outdoor + a local, outdoorsy crowd
+Avoid: "Partnership idea for X" (too generic), "A quick idea from a neighbor"
+(gimmicky), and anything with "exclusive," "!", or ALL CAPS.
 
 ## Make it feel human (not templated)
 The custom tailoring is working — keep it. The goal now is to kill the
@@ -59,6 +72,6 @@ our crowd, and use golf and events to thank the partners who make those races
 happen."
 
 ## Tyler's personal tweaks (optional — tell me and I'll fold in)
-- Preferred sign-off before the signature: <e.g. "Thanks," / "Best," / none>
+- Preferred sign-off (before Gmail's auto-signature): <e.g. "Thanks," / "Best," / none>
 - Anything above to dial up or down: <...>
 - A real email in your own voice to mirror: <paste and I'll match it>
