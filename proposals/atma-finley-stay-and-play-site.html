@@ -1,0 +1,297 @@
+<title>Stay-and-Play Website — ATMA × Finley Golf Club</title>
+<style>
+  :root{
+    --pine:#1B3A2B; --moss:#3E6B4E; --brass:#AC8438; --brass-soft:#c7a35c;
+    --paper:#F2F3EE; --paper-2:#EAECE3; --card:#FBFBF7;
+    --ink:#182219; --ink-2:#4a5750; --hair:#d7dacd;
+    --sky:#4a6d82;
+    --accent:var(--brass); --ground:var(--paper);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --pine:#7fae8e; --moss:#a7c9b0; --brass:#c9a35a; --brass-soft:#8a6f36;
+      --paper:#111814; --paper-2:#0c120e; --card:#18211b;
+      --ink:#e7ebe4; --ink-2:#a9b4ac; --hair:#28352c;
+      --sky:#8fb0c4;
+    }
+  }
+  :root[data-theme="light"]{
+    --pine:#1B3A2B; --moss:#3E6B4E; --brass:#AC8438; --brass-soft:#c7a35c;
+    --paper:#F2F3EE; --paper-2:#EAECE3; --card:#FBFBF7;
+    --ink:#182219; --ink-2:#4a5750; --hair:#d7dacd; --sky:#4a6d82;
+  }
+  :root[data-theme="dark"]{
+    --pine:#7fae8e; --moss:#a7c9b0; --brass:#c9a35a; --brass-soft:#8a6f36;
+    --paper:#111814; --paper-2:#0c120e; --card:#18211b;
+    --ink:#e7ebe4; --ink-2:#a9b4ac; --hair:#28352c; --sky:#8fb0c4;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    font-size:17px;
+  }
+  .serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;}
+  .wrap{max-width:820px; margin:0 auto; padding:clamp(28px,5vw,64px) clamp(20px,5vw,40px);}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-variant-numeric:tabular-nums;}
+
+  .eyebrow{
+    font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--brass); font-weight:600; margin:0 0 .5rem;
+  }
+  h1,h2,h3{text-wrap:balance; line-height:1.12; margin:0;}
+  h1{font-size:clamp(2.1rem,5.5vw,3.3rem); color:var(--pine); font-weight:600; letter-spacing:-.01em;}
+  h2{font-size:clamp(1.4rem,3.5vw,1.9rem); color:var(--pine); font-weight:600; letter-spacing:-.01em;}
+  h3{font-size:1.06rem; color:var(--ink); font-weight:700;}
+  p{margin:0}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--hair);
+        background:linear-gradient(175deg,var(--paper) 0%,var(--paper-2) 100%);}
+  .hero .contour{position:absolute; inset:0; width:100%; height:100%; opacity:.5; pointer-events:none;}
+  .hero .wrap{position:relative; padding-top:clamp(40px,7vw,80px); padding-bottom:clamp(36px,6vw,64px);}
+  .lockup{display:flex; align-items:center; gap:.7rem; flex-wrap:wrap;
+          font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-2); font-weight:600; margin-bottom:1.6rem;}
+  .lockup .x{color:var(--brass); font-weight:700; letter-spacing:0;}
+  .lockup b{color:var(--ink); font-weight:700; letter-spacing:.1em;}
+  .thesis{font-size:clamp(1.05rem,2.4vw,1.3rem); color:var(--ink-2); margin-top:1.1rem; max-width:60ch;}
+  .thesis b{color:var(--moss); font-weight:600;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(30px,5vw,52px) 0; border-bottom:1px solid var(--hair);}
+  section:last-of-type{border-bottom:0;}
+  .kicker{display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.4rem;}
+  .kicker .no{font-size:.78rem; font-weight:700; color:var(--brass); letter-spacing:.05em;}
+  .lede{color:var(--ink-2); margin-top:.9rem; max-width:64ch;}
+
+  /* callout */
+  .callout{background:var(--card); border:1px solid var(--hair); border-left:3px solid var(--brass);
+           border-radius:4px; padding:1.1rem 1.3rem; margin-top:1.3rem;}
+  .callout p{color:var(--ink-2);}
+  .callout b{color:var(--ink);}
+
+  /* table */
+  .tablewrap{overflow-x:auto; margin-top:1.3rem; border:1px solid var(--hair); border-radius:6px;}
+  table{border-collapse:collapse; width:100%; font-size:.93rem; min-width:520px;}
+  th,td{text-align:left; padding:.68rem .9rem; border-bottom:1px solid var(--hair); vertical-align:top;}
+  thead th{background:var(--paper-2); color:var(--pine); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;}
+  tbody tr:last-child td{border-bottom:0;}
+  td:first-child{font-weight:600; color:var(--ink);}
+  .yes{color:var(--moss); font-weight:700;}
+  .later{color:var(--ink-2);}
+
+  /* option cards */
+  .cards{display:grid; grid-template-columns:1fr; gap:1rem; margin-top:1.4rem;}
+  @media(min-width:680px){.cards{grid-template-columns:repeat(3,1fr);}}
+  .card{background:var(--card); border:1px solid var(--hair); border-radius:8px; padding:1.15rem 1.15rem 1.25rem; display:flex; flex-direction:column;}
+  .card.rec{border-color:var(--brass); box-shadow:0 0 0 1px var(--brass);}
+  .card .tag{font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--ink-2); margin-bottom:.5rem;}
+  .card.rec .tag{color:var(--brass);}
+  .card h3{font-size:1.02rem; margin-bottom:.5rem;}
+  .card p{font-size:.9rem; color:var(--ink-2); margin-top:.4rem;}
+  .card .price{margin-top:auto; padding-top:.9rem; font-weight:700; color:var(--pine);}
+  .card .price span{display:block; font-size:.75rem; font-weight:500; color:var(--ink-2); letter-spacing:.02em;}
+
+  /* two-col facts */
+  .facts{display:grid; grid-template-columns:1fr; gap:.9rem; margin-top:1.3rem;}
+  @media(min-width:620px){.facts{grid-template-columns:1fr 1fr;}}
+  .fact{background:var(--card); border:1px solid var(--hair); border-radius:6px; padding:1rem 1.1rem;}
+  .fact .h{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--brass); font-weight:600; margin-bottom:.45rem;}
+  .fact p{font-size:.92rem; color:var(--ink-2);}
+  .fact b{color:var(--ink);}
+  .fact .big{font-size:1.05rem; color:var(--pine); font-weight:700;}
+
+  /* phasing timeline */
+  .phase{display:flex; gap:1rem; padding:1rem 0; border-top:1px solid var(--hair);}
+  .phase:first-of-type{border-top:0;}
+  .phase .n{flex:0 0 auto; width:2.1rem; height:2.1rem; border-radius:50%; border:1.5px solid var(--brass);
+            color:var(--brass); font-weight:700; display:grid; place-items:center; font-size:.9rem;}
+  .phase .b h3{margin-bottom:.25rem;}
+  .phase .b p{color:var(--ink-2); font-size:.94rem;}
+
+  /* next steps list */
+  ol.steps{margin:1.3rem 0 0; padding:0; list-style:none; counter-reset:s;}
+  ol.steps li{position:relative; padding:.55rem 0 .55rem 2rem; border-bottom:1px solid var(--hair); color:var(--ink);}
+  ol.steps li:last-child{border-bottom:0;}
+  ol.steps li::before{counter-increment:s; content:counter(s); position:absolute; left:0; top:.5rem;
+    font-family:ui-monospace,monospace; font-size:.8rem; color:var(--brass); font-weight:700;}
+  ol.steps b{color:var(--pine);}
+
+  /* signature / CTA */
+  .sig{background:var(--pine); color:#f3f5ef; border-radius:10px; padding:1.6rem 1.6rem; margin-top:1.6rem;}
+  :root[data-theme="dark"] .sig{background:#0e1712; border:1px solid var(--hair);}
+  @media (prefers-color-scheme:dark){.sig{background:#0e1712; border:1px solid var(--hair);}}
+  .sig .name{font-size:1.15rem; font-weight:700; color:#fff;}
+  :root[data-theme="dark"] .sig .name{color:var(--moss);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sig .name{color:var(--moss);}}
+  .sig .role{color:#c9d6c9; font-size:.9rem; margin-top:.15rem;}
+  .sig .row{margin-top:.9rem; display:flex; flex-wrap:wrap; gap:.4rem 1.3rem; font-size:.9rem;}
+  .sig a{color:var(--brass-soft); text-decoration:none; border-bottom:1px solid transparent;}
+  .sig a:hover{border-bottom-color:var(--brass-soft);}
+  .sig a:focus-visible{outline:2px solid var(--brass-soft); outline-offset:3px; border-radius:2px;}
+
+  .foot{color:var(--ink-2); font-size:.8rem; margin-top:1.4rem; line-height:1.5;}
+  .foot a{color:var(--moss);}
+</style>
+
+<header class="hero">
+  <svg class="contour" viewBox="0 0 820 320" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="var(--moss)" stroke-width="1" opacity="0.35">
+      <path d="M-20,250 C160,205 300,300 470,250 C620,206 720,270 840,235"/>
+      <path d="M-20,210 C150,165 300,255 470,205 C630,158 720,225 840,190"/>
+      <path d="M-20,170 C150,128 300,210 470,165 C630,120 720,182 840,150"/>
+      <path d="M-20,130 C150,92 300,168 470,125 C630,84 720,140 840,112"/>
+      <path d="M-20,92 C150,58 300,128 470,88 C630,50 720,100 840,76"/>
+    </g>
+    <circle cx="470" cy="205" r="3.5" fill="var(--brass)" opacity="0.8"/>
+  </svg>
+  <div class="wrap">
+    <div class="lockup">
+      <b>ATMA&nbsp;Hotel&nbsp;Group</b> <span class="x">×</span> <b>Finley&nbsp;Golf&nbsp;Club</b>
+    </div>
+    <p class="eyebrow">Partnership Proposal · Stay &amp; Play</p>
+    <h1 class="serif">What it takes to build a<br>golf-travel site like<br>Tobacco&nbsp;Road.</h1>
+    <p class="thesis">A co-branded <b>Stay&nbsp;&amp;&nbsp;Play</b> site that packages ATMA's Triangle
+      hotels with rounds at Finley Golf Club and the Carolina Golf network — capturing golf-travel
+      demand that today leaks to Pinehurst and turning it into <b>room nights for ATMA and tee times
+      for Finley.</b></p>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <section>
+    <div class="kicker"><span class="no serif">01</span><h2 class="serif">How the reference site actually works</h2></div>
+    <p class="lede">Before anyone quotes a build, one fact reframes the whole project:
+      <b style="color:var(--ink)">tobaccoroadtravel.com isn't a real-time booking store — it's a
+      lead-and-quote "concierge" site.</b> Visitors browse "3 rounds / 2 nights" bundles and submit a
+      request; a small team replies with a custom itinerary and takes payment offline.</p>
+    <div class="callout">
+      <p>That model is far cheaper and faster to build than live e-commerce — and it's the right place
+      for us to start. The site even runs on <b>WordPress</b> (its page URLs expose <span class="mono" style="font-size:.85em">/wp-content/</span>),
+      which tells us the whole thing is achievable with off-the-shelf tooling. <b>No custom platform required.</b></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker"><span class="no serif">02</span><h2 class="serif">The site, broken into buildable parts</h2></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Component</th><th>What it does</th><th>In v1?</th></tr></thead>
+        <tbody>
+          <tr><td>Home / hero</td><td>Value prop + “build your package” call to action</td><td class="yes">Yes</td></tr>
+          <tr><td>Packages</td><td>Curated bundles, each with its own detail page and “price from”</td><td class="yes">Yes</td></tr>
+          <tr><td>Lodging pages</td><td>One page per hotel — photos + amenities</td><td class="yes">Start 2–3</td></tr>
+          <tr><td>Quote / build-a-package form</td><td>The real conversion engine — dates, group size, preferences</td><td class="yes">Yes — the point</td></tr>
+          <tr><td>Course pages</td><td>One page per featured course</td><td class="later">Nice-to-have</td></tr>
+          <tr><td>Travel guide</td><td>Downloadable PDF + things-to-do content</td><td class="later">Later</td></tr>
+          <tr><td>Live tee-time booking</td><td>Third-party engine on a separate subdomain</td><td class="later">Later / optional</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker"><span class="no serif">03</span><h2 class="serif">Three ways to build it</h2></div>
+    <p class="lede">Recommendation first — launch lean this season, add live booking only once demand is proven.</p>
+    <div class="cards">
+      <div class="card rec">
+        <span class="tag">✓ Recommended · v1</span>
+        <h3>A · WordPress + quote forms</h3>
+        <p>Mirrors exactly how Tobacco Road is built. Load hotels &amp; packages as content; a form plugin routes quote requests to an inbox + CRM.</p>
+        <p><b style="color:var(--moss)">Fastest, cheapest, proven.</b></p>
+        <div class="price">~$4k–$12k<span>live in weeks</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">Higher polish</span>
+        <h3>B · Custom build</h3>
+        <p>Bespoke Next.js / React site. Worth it only if ATMA wants a distinctive, brand-forward experience beyond a theme.</p>
+        <p>Full design control; every edit needs a developer without a CMS.</p>
+        <div class="price">~$15k–$40k+<span>2–3× the cost</span></div>
+      </div>
+      <div class="card">
+        <span class="tag">Real-time booking</span>
+        <h3>C · White-label platform</h3>
+        <p>A stay-and-play engine with live pricing and online payment — the fastest path to true checkout.</p>
+        <p>Needs firm room blocks + tee-sheet allocations. Overkill until volume warrants.</p>
+        <div class="price">SaaS + rev-share<span>add later</span></div>
+      </div>
+    </div>
+    <div class="callout">
+      <p><b>Who does the work</b> is a separate lever — a local agency/freelancer, or a DIY build we drive
+      ourselves. For a brand like ATMA's, a professional designer on the visuals is money well spent even if
+      we assemble the rest.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker"><span class="no serif">04</span><h2 class="serif">What it actually takes</h2></div>
+    <div class="facts">
+      <div class="fact">
+        <p class="h">Timeline · Option A</p>
+        <p><b class="big">2–4 weeks</b> for an MVP (home + 2–3 packages + quote form + 2 hotels) once content is in hand. <b>6–10 weeks</b> for a full v1.</p>
+      </div>
+      <div class="fact">
+        <p class="h">Directional budget</p>
+        <p><b>Build:</b> ~$4k–$12k · <b>Hosting + plugins:</b> ~$40–$120/mo · <b>Photography (if new):</b> ~$1k–$4k. <span class="later">For scoping, not a quote.</span></p>
+      </div>
+      <div class="fact">
+        <p class="h">We'd gather — from ATMA</p>
+        <p>Hotel list, descriptions &amp; photos, the rates or room-block allowance we can package, and who owns fulfillment.</p>
+      </div>
+      <div class="fact">
+        <p class="h">From Finley / Carolina Golf</p>
+        <p>Course info &amp; photography, tee-time availability &amp; green-fee rates, and which partner courses to include.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p><b>The real work isn't the website.</b> The site is a few weeks of design and content. The engine is
+      the <b>commercial agreement</b> — revenue split on a bundled sale, room-block and tee-time commitments,
+      who owns the booking, cancellation terms. Nail those and the website is the easy part. That's exactly
+      the kind of partnership Finley builds.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker"><span class="no serif">05</span><h2 class="serif">Suggested phasing</h2></div>
+    <div class="phase"><div class="n">1</div><div class="b">
+      <h3>Prove demand — this season</h3>
+      <p>WordPress quote-request site: home + 2–3 flagship packages + quote form + 2 hotels + Finley. Point paid social and local search at it.</p></div></div>
+    <div class="phase"><div class="n">2</div><div class="b">
+      <h3>Full storefront</h3>
+      <p>All ATMA properties, course pages, photo galleries, downloadable travel guide, refined design.</p></div></div>
+    <div class="phase"><div class="n">3</div><div class="b">
+      <h3>Live booking — only if volume warrants</h3>
+      <p>Add a stay-and-play engine with real-time pricing and online payment.</p></div></div>
+  </section>
+
+  <section>
+    <div class="kicker"><span class="no serif">06</span><h2 class="serif">Recommended next steps</h2></div>
+    <ol class="steps">
+      <li><b>30-minute scoping call</b> to agree on v1 scope and the 2–3 flagship packages.</li>
+      <li><b>Confirm the commercial terms</b> — revenue share, room blocks, tee-time allocation. The actual gating item.</li>
+      <li><b>Gather content &amp; photography</b> from both sides.</li>
+      <li><b>Engage a designer/developer</b> for the Option A build; target a v1 launch ahead of peak golf-travel season.</li>
+    </ol>
+
+    <div class="sig">
+      <p class="name">Tyler Baity</p>
+      <p class="role">Senior Manager · Business Development &amp; Operations<br>Finley Golf Club — Home of Carolina Golf</p>
+      <div class="row">
+        <a href="mailto:twbaity@alumni.unc.edu">twbaity@alumni.unc.edu</a>
+        <span>(336) 225-6396</span>
+        <a href="https://calendar.app.google/M9bXpDQ4sib6ekjq9">Schedule a meeting →</a>
+      </div>
+    </div>
+
+    <p class="foot">References: Tobacco Road Golf &amp; Travel — <a href="https://www.tobaccoroadtravel.com/">tobaccoroadtravel.com</a>
+      (structure &amp; quote-request model) · ATMA Hotel Group portfolio — <a href="https://atmahotelgroup.com/portfolio/">atmahotelgroup.com</a>.
+      Budget and timeline figures are directional, for scoping the conversation — not a fixed quote.</p>
+  </div>
+  </section>
+
+</div>
+</main>
