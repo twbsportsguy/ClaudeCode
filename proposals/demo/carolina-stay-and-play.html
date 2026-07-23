@@ -1,0 +1,532 @@
+<title>Carolina Stay &amp; Play — ATMA × Finley Golf Club (Concept Demo)</title>
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --pine:#1c4535; --fairway:#4c8a5f; --fair-deep:#2f6544;
+  --brass:#b3873a; --brass-2:#caa25a;
+  --sky:#3f7ca8;
+  --paper:#f6f4ee; --paper-2:#efece2; --card:#ffffff;
+  --ink:#182219; --ink-2:#54615a; --hair:#e0ddd0;
+  --shadow:0 1px 2px rgba(24,34,25,.04),0 8px 24px rgba(24,34,25,.07);
+  --nav-bg:rgba(246,244,238,.86);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --pine:#8fbf9f; --fairway:#6fae82; --fair-deep:#4c8a5f;
+    --brass:#cba55d; --brass-2:#e0c081;
+    --sky:#7fb2d0;
+    --paper:#10160f; --paper-2:#0b1009; --card:#182018;
+    --ink:#e9ede5; --ink-2:#a6b1a6; --hair:#293428;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    --nav-bg:rgba(16,22,15,.82);
+  }
+}
+:root[data-theme="light"]{
+  --pine:#1c4535; --fairway:#4c8a5f; --fair-deep:#2f6544; --brass:#b3873a; --brass-2:#caa25a;
+  --sky:#3f7ca8; --paper:#f6f4ee; --paper-2:#efece2; --card:#fff; --ink:#182219; --ink-2:#54615a;
+  --hair:#e0ddd0; --shadow:0 1px 2px rgba(24,34,25,.04),0 8px 24px rgba(24,34,25,.07); --nav-bg:rgba(246,244,238,.86);
+}
+:root[data-theme="dark"]{
+  --pine:#8fbf9f; --fairway:#6fae82; --fair-deep:#4c8a5f; --brass:#cba55d; --brass-2:#e0c081;
+  --sky:#7fb2d0; --paper:#10160f; --paper-2:#0b1009; --card:#182018; --ink:#e9ede5; --ink-2:#a6b1a6;
+  --hair:#293428; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35); --nav-bg:rgba(16,22,15,.82);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased;}
+.serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;}
+h1,h2,h3,h4{margin:0;line-height:1.12;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,36px)}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--brass)}
+
+/* ============ NAV ============ */
+nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hair)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:64px}
+.brand{display:flex;align-items:center;gap:.55rem;font-weight:700;letter-spacing:.04em;font-size:.82rem;text-transform:uppercase}
+.brand .mark{width:26px;height:26px;flex:0 0 auto}
+.brand small{color:var(--ink-2);font-weight:600}
+.nav-links{display:flex;gap:1.6rem;align-items:center}
+.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--ink-2);transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.btn{font:inherit;cursor:pointer;border:none;border-radius:999px;padding:.6rem 1.15rem;font-size:.88rem;
+  font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:transform .12s,box-shadow .15s,background .15s}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.btn-primary{background:var(--pine);color:#f6f4ee}
+:root[data-theme="dark"] .btn-primary{background:var(--fairway);color:#0b1009}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{background:var(--fairway);color:#0b1009}}
+.btn-primary:hover{box-shadow:0 6px 18px rgba(28,69,53,.28)}
+.btn-brass{background:var(--brass);color:#231a08}
+.btn-ghost{background:transparent;border:1px solid var(--hair);color:var(--ink)}
+.nav-toggle{display:none;background:none;border:1px solid var(--hair);border-radius:8px;padding:.4rem .55rem;cursor:pointer;color:var(--ink)}
+@media(max-width:820px){
+  .nav-links{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:var(--paper);
+    border-bottom:1px solid var(--hair);padding:1rem clamp(18px,4vw,36px) 1.4rem;gap:.2rem;
+    transform:translateY(-120%);transition:transform .25s ease;align-items:stretch}
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{padding:.7rem 0;border-bottom:1px solid var(--hair)}
+  .nav-links .btn{margin-top:.6rem;justify-content:center}
+  .nav-toggle{display:block}
+}
+
+/* ============ SCENE (SVG landscape) ============ */
+.scene{display:block;width:100%;height:100%}
+.scene .sky-t{stop-color:#cfe6f2}.scene .sky-b{stop-color:#eaf4ea}
+.scene .hillA{fill:#8fb9a0}.scene .hillB{fill:#6ea986}.scene .fair{fill:#5aa06c}.scene .fair2{fill:#488a58}
+.scene .sun{fill:#fbe6b0;opacity:.9}.scene .pine{fill:#2f5c44}.scene .sand{fill:#e7d6a8}
+.scene--dawn .sky-t{stop-color:#f4c79a}.scene--dawn .sky-b{stop-color:#f7e6c8}
+.scene--dawn .hillA{fill:#a9b6a0}.scene--dawn .hillB{fill:#7f9e7f}.scene--dawn .sun{fill:#ffd9a0;opacity:1}
+.scene--dawn .fair{fill:#6aa06a}.scene--dawn .fair2{fill:#538a54}.scene--dawn .pine{fill:#3c5c46}
+.scene--dusk .sky-t{stop-color:#3f5a86}.scene--dusk .sky-b{stop-color:#e8a785}
+.scene--dusk .hillA{fill:#5f7288}.scene--dusk .hillB{fill:#4a5c74}.scene--dusk .sun{fill:#ffcf8f;opacity:1}
+.scene--dusk .fair{fill:#3f7255}.scene--dusk .fair2{fill:#2f5c44}.scene--dusk .pine{fill:#25384a}
+.scene--dusk .sky-t{stop-color:#41598a}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:min(88vh,720px);display:flex;align-items:flex-end;overflow:hidden;
+  border-bottom:1px solid var(--hair)}
+.hero .scene{position:absolute;inset:0;height:100%;object-fit:cover}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,22,0) 30%,rgba(18,28,20,.55) 78%,rgba(18,28,20,.78) 100%)}
+.hero-in{position:relative;z-index:2;color:#fff;padding-bottom:clamp(34px,6vw,72px);padding-top:64px}
+.hero .eyebrow{color:var(--brass-2)}
+.hero h1{font-size:clamp(2.3rem,6vw,4.2rem);font-weight:600;letter-spacing:-.015em;margin:.6rem 0 0;
+  text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero p.sub{font-size:clamp(1.05rem,2.2vw,1.35rem);max-width:44ch;margin-top:1rem;color:#eef3ec;
+  text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.6rem}
+.hero-cta .btn-primary{background:var(--brass);color:#231a08}
+.hero-cta .btn-ghost{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);color:#fff;backdrop-filter:blur(4px)}
+/* trip-builder teaser */
+.builder{position:relative;z-index:2;margin-top:1.8rem;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:.7rem;display:flex;gap:.5rem;flex-wrap:wrap;
+  backdrop-filter:blur(8px);max-width:640px}
+.builder .f{flex:1 1 120px;background:rgba(255,255,255,.92);border-radius:9px;padding:.5rem .7rem;color:#182219}
+.builder .f label{display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#6b7a6f;font-weight:700}
+.builder .f .v{font-weight:600;font-size:.95rem;margin-top:.1rem}
+.builder .btn{flex:0 0 auto}
+
+/* ============ SECTION SHELL ============ */
+section.blk{padding:clamp(48px,7vw,88px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--pine);font-weight:600;letter-spacing:-.01em}
+.sec-head p{color:var(--ink-2);max-width:52ch;margin-top:.5rem}
+
+/* ============ PACKAGE CARDS ============ */
+.pkg-grid{display:grid;grid-template-columns:1fr;gap:1.3rem}
+@media(min-width:720px){.pkg-grid{grid-template-columns:repeat(3,1fr)}}
+.pkg{background:var(--card);border:1px solid var(--hair);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+.pkg:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(24,34,25,.14)}
+.pkg .ph{position:relative;aspect-ratio:16/10;overflow:hidden}
+.pkg .ph .badge{position:absolute;top:.7rem;left:.7rem;background:var(--pine);color:#f6f4ee;font-size:.7rem;
+  font-weight:700;letter-spacing:.04em;padding:.28rem .6rem;border-radius:999px}
+.pkg .bd{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;flex:1}
+.pkg h3{font-size:1.25rem;color:var(--ink);font-weight:600}
+.pkg .meta{font-size:.82rem;color:var(--ink-2);margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.pkg .courses{font-size:.9rem;color:var(--ink-2);margin-top:.7rem;line-height:1.45}
+.pkg .foot{display:flex;align-items:flex-end;justify-content:space-between;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--hair)}
+.pkg .price{color:var(--pine);font-weight:700;font-size:1.4rem}
+.pkg .price small{display:block;font-size:.68rem;color:var(--ink-2);font-weight:500;letter-spacing:.04em}
+.pkg .foot .btn{padding:.5rem .9rem;font-size:.82rem}
+.tag-line{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.6rem}
+.chip{font-size:.7rem;background:var(--paper-2);border:1px solid var(--hair);color:var(--ink-2);
+  border-radius:999px;padding:.2rem .55rem;font-weight:600}
+
+/* ============ STAYS ============ */
+.stay-grid{display:grid;grid-template-columns:1fr;gap:1.1rem}
+@media(min-width:640px){.stay-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.stay-grid{grid-template-columns:repeat(4,1fr)}}
+.stay{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.stay .ph{aspect-ratio:4/3}
+.stay .bd{padding:.9rem 1rem 1.1rem}
+.stay .flag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);font-weight:700}
+.stay h4{font-size:1.02rem;margin-top:.15rem;color:var(--ink)}
+.stay p{font-size:.82rem;color:var(--ink-2);margin-top:.35rem}
+
+/* ============ COURSES ============ */
+.crs-grid{display:grid;grid-template-columns:1fr;gap:1.1rem}
+@media(min-width:720px){.crs-grid{grid-template-columns:repeat(2,1fr)}}
+.crs{display:flex;gap:1rem;background:var(--card);border:1px solid var(--hair);border-radius:14px;
+  padding:.9rem;box-shadow:var(--shadow);align-items:center}
+.crs.feat{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass),var(--shadow)}
+.crs .ph{flex:0 0 130px;width:130px;aspect-ratio:1/1;border-radius:10px;overflow:hidden}
+.crs .bd h4{font-size:1.08rem;color:var(--ink)}
+.crs .bd .sub{font-size:.8rem;color:var(--brass);font-weight:700;letter-spacing:.02em;margin-top:.1rem}
+.crs .bd p{font-size:.85rem;color:var(--ink-2);margin-top:.45rem}
+.crs .stat{font-size:.74rem;color:var(--ink-2);margin-top:.55rem;display:flex;gap:1rem;flex-wrap:wrap}
+.crs .stat b{color:var(--ink);font-weight:700}
+@media(max-width:460px){.crs{flex-direction:column;align-items:stretch}.crs .ph{width:100%;aspect-ratio:16/9}}
+
+/* ============ QUOTE FORM ============ */
+.quote{background:var(--pine);color:#eef3ec;border-radius:22px;overflow:hidden;position:relative}
+:root[data-theme="dark"] .quote{background:#0c130c;border:1px solid var(--hair)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .quote{background:#0c130c;border:1px solid var(--hair)}}
+.quote-grid{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:860px){.quote-grid{grid-template-columns:.9fr 1.1fr}}
+.quote .left{padding:clamp(28px,4vw,48px);position:relative;overflow:hidden}
+.quote .left .scene{position:absolute;inset:0;height:100%;opacity:.9}
+.quote .left .lc{position:relative;z-index:2}
+.quote .left .eyebrow{color:var(--brass-2)}
+.quote .left h2{color:#fff;font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:600;margin-top:.5rem}
+.quote .left p{color:#dbe6da;margin-top:.8rem;max-width:34ch;text-shadow:0 1px 10px rgba(0,0,0,.4)}
+.quote .left ul{list-style:none;padding:0;margin:1.4rem 0 0;display:flex;flex-direction:column;gap:.6rem}
+.quote .left li{display:flex;gap:.6rem;align-items:center;font-size:.92rem;color:#eef3ec;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.quote .left li svg{flex:0 0 auto}
+.quote form{padding:clamp(24px,4vw,44px);background:var(--card);color:var(--ink)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
+.frow.one{grid-template-columns:1fr}
+.field label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.04em;color:var(--ink-2);margin-bottom:.3rem;text-transform:uppercase}
+.field input,.field select,.field textarea{width:100%;font:inherit;padding:.6rem .7rem;border:1px solid var(--hair);
+  border-radius:10px;background:var(--paper);color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--brass);outline-offset:0;border-color:transparent}
+.field textarea{resize:vertical;min-height:70px}
+.quote form .btn-brass{width:100%;justify-content:center;padding:.8rem;font-size:1rem;margin-top:.4rem}
+.form-note{font-size:.74rem;color:var(--ink-2);margin-top:.7rem;text-align:center}
+.confirm{display:none;text-align:center;padding:2rem 1rem}
+.confirm.show{display:block}
+.confirm .ok{width:56px;height:56px;border-radius:50%;background:var(--fairway);display:grid;place-items:center;margin:0 auto 1rem}
+.confirm h3{font-size:1.5rem;color:var(--pine);font-weight:600}
+.confirm p{color:var(--ink-2);margin-top:.6rem;max-width:38ch;margin-left:auto;margin-right:auto}
+form.hide{display:none}
+
+/* ============ STRIP / TRUST ============ */
+.strip{background:var(--paper-2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.strip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;padding:clamp(30px,4vw,44px) 0}
+@media(min-width:720px){.strip-grid{grid-template-columns:repeat(4,1fr)}}
+.stat-b{text-align:center}
+.stat-b .n{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--pine);font-weight:700;letter-spacing:-.02em}
+.stat-b .l{font-size:.78rem;color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem}
+
+/* ============ FOOTER ============ */
+footer{background:var(--pine);color:#cfdbcd;padding:clamp(40px,5vw,64px) 0 2rem;margin-top:0}
+:root[data-theme="dark"] footer{background:#0a0f09;border-top:1px solid var(--hair)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) footer{background:#0a0f09;border-top:1px solid var(--hair)}}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.14)}
+@media(min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr}}
+footer h4{color:#fff;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem}
+footer a{color:#cfdbcd;text-decoration:none;font-size:.92rem;display:block;padding:.2rem 0}
+footer a:hover{color:var(--brass-2)}
+footer .lg{font-size:1.4rem;color:#fff;font-weight:600}
+footer .lg span{color:var(--brass-2)}
+footer .desc{font-size:.9rem;margin-top:.7rem;max-width:34ch;color:#b9c7b7}
+.foot-bot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.4rem;font-size:.8rem;color:#9fb09d}
+
+/* ============ CONCEPT RIBBON ============ */
+.demo-tag{position:fixed;bottom:14px;right:14px;z-index:60;background:var(--brass);color:#231a08;
+  font-size:.72rem;font-weight:700;letter-spacing:.03em;padding:.4rem .75rem;border-radius:999px;
+  box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:default}
+@media(max-width:520px){.demo-tag{font-size:.66rem;padding:.35rem .6rem}}
+</style>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="var(--brass)" stroke-width="2"/><path d="M20 8 v14" stroke="var(--pine)" stroke-width="2"/><path d="M20 8 l9 3 -9 3z" fill="var(--fairway)"/><circle cx="20" cy="30" r="2.4" fill="var(--brass)"/></svg>
+      Carolina Stay&nbsp;&amp;&nbsp;Play <small>· ATMA × Finley</small>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" id="navBtn">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#packages">Packages</a>
+      <a href="#stays">Stays</a>
+      <a href="#courses">Courses</a>
+      <a href="#plan">Plan Your Trip</a>
+      <a href="#plan" class="btn btn-primary">Build a Package</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="scene scene--dawn" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="skyH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sky-t"/><stop offset="1" class="sky-b"/></linearGradient></defs>
+    <rect width="1200" height="720" fill="url(#skyH)"/>
+    <circle class="sun" cx="880" cy="180" r="70"/>
+    <path class="hillA" d="M0 340 C200 290 420 330 620 305 C820 282 1010 320 1200 300 V720 H0 Z"/>
+    <path class="hillB" d="M0 420 C220 372 430 410 640 392 C860 374 1030 408 1200 388 V720 H0 Z"/>
+    <g class="pine">
+      <path d="M120 470 l26 70 h-52 z"/><path d="M120 440 l22 55 h-44 z"/>
+      <path d="M175 485 l30 80 h-60 z"/><path d="M175 452 l24 62 h-48 z"/>
+    </g>
+    <path class="fair" d="M0 470 C300 430 520 500 760 470 C960 445 1080 495 1200 470 V720 H0 Z"/>
+    <path class="fair2" d="M0 560 C260 522 560 590 820 560 C1000 540 1100 578 1200 560 V720 H0 Z"/>
+    <ellipse class="sand" cx="430" cy="560" rx="90" ry="26"/>
+    <g><path d="M960 560 v-96" stroke="#f6f4ee" stroke-width="3"/><path d="M960 464 l40 12 -40 12z" fill="#c23b3b"/><ellipse cx="960" cy="562" rx="16" ry="5" fill="rgba(0,0,0,.18)"/></g>
+  </svg>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero-in">
+    <p class="eyebrow">Golf trips in the Triangle · North Carolina</p>
+    <h1 class="serif">Golf the Carolinas.<br>Stay in the Triangle.</h1>
+    <p class="sub">Championship rounds at Finley Golf Club and the Carolina Golf network, paired with ATMA's Chapel Hill hotels — one trip, one call, no drive to Pinehurst.</p>
+    <div class="hero-cta">
+      <a href="#packages" class="btn btn-primary">View Golf Packages</a>
+      <a href="#plan" class="btn btn-ghost">Build Your Own →</a>
+    </div>
+    <div class="builder">
+      <div class="f"><label>Golfers</label><div class="v">4 players</div></div>
+      <div class="f"><label>Rounds</label><div class="v">3 rounds</div></div>
+      <div class="f"><label>Nights</label><div class="v">2 nights</div></div>
+      <a href="#plan" class="btn btn-brass">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STRIP ============ -->
+<div class="strip"><div class="wrap"><div class="strip-grid">
+  <div class="stat-b"><div class="n mono">12+</div><div class="l">Carolina courses</div></div>
+  <div class="stat-b"><div class="n mono">10</div><div class="l">ATMA hotels</div></div>
+  <div class="stat-b"><div class="n mono">1</div><div class="l">Call to book it all</div></div>
+  <div class="stat-b"><div class="n mono">25 min</div><div class="l">Hotel to first tee</div></div>
+</div></div></div>
+
+<!-- ============ PACKAGES ============ -->
+<section class="blk" id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Featured Packages</p>
+        <h2 class="serif">Stay &amp; Play, done for you</h2>
+        <p>Curated golf-and-hotel bundles across the Triangle. Every package includes tee times, lodging, and a single point of contact. Tell us your dates — we build the itinerary.</p>
+      </div>
+      <a href="#plan" class="btn btn-ghost">Request a custom trip</a>
+    </div>
+    <div class="pkg-grid" id="pkgGrid"><!-- injected --></div>
+  </div>
+</section>
+
+<!-- ============ STAYS ============ -->
+<section class="blk" id="stays" style="background:var(--paper-2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Where you stay</p>
+        <h2 class="serif">ATMA Hotel Group</h2>
+        <p>Locally owned and operated Chapel Hill hotels — walkable to Franklin Street, minutes from every tee. Full-service to select-service, all part of one package.</p>
+      </div>
+    </div>
+    <div class="stay-grid" id="stayGrid"><!-- injected --></div>
+  </div>
+</section>
+
+<!-- ============ COURSES ============ -->
+<section class="blk" id="courses">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Where you play</p>
+        <h2 class="serif">The Carolina Golf network</h2>
+        <p>Anchored by Finley Golf Club — Home of Carolina Golf — and rounded out with the Triangle's best public and resort tracks.</p>
+      </div>
+    </div>
+    <div class="crs-grid" id="crsGrid"><!-- injected --></div>
+  </div>
+</section>
+
+<!-- ============ QUOTE / PLAN ============ -->
+<section class="blk" id="plan">
+  <div class="wrap">
+    <div class="quote"><div class="quote-grid">
+      <div class="left">
+        <svg class="scene scene--dusk" viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><linearGradient id="skyQ" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sky-t"/><stop offset="1" class="sky-b"/></linearGradient></defs>
+          <rect width="600" height="700" fill="url(#skyQ)"/>
+          <circle class="sun" cx="150" cy="150" r="54"/>
+          <path class="hillA" d="M0 300 C150 270 320 300 460 285 C540 277 580 292 600 288 V700 H0Z"/>
+          <path class="hillB" d="M0 380 C160 350 340 378 480 366 C550 360 590 372 600 370 V700 H0Z"/>
+          <path class="fair" d="M0 440 C180 410 360 460 540 440 C570 437 590 442 600 440 V700 H0Z"/>
+          <g><path d="M430 520 v-80" stroke="#f6f4ee" stroke-width="3"/><path d="M430 440 l32 10 -32 10z" fill="#c23b3b"/></g>
+        </svg>
+        <div class="lc">
+          <p class="eyebrow">Build your package</p>
+          <h2 class="serif">Tell us your trip. We'll price it.</h2>
+          <p>Send a few details and our team replies with a custom golf-and-stay itinerary — usually within one business day.</p>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="var(--brass-2)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> One itinerary, hotel + golf together</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="var(--brass-2)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Group rates for 4 or more</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="var(--brass-2)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Local team, no call center</li>
+          </ul>
+        </div>
+      </div>
+      <form id="quoteForm" novalidate>
+        <div class="frow">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="players">Golfers</label><select id="players"><option>1–3</option><option selected>4–7</option><option>8–11</option><option>12+</option></select></div>
+          <div class="field"><label for="dates">Preferred dates</label><input id="dates" placeholder="e.g. Oct 10–12" autocomplete="off"></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="rounds">Rounds</label><select id="rounds"><option>2</option><option selected>3</option><option>4</option><option>5+</option></select></div>
+          <div class="field"><label for="hotel">Preferred stay</label><select id="hotel"><option>No preference</option><option>Sheraton Chapel Hill</option><option>Courtyard by Marriott</option><option>Hampton Inn &amp; Suites</option><option>Holiday Inn Express</option></select></div>
+        </div>
+        <div class="frow one">
+          <div class="field"><label for="msg">Anything else? (courses, budget, occasion)</label><textarea id="msg" placeholder="Bachelor trip — want a round at Finley for sure."></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-brass">Request My Custom Quote</button>
+        <p class="form-note">No payment now. A Carolina Stay &amp; Play specialist follows up personally.</p>
+      </form>
+      <div class="confirm" id="confirm">
+        <div class="ok"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#0b1009" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="serif">Request received</h3>
+        <p id="confirmMsg">Thanks! We'll email your custom golf-and-stay itinerary within one business day.</p>
+        <button class="btn btn-ghost" onclick="resetQuote()" style="margin-top:1.2rem">Start another</button>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="lg">Carolina <span>Stay &amp; Play</span></div>
+        <p class="desc">A partnership concept pairing ATMA Hotel Group's Triangle hotels with Finley Golf Club — Home of Carolina Golf.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#packages">Golf packages</a>
+        <a href="#stays">Hotels</a>
+        <a href="#courses">Courses</a>
+        <a href="#plan">Build a package</a>
+      </div>
+      <div>
+        <h4>Talk to us</h4>
+        <a href="mailto:twbaity@alumni.unc.edu">twbaity@alumni.unc.edu</a>
+        <a href="tel:+13362256396">(336) 225-6396</a>
+        <a href="https://calendar.app.google/M9bXpDQ4sib6ekjq9">Schedule a meeting →</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Carolina Stay &amp; Play — concept demo.</span>
+      <span>Prepared by Tyler Baity · Finley Golf Club</span>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-tag" title="Illustrative mockup — courses, hotels, and pricing are samples for the ATMA proposal, not live inventory.">◆ Concept demo — sample content</div>
+
+<script>
+/* ---------- DATA ---------- */
+const scenes = {
+  dawn:'scene--dawn', day:'scene--day', dusk:'scene--dusk'
+};
+function sceneSVG(variant){
+  return `<svg class="scene ${scenes[variant]}" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="g${variant}${Math.random().toString(36).slice(2,7)}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sky-t"/><stop offset="1" class="sky-b"/></linearGradient></defs>
+    <rect width="480" height="300" fill="url(#g${variant}${Math.random().toString(36).slice(2,7)})"/>
+    <circle class="sun" cx="360" cy="80" r="34"/>
+    <path class="hillA" d="M0 150 C120 128 260 150 360 138 C420 131 460 142 480 138 V300 H0Z"/>
+    <path class="hillB" d="M0 186 C120 164 280 188 380 178 C430 173 470 182 480 180 V300 H0Z"/>
+    <g class="pine"><path d="M60 196 l16 44 h-32z"/><path d="M60 176 l13 34 h-26z"/></g>
+    <path class="fair" d="M0 208 C140 186 300 224 420 206 C450 202 470 208 480 206 V300 H0Z"/>
+    <path class="fair2" d="M0 250 C120 232 300 264 420 250 C450 247 470 252 480 250 V300 H0Z"/>
+    <g><path d="M330 250 v-42" stroke="#f6f4ee" stroke-width="2.4"/><path d="M330 208 l20 6 -20 6z" fill="#c23b3b"/></g>
+  </svg>`;
+}
+// note: only dawn & dusk have palette overrides; 'day' uses base .scene styles
+const packages = [
+  {name:"Tar Heel Weekend", nights:"2 rounds · 1 night", scene:"day", badge:"Most popular",
+   courses:"Finley Golf Club + The Preserve at Jordan Lake", hotel:"Courtyard by Marriott, Chapel Hill",
+   price:319, chips:["Great first trip","Fri–Sat"],
+   itin:["<b>Day 1</b> — Check in at the Courtyard by Marriott. Afternoon round at Finley Golf Club, then dinner on Franklin Street.","<b>Day 2</b> — Morning round at The Preserve at Jordan Lake. Late checkout, drive home by dinner."]},
+  {name:"The Carolina Classic", nights:"3 rounds · 2 nights", scene:"dawn", badge:"Signature",
+   courses:"Finley · Lonnie Poole · Chapel Ridge", hotel:"Sheraton Chapel Hill",
+   price:489, chips:["Best value","Groups of 4+"],
+   itin:["<b>Day 1</b> — Arrive at the newly renovated Sheraton Chapel Hill. Twilight round at Finley Golf Club.","<b>Day 2</b> — Round at Lonnie Poole (NC State, Arnold Palmer). Evening in downtown Chapel Hill.","<b>Day 3</b> — Round at Chapel Ridge (Fred Couples design) before you head out."]},
+  {name:"Triangle Grand Tour", nights:"4 rounds · 3 nights", scene:"dusk", badge:"Premium",
+   courses:"Finley · Lonnie Poole · Chapel Ridge · Jordan Lake", hotel:"Sheraton Chapel Hill",
+   price:749, chips:["Buddies trip","All-in"],
+   itin:["<b>Day 1</b> — Check in, welcome round at Finley Golf Club.","<b>Day 2</b> — Lonnie Poole Golf Course.","<b>Day 3</b> — Chapel Ridge Golf Club.","<b>Day 4</b> — Finale at The Preserve at Jordan Lake, then departure."]}
+];
+const stays = [
+  {flag:"Full service · Flagship", name:"Sheraton Chapel Hill", desc:"Newly transformed. Restaurant, bar, and event space minutes from campus.", scene:"day"},
+  {flag:"Select service", name:"Courtyard by Marriott", desc:"Comfortable, modern rooms with an easy walk to Franklin Street.", scene:"dawn"},
+  {flag:"Extended stay", name:"Hampton Inn & Suites", desc:"Suites and free breakfast — a group favorite for early tee times.", scene:"dusk"},
+  {flag:"Value", name:"Holiday Inn Express", desc:"Dependable and well located, keeping the trip budget-friendly.", scene:"day"}
+];
+const courses = [
+  {feat:true, name:"Finley Golf Club", sub:"Home of Carolina Golf · Chapel Hill", desc:"The University of North Carolina's championship course, a Tom Fazio redesign winding through Carolina pines.", stat:["Par <b>72</b>","<b>7,050</b> yds","Fazio design"], scene:"dawn"},
+  {name:"Lonnie Poole Golf Course", sub:"NC State · Raleigh", desc:"An Arnold Palmer Signature layout with skyline views and bold Carolina character.", stat:["Par <b>71</b>","<b>7,358</b> yds","Palmer design"], scene:"day"},
+  {name:"Chapel Ridge Golf Club", sub:"Pittsboro", desc:"A Fred Couples signature course rolling through the countryside west of Chapel Hill.", stat:["Par <b>72</b>","<b>7,010</b> yds","Couples design"], scene:"dusk"},
+  {name:"The Preserve at Jordan Lake", sub:"Chapel Hill", desc:"Wooded, water-lined fairways just minutes from the hotels — a Triangle favorite.", stat:["Par <b>72</b>","<b>7,102</b> yds","Public"], scene:"day"}
+];
+
+/* ---------- RENDER ---------- */
+const fmt = n => "$"+n.toLocaleString();
+document.getElementById('pkgGrid').innerHTML = packages.map((p,i)=>`
+  <article class="pkg">
+    <div class="ph">${sceneSVG(p.scene)}<span class="badge">${p.badge}</span></div>
+    <div class="bd">
+      <h3 class="serif">${p.name}</h3>
+      <div class="meta mono">${p.nights}</div>
+      <div class="courses">⛳ ${p.courses}<br>🏨 ${p.hotel}</div>
+      <div class="tag-line">${p.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
+      <div class="foot">
+        <div class="price mono">${fmt(p.price)}<small>from / golfer</small></div>
+        <button class="btn btn-primary" onclick="openPkg(${i})">View package</button>
+      </div>
+    </div>
+  </article>`).join('');
+
+document.getElementById('stayGrid').innerHTML = stays.map(s=>`
+  <article class="stay">
+    <div class="ph">${sceneSVG(s.scene)}</div>
+    <div class="bd"><div class="flag">${s.flag}</div><h4 class="serif">${s.name}</h4><p>${s.desc}</p></div>
+  </article>`).join('');
+
+document.getElementById('crsGrid').innerHTML = courses.map(c=>`
+  <article class="crs ${c.feat?'feat':''}">
+    <div class="ph">${sceneSVG(c.scene)}</div>
+    <div class="bd">
+      <h4 class="serif">${c.name}</h4>
+      <div class="sub">${c.sub}</div>
+      <p>${c.desc}</p>
+      <div class="stat mono">${c.stat.map(s=>`<span>${s}</span>`).join('')}</div>
+    </div>
+  </article>`).join('');
+
+/* ---------- INTERACTIONS ---------- */
+const navBtn = document.getElementById('navBtn'), navLinks = document.getElementById('navLinks');
+navBtn.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navBtn.setAttribute('aria-expanded',o)});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navBtn.setAttribute('aria-expanded',false)}));
+
+function openPkg(i){
+  const p = packages[i];
+  const hotel = document.getElementById('hotel');
+  [...hotel.options].forEach(o=>{if(p.hotel.includes(o.value))o.selected=true});
+  document.getElementById('rounds').value = p.nights.match(/^(\d)/)[1];
+  document.getElementById('msg').value = `Interested in the "${p.name}" package (${p.nights}).\nSample itinerary:\n• ${p.itin.map(t=>t.replace(/<[^>]+>/g,'')).join('\n• ')}`;
+  document.getElementById('plan').scrollIntoView({behavior:'smooth'});
+}
+
+const form = document.getElementById('quoteForm');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(!name || !/.+@.+\..+/.test(email)){
+    if(!name) document.getElementById('name').focus(); else document.getElementById('email').focus();
+    return;
+  }
+  document.getElementById('confirmMsg').textContent =
+    `Thanks, ${name.split(' ')[0]}! We'll email your custom golf-and-stay itinerary to ${email} within one business day.`;
+  form.classList.add('hide');
+  document.getElementById('confirm').classList.add('show');
+  document.getElementById('confirm').scrollIntoView({behavior:'smooth',block:'center'});
+});
+function resetQuote(){
+  form.reset(); form.classList.remove('hide');
+  document.getElementById('confirm').classList.remove('show');
+  form.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
