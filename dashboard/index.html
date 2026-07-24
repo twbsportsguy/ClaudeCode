@@ -208,6 +208,35 @@
     .co-stats{grid-column:1 / -1;justify-content:flex-start;text-align:left;margin-top:4px;}
     .chev{display:none;}
   }
+  /* ---- Cockpit: focus queue + territory ---- */
+  .focus{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);}
+  .fcard h3{margin:0 0 3px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .fcard .fnum{font-family:var(--mono);font-size:1.5rem;font-weight:600;line-height:1;font-variant-numeric:tabular-nums;}
+  .fcard.warn .fnum{color:var(--b);} .fcard.good .fnum{color:var(--a);} .fcard.info .fnum{color:var(--accent-ink);}
+  .fcard ul{margin:9px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;}
+  .fcard li{font-size:.78rem;color:var(--ink-soft);display:flex;justify-content:space-between;gap:8px;}
+  .fcard li b{color:var(--ink);font-weight:600;}
+  .fcard li .mini{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);}
+  .territory{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    box-shadow:var(--shadow);padding:14px 16px;}
+  .territory h3{margin:0 0 10px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .terrrow{display:flex;flex-wrap:wrap;gap:10px;}
+  .terr{flex:1 1 150px;min-width:130px;border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px;
+    background:var(--paper);}
+  .terr .tname{font-weight:700;font-size:.84rem;}
+  .terr .tsub{font-size:.72rem;color:var(--ink-faint);margin-top:2px;font-variant-numeric:tabular-nums;}
+  .terr .theat{height:6px;border-radius:3px;margin-top:8px;background:linear-gradient(90deg,var(--a),var(--b));}
+  .co-pkg{font-size:.72rem;font-weight:600;color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 12%,var(--card));
+    border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:6px;padding:3px 8px;}
+  .play{background:color-mix(in srgb,var(--accent) 8%,var(--card-2));border:1px solid var(--line-soft);
+    border-left:3px solid var(--accent-fill);border-radius:8px;padding:11px 14px;margin-bottom:12px;display:flex;
+    flex-wrap:wrap;gap:4px 14px;align-items:baseline;}
+  .play .pl{font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--accent-ink);width:100%;}
+  .play .pk{font-family:var(--serif);font-weight:700;font-size:1.02rem;}
+  .play .pv{font-family:var(--mono);font-weight:600;color:var(--accent-ink);}
+  .play .pf{font-size:.78rem;color:var(--ink-soft);}
+  @media (max-width:760px){ .focus{grid-template-columns:1fr;} }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;}
   }
@@ -224,15 +253,18 @@
   </header>
 
   <section class="scorecard" aria-label="Pipeline summary">
-    <div class="cell"><p class="k">Companies</p><div class="v" id="kCos">0</div><div class="sub" id="kContacts">0 decision-makers</div></div>
-    <div class="cell"><p class="k">Drafts ready</p><div class="v" id="kDrafts">0</div><div class="sub" id="kPending">0 pending emails</div></div>
+    <div class="cell"><p class="k">Companies</p><div class="v" id="kCos">0</div><div class="sub" id="kContacts">0 contacts</div></div>
+    <div class="cell"><p class="k">Pipeline opportunity</p><div class="v" id="kOpp">$0</div><div class="sub" id="kOppPri">$0 in A-list packages</div></div>
+    <div class="cell"><p class="k">Drafts ready</p><div class="v" id="kDrafts">0</div><div class="sub" id="kPending">0 emails to enrich</div></div>
     <div class="cell"><p class="k">Combined ad / marketing budget</p><div class="v" id="kBudget">$0</div><div class="sub">annual, across pipeline</div></div>
-    <div class="cell"><p class="k">Prospect revenue</p><div class="v" id="kRev">$0</div><div class="sub">combined annual</div></div>
     <div class="cell"><p class="k">Rank mix</p>
       <div class="rankbar" id="rankbar"></div>
       <div class="ranklegend" id="ranklegend"></div>
     </div>
   </section>
+
+  <section class="focus" aria-label="Needs attention" id="focusSec"></section>
+  <section class="territory" aria-label="Territory" id="terrSec"></section>
 
   <section class="controls" aria-label="Filters">
     <div class="search">
@@ -519,14 +551,16 @@ const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",open:new Set()};
   const drafts=DATA.reduce((a,c)=>a+c.contacts.filter(x=>x.d).length,0);
   const pending=DATA.reduce((a,c)=>a+c.contacts.filter(x=>!x.e).length,0);
   const budget=DATA.reduce((a,c)=>a+c.budNum,0);
-  const rev=DATA.reduce((a,c)=>a+c.revNum,0);
+  const opp=DATA.reduce((a,c)=>a+recommendPackage(c).priceNum,0);
+  const oppA=DATA.filter(c=>c.rank==="A").reduce((a,c)=>a+recommendPackage(c).priceNum,0);
   const rc={A:0,B:0,C:0};DATA.forEach(c=>rc[c.rank]++);
   $("#kCos").textContent=cos;
-  $("#kContacts").textContent=contacts+" decision-makers";
+  $("#kContacts").textContent=contacts+" contacts mapped";
   $("#kDrafts").textContent=drafts;
   $("#kPending").textContent=pending+" emails still to enrich";
   $("#kBudget").innerHTML="$"+budget.toFixed(0)+"<small>M</small>";
-  $("#kRev").innerHTML="$"+(rev/1000).toFixed(2)+"<small>B</small>";
+  $("#kOpp").innerHTML="$"+(opp/1000).toFixed(0)+"<small>K</small>";
+  $("#kOppPri").textContent="$"+(oppA/1000).toFixed(0)+"K in A-list packages";
   const total=cos;
   $("#rankbar").innerHTML=
     `<span class="sa" style="flex:${rc.A}"></span><span class="sb" style="flex:${rc.B}"></span><span class="sc" style="flex:${rc.C}"></span>`;
@@ -539,6 +573,33 @@ const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",open:new Set()};
 /* ---- Render ---- */
 function esc(s){return (s||"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));}
 function grp(ind){if(/Dental/.test(ind))return"Dental";if(ind==="Auto")return"Auto";return"Sports & Outdoor";}
+/* ---- Score → package, fit band, territory (mirrors scoring.md + packages.md) ---- */
+function recommendPackage(c){
+  const s=c.score,b=c.budNum,r=c.revNum,ind=(c.ind||"").toLowerCase();
+  const rel=/legal|financ|insur|auto|estate|bank|wealth|advisor/.test(ind);
+  if((b>=15||r>=150)&&s>=80) return {name:"Official Partner",price:"$40,000",priceNum:40000,why:"top-tier budget and score"};
+  if((b>=5||r>=50)&&s>=68)   return {name:"Premier Partnership",price:"$27,500",priceNum:27500,why:"strong mid-market budget"};
+  if(b>=2||r>=20)            return {name:"Marketing Partner",price:"$12,000",priceNum:12000,why:"solid regional brand"};
+  if(rel)                    return {name:"Boutique Outing",price:"$6,500",priceNum:6500,why:"relationship-driven — lead with client entertainment"};
+  return {name:"Single Sponsored Event",price:"$3,500",priceNum:3500,why:"awareness-first entry point"};
+}
+function fitBand(s){return s>=85?{lbl:"Elite",cls:"elite"}:s>=70?{lbl:"Strong",cls:"strong"}:s>=55?{lbl:"Good",cls:"good"}:{lbl:"Developing",cls:"dev"};}
+function region(city){
+  const c=(city||"").toLowerCase();
+  const T=["raleigh","durham","chapel hill","carrboro","cary","apex","morrisville","hillsborough","graham","wake forest","pittsboro","holly springs","garner"];
+  const C=["charlotte","concord","huntersville","matthews","gastonia","mooresville","cornelius"];
+  const G=["greensboro","winston-salem","winston salem","high point","burlington","kernersville","asheboro"];
+  const Co=["wilmington","greenville","new bern","jacksonville","morehead","kinston"];
+  const S=["pinehurst","southern pines","fayetteville","aberdeen","sanford"];
+  const W=["asheville","hickory","boone","hendersonville"];
+  if(T.some(x=>c.includes(x)))return"Triangle";
+  if(C.some(x=>c.includes(x)))return"Charlotte";
+  if(G.some(x=>c.includes(x)))return"Triad";
+  if(Co.some(x=>c.includes(x)))return"Coastal";
+  if(S.some(x=>c.includes(x)))return"Sandhills";
+  if(W.some(x=>c.includes(x)))return"Western NC";
+  return"Triangle";
+}
 function matches(c){
   if(state.rank!=="all"&&c.rank!==state.rank)return false;
   if(state.ind!=="all"&&grp(c.ind)!==state.ind)return false;
@@ -574,10 +635,17 @@ function card(c){
   const open=state.open.has(c.name);
   const nContacts=c.contacts.length;
   const nDraft=c.contacts.filter(x=>x.d).length;
+  const pkg=recommendPackage(c);
+  const fit=fitBand(c.score);
   const summaryTag=nContacts
     ? `<span class="tag">${nContacts} contact${nContacts>1?"s":""}</span><span class="tag">${nDraft} draft${nDraft!==1?"s":""}</span>`
     : `<span class="tag" style="color:var(--b);border-color:var(--b-line)">Needs research</span>`;
+  const play=`<div class="play">
+      <span class="pl">Recommended play · Partnership Score ${c.score}/100 · Golf Fit ${fit.lbl}</span>
+      <span class="pk">${esc(pkg.name)}</span><span class="pv">${pkg.price}</span>
+      <span class="pf">${esc(pkg.why)}</span></div>`;
   const body=`<div class="co-body">
+      ${play}
       <div class="signal"><p class="sl">Ad-spend signal</p><p>${esc(c.signal)}</p></div>
       <p class="why"><b>Why this rank:</b> ${esc(c.why)}</p>
       ${nContacts
@@ -593,6 +661,7 @@ function card(c){
           <span class="tag ind">${esc(c.ind)}</span>
           <span class="tag">${esc(c.city)}, NC</span>
           <a class="co-web" href="https://${c.web}" target="_blank" rel="noopener">${esc(c.web)} ↗</a>
+          <span class="co-pkg">${esc(pkg.name)} · ${pkg.price}</span>
           ${summaryTag}
         </div>
       </div>
@@ -616,7 +685,37 @@ function render(){
   }
   $("#resultCount").textContent=`Showing ${list.length} of ${DATA.length} companies`;
 }
+/* ---- Needs-attention queue ---- */
+function renderFocus(){
+  const byScore=(a,b)=>b.score-a.score;
+  const callToday=DATA.filter(c=>c.rank==="A"&&c.contacts.some(x=>x.d)).sort(byScore);
+  const draftNext=DATA.filter(c=>c.contacts.length&&!c.contacts.some(x=>x.d)).sort(byScore);
+  const findContact=DATA.filter(c=>!c.contacts.length).sort(byScore);
+  const li=(c,extra)=>`<li><b>${esc(c.name)}</b><span class="mini">${extra}</span></li>`;
+  const block=(cls,h,num,arr,fmt)=>`<div class="fcard ${cls}">
+    <h3>${h}</h3><div class="fnum">${num}</div>
+    <ul>${arr.slice(0,4).map(c=>li(c,fmt(c))).join("")||'<li style="color:var(--ink-faint)">All clear</li>'}</ul></div>`;
+  $("#focusSec").innerHTML=
+    block("good","Call today · drafts ready",callToday.length,callToday,c=>c.score+"/100")+
+    block("warn","Draft next",draftNext.length,draftNext,c=>recommendPackage(c).price)+
+    block("info","Find a contact",findContact.length,findContact,c=>c.city+", NC");
+}
+/* ---- Territory heat board ---- */
+function renderTerritory(){
+  const map={};
+  DATA.forEach(c=>{const r=region(c.city);(map[r]=map[r]||{n:0,opp:0,a:0});map[r].n++;map[r].opp+=recommendPackage(c).priceNum;if(c.rank==="A")map[r].a++;});
+  const rows=Object.entries(map).sort((a,b)=>b[1].opp-a[1].opp);
+  const max=Math.max(...rows.map(r=>r[1].opp),1);
+  $("#terrSec").innerHTML=`<h3>Territory — North Carolina · $${(rows.reduce((a,r)=>a+r[1].opp,0)/1000).toFixed(0)}K in play</h3><div class="terrrow">`+
+    rows.map(([name,d])=>`<div class="terr">
+      <div class="tname">${esc(name)}</div>
+      <div class="tsub">${d.n} ${d.n===1?"company":"companies"} · ${d.a} A · $${(d.opp/1000).toFixed(0)}K</div>
+      <div class="theat" style="width:${Math.max(12,Math.round(d.opp/max*100))}%"></div>
+    </div>`).join("")+`</div>`;
+}
 render();
+renderFocus();
+renderTerritory();
 
 /* ---- Interactions ---- */
 function toast(msg){

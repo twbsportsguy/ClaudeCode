@@ -1,53 +1,56 @@
-# Prospect Scoring Rubric (A/B/C)
+# Partnership Score (0–100) + rank
 
-Even blend of three pillars, 100 points total. Score at the **company** level;
-every contact row for that company inherits the rank.
+Every prospect gets a **Partnership Score from 0 to 100** (shown on the
+dashboard and stored in the tracker's Score column). The A/B/C rank is just a
+band on that score. Score the **company**; every contact row inherits it.
 
-## 1. Marketing spend evidence — 35 pts
+## The three pillars (even blend, 100 pts)
 
+### 1. Marketing-spend evidence — 35 pts
 | Signal | Pts |
 |--------|-----|
-| ZoomInfo marketing dept budget ≥ $500K | 15 |
-| ZoomInfo marketing dept budget $100K–$500K | 10 |
-| ZoomInfo marketing dept budget < $100K but present | 5 |
-| Active advertising found on the web (sponsors local teams/events, billboards, radio/TV, heavy paid social/Google ads) | 10 |
-| Marketing decision-maker exists on staff (CMO / Marketing Director) | 5 |
-| ZoomInfo intent/scoops showing marketing or advertising activity | 5 |
+| ZoomInfo marketing dept budget ≥ $15M | 15 |
+| ≥ $5M | 12 |
+| ≥ $1M | 8 |
+| present but < $1M | 4 |
+| Active advertising found on the web (sponsors local teams/events, billboards, radio/TV, heavy paid social) | 10 |
+| **Existing sports/sponsorship spend** (already buys what Tyler sells) | +5 |
+| Marketing/brand/sponsorship decision-maker on staff | 5 |
+(Cap 35.)
 
-(Cap at 35.)
-
-## 2. Company size & budget potential — 35 pts
-
+### 2. Size & budget potential — 35 pts
 | Signal | Pts |
 |--------|-----|
-| Revenue ≥ $50M | 15 |
-| Revenue $10M–$50M | 12 |
-| Revenue $5M–$10M | 8 |
-| Revenue $1M–$5M | 4 |
-| Employees ≥ 250 | 10 |
-| Employees 50–249 | 8 |
-| Employees 10–49 | 4 |
-| Growing (positive 1-yr employee growth) | 5 |
-| Multiple locations in market | 5 |
+| Revenue ≥ $150M | 15 |
+| ≥ $50M | 12 |
+| ≥ $10M | 8 |
+| ≥ $1M | 4 |
+| Employees ≥ 500 | 8 |
+| 100–499 | 6 |
+| 20–99 | 3 |
+| Growing (positive 1-yr employee growth) / multiple locations | 4 |
+(Cap 35.)
 
-(Cap at 35.)
-
-## 3. Partnership fit — 30 pts
-
+### 3. Partnership fit — 30 pts
 | Signal | Pts |
 |--------|-----|
-| Industry entertains clients / referral-driven (legal, financial, insurance, commercial real estate, B2B services) | 10 |
-| Local-visibility industry (home services, auto, healthcare) that wins on brand recognition | 10 |
-| HQ or major office in / near our market | 10 |
-| History of sponsorships or community involvement (web research) | 5 |
-| Golf-adjacent culture (client golf, charity outings, exec team visible at events) | 5 |
+| **HQ within 50 miles of the club** (drive-time = hospitality works) | 8 |
+| Executive presence in the Triangle (even if HQ elsewhere) | 4 |
+| Relationship/entertainment industry (legal, financial, insurance, auto, CRE, B2B services) | 6 |
+| Local-visibility industry (home services, auto, healthcare, retail) | 5 |
+| **Golf-industry / golf-culture overlap** (sports, outdoor, country-club-adjacent, exec golfers) | 6 |
+| History of sponsorships or community involvement | 4 |
+| Active recruiting / hiring locally (partnership = talent-brand tool) | 3 |
+(Cap 30.)
 
-(Cap at 30.)
+## Rank bands (from the 0–100 score)
+- **A — 80–100** (Golf Fit: Elite/Strong): priority. Draft immediately, follow up within 3 days.
+- **B — 55–79** (Good): solid. Draft, normal cadence.
+- **C — < 55** (Developing): log; draft only if asked, or route to a single-event pitch.
 
-## Rank bands
-
-- **A — 75–100:** Priority. Gmail draft immediately, follow up within 3 days.
-- **B — 50–74:** Solid. Gmail draft, normal cadence.
-- **C — < 50:** Log in tracker; draft only if the user asks.
-
-Record the numeric score and 1-line "Why" in the tracker so ranks are auditable.
+## Attach to every prospect
+Record, per company: the numeric **Score**, the **rank**, a one-line
+**"Why This Rank"**, a **Recommended Package** (`config/packages.md`), and a
+**"Why now"** (the timely hook from Step 3/4 research — news, expansion,
+funding, new exec, campaign). Those four turn a name into a play:
+*who, what to sell, why now.*
