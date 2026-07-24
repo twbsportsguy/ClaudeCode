@@ -1,9 +1,10 @@
 <style>
   :root {
-    --paper:#E7EBE3; --card:#F6F7F2; --card-2:#FFFFFF;
-    --ink:#14251C; --ink-soft:#4C5C52; --ink-faint:#7A897F;
-    --line:#D2DACE; --line-soft:#E0E6DB;
-    --accent:#2F7DB5; --accent-ink:#1C5C8A; --accent-fill:#4B9CD3;
+    --paper:#EAF1F8; --card:#F7FBFD; --card-2:#FFFFFF;
+    --ink:#13294B; --ink-soft:#43546E; --ink-faint:#7B8AA0;
+    --line:#D2DEEA; --line-soft:#E3ECF4;
+    --accent:#4B9CD3; --accent-ink:#1E5A88; --accent-fill:#4B9CD3;
+    --navy:#13294B; --carolina:#4B9CD3; --carolina-soft:#7BAFD4;
     --a:#1C7A45; --a-bg:#DBEEE2; --a-line:#B6D9C2;
     --b:#9A6A16; --b-bg:#F2E7C9; --b-line:#E0CE9C;
     --c:#63736A; --c-bg:#E1E7DF; --c-line:#CBD3C6;
@@ -14,10 +15,11 @@
   }
   @media (prefers-color-scheme:dark){
     :root{
-      --paper:#0E1914; --card:#16231D; --card-2:#1B2A23;
-      --ink:#E7EDE7; --ink-soft:#A6B7AC; --ink-faint:#7E9086;
-      --line:#26332C; --line-soft:#202B25;
-      --accent:#63B2E6; --accent-ink:#8FC9EF; --accent-fill:#3E86BE;
+      --paper:#0A1524; --card:#101E33; --card-2:#15263E;
+      --ink:#EAF1F8; --ink-soft:#A8B9CF; --ink-faint:#7C8EA6;
+      --line:#21344F; --line-soft:#1A2940;
+      --accent:#7BAFD4; --accent-ink:#9ECDEE; --accent-fill:#4B9CD3;
+      --navy:#13294B; --carolina:#4B9CD3; --carolina-soft:#7BAFD4;
       --a:#57BB80; --a-bg:#15311F; --a-line:#255B39;
       --b:#DcA94A; --b-bg:#33280F; --b-line:#5A461C;
       --c:#8F9D93; --c-bg:#212C26; --c-line:#31403700;
@@ -25,20 +27,22 @@
     }
   }
   :root[data-theme="light"]{
-    --paper:#E7EBE3; --card:#F6F7F2; --card-2:#FFFFFF;
-    --ink:#14251C; --ink-soft:#4C5C52; --ink-faint:#7A897F;
-    --line:#D2DACE; --line-soft:#E0E6DB;
-    --accent:#2F7DB5; --accent-ink:#1C5C8A; --accent-fill:#4B9CD3;
+    --paper:#EAF1F8; --card:#F7FBFD; --card-2:#FFFFFF;
+    --ink:#13294B; --ink-soft:#43546E; --ink-faint:#7B8AA0;
+    --line:#D2DEEA; --line-soft:#E3ECF4;
+    --accent:#4B9CD3; --accent-ink:#1E5A88; --accent-fill:#4B9CD3;
+    --navy:#13294B; --carolina:#4B9CD3; --carolina-soft:#7BAFD4;
     --a:#1C7A45; --a-bg:#DBEEE2; --a-line:#B6D9C2;
     --b:#9A6A16; --b-bg:#F2E7C9; --b-line:#E0CE9C;
     --c:#63736A; --c-bg:#E1E7DF; --c-line:#CBD3C6;
     --shadow:0 1px 2px rgba(20,37,28,.06), 0 8px 24px -12px rgba(20,37,28,.18);
   }
   :root[data-theme="dark"]{
-    --paper:#0E1914; --card:#16231D; --card-2:#1B2A23;
-    --ink:#E7EDE7; --ink-soft:#A6B7AC; --ink-faint:#7E9086;
-    --line:#26332C; --line-soft:#202B25;
-    --accent:#63B2E6; --accent-ink:#8FC9EF; --accent-fill:#3E86BE;
+    --paper:#0A1524; --card:#101E33; --card-2:#15263E;
+    --ink:#EAF1F8; --ink-soft:#A8B9CF; --ink-faint:#7C8EA6;
+    --line:#21344F; --line-soft:#1A2940;
+    --accent:#7BAFD4; --accent-ink:#9ECDEE; --accent-fill:#4B9CD3;
+    --navy:#13294B; --carolina:#4B9CD3; --carolina-soft:#7BAFD4;
     --a:#57BB80; --a-bg:#15311F; --a-line:#255B39;
     --b:#DCA94A; --b-bg:#33280F; --b-line:#5A461C;
     --c:#8F9D93; --c-bg:#212C26; --c-line:#314037;
@@ -50,9 +54,27 @@
     font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:1120px;margin:0 auto;padding:28px 22px 80px;}
 
+  /* ---------- UNC argyle ribbon ---------- */
+  .argyle{height:10px;border-radius:6px;margin-bottom:16px;
+    background-color:var(--carolina);
+    background-image:
+      linear-gradient(135deg,var(--navy) 25%,transparent 25%),
+      linear-gradient(225deg,var(--navy) 25%,transparent 25%),
+      linear-gradient(45deg,var(--navy) 25%,transparent 25%),
+      linear-gradient(315deg,var(--navy) 25%,transparent 25%),
+      repeating-linear-gradient(45deg,transparent 0 15px,rgba(255,255,255,.4) 15px 16px),
+      repeating-linear-gradient(-45deg,transparent 0 15px,rgba(255,255,255,.4) 15px 16px);
+    background-position:11px 0,11px 0,0 0,0 0,0 0,0 0;
+    background-size:22px 22px,22px 22px,22px 22px,22px 22px,auto,auto;}
+
   /* ---------- Masthead ---------- */
   .masthead{display:flex;justify-content:space-between;align-items:flex-start;
-    gap:18px;padding-bottom:18px;border-bottom:2px solid var(--ink);}
+    gap:18px;padding-bottom:18px;border-bottom:2px solid var(--navy);}
+  .brand-flag{display:inline-flex;align-items:center;gap:7px;margin:0 0 9px;}
+  .brand-flag .tee{width:20px;height:20px;flex:none;color:var(--carolina);}
+  .unc-pill{display:inline-block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+    font-weight:800;color:#fff;background:var(--navy);border-radius:999px;padding:3px 8px;
+    border:1.5px solid var(--carolina);}
   .brand-eyebrow{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
     color:var(--accent-ink);font-weight:700;margin:0 0 6px;}
   .brand-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.7rem,4vw,2.5rem);
@@ -218,6 +240,17 @@
   .fcard li{font-size:.78rem;color:var(--ink-soft);display:flex;justify-content:space-between;gap:8px;}
   .fcard li b{color:var(--ink);font-weight:600;}
   .fcard li .mini{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);}
+  .fcard.active{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 40%,transparent),var(--shadow);}
+  .viewall{margin-top:11px;border:1px solid var(--line);background:var(--card-2);color:var(--accent-ink);
+    border-radius:999px;padding:6px 13px;font-family:var(--sans);font-size:.76rem;font-weight:700;cursor:pointer;width:100%;}
+  .viewall:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--card-2));}
+  .fcard.active .viewall{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .focusbanner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    margin-top:14px;padding:10px 15px;border-radius:10px;background:color-mix(in srgb,var(--accent) 10%,var(--card));
+    border:1px solid var(--accent);font-size:.85rem;color:var(--ink);}
+  .focusbanner b{color:var(--accent-ink);}
+  .focusbanner button{border:1px solid var(--accent);background:var(--card-2);color:var(--accent-ink);
+    border-radius:999px;padding:5px 12px;font-family:var(--sans);font-size:.76rem;font-weight:700;cursor:pointer;}
   .territory{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;
     box-shadow:var(--shadow);padding:14px 16px;}
   .territory h3{margin:0 0 10px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
@@ -227,6 +260,8 @@
   .terr .tname{font-weight:700;font-size:.84rem;}
   .terr .tsub{font-size:.72rem;color:var(--ink-faint);margin-top:2px;font-variant-numeric:tabular-nums;}
   .terr .theat{height:6px;border-radius:3px;margin-top:8px;background:linear-gradient(90deg,var(--a),var(--b));}
+  .ncmap{width:100%;height:auto;max-height:360px;display:block;margin:2px 0 4px;}
+  .terrnote{margin:6px 0 0;font-size:.76rem;color:var(--ink-faint);}
   .co-pkg{font-size:.72rem;font-weight:600;color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 12%,var(--card));
     border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:6px;padding:3px 8px;}
   .play{background:color-mix(in srgb,var(--accent) 8%,var(--card-2));border:1px solid var(--line-soft);
@@ -243,11 +278,16 @@
 </style>
 
 <div class="wrap">
+  <div class="argyle" aria-hidden="true"></div>
   <header class="masthead">
     <div>
-      <p class="brand-eyebrow">Finley Golf Club · Home of Carolina Golf</p>
-      <h1 class="brand-title">Corporate Partnerships Pipeline</h1>
-      <p class="brand-sub"><b>Tyler Baity</b> · Business Development &amp; Operations — prospect tracker, updated July 3, 2026</p>
+      <div class="brand-flag">
+        <svg class="tee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4.2" fill="currentColor" stroke="none"/><path d="M12 11.5v9M8.5 20.5h7"/></svg>
+        <p class="brand-eyebrow" style="margin:0">Finley Golf Club · Home of Carolina Golf</p>
+        <span class="unc-pill">Official UNC Golf Facility</span>
+      </div>
+      <h1 class="brand-title">Corporate Partnerships Cockpit</h1>
+      <p class="brand-sub"><b>Tyler Baity</b> · Business Development &amp; Operations — sales intelligence, updated July 24, 2026</p>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="Switch color theme"><span class="dot"></span><span id="themeLbl">Twilight</span></button>
   </header>
@@ -301,6 +341,7 @@
     <div class="resultcount" id="resultCount"></div>
   </section>
 
+  <div id="focusBanner"></div>
   <main class="board" id="board"></main>
 
   <footer>
@@ -542,7 +583,12 @@ const DATA = [
 
 const RANKV={A:3,B:2,C:1};
 const $=s=>document.querySelector(s);
-const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",open:new Set()};
+const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,open:new Set()};
+const FOCUS={
+  callToday:{lbl:"Call today · drafts ready",test:c=>c.rank==="A"&&c.contacts.some(x=>x.d)},
+  draftNext:{lbl:"Draft next",test:c=>c.contacts.length&&!c.contacts.some(x=>x.d)},
+  findContact:{lbl:"Find a contact",test:c=>!c.contacts.length}
+};
 
 /* ---- Summary ---- */
 (function summary(){
@@ -577,11 +623,11 @@ function grp(ind){if(/Dental/.test(ind))return"Dental";if(ind==="Auto")return"Au
 function recommendPackage(c){
   const s=c.score,b=c.budNum,r=c.revNum,ind=(c.ind||"").toLowerCase();
   const rel=/legal|financ|insur|auto|estate|bank|wealth|advisor/.test(ind);
-  if((b>=15||r>=150)&&s>=80) return {name:"Official Partner",price:"$40,000",priceNum:40000,why:"top-tier budget and score"};
-  if((b>=5||r>=50)&&s>=68)   return {name:"Premier Partnership",price:"$27,500",priceNum:27500,why:"strong mid-market budget"};
-  if(b>=2||r>=20)            return {name:"Marketing Partner",price:"$12,000",priceNum:12000,why:"solid regional brand"};
-  if(rel)                    return {name:"Boutique Outing",price:"$6,500",priceNum:6500,why:"relationship-driven — lead with client entertainment"};
-  return {name:"Single Sponsored Event",price:"$3,500",priceNum:3500,why:"awareness-first entry point"};
+  if((b>=15||r>=150)&&s>=80) return {name:"Official Partner",price:"$40,000",priceNum:40000,why:"full brand ownership + premium events"};
+  if((b>=5||r>=50)&&s>=68)   return {name:"Premier Partner",price:"$27,500",priceNum:27500,why:"balanced exposure + client entertainment"};
+  if(b>=2||r>=20)            return {name:"Gold Partner",price:"$17,500",priceNum:17500,why:"entry-level partnership access"};
+  if(rel)                    return {name:"Boutique Outing",price:"$3,500",priceNum:3500,why:"relationship-driven — lead with client entertainment"};
+  return {name:"Standard Marketing",price:"$4,500",priceNum:4500,why:"awareness-first entry point"};
 }
 function fitBand(s){return s>=85?{lbl:"Elite",cls:"elite"}:s>=70?{lbl:"Strong",cls:"strong"}:s>=55?{lbl:"Good",cls:"good"}:{lbl:"Developing",cls:"dev"};}
 function region(city){
@@ -601,6 +647,7 @@ function region(city){
   return"Triangle";
 }
 function matches(c){
+  if(state.focus&&!FOCUS[state.focus].test(c))return false;
   if(state.rank!=="all"&&c.rank!==state.rank)return false;
   if(state.ind!=="all"&&grp(c.ind)!==state.ind)return false;
   if(state.status==="ready"&&!c.contacts.some(x=>x.d))return false;
@@ -684,34 +731,61 @@ function render(){
     board.innerHTML=list.map(card).join("");
   }
   $("#resultCount").textContent=`Showing ${list.length} of ${DATA.length} companies`;
+  const fb=$("#focusBanner");
+  if(state.focus){
+    fb.innerHTML=`<div class="focusbanner">
+      <span>Focused on <b>${FOCUS[state.focus].lbl}</b> — ${list.length} ${list.length===1?"company":"companies"}.</span>
+      <button id="clearFocus">Show all companies ✕</button></div>`;
+  }else fb.innerHTML="";
 }
 /* ---- Needs-attention queue ---- */
 function renderFocus(){
   const byScore=(a,b)=>b.score-a.score;
-  const callToday=DATA.filter(c=>c.rank==="A"&&c.contacts.some(x=>x.d)).sort(byScore);
-  const draftNext=DATA.filter(c=>c.contacts.length&&!c.contacts.some(x=>x.d)).sort(byScore);
-  const findContact=DATA.filter(c=>!c.contacts.length).sort(byScore);
+  const callToday=DATA.filter(FOCUS.callToday.test).sort(byScore);
+  const draftNext=DATA.filter(FOCUS.draftNext.test).sort(byScore);
+  const findContact=DATA.filter(FOCUS.findContact.test).sort(byScore);
   const li=(c,extra)=>`<li><b>${esc(c.name)}</b><span class="mini">${extra}</span></li>`;
-  const block=(cls,h,num,arr,fmt)=>`<div class="fcard ${cls}">
-    <h3>${h}</h3><div class="fnum">${num}</div>
-    <ul>${arr.slice(0,4).map(c=>li(c,fmt(c))).join("")||'<li style="color:var(--ink-faint)">All clear</li>'}</ul></div>`;
+  const block=(key,cls,h,arr,fmt)=>{
+    const on=state.focus===key;
+    return `<div class="fcard ${cls}${on?" active":""}">
+      <h3>${h}</h3><div class="fnum">${arr.length}</div>
+      <ul>${arr.slice(0,4).map(c=>li(c,fmt(c))).join("")||'<li style="color:var(--ink-faint)">All clear</li>'}</ul>
+      ${arr.length?`<button class="viewall" data-focus="${key}">${on?"Showing these ↓":"View all "+arr.length+" →"}</button>`:""}
+    </div>`;
+  };
   $("#focusSec").innerHTML=
-    block("good","Call today · drafts ready",callToday.length,callToday,c=>c.score+"/100")+
-    block("warn","Draft next",draftNext.length,draftNext,c=>recommendPackage(c).price)+
-    block("info","Find a contact",findContact.length,findContact,c=>c.city+", NC");
+    block("callToday","good","Call today · drafts ready",callToday,c=>c.score+"/100")+
+    block("draftNext","warn","Draft next",draftNext,c=>recommendPackage(c).price)+
+    block("findContact","info","Find a contact",findContact,c=>c.city+", NC");
 }
-/* ---- Territory heat board ---- */
+/* ---- Territory map (inline SVG of North Carolina) ---- */
+const REGIONS=["Triangle","Charlotte","Triad","Sandhills","Coastal","Western NC"];
+const ANCHOR={Triangle:[461,95],Charlotte:[285,152],Triad:[369,65],Sandhills:[394,156],Coastal:[517,255],"Western NC":[148,114]};
+const NC_PATH="M6,155 L120,93 L164,60 L218,11 L689,16 L694,41 L710,86 L648,145 L632,217 L630,219 L560,228 L515,296 L469,293 L378,248 L288,194 L164,155 Z";
 function renderTerritory(){
-  const map={};
-  DATA.forEach(c=>{const r=region(c.city);(map[r]=map[r]||{n:0,opp:0,a:0});map[r].n++;map[r].opp+=recommendPackage(c).priceNum;if(c.rank==="A")map[r].a++;});
-  const rows=Object.entries(map).sort((a,b)=>b[1].opp-a[1].opp);
-  const max=Math.max(...rows.map(r=>r[1].opp),1);
-  $("#terrSec").innerHTML=`<h3>Territory — North Carolina · $${(rows.reduce((a,r)=>a+r[1].opp,0)/1000).toFixed(0)}K in play</h3><div class="terrrow">`+
-    rows.map(([name,d])=>`<div class="terr">
-      <div class="tname">${esc(name)}</div>
-      <div class="tsub">${d.n} ${d.n===1?"company":"companies"} · ${d.a} A · $${(d.opp/1000).toFixed(0)}K</div>
-      <div class="theat" style="width:${Math.max(12,Math.round(d.opp/max*100))}%"></div>
-    </div>`).join("")+`</div>`;
+  const map={}; REGIONS.forEach(r=>map[r]={n:0,opp:0,a:0});
+  DATA.forEach(c=>{const r=region(c.city);map[r].n++;map[r].opp+=recommendPackage(c).priceNum;if(c.rank==="A")map[r].a++;});
+  const max=Math.max(...REGIONS.map(r=>map[r].opp),1);
+  const total=REGIONS.reduce((a,r)=>a+map[r].opp,0);
+  const bubbles=REGIONS.map(name=>{
+    const d=map[name],[x,y]=ANCHOR[name],has=d.opp>0,heat=d.opp/max;
+    const r=has?12+Math.round(heat*30):9;
+    const fill=has?"var(--carolina)":"transparent";
+    const op=has?(0.42+0.5*heat).toFixed(2):"1";
+    const stroke=has?"var(--navy)":"var(--ink-faint)";
+    const dash=has?"":'stroke-dasharray="3 4"';
+    const inner=has&&r>=17?`<text x="${x}" y="${y+4}" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="var(--mono)">${d.n}</text>`:"";
+    const label=`<text x="${x}" y="${y+r+13}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">${name}</text>`+
+      `<text x="${x}" y="${y+r+27}" text-anchor="middle" font-size="11" fill="var(--ink-faint)" font-family="var(--mono)">${has?"$"+(d.opp/1000).toFixed(0)+"K · "+d.n:"whitespace"}</text>`;
+    return `<g><circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" fill-opacity="${op}" stroke="${stroke}" stroke-width="2" ${dash}/>${inner}${label}</g>`;
+  }).join("");
+  $("#terrSec").innerHTML=
+    `<h3>Territory — North Carolina · $${(total/1000).toFixed(0)}K in play</h3>
+     <svg class="ncmap" viewBox="0 0 720 320" role="img" aria-label="North Carolina opportunity map">
+       <path d="${NC_PATH}" fill="var(--card-2)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/>
+       ${bubbles}
+     </svg>
+     <p class="terrnote">Bubble size = pipeline opportunity by region. Dashed = whitespace to go after next. Home base: the Triangle (Chapel Hill).</p>`;
 }
 render();
 renderFocus();
@@ -738,12 +812,24 @@ $("#board").addEventListener("click",e=>{
     co.dataset.open=open;head.setAttribute("aria-expanded",open);
   }
 });
+function setFocus(key){
+  state.focus=(state.focus===key)?null:key;
+  renderFocus();render();
+  if(state.focus)$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("#focusSec").addEventListener("click",e=>{
+  const b=e.target.closest("[data-focus]");
+  if(b)setFocus(b.dataset.focus);
+});
+$("#focusBanner").addEventListener("click",e=>{
+  if(e.target.closest("#clearFocus")){state.focus=null;renderFocus();render();}
+});
 document.querySelectorAll("[data-rank]").forEach(b=>b.addEventListener("click",()=>{
-  state.rank=b.dataset.rank;setPressed("[data-rank]",b);render();}));
+  state.rank=b.dataset.rank;state.focus=null;setPressed("[data-rank]",b);renderFocus();render();}));
 document.querySelectorAll("[data-ind]").forEach(b=>b.addEventListener("click",()=>{
-  state.ind=b.dataset.ind;setPressed("[data-ind]",b);render();}));
+  state.ind=b.dataset.ind;state.focus=null;setPressed("[data-ind]",b);renderFocus();render();}));
 document.querySelectorAll("[data-status]").forEach(b=>b.addEventListener("click",()=>{
-  state.status=b.dataset.status;setPressed("[data-status]",b);render();}));
+  state.status=b.dataset.status;state.focus=null;setPressed("[data-status]",b);renderFocus();render();}));
 function setPressed(sel,btn){document.querySelectorAll(sel).forEach(x=>x.setAttribute("aria-pressed",x===btn));}
 $("#search").addEventListener("input",e=>{state.q=e.target.value.trim();render();});
 $("#sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
