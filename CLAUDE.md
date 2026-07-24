@@ -26,6 +26,7 @@ draft per decision-maker contact.
 | `scoring.md` | A/B/C ranking rubric (even blend: spend / size / fit) |
 | `templates/*.md` | Catered outreach email templates per industry |
 | `tracker/prospects.csv` | Master prospect data — source of truth for the Google Sheet |
+| `dashboard/index.html` | Self-contained prospect dashboard (the shareable UI) — regenerated each run, republished to a fixed Artifact URL |
 
 ## Rules
 

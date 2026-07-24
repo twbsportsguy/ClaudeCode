@@ -1,0 +1,604 @@
+<style>
+  :root {
+    --paper:#E7EBE3; --card:#F6F7F2; --card-2:#FFFFFF;
+    --ink:#14251C; --ink-soft:#4C5C52; --ink-faint:#7A897F;
+    --line:#D2DACE; --line-soft:#E0E6DB;
+    --accent:#2F7DB5; --accent-ink:#1C5C8A; --accent-fill:#4B9CD3;
+    --a:#1C7A45; --a-bg:#DBEEE2; --a-line:#B6D9C2;
+    --b:#9A6A16; --b-bg:#F2E7C9; --b-line:#E0CE9C;
+    --c:#63736A; --c-bg:#E1E7DF; --c-line:#CBD3C6;
+    --shadow:0 1px 2px rgba(20,37,28,.06), 0 8px 24px -12px rgba(20,37,28,.18);
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0E1914; --card:#16231D; --card-2:#1B2A23;
+      --ink:#E7EDE7; --ink-soft:#A6B7AC; --ink-faint:#7E9086;
+      --line:#26332C; --line-soft:#202B25;
+      --accent:#63B2E6; --accent-ink:#8FC9EF; --accent-fill:#3E86BE;
+      --a:#57BB80; --a-bg:#15311F; --a-line:#255B39;
+      --b:#DcA94A; --b-bg:#33280F; --b-line:#5A461C;
+      --c:#8F9D93; --c-bg:#212C26; --c-line:#31403700;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#E7EBE3; --card:#F6F7F2; --card-2:#FFFFFF;
+    --ink:#14251C; --ink-soft:#4C5C52; --ink-faint:#7A897F;
+    --line:#D2DACE; --line-soft:#E0E6DB;
+    --accent:#2F7DB5; --accent-ink:#1C5C8A; --accent-fill:#4B9CD3;
+    --a:#1C7A45; --a-bg:#DBEEE2; --a-line:#B6D9C2;
+    --b:#9A6A16; --b-bg:#F2E7C9; --b-line:#E0CE9C;
+    --c:#63736A; --c-bg:#E1E7DF; --c-line:#CBD3C6;
+    --shadow:0 1px 2px rgba(20,37,28,.06), 0 8px 24px -12px rgba(20,37,28,.18);
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1914; --card:#16231D; --card-2:#1B2A23;
+    --ink:#E7EDE7; --ink-soft:#A6B7AC; --ink-faint:#7E9086;
+    --line:#26332C; --line-soft:#202B25;
+    --accent:#63B2E6; --accent-ink:#8FC9EF; --accent-fill:#3E86BE;
+    --a:#57BB80; --a-bg:#15311F; --a-line:#255B39;
+    --b:#DCA94A; --b-bg:#33280F; --b-line:#5A461C;
+    --c:#8F9D93; --c-bg:#212C26; --c-line:#314037;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 22px 80px;}
+
+  /* ---------- Masthead ---------- */
+  .masthead{display:flex;justify-content:space-between;align-items:flex-start;
+    gap:18px;padding-bottom:18px;border-bottom:2px solid var(--ink);}
+  .brand-eyebrow{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent-ink);font-weight:700;margin:0 0 6px;}
+  .brand-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.7rem,4vw,2.5rem);
+    line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance;}
+  .brand-sub{color:var(--ink-soft);margin:8px 0 0;font-size:.92rem;}
+  .brand-sub b{color:var(--ink);font-weight:600;}
+  .theme-btn{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+    border-radius:999px;padding:8px 14px;font-family:var(--sans);font-size:.78rem;font-weight:600;
+    letter-spacing:.03em;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+  .theme-btn:hover{border-color:var(--accent);color:var(--accent-ink);}
+  .theme-btn .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-fill);}
+
+  /* ---------- Scorecard KPI strip ---------- */
+  .scorecard{margin-top:22px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;box-shadow:var(--shadow);overflow:hidden;
+    display:grid;grid-template-columns:repeat(5,1fr);}
+  .cell{padding:16px 18px;border-right:1px solid var(--line-soft);}
+  .cell:last-child{border-right:0;}
+  .cell .k{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:700;margin:0 0 8px;}
+  .cell .v{font-family:var(--mono);font-size:1.7rem;font-weight:600;line-height:1;
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+  .cell .v small{font-size:.9rem;color:var(--ink-soft);font-weight:500;}
+  .cell .sub{margin-top:6px;font-size:.74rem;color:var(--ink-faint);}
+  .rankbar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:11px;gap:2px;}
+  .rankbar span{display:block;}
+  .rankbar .sa{background:var(--a);} .rankbar .sb{background:var(--b);} .rankbar .sc{background:var(--c);}
+  .ranklegend{display:flex;gap:12px;margin-top:8px;font-size:.72rem;color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;}
+  .ranklegend i{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:-1px;}
+
+  /* ---------- Controls ---------- */
+  .controls{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;}
+  .search{position:relative;flex:1 1 240px;min-width:200px;}
+  .search input{width:100%;padding:10px 14px 10px 36px;border-radius:999px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font-family:var(--sans);font-size:.9rem;}
+  .search input::placeholder{color:var(--ink-faint);}
+  .search input:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-faint);}
+  .chipset{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .chipset .lbl{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:700;margin-right:2px;}
+  .chip{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);border-radius:999px;
+    padding:6px 13px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--sans);line-height:1;}
+  .chip:hover{border-color:var(--accent);color:var(--accent-ink);}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .chip.rank-a[aria-pressed="true"]{background:var(--a);border-color:var(--a);color:#fff;}
+  .chip.rank-b[aria-pressed="true"]{background:var(--b);border-color:var(--b);color:#fff;}
+  .chip.rank-c[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff;}
+  select.sort{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;
+    padding:8px 12px;font-family:var(--sans);font-size:.82rem;font-weight:600;cursor:pointer;}
+  select.sort:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .toolbtn{margin-left:auto;border:none;background:none;color:var(--accent-ink);font-weight:600;
+    font-size:.82rem;cursor:pointer;font-family:var(--sans);padding:6px;}
+  .toolbtn:hover{text-decoration:underline;}
+  .resultcount{width:100%;font-size:.8rem;color:var(--ink-faint);margin-top:-2px;
+    font-variant-numeric:tabular-nums;}
+
+  /* ---------- Company cards ---------- */
+  .board{margin-top:14px;display:flex;flex-direction:column;gap:14px;}
+  .co{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+    overflow:hidden;transition:border-color .15s;}
+  .co:hover{border-color:var(--accent);}
+  .co-head{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;
+    padding:18px 20px;cursor:pointer;width:100%;text-align:left;border:0;background:none;
+    font-family:var(--sans);color:inherit;}
+  .co-head:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;}
+  .badge{width:52px;height:52px;border-radius:12px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;font-weight:700;line-height:1;flex:none;}
+  .badge .lt{font-family:var(--serif);font-size:1.4rem;}
+  .badge .sc{font-family:var(--mono);font-size:.66rem;margin-top:2px;font-variant-numeric:tabular-nums;opacity:.85;}
+  .badge.a{background:var(--a-bg);color:var(--a);border:1px solid var(--a-line);}
+  .badge.b{background:var(--b-bg);color:var(--b);border:1px solid var(--b-line);}
+  .badge.c{background:var(--c-bg);color:var(--c);border:1px solid var(--c-line);}
+  .co-main{min-width:0;}
+  .co-name{font-family:var(--serif);font-size:1.22rem;font-weight:700;margin:0;line-height:1.15;
+    letter-spacing:-.01em;}
+  .co-meta{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:8px;align-items:center;}
+  .tag{font-size:.72rem;font-weight:600;color:var(--ink-soft);background:var(--paper);
+    border:1px solid var(--line-soft);border-radius:6px;padding:3px 8px;letter-spacing:.01em;}
+  .tag.ind{color:var(--accent-ink);border-color:color-mix(in srgb,var(--accent) 35%, var(--line));}
+  .co-web{font-size:.72rem;color:var(--ink-faint);text-decoration:none;}
+  .co-web:hover{color:var(--accent-ink);text-decoration:underline;}
+  .co-stats{display:flex;gap:20px;flex:none;text-align:right;}
+  .stat .sk{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:700;margin:0 0 4px;}
+  .stat .sv{font-family:var(--mono);font-size:1.02rem;font-weight:600;font-variant-numeric:tabular-nums;
+    line-height:1;white-space:nowrap;}
+  .stat.budget .sv{color:var(--accent-ink);}
+  .chev{align-self:center;color:var(--ink-faint);transition:transform .2s;flex:none;}
+  .co[data-open="true"] .chev{transform:rotate(180deg);}
+
+  .co-body{display:none;padding:0 20px 20px;}
+  .co[data-open="true"] .co-body{display:block;}
+
+  .signal{background:var(--card-2);border:1px solid var(--line-soft);border-left:3px solid var(--accent-fill);
+    border-radius:8px;padding:12px 14px;margin-bottom:14px;}
+  .signal .sl{font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+    color:var(--accent-ink);margin:0 0 5px;}
+  .signal p{margin:0;font-size:.88rem;color:var(--ink);line-height:1.45;}
+  .why{font-size:.82rem;color:var(--ink-soft);margin:0 0 16px;padding-left:2px;}
+  .why b{color:var(--ink);font-weight:600;}
+
+  .contacts{border-top:1px solid var(--line-soft);}
+  .crow{display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center;
+    padding:11px 2px;border-bottom:1px solid var(--line-soft);}
+  .crow:last-child{border-bottom:0;}
+  .cwho{min-width:0;}
+  .cname{font-weight:600;font-size:.92rem;}
+  .ctitle{font-size:.76rem;color:var(--ink-faint);margin-top:1px;}
+  .cactions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+  .emailbtn{border:1px solid var(--line);background:var(--paper);color:var(--accent-ink);
+    border-radius:7px;padding:5px 10px;font-family:var(--mono);font-size:.76rem;cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;max-width:100%;}
+  .emailbtn:hover{border-color:var(--accent);background:var(--card-2);}
+  .emailbtn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .emailbtn.copied{border-color:var(--a);color:var(--a);}
+  .phone{font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);text-decoration:none;
+    padding:5px 2px;white-space:nowrap;}
+  .phone:hover{color:var(--accent-ink);}
+  .pill{font-size:.68rem;font-weight:700;letter-spacing:.03em;border-radius:999px;padding:4px 9px;
+    white-space:nowrap;}
+  .pill.ready{background:var(--a-bg);color:var(--a);border:1px solid var(--a-line);}
+  .pill.pending{background:var(--b-bg);color:var(--b);border:1px solid var(--b-line);}
+  .pill.none{background:var(--c-bg);color:var(--c);border:1px solid var(--c-line);}
+
+  .research{background:var(--b-bg);border:1px dashed var(--b-line);border-radius:8px;
+    padding:12px 14px;font-size:.84rem;color:var(--b);display:flex;flex-wrap:wrap;
+    gap:6px 12px;align-items:center;}
+  .research b{font-weight:700;}
+  .research a{color:var(--b);font-family:var(--mono);text-decoration:none;font-weight:600;}
+  .research a:hover{text-decoration:underline;}
+
+  .empty{text-align:center;padding:50px 20px;color:var(--ink-faint);}
+  .empty h3{font-family:var(--serif);color:var(--ink-soft);margin:0 0 6px;}
+
+  /* ---------- Toast ---------- */
+  .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+    background:var(--ink);color:var(--paper);padding:11px 20px;border-radius:999px;
+    font-size:.86rem;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s;z-index:50;display:flex;align-items:center;gap:9px;}
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+  .toast .tk{width:8px;height:8px;border-radius:50%;background:var(--accent-fill);}
+
+  footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line-soft);
+    font-size:.76rem;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;}
+
+  @media (max-width:760px){
+    .scorecard{grid-template-columns:repeat(2,1fr);}
+    .cell:nth-child(2){border-right:0;}
+    .cell{border-bottom:1px solid var(--line-soft);}
+    .co-head{grid-template-columns:auto 1fr;}
+    .co-stats{grid-column:1 / -1;justify-content:flex-start;text-align:left;margin-top:4px;}
+    .chev{display:none;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;}
+  }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <p class="brand-eyebrow">Finley Golf Club · Home of Carolina Golf</p>
+      <h1 class="brand-title">Corporate Partnerships Pipeline</h1>
+      <p class="brand-sub"><b>Tyler Baity</b> · Business Development &amp; Operations — prospect tracker, updated July 3, 2026</p>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Switch color theme"><span class="dot"></span><span id="themeLbl">Twilight</span></button>
+  </header>
+
+  <section class="scorecard" aria-label="Pipeline summary">
+    <div class="cell"><p class="k">Companies</p><div class="v" id="kCos">0</div><div class="sub" id="kContacts">0 decision-makers</div></div>
+    <div class="cell"><p class="k">Drafts ready</p><div class="v" id="kDrafts">0</div><div class="sub" id="kPending">0 pending emails</div></div>
+    <div class="cell"><p class="k">Combined ad / marketing budget</p><div class="v" id="kBudget">$0</div><div class="sub">annual, across pipeline</div></div>
+    <div class="cell"><p class="k">Prospect revenue</p><div class="v" id="kRev">$0</div><div class="sub">combined annual</div></div>
+    <div class="cell"><p class="k">Rank mix</p>
+      <div class="rankbar" id="rankbar"></div>
+      <div class="ranklegend" id="ranklegend"></div>
+    </div>
+  </section>
+
+  <section class="controls" aria-label="Filters">
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Search company or contact…" aria-label="Search">
+    </div>
+    <div class="chipset" role="group" aria-label="Filter by rank">
+      <span class="lbl">Rank</span>
+      <button class="chip" data-rank="all" aria-pressed="true">All</button>
+      <button class="chip rank-a" data-rank="A" aria-pressed="false">A</button>
+      <button class="chip rank-b" data-rank="B" aria-pressed="false">B</button>
+      <button class="chip rank-c" data-rank="C" aria-pressed="false">C</button>
+    </div>
+    <div class="chipset" role="group" aria-label="Filter by industry">
+      <span class="lbl">Industry</span>
+      <button class="chip" data-ind="all" aria-pressed="true">All</button>
+      <button class="chip" data-ind="Dental" aria-pressed="false">Dental</button>
+      <button class="chip" data-ind="Auto" aria-pressed="false">Auto</button>
+    </div>
+    <div class="chipset" role="group" aria-label="Filter by status">
+      <span class="lbl">Status</span>
+      <button class="chip" data-status="all" aria-pressed="true">All</button>
+      <button class="chip" data-status="ready" aria-pressed="false">Has drafts</button>
+      <button class="chip" data-status="research" aria-pressed="false">Needs research</button>
+    </div>
+    <select class="sort" id="sort" aria-label="Sort">
+      <option value="rank">Sort: Rank &amp; score</option>
+      <option value="budget">Sort: Marketing budget</option>
+      <option value="revenue">Sort: Revenue</option>
+      <option value="name">Sort: Company A–Z</option>
+    </select>
+    <button class="toolbtn" id="expandAll">Expand all</button>
+    <div class="resultcount" id="resultCount"></div>
+  </section>
+
+  <main class="board" id="board"></main>
+
+  <footer>
+    <span>A/B/C ranking blends marketing spend, company size &amp; partnership fit — full rubric in <span style="font-family:var(--mono)">scoring.md</span>.</span>
+    <span>Offer: marketing real estate · rounds &amp; outings · tickets · merch credit · hosted events.</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="tk"></span><span id="toastMsg"></span></div>
+
+<script>
+const DATA = [
+  {name:"Anderson Automotive Group",rank:"A",score:85,ind:"Auto",city:"Raleigh",web:"andersonautomotivegroup.com",
+   rev:"$518.2M",revNum:518.2,budget:"$42.0M",budNum:42.0,emp:1750,
+   signal:"Sponsors Chapel Hill HS auto program ($10K + a student race car); runs Drive for a Difference, a $150K/yr charity campaign; family-owned since 1955.",
+   why:"Massive marketing budget, 19 locations, HQ in-market, and a proven local sponsor — the top target in the batch.",
+   contacts:[
+     {n:"Stephanie Lange",t:"Director, Marketing",e:"stephanie@andersonautomotivegroup.com",p:"(608) 346-2171",d:true},
+     {n:"Thomas Serpe",t:"Chief Financial Officer",e:"tserpe@andersonautomotive.com",p:"(410) 554-1500",d:true},
+     {n:"Paul McDonald",t:"Vice President, Sales",e:"paul.mcdonald@andersonautomotivegroup.com",p:"(760) 390-2996",d:true},
+     {n:"Bryan Galloway",t:"VP, Fixed Operations",e:null,p:null,d:false},
+     {n:"Robert Lyon",t:"VP, Finance & Risk Mgmt",e:null,p:null,d:false},
+     {n:"Chad McHargue",t:"Corp. Director, Fixed Ops",e:null,p:null,d:false},
+     {n:"Andy Little",t:"Director, Variable Ops",e:null,p:null,d:false}]},
+
+  {name:"Riccobene Associates Family Dentistry",rank:"A",score:85,ind:"Dental",city:"Apex",web:"brushandfloss.com",
+   rev:"$137.3M",revNum:137.3,budget:"$18.0M",budNum:18.0,emp:935,
+   signal:"PE-backed Southeast expansion; strong community programs including a Free Day of Dentistry and $50K of donated care.",
+   why:"Huge marketing budget, 42 locations, HQ in-market, growing fast.",
+   contacts:[
+     {n:"Line Dempsey",t:"Chief Compliance Officer",e:"line.dempsey@brushandfloss.com",p:"(919) 246-9366",d:true},
+     {n:"Brooke Gerrell",t:"VP, Project Management Office",e:"brooke.gerrell@brushandfloss.com",p:"(919) 634-2329",d:true},
+     {n:"Kristy Daniel",t:"Director of Operations",e:"kristy.daniel@brushandfloss.com",p:"(919) 669-5935",d:true}]},
+
+  {name:"Lane & Associates",rank:"A",score:85,ind:"Dental",city:"Garner",web:"lanedds.com",
+   rev:"$88.6M",revNum:88.6,budget:"$11.6M",budNum:11.6,emp:580,
+   signal:"PROVEN SPORTS SPONSOR — Official Team Dentist of the Carolina Hurricanes & Durham Bulls, plus NC high-school football. They already buy exactly what you sell.",
+   why:"Already buys team sponsorships; 53 NC locations; owner-led. Best hook in the batch.",
+   contacts:[
+     {n:"Don Lane",t:"Founder",e:"donlane@lanegallery.com",p:"(919) 899-9526",d:true},
+     {n:"Michael Star",t:"President",e:"mstar@lane.us",p:"(516) 431-0900",d:true},
+     {n:"Diane Star",t:"Vice President — Owner",e:"dstar@lane.us",p:"(516) 431-0900",d:true}]},
+
+  {name:"Triangle Family Dentistry",rank:"A",score:85,ind:"Dental",city:"Wake Forest",web:"trianglefamilydentistry.com",
+   rev:"$108.8M",revNum:108.8,budget:"$14.2M",budNum:14.2,emp:488,
+   signal:"Golf culture: supports the Hit Fore Hope charity golf tournament since 2010 ($500K+ raised); Diamond Sponsor of Barton Pond Elementary.",
+   why:"Big budget plus an existing GOLF affinity and a local-sponsor track record.",
+   contacts:[], research:"No decision-maker in ZoomInfo yet — call the office to find the owner / office manager.", researchPhone:"(919) 554-9955"},
+
+  {name:"Affordable Dentures & Implants",rank:"A",score:80,ind:"Dental",city:"Morrisville",web:"affordablecare.com",
+   rev:"$220.9M",revNum:220.9,budget:"$28.9M",budNum:28.9,emp:625,
+   signal:"National consumer ad brand (~425 practices); Blackstone & KKR taking control announced May 2026.",
+   why:"Largest marketing budget in the market; corporate HQ is 15 minutes from the club.",
+   contacts:[
+     {n:"Jp Rigsbee",t:"Director, Marketing",e:"jp.rigsbee@affordablecare.com",p:"(984) 328-4146",d:true},
+     {n:"Pete Bridgman",t:"Chief Executive Officer",e:"pete.bridgman@affordablecare.com",p:"(773) 814-6960",d:true},
+     {n:"Nate Kring",t:"Chief Operating Officer",e:"nate.kring@affordablecare.com",p:"(479) 270-8794",d:true}]},
+
+  {name:"CarolinasDentist",rank:"B",score:67,ind:"Dental",city:"Aberdeen",web:"carolinasdentist.com",
+   rev:"$16.0M",revNum:16.0,budget:"$2.1M",budNum:2.1,emp:366,
+   signal:"Rapid expansion — new North Raleigh & Gastonia offices; locations in Chapel Hill, Durham and Cary.",
+   why:"Growing DSO with Triangle offices and a moderate budget.",
+   contacts:[
+     {n:"Gabrielle Smallwood",t:"Regional Director, Operations",e:"gabrielle@carolinasdentist.com",p:"(724) 674-1022",d:true}]},
+
+  {name:"Capital Automotive Group",rank:"B",score:65,ind:"Auto",city:"Raleigh",web:"capitalautogroup.com",
+   rev:"$211.1M",revNum:211.1,budget:"$17.1M",budNum:17.1,emp:1000,
+   signal:"32 locations across NC; family-owned since 1985.",
+   why:"Big budget and footprint; no marketing exec surfaced, so lead with strategy & finance.",
+   contacts:[
+     {n:"Lindsey Michael-Longo",t:"Chief Strategy Officer",e:"llongo@capitalautogroup.com",p:"(919) 853-7761",d:true},
+     {n:"Eric Mountain",t:"Director, Sales & Business Dev.",e:"emountain@capitalautogroup.com",p:"(919) 874-9824",d:true},
+     {n:"Renee Pakkala",t:"Chief Financial Officer",e:"renee.pakkala@capitalautogroup.com",p:"(919) 812-5902",d:true},
+     {n:"Marina Abbott",t:"Chief Financial Officer",e:null,p:null,d:false},
+     {n:"Christopher Watts",t:"Director, Service Operations",e:null,p:null,d:false},
+     {n:"Michael Erexson",t:"Director of Rental",e:null,p:null,d:false}]},
+
+  {name:"Prestige Auto Brokers",rank:"B",score:65,ind:"Auto",city:"Raleigh",web:"prestigeautobrokersllc.com",
+   rev:"$67.4M",revNum:67.4,budget:"$5.5M",budNum:5.5,emp:387,
+   signal:"5 locations; founded 2018 and growing fast.",
+   why:"Solid revenue but no decision-maker found in ZoomInfo.",
+   contacts:[], research:"No decision-maker in ZoomInfo — find the owner by phone.", researchPhone:null},
+
+  {name:"Crossroads Ford Group",rank:"B",score:62,ind:"Auto",city:"Wake Forest",web:"crossroadsford.com",
+   rev:"$48.7M",revNum:48.7,budget:"$3.9M",budNum:3.9,emp:450,
+   signal:"17 Ford locations across North Carolina.",
+   why:"Large multi-store Ford group in the market.",
+   contacts:[
+     {n:"Shayan Sheibani",t:"General Manager",e:"sheibanis@crossroadsmitsubishilumberton.com",p:"(919) 358-9818",d:true},
+     {n:"Richard Haines",t:"General Manager",e:"hainesr@crossroadsford.com",p:"(407) 394-4551",d:true},
+     {n:"Dean Conforti",t:"Director, Variable Operations",e:"dean@crossroadsford.com",p:"(201) 370-8607",d:true}]},
+
+  {name:"Johnson Lexus of Durham",rank:"B",score:62,ind:"Auto",city:"Durham",web:"johnsonlexusdurham.com",
+   rev:"$46.7M",revNum:46.7,budget:"$3.8M",budNum:3.8,emp:634,
+   signal:"Luxury brand 20 minutes from the club, with an affluent client base that overlaps the membership.",
+   why:"Luxury audience = a natural golf-partnership fit.",
+   contacts:[
+     {n:"Bradley Hodgeman",t:"General Sales Manager",e:"bhodgeman@johnsonlexus.com",p:"(919) 877-1870",d:true},
+     {n:"Mostafa Abou-Auf",t:"General Sales Manager",e:"mostafa@johnsonlexus.com",p:"(919) 595-4651",d:true}]},
+
+  {name:"WestGate Auto Group",rank:"B",score:56,ind:"Auto",city:"Raleigh",web:"westgatecars.com",
+   rev:"$26.5M",revNum:26.5,budget:"$2.1M",budNum:2.1,emp:46,
+   signal:"14 locations; founded 2017 and growing fast.",
+   why:"Fast-growing multi-location group.",
+   contacts:[
+     {n:"Michael Frazier",t:"VP, Legal & Business Dev.",e:"mike@westgatejeep.com",p:"(919) 626-6900",d:true}]},
+
+  {name:"University Ford of Durham",rank:"B",score:55,ind:"Auto",city:"Durham",web:"universityforddurham.com",
+   rev:"$30.0M",revNum:30.0,budget:"$2.4M",budNum:2.4,emp:150,
+   signal:"3 locations; a Durham fixture (Capital Auto Group family).",
+   why:"Solid Durham dealer close to the club.",
+   contacts:[
+     {n:"Joseph Wiedholz",t:"General Manager",e:"joseph.wiedholz@capitalautogroup.com",p:"(919) 929-3115",d:true}]},
+
+  {name:"Sport Durst Automotive",rank:"B",score:55,ind:"Auto",city:"Durham",web:"sportdurst.com",
+   rev:"$27.7M",revNum:27.7,budget:"$2.2M",budNum:2.2,emp:104,
+   signal:"A seven-brand campus on Durham's auto mile since 1998.",
+   why:"Multi-brand Durham group close to the club.",
+   contacts:[
+     {n:"Wayne DuBois",t:"COO & Vice President",e:"wayne.dubois@sportdurst.com",p:"(919) 489-6531",d:true},
+     {n:"Ken Nichols",t:"General Manager",e:"knichols@sportdurst.com",p:"(919) 489-6531",d:true},
+     {n:"Dennis Koballa",t:"Director, Finance",e:null,p:null,d:false},
+     {n:"Mike McLachlan",t:"Sales Director, Used Car",e:null,p:null,d:false}]},
+
+  {name:"Leith Cars",rank:"B",score:60,ind:"Auto",city:"Raleigh",web:"leithcars.com",
+   rev:"$38.4M+",revNum:38.4,budget:"$3.1M+",budNum:3.1,emp:104,
+   signal:"One of the Triangle's largest dealer families since 1969, with a 17-person marketing team.",
+   why:"Iconic Triangle dealer group; ZoomInfo understates its true size.",
+   contacts:[
+     {n:"Michael Jurasek",t:"General Manager",e:"mike.jurasek@leithcars.com",p:"(919) 842-5686",d:true},
+     {n:"Kevin Mills",t:"General Manager",e:"kevin.mills@leithcars.com",p:"(919) 467-4747",d:true},
+     {n:"David Coyle",t:"GM, Jaguar Land Rover (Cary)",e:"david.coyle@leithcars.com",p:"(919) 469-1000",d:true},
+     {n:"Coy Lovell",t:"General Manager",e:null,p:null,d:false},
+     {n:"Kevin Kane",t:"General Manager",e:null,p:null,d:false},
+     {n:"Brad Smith",t:"Director, Fixed Operations",e:null,p:null,d:false}]},
+
+  {name:"Russo Dentistry",rank:"B",score:61,ind:"Dental",city:"Raleigh",web:"ncimplant.com",
+   rev:"$9.0M",revNum:9.0,budget:"$1.2M",budNum:1.2,emp:80,
+   signal:"Best Dentist in Wake County four years running; WRAL Voter's Choice; has a dedicated Marketing Director.",
+   why:"Award-winning, brand-conscious practice with a marketing lead to talk to.",
+   contacts:[
+     {n:"Natalie Pearce",t:"Director, Marketing",e:"natalie@ncimplant.com",p:"(919) 740-3148",d:true}]},
+
+  {name:"Wake Orthodontics & Pediatric Dentistry",rank:"B",score:51,ind:"Dental",city:"Raleigh",web:"wakeorthopedo.com",
+   rev:"$11.9M",revNum:11.9,budget:"$1.6M",budNum:1.6,emp:65,
+   signal:"3 locations across the Raleigh area; founded 2018 and growing.",
+   why:"Solid revenue with a family-focused audience match.",
+   contacts:[
+     {n:"David Kornstein",t:"Doctor (Owner)",e:"drkornstein@wakeorthopedo.com",p:"(919) 848-3588",d:true}]},
+
+  {name:"Axiom Dentistry",rank:"B",score:51,ind:"Dental",city:"Knightdale",web:"axiomdentistry.com",
+   rev:"$9.2M",revNum:9.2,budget:"$1.2M",budNum:1.2,emp:155,
+   signal:"8 locations across the eastern Triangle.",
+   why:"Multi-location practice in the market.",
+   contacts:[
+     {n:"Tiffany Reynolds",t:"Director, Operations",e:"tiffany.reynolds@axiomdentistry.com",p:"(919) 553-3173",d:true}]},
+
+  {name:"Wells Family Dental Group",rank:"B",score:51,ind:"Dental",city:"Raleigh",web:"wellsfamilydental.com",
+   rev:"$7.8M",revNum:7.8,budget:"$1.0M",budNum:1.0,emp:141,
+   signal:"6 Raleigh-area locations; founded 2019 and growing.",
+   why:"Multi-location but no decision-maker found in ZoomInfo.",
+   contacts:[], research:"No decision-maker in ZoomInfo — find owner Dr. Wells by phone.", researchPhone:null},
+
+  {name:"Thompson Buick GMC",rank:"B",score:50,ind:"Auto",city:"Raleigh",web:"thompsoncars.net",
+   rev:"$26.4M",revNum:26.4,budget:"$2.1M",budNum:2.1,emp:91,
+   signal:"A Raleigh institution since 1956.",
+   why:"Single store but a 70-year local brand; no decision-maker found in ZoomInfo.",
+   contacts:[], research:"No decision-maker in ZoomInfo — find the GM by phone.", researchPhone:null},
+
+  {name:"Durham DDS",rank:"C",score:46,ind:"Dental",city:"Durham",web:"durhamdds.com",
+   rev:"$11.3M",revNum:11.3,budget:"$1.5M",budNum:1.5,emp:57,
+   signal:"Established 1954 (70+ years in Durham); single location.",
+   why:"Closest practice to the club, but single-location and modest spend. Consider a personal visit over email.",
+   contacts:[
+     {n:"William (Bill) Argersinger",t:"Doctor (Owner)",e:"billargersinger@durhamdds.com",p:"(984) 484-1724",d:false}]}
+];
+
+const RANKV={A:3,B:2,C:1};
+const $=s=>document.querySelector(s);
+const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",open:new Set()};
+
+/* ---- Summary ---- */
+(function summary(){
+  const cos=DATA.length;
+  const contacts=DATA.reduce((a,c)=>a+c.contacts.length,0);
+  const drafts=DATA.reduce((a,c)=>a+c.contacts.filter(x=>x.d).length,0);
+  const pending=DATA.reduce((a,c)=>a+c.contacts.filter(x=>!x.e).length,0);
+  const budget=DATA.reduce((a,c)=>a+c.budNum,0);
+  const rev=DATA.reduce((a,c)=>a+c.revNum,0);
+  const rc={A:0,B:0,C:0};DATA.forEach(c=>rc[c.rank]++);
+  $("#kCos").textContent=cos;
+  $("#kContacts").textContent=contacts+" decision-makers";
+  $("#kDrafts").textContent=drafts;
+  $("#kPending").textContent=pending+" emails still to enrich";
+  $("#kBudget").innerHTML="$"+budget.toFixed(0)+"<small>M</small>";
+  $("#kRev").innerHTML="$"+(rev/1000).toFixed(2)+"<small>B</small>";
+  const total=cos;
+  $("#rankbar").innerHTML=
+    `<span class="sa" style="flex:${rc.A}"></span><span class="sb" style="flex:${rc.B}"></span><span class="sc" style="flex:${rc.C}"></span>`;
+  $("#ranklegend").innerHTML=
+    `<span><i style="background:var(--a)"></i>${rc.A} A</span>`+
+    `<span><i style="background:var(--b)"></i>${rc.B} B</span>`+
+    `<span><i style="background:var(--c)"></i>${rc.C} C</span>`;
+})();
+
+/* ---- Render ---- */
+function esc(s){return (s||"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));}
+function matches(c){
+  if(state.rank!=="all"&&c.rank!==state.rank)return false;
+  if(state.ind!=="all"&&c.ind!==state.ind)return false;
+  if(state.status==="ready"&&!c.contacts.some(x=>x.d))return false;
+  if(state.status==="research"&&c.contacts.some(x=>x.d))return false;
+  if(state.q){
+    const q=state.q.toLowerCase();
+    const hit=c.name.toLowerCase().includes(q)||c.city.toLowerCase().includes(q)||
+      c.contacts.some(x=>x.n.toLowerCase().includes(q)||x.t.toLowerCase().includes(q));
+    if(!hit)return false;
+  }
+  return true;
+}
+function sortFn(a,b){
+  if(state.sort==="budget")return b.budNum-a.budNum;
+  if(state.sort==="revenue")return b.revNum-a.revNum;
+  if(state.sort==="name")return a.name.localeCompare(b.name);
+  return (RANKV[b.rank]-RANKV[a.rank])||(b.score-a.score)||b.budNum-a.budNum;
+}
+function contactRow(x){
+  const draft=x.d?`<span class="pill ready">Draft ready</span>`
+    :(x.e?`<span class="pill none">No draft yet</span>`:`<span class="pill pending">Email pending</span>`);
+  const email=x.e
+    ? `<button class="emailbtn" data-email="${esc(x.e)}" title="Click to copy"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>${esc(x.e)}</span></button>`
+    : `<span class="phone" style="color:var(--ink-faint)">— email to enrich —</span>`;
+  const phone=x.p?`<a class="phone" href="tel:${x.p.replace(/[^0-9]/g,"")}">${esc(x.p)}</a>`:"";
+  return `<div class="crow">
+    <div class="cwho"><div class="cname">${esc(x.n)}</div><div class="ctitle">${esc(x.t)}</div></div>
+    <div class="cactions">${email}${phone}${draft}</div></div>`;
+}
+function card(c){
+  const rk=c.rank.toLowerCase();
+  const open=state.open.has(c.name);
+  const nContacts=c.contacts.length;
+  const nDraft=c.contacts.filter(x=>x.d).length;
+  const summaryTag=nContacts
+    ? `<span class="tag">${nContacts} contact${nContacts>1?"s":""}</span><span class="tag">${nDraft} draft${nDraft!==1?"s":""}</span>`
+    : `<span class="tag" style="color:var(--b);border-color:var(--b-line)">Needs research</span>`;
+  const body=`<div class="co-body">
+      <div class="signal"><p class="sl">Ad-spend signal</p><p>${esc(c.signal)}</p></div>
+      <p class="why"><b>Why this rank:</b> ${esc(c.why)}</p>
+      ${nContacts
+        ? `<div class="contacts">${c.contacts.map(contactRow).join("")}</div>`
+        : `<div class="research"><b>Next step —</b> ${esc(c.research)} ${c.researchPhone?`<a href="tel:${c.researchPhone.replace(/[^0-9]/g,"")}">${esc(c.researchPhone)}</a>`:""}</div>`}
+    </div>`;
+  return `<article class="co" data-open="${open}" data-name="${esc(c.name)}">
+    <button class="co-head" aria-expanded="${open}">
+      <div class="badge ${rk}"><span class="lt">${c.rank}</span><span class="sc">${c.score}</span></div>
+      <div class="co-main">
+        <h2 class="co-name">${esc(c.name)}</h2>
+        <div class="co-meta">
+          <span class="tag ind">${esc(c.ind)}</span>
+          <span class="tag">${esc(c.city)}, NC</span>
+          <a class="co-web" href="https://${c.web}" target="_blank" rel="noopener">${esc(c.web)} ↗</a>
+          ${summaryTag}
+        </div>
+      </div>
+      <div class="co-stats">
+        <div class="stat"><p class="sk">Revenue</p><div class="sv">${esc(c.rev)}</div></div>
+        <div class="stat budget"><p class="sk">Mktg budget</p><div class="sv">${esc(c.budget)}</div></div>
+        <div class="stat"><p class="sk">Employees</p><div class="sv">${c.emp.toLocaleString()}</div></div>
+      </div>
+      <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    ${body}
+  </article>`;
+}
+function render(){
+  const list=DATA.filter(matches).sort(sortFn);
+  const board=$("#board");
+  if(!list.length){
+    board.innerHTML=`<div class="empty"><h3>No prospects match</h3><p>Try clearing a filter or the search box.</p></div>`;
+  }else{
+    board.innerHTML=list.map(card).join("");
+  }
+  $("#resultCount").textContent=`Showing ${list.length} of ${DATA.length} companies`;
+}
+render();
+
+/* ---- Interactions ---- */
+function toast(msg){
+  $("#toastMsg").textContent=msg;const t=$("#toast");t.classList.add("show");
+  clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),1600);
+}
+$("#board").addEventListener("click",e=>{
+  const em=e.target.closest(".emailbtn");
+  if(em){
+    const addr=em.dataset.email;
+    navigator.clipboard&&navigator.clipboard.writeText(addr).then(()=>{},()=>{});
+    em.classList.add("copied");setTimeout(()=>em.classList.remove("copied"),1200);
+    toast("Copied "+addr);return;
+  }
+  const head=e.target.closest(".co-head");
+  if(head){
+    const co=head.closest(".co");const name=co.dataset.name;
+    if(state.open.has(name))state.open.delete(name);else state.open.add(name);
+    const open=state.open.has(name);
+    co.dataset.open=open;head.setAttribute("aria-expanded",open);
+  }
+});
+document.querySelectorAll("[data-rank]").forEach(b=>b.addEventListener("click",()=>{
+  state.rank=b.dataset.rank;setPressed("[data-rank]",b);render();}));
+document.querySelectorAll("[data-ind]").forEach(b=>b.addEventListener("click",()=>{
+  state.ind=b.dataset.ind;setPressed("[data-ind]",b);render();}));
+document.querySelectorAll("[data-status]").forEach(b=>b.addEventListener("click",()=>{
+  state.status=b.dataset.status;setPressed("[data-status]",b);render();}));
+function setPressed(sel,btn){document.querySelectorAll(sel).forEach(x=>x.setAttribute("aria-pressed",x===btn));}
+$("#search").addEventListener("input",e=>{state.q=e.target.value.trim();render();});
+$("#sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
+$("#expandAll").addEventListener("click",()=>{
+  const anyClosed=DATA.filter(matches).some(c=>!state.open.has(c.name));
+  if(anyClosed)DATA.forEach(c=>state.open.add(c.name));else state.open.clear();
+  $("#expandAll").textContent=anyClosed?"Collapse all":"Expand all";render();});
+
+/* ---- Theme ---- */
+const root=document.documentElement;
+function applyTheme(t){
+  root.setAttribute("data-theme",t);
+  $("#themeLbl").textContent=t==="dark"?"Daylight":"Twilight";
+}
+$("#themeBtn").addEventListener("click",()=>{
+  const cur=root.getAttribute("data-theme")||
+    (matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");
+  applyTheme(cur==="dark"?"light":"dark");
+});
+$("#themeLbl").textContent=matchMedia("(prefers-color-scheme:dark)").matches?"Daylight":"Twilight";
+</script>

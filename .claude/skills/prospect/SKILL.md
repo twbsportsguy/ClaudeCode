@@ -101,6 +101,15 @@ Record numeric score, A/B/C rank, and a one-line "Why This Rank".
    - If the tracker ever exceeds ~295 rows, bump MAX_ROWS in that script
      and rebuild so formatting covers the new rows.
 
+## Step 6b — Refresh the dashboard UI
+
+Regenerate `dashboard/index.html` from the full tracker (one company object
+per company, contacts nested) and republish the Artifact to the SAME URL by
+passing `url: https://claude.ai/code/artifact/f240ef95-2416-4396-9824-ac0af39e86c2`.
+It's the user's shareable, supervisor-facing view — keep KPIs, rank badges,
+and draft-status pills accurate. Self-contained (no external calls), so it
+works regardless of MCP/connection state.
+
 ## Step 7 — Gmail drafts
 
 For every A and B ranked contact (C only if the user asks):
