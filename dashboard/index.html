@@ -251,6 +251,7 @@
       <button class="chip" data-ind="all" aria-pressed="true">All</button>
       <button class="chip" data-ind="Dental" aria-pressed="false">Dental</button>
       <button class="chip" data-ind="Auto" aria-pressed="false">Auto</button>
+      <button class="chip" data-ind="Sports &amp; Outdoor" aria-pressed="false">Sports &amp; Outdoor</button>
     </div>
     <div class="chipset" role="group" aria-label="Filter by status">
       <span class="lbl">Status</span>
@@ -442,7 +443,69 @@ const DATA = [
    signal:"Established 1954 (70+ years in Durham); single location.",
    why:"Closest practice to the club, but single-location and modest spend. Consider a personal visit over email.",
    contacts:[
-     {n:"William (Bill) Argersinger",t:"Doctor (Owner)",e:"billargersinger@durhamdds.com",p:"(984) 484-1724",d:false}]}
+     {n:"William (Bill) Argersinger",t:"Doctor (Owner)",e:"billargersinger@durhamdds.com",p:"(984) 484-1724",d:false}]},
+
+  {name:"Fleet Feet",rank:"A",score:90,ind:"Sports Retail",city:"Carrboro",web:"fleetfeet.com",
+   rev:"$55.0M",revNum:55.0,budget:"$6.7M",budNum:6.7,emp:1000,
+   signal:"National HQ right here in Carrboro; sponsors the Carrboro 10K and runs community race & training programs.",
+   why:"Local HQ next door, community-event DNA, 250+ stores, and a marketing & partnerships lead on staff — the top sports prospect.",
+   contacts:[
+     {n:"Tiffany Lee",t:"Sr. Director, Performance Marketing & Partnerships",e:"tiffany.lee@fleetfeet.com",p:"(262) 719-4742",d:false},
+     {n:"Nora Ayers",t:"Director, Community Outreach",e:"nora.ayers@fleetfeet.com",p:"(919) 316-1172",d:false},
+     {n:"Joey Pointer",t:"President & CEO",e:"joey.pointer@fleetfeet.com",p:"(919) 942-3102",d:false}]},
+
+  {name:"Implus Footcare",rank:"A",score:85,ind:"Sporting Goods",city:"Durham",web:"implus.com",
+   rev:"$328.4M",revNum:328.4,budget:"$40.1M",budNum:40.1,emp:770,
+   signal:"16-brand running/fitness portfolio (Balega, Yaktrax, Sof Sole, SKLZ) HQ'd in Durham, with active Balega campaigns.",
+   why:"Huge marketing budget plus a 95-person marketing team; Durham HQ; consumer brand family.",
+   contacts:[
+     {n:"Courtney Ahearn",t:"Sr. Director, Marketing",e:"cahearn@implus.com",p:"(617) 835-2395",d:false},
+     {n:"Théophile Southon",t:"Global Director, Brand Activation",e:"tsouthon@implus.com",p:null,d:false}]},
+
+  {name:"Sports Endeavors",rank:"A",score:85,ind:"Sports Retail",city:"Hillsborough",web:"sportsendeavors.com",
+   rev:"$84.4M",revNum:84.4,budget:"$10.3M",budNum:10.3,emp:400,
+   signal:"Soccer.com — the nation's leading grassroots soccer outfitter — HQ'd in Hillsborough since 1984.",
+   why:"Strong marketing budget with a CMO on staff; local HQ; consumer sports brand.",
+   contacts:[
+     {n:"Brian Berklich",t:"Chief Marketing Officer",e:"bberklich@sportsendeavors.com",p:"(919) 640-6233",d:false},
+     {n:"Tyler Clardy",t:"Director, Marketing",e:"tclardy@sportsendeavors.com",p:"(205) 623-4490",d:false},
+     {n:"Michael Moylan",t:"Chief Executive Officer",e:"mmoylan@sportsendeavors.com",p:"(919) 640-6140",d:false}]},
+
+  {name:"Big Rock Sports",rank:"A",score:75,ind:"Sporting Goods Distribution",city:"Graham",web:"bigrocksports.com",
+   rev:"$750.0M",revNum:750.0,budget:"$91.5M",budNum:91.5,emp:701,
+   signal:"North America's premier outdoor sporting-goods distributor, HQ'd in Graham, with a 57-person marketing team.",
+   why:"Largest marketing operation in the entire pipeline; in-market HQ; strong B2B client-entertainment fit.",
+   contacts:[
+     {n:"Mitch Mitchel",t:"Director, Marketing",e:"mmitchel@bigrocksports.com",p:null,d:false},
+     {n:"Corey Engquist",t:"Owner",e:"corengquist@bigrocksports.com",p:"(402) 250-0951",d:false}]},
+
+  {name:"Great Outdoor Provision",rank:"A",score:75,ind:"Outdoor Retail",city:"Raleigh",web:"greatoutdoorprovision.com",
+   rev:"$29.2M",revNum:29.2,budget:"$3.6M",budNum:3.6,emp:121,
+   signal:"NC's own outdoor outfitter since 1972; backs the Triangle Land Conservancy and the Mountains-to-Sea Trail.",
+   why:"Deep local-sponsor DNA, in-market HQ, 13 NC stores.",
+   contacts:[
+     {n:"Leah Bradley",t:"Director, Marketing",e:"leahb@greatoutdoorprovision.com",p:null,d:false},
+     {n:"Charles (Chuck) Millsaps",t:"President",e:"chuckm@greatoutdoorprovision.com",p:"(919) 256-1571",d:false}]},
+
+  {name:"USA Baseball",rank:"B",score:71,ind:"Sports Organization",city:"Durham",web:"usabaseball.com",
+   rev:"$13.7M",revNum:13.7,budget:"$1.6M",budNum:1.6,emp:40,
+   signal:"The sport's national governing body, with a National Training Complex in Cary, run from Durham.",
+   why:"In-market national body that hosts events & hospitality, with a partnerships lead on staff.",
+   contacts:[
+     {n:"Allison Gupton",t:"Director, Partner & Player Relations",e:"allisongupton@usabaseball.com",p:"(919) 866-9591",d:false},
+     {n:"Bradley Young",t:"Sr. Director, Strategic Communications",e:"bradyoung@usabaseball.com",p:"(919) 474-8721",d:false}]},
+
+  {name:"The Bicycle Chain",rank:"B",score:66,ind:"Sports Retail",city:"Apex",web:"thebicyclechain.com",
+   rev:"$19.0M",revNum:19.0,budget:"$2.3M",budNum:2.3,emp:22,
+   signal:"5 Triangle stores (Raleigh, Durham, Chapel Hill, Carrboro, Apex) with year-round community group rides.",
+   why:"Local multi-store bike shop with a community-ride culture.",
+   contacts:[], research:"No decision-maker in ZoomInfo — find the owner / GM by phone.", researchPhone:null},
+
+  {name:"Rex Hospital Open",rank:"C",score:50,ind:"Golf Event",city:"Raleigh",web:"rexhospitalopen.com",
+   rev:"$12.9M",revNum:12.9,budget:"$1.7M",budNum:1.7,emp:158,
+   signal:"Korn Ferry Tour charity golf event (UNC Health Rex) in Raleigh.",
+   why:"A golf event, not a buyer — a potential cross-promotion partner rather than a sales prospect.",
+   contacts:[], research:"Not an outreach target — consider a cross-promo conversation. Logged for awareness.", researchPhone:null}
 ];
 
 const RANKV={A:3,B:2,C:1};
@@ -475,9 +538,10 @@ const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",open:new Set()};
 
 /* ---- Render ---- */
 function esc(s){return (s||"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));}
+function grp(ind){if(/Dental/.test(ind))return"Dental";if(ind==="Auto")return"Auto";return"Sports & Outdoor";}
 function matches(c){
   if(state.rank!=="all"&&c.rank!==state.rank)return false;
-  if(state.ind!=="all"&&c.ind!==state.ind)return false;
+  if(state.ind!=="all"&&grp(c.ind)!==state.ind)return false;
   if(state.status==="ready"&&!c.contacts.some(x=>x.d))return false;
   if(state.status==="research"&&c.contacts.some(x=>x.d))return false;
   if(state.q){

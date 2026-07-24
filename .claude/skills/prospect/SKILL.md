@@ -26,6 +26,56 @@ Read `config/profile.md`, `scoring.md`, and the relevant `templates/*.md`
 before drafting anything. Use the email signature from `config/profile.md`
 verbatim (it includes the scheduling link).
 
+## Autopilot mode (no input given)
+
+If invoked with **no** city/industry/company/person (or the literal input
+`auto`), **do not ask** for keywords. Pick the next targets yourself using
+`config/autopilot.md`: dedupe against `tracker/prospects.csv`, choose 2
+segments (industry × Triangle sub-market), append your choice + one-line
+rationale to `tracker/autopilot-log.md`, then run Steps 0–8 for those
+segments. This is what the scheduled Routine fires 2–3×/week.
+
+## Follow-up mode (Tuesdays & Thursdays / input `followups`)
+
+Tue/Thu are for **follow-ups, not new prospecting.** Run Step 0 (reply-sync)
+first, then follow `config/followups.md`: find contacts already emailed who
+haven't replied and are due a bump, draft short follow-ups per
+`config/voice.md`, record `FU#`+date in each row's Notes, update Next Step,
+and stage/create drafts per the gate. Mon/Wed/Fri stay new-prospecting
+(autopilot) days.
+
+## Step 0 — Sync inbox replies into the pipeline (run first, every time)
+
+Before prospecting, reconcile replies so the tracker reflects reality. Also
+run this on its own whenever the user asks to "check replies" / "update the
+pipeline."
+
+1. `mcp__Gmail__search_threads` for replies to outreach, e.g.
+   `in:inbox newer_than:60d` (and/or the template subject lines). For any
+   promising thread, `mcp__Gmail__get_thread` to read the full latest message.
+2. Match the sender to a tracker row by email (Contact Email column). If the
+   reply is from someone not yet in the tracker but clearly at a prospect
+   company, still act on it and note it.
+3. Read the reply and set that contact's **Status** (pipeline stage):
+   - Any genuine reply that isn't a rejection → `Interested: 50%`.
+   - Explicit "not interested" / "no thanks" / unsubscribe / "remove me" →
+     `Not Interested: 0%`.
+   - Only escalate beyond `Interested: 50%` when the content clearly warrants
+     it: strong buying signals / wants a proposal → `Red-Hots: 75%`; verbal
+     or written yes on terms → `Agreements: 90%`; signed deal → `Signed: 100%`.
+     When unsure, stay at `Interested: 50%` and let the user advance it.
+   - Auto-replies / out-of-office / bounces are **not** replies — leave the
+     stage unchanged (note the bounce if the address is dead).
+4. Update the row's `Next Step` and `Notes` accordingly (e.g., "Replied 7/9 —
+   wants pricing; send proposal"). Leave the user-filled `Potential Revenue`
+   column untouched unless the reply gives you a concrete number.
+5. Commit + push so the Google Sheet reflects the new stages (Step 8).
+
+The pipeline stages and their sheet colors are defined once in
+`tools/build_live_tracker_xlsx.py` (`STAGES`): Interested 50% = light yellow,
+Red-Hots 75% = pink, Agreements 90% = light blue, Signed 100% = light green,
+Not Interested 0% = light orange. Fresh prospects stay `New` until they reply.
+
 ## Step 1 — ZoomInfo lookups (get exact filter values)
 
 Use `mcp__ZoomInfo__lookup` first — never guess filter values:
@@ -53,18 +103,29 @@ top candidates for hooks and spend signals.
 
 ## Step 3 — Pull decision-maker contacts
 
-`mcp__ZoomInfo__search_contacts` per company (companyId filter) with
-`managementLevel: "C Level Exec,VP Level Exec,Director"`, sorted by
-`-contactAccuracyScore`, `requiredFields: "email"`. Also try
-`jobTitle: "Owner OR President OR General Manager OR Principal"` for small
-local firms where management level tagging is thin.
+`mcp__ZoomInfo__search_contacts` per company (companyId filter), sorted by
+`-contactAccuracyScore`, `requiredFields: "email"`. **Cast wide — reach every
+useful contact, not just top brass.** Pull people at ANY level whose role
+could buy, influence, or champion a partnership:
+- Marketing, brand, creative, digital
+- Events, sponsorship, partnerships, community, PR / communications
+- Sales leadership and business development
+- Owners, founders, and C-level / VP / GM / President
 
-Take **ALL decision-makers found — no cap** (marketing-titled contacts
-first, then owner/C-level/VP/GM/Director). Skip only support-function
-roles that never buy sponsorships (HR, IT, recruiting, training) and
-below-Director titles (GM/GSM at dealerships counts as decision-maker).
+Search these via `department`/`jobFunction` (e.g. Marketing, Sales) and
+`jobTitle` (e.g. `"Marketing OR Brand OR Events OR Sponsorship OR Partnerships
+OR Community OR Communications OR Sales OR Owner OR President OR General
+Manager"`). Include managers and individual contributors, not only Director+.
+
+Skip only genuinely irrelevant roles (IT, HR/recruiting, accounting/finance
+back-office, engineering, legal, warehouse/logistics) **unless** that person
+is the owner/GM. Priority order: marketing/events/sponsorship titles → owners/
+execs → sales/BD → other useful functions.
 `mcp__ZoomInfo__enrich_contacts` (batches of ≤10) for verified email, phone,
 jobTitle, managementLevel.
+
+Credit guardrail: pull everyone plausibly useful, but don't enrich obviously
+irrelevant roles.
 
 **Person lookup mode:** `search_contacts` by name (+company), then
 `mcp__ZoomInfo__contact_research` for background and `enrich_contacts` for
@@ -89,7 +150,15 @@ Record numeric score, A/B/C rank, and a one-line "Why This Rank".
 
 1. Append new rows to `tracker/prospects.csv` — **one row per contact**,
    never dropping existing rows. Skip contacts already in the tracker
-   (match on email).
+   (match on email). New prospects start with `Status = New` and a blank
+   `Potential Revenue` (the user fills that column in). Columns are, in order:
+   Date Added, Rank, Score, Company, Industry, City, State, Website, Revenue,
+   Employees, Marketing Budget, Ad Spend Signals, Why This Rank, Contact Name,
+   Contact Title, Contact Email, Contact Phone, ZoomInfo Company ID,
+   Draft Created, **Status**, Next Step, Notes, **Potential Revenue**.
+   The **Status** column doubles as the pipeline stage — see Step 0 for the
+   values (`New` → `Interested: 50%` → `Red-Hots: 75%` → `Agreements: 90%` →
+   `Signed: 100%`, or `Not Interested: 0%`).
 2. Commit and push (Step 8). **That's all** — the user's ONE permanent
    Google Sheet ("Finley Golf Club — Sales Tracker") pulls this CSV live
    from GitHub raw via IMPORTDATA, so pushing the CSV updates the sheet
@@ -104,11 +173,12 @@ Record numeric score, A/B/C rank, and a one-line "Why This Rank".
 ## Step 6b — Refresh the dashboard UI
 
 Regenerate `dashboard/index.html` from the full tracker (one company object
-per company, contacts nested) and republish the Artifact to the SAME URL by
-passing `url: https://claude.ai/code/artifact/f240ef95-2416-4396-9824-ac0af39e86c2`.
-It's the user's shareable, supervisor-facing view — keep KPIs, rank badges,
-and draft-status pills accurate. Self-contained (no external calls), so it
-works regardless of MCP/connection state.
+per company, contacts nested; group industries into Dental / Auto / Sports &
+Outdoor for the filter) and republish the Artifact to the SAME URL by passing
+`url: https://claude.ai/code/artifact/f240ef95-2416-4396-9824-ac0af39e86c2`.
+It's the user's shareable, supervisor-facing view — keep the KPI strip, rank
+badges, pipeline-stage/draft pills, and contact copy-buttons accurate.
+Self-contained (no external calls), so it works regardless of connection state.
 
 ## Step 7 — Gmail drafts
 
@@ -117,10 +187,26 @@ For every A and B ranked contact (C only if the user asks):
 2. Fill merge fields. `{{Hook}}` must be a real, specific fact from Step 2/4
    research — if nothing real was found, open with a market-specific line
    instead, never a fabricated claim.
-3. Keep it under 120 words, seller signature from `config/profile.md`.
-4. `mcp__Gmail__create_draft` — to: the contact's verified email, subject
-   from the template. **Drafts only. Never send.**
-5. Mark `Draft Created = Y` in the tracker row.
+3. Keep it under 120 words and follow `config/voice.md` for tone/style.
+   **No signature block** — end after the ask; Gmail appends Tyler's own
+   signature automatically (see `config/voice.md`).
+4. **Proofread every email before creating the draft** (drafts are what the
+   user sends, so this is the last quality gate). Check each one against:
+   - No unfilled merge fields left (`{{FirstName}}`, `{{Company}}`,
+     `{{City}}`, `{{Hook}}` all resolved — search the body for `{{`).
+   - `{{FirstName}}` is the contact's actual first name; `{{Company}}` and
+     `{{City}}` match the tracker row.
+   - The hook is factually true per Step 2/4 research — no invented awards,
+     sponsorships, or numbers.
+   - Spelling/grammar clean, tone professional, under 120 words.
+   - No signature block in the body (Gmail appends Tyler's); the email ends
+     cleanly on the ask, no name/title/contact typed out.
+   Fix anything that fails before drafting. If a hook can't be verified,
+   replace it with a market-specific line rather than shipping a guess.
+5. `mcp__Gmail__create_draft` — to: the contact's verified email, subject
+   per `config/voice.md` (specific-hook style, not the template's placeholder).
+   **Drafts only. Never send.**
+6. Mark `Draft Created = Y` in the tracker row.
 
 If a contact has no verified email, still log them (Draft Created = N,
 note "no email — phone only").
