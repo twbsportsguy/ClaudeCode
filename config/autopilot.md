@@ -7,9 +7,10 @@ keywords — choose the next targets here, act, and log why.
 follow-ups to non-repliers (`config/followups.md`), not new prospecting.
 
 ## Per-run budget
-- **2 segments** per run (a segment = one industry × one Triangle sub-market).
-- ~8–10 companies per segment (~15–20 companies total); pull every useful
-  contact per company, not just decision-makers (see SKILL.md Step 3).
+- **2 segments** per run (a segment = one industry × one NC market).
+- ~8–10 companies per segment (~15–20 companies total); pull the **full buying
+  committee** per company — every useful contact, not just decision-makers
+  (see SKILL.md Step 3). More contacts per company = more forward-up shots.
 - Hard stop: don't enrich a 3rd segment in one run (ZoomInfo credit control).
 
 ## The universe
@@ -17,8 +18,17 @@ follow-ups to non-repliers (`config/followups.md`), not new prospecting.
   legal/financial.
 - **Expansion industries** (proven or promising): sports, hospitality &
   restaurants, commercial real estate, banking/wealth, insurance, med spa.
-- **Triangle sub-markets:** Chapel Hill/Carrboro · Durham · Raleigh ·
-  Cary/Apex/Morrisville · Wake Forest/North Raleigh · Hillsborough/Graham.
+- **Coverage mandate: all of North Carolina.** Home base is the Triangle, but
+  the goal is to work the whole state over time. Markets to rotate through:
+  - **Triangle (home):** Chapel Hill/Carrboro · Durham · Raleigh ·
+    Cary/Apex/Morrisville · Wake Forest/North Raleigh · Hillsborough/Graham.
+  - **Charlotte metro:** Charlotte · Concord · Huntersville · Gastonia · Rock Hill.
+  - **Triad:** Greensboro · Winston-Salem · High Point · Burlington.
+  - **Coastal / East:** Wilmington · Greenville · Jacksonville · New Bern.
+  - **West / Foothills:** Asheville · Hickory · Boone.
+  - **Sandhills / South:** Fayetteville · Pinehurst/Southern Pines · Lumberton.
+  Weight the Triangle most (drive-time to the club matters for hospitality),
+  but systematically give the other metros at-bats so NC gets full coverage.
 
 ## How to pick the 2 segments (priority order)
 1. **Dedupe first.** Load `tracker/prospects.csv`. Never re-pull a company

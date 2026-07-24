@@ -9,8 +9,9 @@ tickets, merch credit, and hosted events.
 ## How the user works with this repo
 
 The user gives **any one or more** of: city, state, industry, company, person
-— a single input alone is a complete request (default market: Chapel Hill /
-Triangle, NC).
+— a single input alone is a complete request. **Coverage is all of North
+Carolina**; home base / default market is the Triangle (Chapel Hill), but
+autopilot rotates statewide (see `config/autopilot.md`).
 Run the `/prospect` skill (`.claude/skills/prospect/SKILL.md`) with those
 inputs. It pulls companies/contacts from ZoomInfo, researches ad/marketing
 spend on the web, scores prospects A/B/C, appends them to the master tracker,

@@ -81,6 +81,21 @@ of our audience and give your team a way to host partners and reward staff with
 golf and events. Would you be open to a 15-minute call to explore it? I'm free
 Tuesday or Thursday."
 
+## Champion / forward-up variant (for non-executive contacts)
+When the recipient is mid-level (marketing coordinator, events, community, PR,
+a specialist) rather than the owner/CxO, treat them as a **champion** who can
+route this to the right person. Keep the same specific hook and warmth, but:
+- Don't assume they own the budget. Frame it as "you'd know better than I would
+  who handles this."
+- End with a soft, forward-friendly ask instead of the hard 15-minute request:
+  e.g. "If partnerships live with someone else on your team, would you mind
+  pointing me their way?" or "Happy to send details to whoever handles
+  sponsorships — is that you, or someone I should talk to?"
+- Still fine to offer the 15-minute call as the alternative if it *is* them.
+The goal: an email so easy to forward that it arrives internally as a warm
+hand-off ("this looks relevant — worth a look?") rather than a cold pitch.
+Executives get the direct ask; champions get the hand-off ask.
+
 ## Tyler's personal tweaks (optional — tell me and I'll fold in)
 - Preferred sign-off (before Gmail's auto-signature): <e.g. "Thanks," / "Best," / none>
 - Anything above to dial up or down: <...>

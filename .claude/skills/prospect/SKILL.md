@@ -8,11 +8,14 @@ description: End-to-end sales prospecting pipeline. Give it any combination of c
 Inputs: **city, state, industry, company, person** — any combination, in any
 order, and **a single one alone is enough**. "Charlotte", "dentists",
 "North Carolina", "Acme Motors", or "Jane Smith" are each a valid full
-request. Fill sensible defaults for whatever is missing (home market is
-Chapel Hill / Triangle, NC — see `config/profile.md`) rather than asking:
-- Industry only → sweep the home market for that industry.
-- City/state only → sweep all four core industries there (home services,
-  healthcare, auto, legal/financial), a few top companies each.
+request. **Coverage is the entire state of North Carolina** — home base is the
+Triangle (Chapel Hill), but don't confine prospecting to it. Fill sensible
+defaults for whatever is missing rather than asking:
+- Industry only → sweep NC for that industry, Triangle-weighted but statewide.
+- City/state only → sweep the core industries there (home services, healthcare,
+  auto, legal/financial), a few top companies each.
+- `North Carolina` / no city → rotate NC metros per `config/autopilot.md`
+  (Triangle, Charlotte, Triad, coastal, west, Sandhills).
 - Person only → person lookup by name; ask for the company only if the name
   is too ambiguous to resolve.
 
@@ -117,6 +120,14 @@ Search these via `department`/`jobFunction` (e.g. Marketing, Sales) and
 OR Community OR Communications OR Sales OR Owner OR President OR General
 Manager"`). Include managers and individual contributors, not only Director+.
 
+**Go deep — map the buying committee, not one contact.** Aim for the fullest
+useful set per company (at a big employer that's often 5–12 people across the
+functions above; at a small local business it may be 1–3). More names per
+company is a feature: mid-level marketing/events/community people are
+**champions** — an email to them often gets forwarded internally to whoever
+owns partnerships, which lands warmer than a cold email straight to the CxO.
+So pull the whole committee, top to mid-level.
+
 Skip only genuinely irrelevant roles (IT, HR/recruiting, accounting/finance
 back-office, engineering, legal, warehouse/logistics) **unless** that person
 is the owner/GM. Priority order: marketing/events/sponsorship titles → owners/
@@ -182,7 +193,15 @@ Self-contained (no external calls), so it works regardless of connection state.
 
 ## Step 7 — Gmail drafts
 
-For every A and B ranked contact (C only if the user asks):
+Draft to **every useful contact** pulled at A and B companies — the full
+committee, not just the top name (C-rank companies only if the user asks). The
+lower/mid-level champions matter: their email should make it easy and natural
+to forward internally. For a non-executive contact (marketing/events/community/
+mid-level), use the **champion / forward-up variant** in `config/voice.md` —
+same personalized hook, but a close that invites a hand-off (e.g. "if
+partnerships sit with someone else on your team, even a quick pointer would
+help"). For owners/execs, the direct ask is fine.
+
 1. Pick the industry template from `templates/`; fall back to `generic.md`.
 2. Fill merge fields. `{{Hook}}` must be a real, specific fact from Step 2/4
    research — if nothing real was found, open with a market-specific line
