@@ -266,6 +266,35 @@
   .terrlegend .tl{font-size:.76rem;color:var(--ink-soft);font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;}
   .terrlegend .tl i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px;border:1px solid var(--line);}
   .terrnote{margin:8px 0 0;font-size:.76rem;color:var(--ink-faint);}
+
+  /* ---------- Commission calculator ---------- */
+  .commission{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    box-shadow:var(--shadow);padding:16px 18px;}
+  .comm-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 14px;}
+  .commission h3{margin:0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .comm-sub{margin:0;font-size:.78rem;color:var(--ink-soft);}
+  .comm-body{margin-top:13px;}
+  .comm-row{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;}
+  .comm-input{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--line);border-radius:10px;
+    background:var(--card-2);padding:8px 14px;flex:none;}
+  .comm-input:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 25%,transparent);}
+  .comm-input .dollar{font-family:var(--mono);font-size:1.2rem;color:var(--ink-soft);font-weight:600;}
+  .comm-input input{border:0;background:none;color:var(--ink);font-family:var(--mono);font-size:1.4rem;font-weight:600;
+    width:130px;outline:none;font-variant-numeric:tabular-nums;}
+  .comm-quick{display:flex;flex-wrap:wrap;gap:7px;}
+  .cchip{border:1px solid var(--line);background:var(--card-2);color:var(--accent-ink);border-radius:999px;
+    padding:6px 12px;font-size:.76rem;font-weight:700;cursor:pointer;font-family:var(--sans);line-height:1;}
+  .cchip:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--card-2));}
+  .comm-grid{margin-top:14px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .comm-cell{border:1px solid var(--line-soft);border-radius:10px;padding:11px 13px;background:var(--card-2);}
+  .comm-cell .ck{margin:0 0 8px;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .comm-cell .cpct{color:var(--accent-ink);}
+  .comm-cell .cv{font-family:var(--mono);font-size:1.18rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1;}
+  .comm-cell .csub{margin-top:4px;font-size:.7rem;color:var(--ink-faint);font-family:var(--mono);}
+  .comm-cell.hot{background:color-mix(in srgb,var(--accent) 13%,var(--card-2));border-color:var(--accent);}
+  .comm-cell.hot .cv{color:var(--accent-ink);}
+  .comm-note{margin:11px 0 0;font-size:.74rem;color:var(--ink-faint);}
+  @media (max-width:760px){ .comm-grid{grid-template-columns:1fr 1fr;} }
   .co-pkg{font-size:.72rem;font-weight:600;color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 12%,var(--card));
     border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:6px;padding:3px 8px;}
   .play{background:color-mix(in srgb,var(--accent) 8%,var(--card-2));border:1px solid var(--line-soft);
@@ -290,7 +319,7 @@
         <p class="brand-eyebrow" style="margin:0">Finley Golf Club · Home of Carolina Golf</p>
         <span class="unc-pill">Official UNC Golf Facility</span>
       </div>
-      <h1 class="brand-title">Corporate Partnerships Cockpit</h1>
+      <h1 class="brand-title">Finley Corporate SalesFlow</h1>
       <p class="brand-sub"><b>Tyler Baity</b> · Business Development &amp; Operations — sales intelligence, updated July 24, 2026</p>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="Switch color theme"><span class="dot"></span><span id="themeLbl">Twilight</span></button>
@@ -309,6 +338,24 @@
 
   <section class="focus" aria-label="Needs attention" id="focusSec"></section>
   <section class="territory" aria-label="Territory" id="terrSec"></section>
+
+  <section class="commission" aria-label="Commission calculator" id="commSec">
+    <div class="comm-head">
+      <h3>Commission calculator</h3>
+      <p class="comm-sub">14% total commission — 7% straight to you, 7% shared across a 3-person pool</p>
+    </div>
+    <div class="comm-body">
+      <div class="comm-row">
+        <label class="comm-input">
+          <span class="dollar">$</span>
+          <input id="dealAmt" type="text" inputmode="decimal" value="40,000" aria-label="Deal amount">
+        </label>
+        <div class="comm-quick" id="commQuick"></div>
+      </div>
+      <div class="comm-grid" id="commGrid"></div>
+      <p class="comm-note">Take-home assumes you're one of the three sharing the pool (7% + a ⅓ pool share = 9.33%). If you're not in the pool, your cut is the 7% direct. Placeholder rates — tell me the real split and I'll update it.</p>
+    </div>
+  </section>
 
   <section class="controls" aria-label="Filters">
     <div class="search">
@@ -801,9 +848,44 @@ function renderTerritory(){
       return `<span class="tl"><i style="background:${has?'var(--carolina)':'var(--line)'}"></i>${r} · ${d.n} · $${(d.opp/1000).toFixed(0)}K</span>`;}).join("")+`</div>
     <p class="terrnote">100 NC counties shaded by pipeline opportunity in their region · dots mark major cities · ⛳ home base, Chapel Hill · pale = whitespace to go after next.</p>`;
 }
+/* ---- Commission calculator (14% total · 7% direct · 7% pooled among 3) ---- */
+const COMM={total:0.14,direct:0.07,pool:0.07,poolPeople:3};
+function fmtUSD(n){return "$"+Math.round(n).toLocaleString();}
+function parseAmt(s){return parseFloat((s||"").replace(/[^0-9.]/g,""))||0;}
+function renderCommQuick(){
+  const pipe=DATA.reduce((a,c)=>a+recommendPackage(c).priceNum,0);
+  const aList=DATA.filter(c=>c.rank==="A").reduce((a,c)=>a+recommendPackage(c).priceNum,0);
+  const chips=[["Official $40K",40000],["Premier $27.5K",27500],["Gold $17.5K",17500],
+    ["A-list pipeline",aList],["Full pipeline",pipe]];
+  $("#commQuick").innerHTML=chips.map(([lbl,v])=>`<button class="cchip" data-amt="${v}">${lbl}</button>`).join("");
+}
+function renderCommission(){
+  const amt=parseAmt($("#dealAmt").value);
+  const total=amt*COMM.total, direct=amt*COMM.direct, pool=amt*COMM.pool;
+  const per=pool/COMM.poolPeople, take=direct+per;
+  const takePct=((COMM.direct+COMM.pool/COMM.poolPeople)*100).toFixed(2);
+  const cells=[
+    {k:"Deal value",v:fmtUSD(amt)},
+    {k:"Total commission",s:"14%",v:fmtUSD(total)},
+    {k:"Your direct cut",s:"7%",v:fmtUSD(direct)},
+    {k:"Pool share",s:"7% ÷ 3",v:fmtUSD(per),sub:fmtUSD(pool)+" pool"},
+    {k:"Your take-home",s:takePct+"%",v:fmtUSD(take),cls:"hot"}
+  ];
+  $("#commGrid").innerHTML=cells.map(c=>`<div class="comm-cell ${c.cls||""}">
+    <p class="ck">${c.k}${c.s?` <span class="cpct">${c.s}</span>`:""}</p>
+    <div class="cv">${c.v}</div>${c.sub?`<div class="csub">${c.sub}</div>`:""}</div>`).join("");
+}
+$("#dealAmt").addEventListener("input",renderCommission);
+$("#commQuick").addEventListener("click",e=>{
+  const b=e.target.closest("[data-amt]");
+  if(b){$("#dealAmt").value=(+b.dataset.amt).toLocaleString();renderCommission();}
+});
+
 render();
 renderFocus();
 renderTerritory();
+renderCommQuick();
+renderCommission();
 
 /* ---- Interactions ---- */
 function toast(msg){
