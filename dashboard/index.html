@@ -81,6 +81,11 @@
     line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance;}
   .brand-sub{color:var(--ink-soft);margin:8px 0 0;font-size:.92rem;}
   .brand-sub b{color:var(--ink);font-weight:600;}
+  .live-badge{display:inline-flex;align-items:center;gap:5px;margin-left:10px;font-size:.72rem;font-weight:700;
+    color:var(--a);background:color-mix(in srgb,var(--a) 12%,transparent);border:1px solid color-mix(in srgb,var(--a) 35%,transparent);
+    border-radius:999px;padding:2px 9px;vertical-align:1px;}
+  .live-badge .liveblip{width:7px;height:7px;border-radius:50%;background:var(--a);animation:livepulse 2s ease-in-out infinite;}
+  @keyframes livepulse{0%,100%{opacity:1;}50%{opacity:.3;}}
   .theme-btn{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
     border-radius:999px;padding:8px 14px;font-family:var(--sans);font-size:.78rem;font-weight:600;
     letter-spacing:.03em;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
@@ -374,7 +379,7 @@
   .play .pf{font-size:.78rem;color:var(--ink-soft);}
   @media (max-width:760px){ .focus{grid-template-columns:1fr;} }
   @media (prefers-reduced-motion:reduce){
-    *{transition:none!important;}
+    *{transition:none!important;animation:none!important;}
   }
 </style>
 
@@ -388,7 +393,7 @@
         <span class="unc-pill">Official UNC Golf Facility</span>
       </div>
       <h1 class="brand-title">Finley Corporate SalesFlow</h1>
-      <p class="brand-sub"><b>Tyler Baity</b> · Business Development &amp; Operations — sales intelligence, updated July 24, 2026</p>
+      <p class="brand-sub"><b>Tyler Baity</b> · Business Development &amp; Operations — sales intelligence, updated July 24, 2026<span class="live-badge" title="Auto-refreshes when new prospects are published"><span class="liveblip"></span>Live</span></p>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="Switch color theme"><span class="dot"></span><span id="themeLbl">Twilight</span></button>
   </header>
@@ -720,6 +725,13 @@ const DATA = [
 const RANKV={A:3,B:2,C:1};
 const $=s=>document.querySelector(s);
 const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,open:new Set()};
+/* Restore the view saved before an auto-refresh so a reload is seamless */
+const VIEW_KEY="finley.view";
+(function hydrateView(){try{
+  const v=JSON.parse(sessionStorage.getItem(VIEW_KEY)||"null"); if(!v)return;
+  ["q","rank","ind","status","sort","focus","dealStage"].forEach(k=>{if(k in v&&v[k]!=null)state[k]=v[k];});
+  if(Array.isArray(v.open))state.open=new Set(v.open);
+}catch(e){}})();
 const FOCUS={
   callToday:{lbl:"Call today · drafts ready",test:c=>c.rank==="A"&&c.contacts.some(x=>x.d)},
   draftNext:{lbl:"Draft next",test:c=>c.contacts.length&&!c.contacts.some(x=>x.d)},
@@ -1174,4 +1186,37 @@ $("#themeBtn").addEventListener("click",()=>{
   applyTheme(cur==="dark"?"light":"dark");
 });
 $("#themeLbl").textContent=matchMedia("(prefers-color-scheme:dark)").matches?"Daylight":"Twilight";
+
+/* ---- Live auto-refresh (reloads the page so republished data appears) ---- */
+function saveView(){try{sessionStorage.setItem(VIEW_KEY,JSON.stringify({
+  q:state.q,rank:state.rank,ind:state.ind,status:state.status,sort:state.sort,
+  focus:state.focus,dealStage:state.dealStage,open:[...state.open],
+  theme:root.getAttribute("data-theme")||null,y:window.scrollY
+}));}catch(e){}}
+/* Re-sync the controls/inputs/scroll/theme to the hydrated state after a reload */
+(function restoreView(){try{
+  const v=JSON.parse(sessionStorage.getItem(VIEW_KEY)||"null");
+  $("#search").value=state.q; $("#prospectInput").value=state.q; $("#sort").value=state.sort;
+  setPressed("[data-rank]",document.querySelector('[data-rank="'+state.rank+'"]'));
+  setPressed("[data-ind]",document.querySelector('[data-ind="'+state.ind+'"]'));
+  setPressed("[data-status]",document.querySelector('[data-status="'+state.status+'"]'));
+  if(v&&v.theme)applyTheme(v.theme);
+  if(v&&typeof v.y==="number")requestAnimationFrame(()=>window.scrollTo(0,v.y));
+}catch(e){}})();
+
+let LAST_LOAD=Date.now(), LAST_ACT=Date.now();
+["mousemove","keydown","pointerdown","scroll","touchstart","input"].forEach(ev=>
+  window.addEventListener(ev,()=>{LAST_ACT=Date.now();},{passive:true,capture:true}));
+function doReload(){try{saveView();location.reload();}catch(e){}}
+/* Passive refresh: only when idle a while and it's been ≥5 min since load, and not mid-typing */
+setInterval(()=>{
+  const idle=Date.now()-LAST_ACT, sinceLoad=Date.now()-LAST_LOAD;
+  const typing=/^(input|textarea|select)$/i.test((document.activeElement||{}).tagName||"");
+  if(!typing && idle>45000 && sinceLoad>300000) doReload();
+},30000);
+/* Instant refresh when you return to a stale tab */
+document.addEventListener("visibilitychange",()=>{
+  if(!document.hidden && Date.now()-LAST_LOAD>90000) doReload();
+});
+window.addEventListener("beforeunload",saveView);
 </script>
