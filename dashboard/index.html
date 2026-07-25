@@ -396,7 +396,7 @@
   <section class="launcher" aria-label="Start a prospecting run">
     <div class="lz-top">
       <span class="lz-eyebrow">◆ Prospecting launchpad</span>
-      <span class="lz-hint">Type a city, state, industry, company, or person — one is enough. Leave it blank for autopilot.</span>
+      <span class="lz-hint">Searches your pipeline as you type. Not in your book yet? Launch a run to go pull it — city, state, industry, company, or person (blank = autopilot).</span>
     </div>
     <div class="lz-bar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -808,6 +808,8 @@ function matches(c){
   if(state.q){
     const q=state.q.toLowerCase();
     const hit=c.name.toLowerCase().includes(q)||c.city.toLowerCase().includes(q)||
+      (c.ind||"").toLowerCase().includes(q)||(c.web||"").toLowerCase().includes(q)||
+      region(c.city).toLowerCase().includes(q)||
       c.contacts.some(x=>x.n.toLowerCase().includes(q)||x.t.toLowerCase().includes(q));
     if(!hit)return false;
   }
@@ -1037,42 +1039,61 @@ $("#dealsSec").addEventListener("click",e=>{
   if(b)setDealStage(b.dataset.stageFilter);
 });
 
-/* ---- Prospecting launchpad — composes the /prospect run command ---- */
+/* ---- Prospecting launchpad — searches your book, else composes a run ---- */
 const LAUNCH_QUICK=[
-  {lbl:"⚡ Autopilot",q:"",auto:true},
-  {lbl:"Charlotte",q:"Charlotte"},
-  {lbl:"Triad",q:"Triad"},
-  {lbl:"Coastal — Wilmington",q:"Wilmington"},
-  {lbl:"Western NC — Asheville",q:"Asheville"},
-  {lbl:"Dentists",q:"dentists"},
-  {lbl:"Auto dealers",q:"auto dealers"},
-  {lbl:"Breweries",q:"breweries"},
-  {lbl:"Law firms",q:"law firms"}
+  {lbl:"⚡ Autopilot",q:"",cmd:"",auto:true},
+  {lbl:"Dentists",q:"dental",cmd:"dentists"},
+  {lbl:"Auto dealers",q:"auto",cmd:"auto dealers"},
+  {lbl:"Sports & outdoor",q:"sport",cmd:"sports and outdoor brands"},
+  {lbl:"Charlotte",q:"charlotte",cmd:"Charlotte"},
+  {lbl:"Triad",q:"triad",cmd:"Triad"},
+  {lbl:"Coastal — Wilmington",q:"wilmington",cmd:"Wilmington"},
+  {lbl:"Breweries",q:"brewer",cmd:"breweries"},
+  {lbl:"Law firms",q:"law firm",cmd:"law firms"}
 ];
 function renderLaunchQuick(){
-  $("#prospectQuick").innerHTML=`<span class="lz-qlbl">Quick launch</span>`+
+  $("#prospectQuick").innerHTML=`<span class="lz-qlbl">Try</span>`+
     LAUNCH_QUICK.map((x,i)=>`<button class="lz-chip${x.auto?" auto":""}" data-lq="${i}">${x.lbl}</button>`).join("");
 }
-function launchProspect(q){
-  const query=(q||"").trim();
-  const cmd=query?`/prospect ${query}`:`/prospect auto`;
-  try{navigator.clipboard&&navigator.clipboard.writeText(cmd);}catch(e){}
-  const out=$("#prospectOut");
-  out.hidden=false;
-  out.innerHTML=`<p class="lz-olbl">✓ Run command copied — paste to Claude to launch</p>
-    <code class="lz-cmd">${esc(cmd)}</code>
-    <p class="lz-next">Running this kicks off the full pipeline: <b>ZoomInfo</b> companies + every useful contact → <b>web research</b> on ad/marketing spend → <b>Partnership Score</b> &amp; A/B/C rank → <b>recommended package</b> → appended to the tracker &amp; Google Sheet → a personalized <b>Gmail draft</b> per contact. New prospects show up on the board below. ${query?"":"<b>Autopilot</b> picks its own targets across North Carolina (dedupe + rotate) — great for whitespace regions."}</p>
-    <p class="lz-next" style="color:var(--ink-faint)">Or just tell me here in chat: “prospect ${query||"Charlotte breweries"}”.</p>`;
-  toast(query?("Prospecting: "+query):"Autopilot run queued");
+function cmdText(phrase){const p=(phrase||"").trim();return p?`/prospect ${p}`:`/prospect auto`;}
+function copyText(t){try{navigator.clipboard&&navigator.clipboard.writeText(t);}catch(e){}}
+/* Search the loaded pipeline live; if nothing matches, offer to launch a run. */
+function launchProspect(filterQ,cmdPhrase){
+  const q=(filterQ||"").trim();
+  const phrase=(cmdPhrase!==undefined?cmdPhrase:q).trim();
+  const cmd=cmdText(phrase);
+  state.q=q; state.focus=null; state.dealStage=null;
+  $("#prospectInput").value=q; $("#search").value=q;
+  renderFocus(); renderDeals(); render();
+  const n=DATA.filter(matches).length;
+  const out=$("#prospectOut"); out.hidden=false;
+  if(q && n>0){
+    out.innerHTML=`<p class="lz-olbl">✓ ${n} in your pipeline match “${esc(q)}”</p>
+      <p class="lz-next">Filtered the board below to show them. Want <b>more</b> like these? Launch a fresh run to pull companies you don't have yet:</p>
+      <code class="lz-cmd">${esc(cmd)}</code>
+      <p class="lz-next" style="color:var(--ink-faint)">Command copied — paste it to me, or just say “prospect ${esc(phrase||q)}”.</p>`;
+    document.querySelector(".controls").scrollIntoView({behavior:"smooth",block:"start"});
+    toast(n+" match"+(n>1?"es":"")+" for “"+q+"”");
+  }else{
+    copyText(cmd);
+    out.innerHTML=`<p class="lz-olbl">${q?`Nothing in your pipeline yet for “${esc(q)}” — go get them`:`Autopilot run`}</p>
+      <code class="lz-cmd">${esc(cmd)}</code>
+      <p class="lz-next">Running this kicks off the full pipeline: <b>ZoomInfo</b> companies + every useful contact → <b>web research</b> on ad/marketing spend → <b>Partnership Score</b> &amp; A/B/C rank → <b>recommended package</b> → appended to the tracker &amp; Google Sheet → a personalized <b>Gmail draft</b> per contact. New prospects land on the board below.${q?"":" <b>Autopilot</b> picks its own targets across North Carolina — great for the whitespace regions on the map."}</p>
+      <p class="lz-next" style="color:var(--ink-faint)">Command copied — paste it to me, or just say “prospect ${esc(phrase||q||"Charlotte breweries")}”. (The page can't reach ZoomInfo directly — I run the pipeline.)</p>`;
+    toast(q?("No matches — launch a run for “"+q+"”"):"Autopilot run ready");
+  }
 }
 $("#prospectGo").addEventListener("click",()=>launchProspect($("#prospectInput").value));
 $("#prospectInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();launchProspect($("#prospectInput").value);}});
+$("#prospectInput").addEventListener("input",e=>{
+  state.q=e.target.value.trim(); $("#search").value=e.target.value;
+  $("#prospectOut").hidden=true; render();
+});
 $("#prospectQuick").addEventListener("click",e=>{
   const b=e.target.closest("[data-lq]");
   if(!b)return;
   const x=LAUNCH_QUICK[+b.dataset.lq];
-  $("#prospectInput").value=x.q;
-  launchProspect(x.q);
+  launchProspect(x.q,x.cmd);
 });
 
 render();
@@ -1134,7 +1155,7 @@ document.querySelectorAll("[data-ind]").forEach(b=>b.addEventListener("click",()
 document.querySelectorAll("[data-status]").forEach(b=>b.addEventListener("click",()=>{
   state.status=b.dataset.status;state.focus=null;state.dealStage=null;setPressed("[data-status]",b);renderFocus();renderDeals();render();}));
 function setPressed(sel,btn){document.querySelectorAll(sel).forEach(x=>x.setAttribute("aria-pressed",x===btn));}
-$("#search").addEventListener("input",e=>{state.q=e.target.value.trim();render();});
+$("#search").addEventListener("input",e=>{state.q=e.target.value.trim();$("#prospectInput").value=e.target.value;$("#prospectOut").hidden=true;render();});
 $("#sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
 $("#expandAll").addEventListener("click",()=>{
   const anyClosed=DATA.filter(matches).some(c=>!state.open.has(c.name));
