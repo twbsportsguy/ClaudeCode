@@ -87,6 +87,37 @@
   .theme-btn:hover{border-color:var(--accent);color:var(--accent-ink);}
   .theme-btn .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-fill);}
 
+  /* ---------- Prospecting launchpad ---------- */
+  .launcher{margin-top:20px;background:color-mix(in srgb,var(--accent) 8%,var(--card));
+    border:1.5px solid var(--accent);border-radius:14px;box-shadow:var(--shadow);padding:16px 18px;}
+  .lz-top{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:11px;}
+  .lz-eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;}
+  .lz-hint{font-size:.8rem;color:var(--ink-soft);}
+  .lz-bar{display:flex;align-items:center;gap:10px;background:var(--card-2);border:1.5px solid var(--line);
+    border-radius:12px;padding:6px 6px 6px 14px;}
+  .lz-bar:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent);}
+  .lz-bar>svg{width:19px;height:19px;color:var(--accent-ink);flex:none;}
+  .lz-bar input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font-family:var(--sans);
+    font-size:1.02rem;padding:8px 2px;outline:none;}
+  .lz-bar input::placeholder{color:var(--ink-faint);}
+  .lz-go{flex:none;border:0;background:var(--accent);color:#fff;border-radius:9px;padding:10px 18px;
+    font-family:var(--sans);font-size:.9rem;font-weight:700;cursor:pointer;letter-spacing:.01em;white-space:nowrap;}
+  .lz-go:hover{background:var(--accent-ink);}
+  .lz-quick{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;align-items:center;}
+  .lz-quick .lz-qlbl{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-right:2px;}
+  .lz-chip{border:1px solid var(--line);background:var(--card-2);color:var(--ink-soft);border-radius:999px;
+    padding:6px 12px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--sans);line-height:1;}
+  .lz-chip:hover{border-color:var(--accent);color:var(--accent-ink);}
+  .lz-chip.auto{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .lz-out{margin-top:13px;background:var(--card-2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;}
+  .lz-out .lz-olbl{margin:0 0 8px;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--a);font-weight:800;}
+  .lz-cmd{display:block;font-family:var(--mono);font-size:.95rem;font-weight:600;color:var(--accent-ink);
+    background:color-mix(in srgb,var(--accent) 9%,var(--card));border:1px solid var(--line-soft);
+    border-radius:8px;padding:9px 12px;word-break:break-word;}
+  .lz-next{margin:9px 0 0;font-size:.78rem;color:var(--ink-soft);line-height:1.5;}
+  .lz-next b{color:var(--ink);font-weight:600;}
+  @media (max-width:620px){ .lz-go{padding:10px 13px;} .lz-bar input{font-size:.95rem;} }
+
   /* ---------- Scorecard KPI strip ---------- */
   .scorecard{margin-top:22px;background:var(--card);border:1px solid var(--line);
     border-radius:14px;box-shadow:var(--shadow);overflow:hidden;
@@ -361,6 +392,21 @@
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="Switch color theme"><span class="dot"></span><span id="themeLbl">Twilight</span></button>
   </header>
+
+  <section class="launcher" aria-label="Start a prospecting run">
+    <div class="lz-top">
+      <span class="lz-eyebrow">◆ Prospecting launchpad</span>
+      <span class="lz-hint">Type a city, state, industry, company, or person — one is enough. Leave it blank for autopilot.</span>
+    </div>
+    <div class="lz-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="prospectInput" type="search" autocomplete="off"
+        placeholder="Charlotte breweries · Wilmington · law firms · Acme Corp · Jane Smith…" aria-label="Prospecting search">
+      <button class="lz-go" id="prospectGo">Launch run →</button>
+    </div>
+    <div class="lz-quick" id="prospectQuick"></div>
+    <div class="lz-out" id="prospectOut" hidden></div>
+  </section>
 
   <section class="scorecard" aria-label="Pipeline summary">
     <div class="cell"><p class="k">Companies</p><div class="v" id="kCos">0</div><div class="sub" id="kContacts">0 contacts</div></div>
@@ -991,10 +1037,49 @@ $("#dealsSec").addEventListener("click",e=>{
   if(b)setDealStage(b.dataset.stageFilter);
 });
 
+/* ---- Prospecting launchpad — composes the /prospect run command ---- */
+const LAUNCH_QUICK=[
+  {lbl:"⚡ Autopilot",q:"",auto:true},
+  {lbl:"Charlotte",q:"Charlotte"},
+  {lbl:"Triad",q:"Triad"},
+  {lbl:"Coastal — Wilmington",q:"Wilmington"},
+  {lbl:"Western NC — Asheville",q:"Asheville"},
+  {lbl:"Dentists",q:"dentists"},
+  {lbl:"Auto dealers",q:"auto dealers"},
+  {lbl:"Breweries",q:"breweries"},
+  {lbl:"Law firms",q:"law firms"}
+];
+function renderLaunchQuick(){
+  $("#prospectQuick").innerHTML=`<span class="lz-qlbl">Quick launch</span>`+
+    LAUNCH_QUICK.map((x,i)=>`<button class="lz-chip${x.auto?" auto":""}" data-lq="${i}">${x.lbl}</button>`).join("");
+}
+function launchProspect(q){
+  const query=(q||"").trim();
+  const cmd=query?`/prospect ${query}`:`/prospect auto`;
+  try{navigator.clipboard&&navigator.clipboard.writeText(cmd);}catch(e){}
+  const out=$("#prospectOut");
+  out.hidden=false;
+  out.innerHTML=`<p class="lz-olbl">✓ Run command copied — paste to Claude to launch</p>
+    <code class="lz-cmd">${esc(cmd)}</code>
+    <p class="lz-next">Running this kicks off the full pipeline: <b>ZoomInfo</b> companies + every useful contact → <b>web research</b> on ad/marketing spend → <b>Partnership Score</b> &amp; A/B/C rank → <b>recommended package</b> → appended to the tracker &amp; Google Sheet → a personalized <b>Gmail draft</b> per contact. New prospects show up on the board below. ${query?"":"<b>Autopilot</b> picks its own targets across North Carolina (dedupe + rotate) — great for whitespace regions."}</p>
+    <p class="lz-next" style="color:var(--ink-faint)">Or just tell me here in chat: “prospect ${query||"Charlotte breweries"}”.</p>`;
+  toast(query?("Prospecting: "+query):"Autopilot run queued");
+}
+$("#prospectGo").addEventListener("click",()=>launchProspect($("#prospectInput").value));
+$("#prospectInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();launchProspect($("#prospectInput").value);}});
+$("#prospectQuick").addEventListener("click",e=>{
+  const b=e.target.closest("[data-lq]");
+  if(!b)return;
+  const x=LAUNCH_QUICK[+b.dataset.lq];
+  $("#prospectInput").value=x.q;
+  launchProspect(x.q);
+});
+
 render();
 renderFocus();
 renderTerritory();
 renderDeals();
+renderLaunchQuick();
 renderCommQuick();
 renderCommission();
 
