@@ -267,6 +267,43 @@
   .terrlegend .tl i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px;border:1px solid var(--line);}
   .terrnote{margin:8px 0 0;font-size:.76rem;color:var(--ink-faint);}
 
+  /* ---------- Deals in progress ---------- */
+  .deals{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    box-shadow:var(--shadow);padding:16px 18px;}
+  .deals h3{margin:0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .deals-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 14px;}
+  .deals-kpis{display:flex;gap:18px;flex-wrap:wrap;}
+  .deals-kpi{font-size:.78rem;color:var(--ink-soft);}
+  .deals-kpi b{font-family:var(--mono);font-size:1.05rem;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;display:block;}
+  .deals-kpi b.accent{color:var(--accent-ink);}
+  .stagegrid{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .stagecard{border:1px solid var(--line-soft);border-radius:10px;padding:0 0 12px;background:var(--card-2);
+    overflow:hidden;cursor:pointer;text-align:left;font-family:inherit;color:inherit;}
+  .stagecard:hover{border-color:var(--accent);}
+  .stagecard.on{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 35%,transparent);}
+  .stagecard .sbar{height:5px;background:var(--sc);}
+  .stagecard .sinner{padding:11px 13px 0;}
+  .stagecard .slabel{display:flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;color:var(--ink);}
+  .stagecard .sdot{width:9px;height:9px;border-radius:50%;background:var(--sc);flex:none;}
+  .stagecard .sprob{font-size:.68rem;color:var(--ink-faint);font-weight:600;margin-left:auto;}
+  .stagecard .scount{font-family:var(--mono);font-size:1.5rem;font-weight:600;line-height:1.1;margin-top:8px;font-variant-numeric:tabular-nums;}
+  .stagecard .scomm{font-size:.76rem;color:var(--ink-soft);margin-top:3px;}
+  .stagecard .scomm b{color:var(--accent-ink);font-family:var(--mono);font-weight:600;}
+  .deals-empty{margin-top:12px;font-size:.85rem;color:var(--ink-soft);
+    border:1px dashed var(--line);border-radius:10px;padding:16px;text-align:center;}
+  .deals-note{margin:11px 0 0;font-size:.74rem;color:var(--ink-faint);}
+  @media (max-width:760px){ .stagegrid{grid-template-columns:1fr 1fr;} }
+
+  /* ---------- Deal-stage picker on cards ---------- */
+  .stagepick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px;}
+  .stagepick .sp-lbl{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:700;margin-right:3px;}
+  .sp-btn{border:1px solid var(--line);background:var(--card-2);color:var(--ink-soft);border-radius:999px;
+    padding:5px 11px;font-size:.75rem;font-weight:600;cursor:pointer;font-family:var(--sans);line-height:1;}
+  .sp-btn:hover{border-color:var(--sc);color:var(--ink);}
+  .sp-btn.on{background:var(--sc);border-color:var(--sc);color:#fff;}
+  .stage-pill{font-size:.68rem;font-weight:700;color:#fff;border-radius:999px;padding:3px 9px;letter-spacing:.02em;}
+
   /* ---------- Commission calculator ---------- */
   .commission{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;
     box-shadow:var(--shadow);padding:16px 18px;}
@@ -338,6 +375,8 @@
 
   <section class="focus" aria-label="Needs attention" id="focusSec"></section>
   <section class="territory" aria-label="Territory" id="terrSec"></section>
+
+  <section class="deals" aria-label="Deals in progress" id="dealsSec"></section>
 
   <section class="commission" aria-label="Commission calculator" id="commSec">
     <div class="comm-head">
@@ -634,12 +673,28 @@ const DATA = [
 
 const RANKV={A:3,B:2,C:1};
 const $=s=>document.querySelector(s);
-const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,open:new Set()};
+const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,open:new Set()};
 const FOCUS={
   callToday:{lbl:"Call today · drafts ready",test:c=>c.rank==="A"&&c.contacts.some(x=>x.d)},
   draftNext:{lbl:"Draft next",test:c=>c.contacts.length&&!c.contacts.some(x=>x.d)},
   findContact:{lbl:"Find a contact",test:c=>!c.contacts.length}
 };
+/* ---- Deal stages (progress) — probabilities mirror CLAUDE.md pipeline ---- */
+const STAGES=[
+  {key:"prospect",  lbl:"Prospect",  prob:0,    c:"#7A8AA0"},
+  {key:"interested",lbl:"Interested",prob:0.50, c:"#C8892B"},
+  {key:"redhot",    lbl:"Red hot",   prob:0.75, c:"#D64C3F"},
+  {key:"verbal",    lbl:"Verbal",    prob:0.90, c:"#2F7DB5"},
+  {key:"signed",    lbl:"Signed",    prob:1.00, c:"#1C7A45"}
+];
+const STAGE_MAP={}; STAGES.forEach(s=>STAGE_MAP[s.key]=s);
+const DEALS=(function(){try{return JSON.parse(localStorage.getItem("finley.deals")||"{}");}catch(e){return {};}})();
+function saveDeals(){try{localStorage.setItem("finley.deals",JSON.stringify(DEALS));}catch(e){}}
+function stageOf(c){return DEALS[c.name]||"prospect";}
+const TAKE_RATE=COMM_RATE();
+function COMM_RATE(){return 0.07+0.07/3;} /* 9.33% take-home */
+function dealValue(c){return recommendPackage(c).priceNum;}
+function dealComm(c){return dealValue(c)*TAKE_RATE;}
 
 /* ---- Summary ---- */
 (function summary(){
@@ -699,6 +754,7 @@ function region(city){
 }
 function matches(c){
   if(state.focus&&!FOCUS[state.focus].test(c))return false;
+  if(state.dealStage&&stageOf(c)!==state.dealStage)return false;
   if(state.rank!=="all"&&c.rank!==state.rank)return false;
   if(state.ind!=="all"&&grp(c.ind)!==state.ind)return false;
   if(state.status==="ready"&&!c.contacts.some(x=>x.d))return false;
@@ -742,7 +798,12 @@ function card(c){
       <span class="pl">Recommended play · Partnership Score ${c.score}/100 · Golf Fit ${fit.lbl}</span>
       <span class="pk">${esc(pkg.name)}</span><span class="pv">${pkg.price}</span>
       <span class="pf">${esc(pkg.why)}</span></div>`;
+  const cur=stageOf(c);
+  const stagepick=`<div class="stagepick" data-co="${esc(c.name)}">
+      <span class="sp-lbl">Deal stage</span>
+      ${STAGES.map(s=>`<button class="sp-btn${cur===s.key?" on":""}" data-stage="${s.key}" style="--sc:${s.c}">${s.lbl}</button>`).join("")}</div>`;
   const body=`<div class="co-body">
+      ${stagepick}
       ${play}
       <div class="signal"><p class="sl">Ad-spend signal</p><p>${esc(c.signal)}</p></div>
       <p class="why"><b>Why this rank:</b> ${esc(c.why)}</p>
@@ -756,6 +817,7 @@ function card(c){
       <div class="co-main">
         <h2 class="co-name">${esc(c.name)}</h2>
         <div class="co-meta">
+          ${cur!=="prospect"?`<span class="stage-pill" style="background:${STAGE_MAP[cur].c}">${STAGE_MAP[cur].lbl}</span>`:""}
           <span class="tag ind">${esc(c.ind)}</span>
           <span class="tag">${esc(c.city)}, NC</span>
           <a class="co-web" href="https://${c.web}" target="_blank" rel="noopener">${esc(c.web)} ↗</a>
@@ -783,9 +845,10 @@ function render(){
   }
   $("#resultCount").textContent=`Showing ${list.length} of ${DATA.length} companies`;
   const fb=$("#focusBanner");
-  if(state.focus){
+  const lbl=state.focus?FOCUS[state.focus].lbl:(state.dealStage?STAGE_MAP[state.dealStage].lbl+" deals":null);
+  if(lbl){
     fb.innerHTML=`<div class="focusbanner">
-      <span>Focused on <b>${FOCUS[state.focus].lbl}</b> — ${list.length} ${list.length===1?"company":"companies"}.</span>
+      <span>Focused on <b>${lbl}</b> — ${list.length} ${list.length===1?"company":"companies"}.</span>
       <button id="clearFocus">Show all companies ✕</button></div>`;
   }else fb.innerHTML="";
 }
@@ -881,9 +944,57 @@ $("#commQuick").addEventListener("click",e=>{
   if(b){$("#dealAmt").value=(+b.dataset.amt).toLocaleString();renderCommission();}
 });
 
+/* ---- Deals in progress + commission by stage ---- */
+function renderDeals(){
+  const active=DATA.map(c=>({c,stage:stageOf(c)})).filter(x=>x.stage!=="prospect");
+  const wrap=$("#dealsSec");
+  const kBy={}; STAGES.forEach(s=>{if(s.key!=="prospect")kBy[s.key]={n:0,val:0,comm:0};});
+  let weighted=0, booked=0;
+  active.forEach(({c,stage})=>{
+    const s=STAGE_MAP[stage], comm=dealComm(c);
+    kBy[stage].n++; kBy[stage].val+=dealValue(c); kBy[stage].comm+=comm;
+    weighted+=comm*s.prob;
+    if(stage==="signed")booked+=comm;
+  });
+  const stageCards=STAGES.filter(s=>s.key!=="prospect").map(s=>{
+    const d=kBy[s.key], on=state.dealStage===s.key;
+    return `<button class="stagecard${on?" on":""}" data-stage-filter="${s.key}" style="--sc:${s.c}" aria-pressed="${on}">
+      <div class="sbar"></div>
+      <div class="sinner">
+        <div class="slabel"><span class="sdot"></span>${s.lbl}<span class="sprob">${Math.round(s.prob*100)}%</span></div>
+        <div class="scount">${d.n}</div>
+        <div class="scomm">${d.n?`your commission <b>${fmtUSD(d.comm)}</b>`:"no deals yet"}</div>
+      </div></button>`;
+  }).join("");
+  wrap.innerHTML=
+   `<div class="deals-head">
+      <h3>Deals in progress</h3>
+      <div class="deals-kpis">
+        <span class="deals-kpi">Open deals<b>${active.length}</b></span>
+        <span class="deals-kpi">Weighted forecast<b class="accent">${fmtUSD(weighted)}</b></span>
+        <span class="deals-kpi">Booked (signed)<b class="accent">${fmtUSD(booked)}</b></span>
+      </div>
+    </div>
+    ${active.length
+      ? `<div class="stagegrid">${stageCards}</div>`
+      : `<div class="deals-empty">No active deals yet — open any company below and set its <b>deal stage</b> (Interested · Red hot · Verbal · Signed) to start tracking. Your commission is projected here as each deal advances.</div>`}
+    <p class="deals-note">Commission shown is <b>your take-home</b> (9.33% of the recommended package). Weighted forecast multiplies each deal by its stage probability (Interested 50% · Red hot 75% · Verbal 90% · Signed 100%). Stages save in this browser. Click a stage to filter the list below.</p>`;
+}
+function setDealStage(key){
+  state.dealStage=(state.dealStage===key)?null:key;
+  state.focus=null;
+  renderDeals();renderFocus();render();
+  if(state.dealStage)$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("#dealsSec").addEventListener("click",e=>{
+  const b=e.target.closest("[data-stage-filter]");
+  if(b)setDealStage(b.dataset.stageFilter);
+});
+
 render();
 renderFocus();
 renderTerritory();
+renderDeals();
 renderCommQuick();
 renderCommission();
 
@@ -900,6 +1011,16 @@ $("#board").addEventListener("click",e=>{
     em.classList.add("copied");setTimeout(()=>em.classList.remove("copied"),1200);
     toast("Copied "+addr);return;
   }
+  const sp=e.target.closest(".sp-btn");
+  if(sp){
+    const name=sp.closest(".stagepick").dataset.co;
+    const st=sp.dataset.stage;
+    if(st==="prospect"||DEALS[name]===st)delete DEALS[name]; else DEALS[name]=st;
+    saveDeals();
+    const lbl=STAGE_MAP[stageOf({name})].lbl;
+    render();renderDeals();
+    toast(name+" → "+lbl);return;
+  }
   const head=e.target.closest(".co-head");
   if(head){
     const co=head.closest(".co");const name=co.dataset.name;
@@ -910,7 +1031,8 @@ $("#board").addEventListener("click",e=>{
 });
 function setFocus(key){
   state.focus=(state.focus===key)?null:key;
-  renderFocus();render();
+  state.dealStage=null;
+  renderFocus();renderDeals();render();
   if(state.focus)$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});
 }
 $("#focusSec").addEventListener("click",e=>{
@@ -918,14 +1040,14 @@ $("#focusSec").addEventListener("click",e=>{
   if(b)setFocus(b.dataset.focus);
 });
 $("#focusBanner").addEventListener("click",e=>{
-  if(e.target.closest("#clearFocus")){state.focus=null;renderFocus();render();}
+  if(e.target.closest("#clearFocus")){state.focus=null;state.dealStage=null;renderFocus();renderDeals();render();}
 });
 document.querySelectorAll("[data-rank]").forEach(b=>b.addEventListener("click",()=>{
-  state.rank=b.dataset.rank;state.focus=null;setPressed("[data-rank]",b);renderFocus();render();}));
+  state.rank=b.dataset.rank;state.focus=null;state.dealStage=null;setPressed("[data-rank]",b);renderFocus();renderDeals();render();}));
 document.querySelectorAll("[data-ind]").forEach(b=>b.addEventListener("click",()=>{
-  state.ind=b.dataset.ind;state.focus=null;setPressed("[data-ind]",b);renderFocus();render();}));
+  state.ind=b.dataset.ind;state.focus=null;state.dealStage=null;setPressed("[data-ind]",b);renderFocus();renderDeals();render();}));
 document.querySelectorAll("[data-status]").forEach(b=>b.addEventListener("click",()=>{
-  state.status=b.dataset.status;state.focus=null;setPressed("[data-status]",b);renderFocus();render();}));
+  state.status=b.dataset.status;state.focus=null;state.dealStage=null;setPressed("[data-status]",b);renderFocus();renderDeals();render();}));
 function setPressed(sel,btn){document.querySelectorAll(sel).forEach(x=>x.setAttribute("aria-pressed",x===btn));}
 $("#search").addEventListener("input",e=>{state.q=e.target.value.trim();render();});
 $("#sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
