@@ -185,11 +185,27 @@
   .newsroom h3{margin:0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
   .news-sub{font-size:.78rem;color:var(--ink-soft);}
   .news-list{display:flex;flex-direction:column;gap:9px;}
-  .news-item{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 15px;box-shadow:var(--shadow);}
+  .news-item{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 13px;box-shadow:var(--shadow);
+    display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:center;}
+  .ni-thumb{width:74px;height:64px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none;
+    box-shadow:inset 0 -18px 26px -18px rgba(0,0,0,.35);}
+  .ni-thumb span{font-size:1.7rem;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
+  .ni-body{min-width:0;}
   .co-news{margin-bottom:14px;}
   .co-news .sl{font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--accent-ink);margin:0 0 7px;}
-  .co-news .news-item{background:var(--card-2);box-shadow:none;padding:9px 12px;margin-bottom:7px;}
+  .co-news .news-item{background:var(--card-2);box-shadow:none;padding:8px 10px;margin-bottom:7px;gap:11px;}
   .co-news .news-item:last-child{margin-bottom:0;}
+  .co-news .ni-thumb{width:56px;height:48px;} .co-news .ni-thumb span{font-size:1.3rem;}
+  .cnews-badge{margin-left:6px;font-size:.8rem;vertical-align:1px;}
+  .crm-news{display:flex;flex-direction:column;gap:5px;}
+  .crm-news a{font-size:.82rem;color:var(--accent-ink);text-decoration:none;line-height:1.4;}
+  .crm-news a:hover{text-decoration:underline;}
+  .today-news{margin-top:16px;}
+  .tn-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+  .tn-lbl{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;}
+  .tn-more{border:0;background:none;color:var(--accent-ink);font-family:var(--sans);font-size:.8rem;font-weight:700;cursor:pointer;}
+  .tn-more:hover{text-decoration:underline;}
+  .ni-contact{font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--a);border-radius:999px;padding:1px 8px;}
   .ni-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:4px;}
   .ni-date{font-size:.72rem;color:var(--ink-faint);font-variant-numeric:tabular-nums;font-family:var(--mono);}
   .ni-co{font-size:.74rem;font-weight:700;color:var(--ink);}
@@ -585,6 +601,7 @@
   <section class="goals" aria-label="Revenue goal" id="goalSec"></section>
   <section class="cmdcenter" aria-label="Revenue Command Center" id="cmdSec"></section>
   <section class="focus" aria-label="Needs attention" id="focusSec"></section>
+  <section class="today-news" aria-label="Latest news" id="todayNewsSec"></section>
   </div><!-- /today -->
 
   <div class="tabpanel" data-panel="pipeline">
@@ -1060,8 +1077,8 @@ const NEWS={
     {d:"2023-02-08",t:"Anderson Automotive expands in South Carolina — adds Honda, Acura, Infiniti, Mazda",s:"autonews.com",u:"https://www.autonews.com/dealers/anderson-automotive-group-expands-south-carolina",tag:"Expansion"}],
   "Fleet Feet":[
     {d:"2026-07-18",t:"Fleet Feet is hiring a Community Outreach Director",s:"jobs.fleetfeet.com",u:"https://jobs.fleetfeet.com/jobs/5629",tag:"Hiring"},
-    {d:"2026-07-17",t:"CEO Joey Pointer on 300+ stores, ~$600M, and Fleet Feet's 50th anniversary",s:"unc.edu",u:"https://www.unc.edu/posts/2026/07/17/fleet-feet-ceo-knows-how-to-ring-the-money-bell/",tag:"Milestone"},
-    {d:"2026-02-12",t:"Fleet Feet appoints Olympian Jenny Simpson as its first Chief Running Officer",s:"wwd.com",u:"https://wwd.com/footwear-news/shoe-industry-news/fleet-feet-chief-running-officer-jenny-simpson-1238563811/",tag:"Exec"}],
+    {d:"2026-07-17",t:"CEO Joey Pointer on 300+ stores, ~$600M, and Fleet Feet's 50th anniversary",s:"unc.edu",u:"https://www.unc.edu/posts/2026/07/17/fleet-feet-ceo-knows-how-to-ring-the-money-bell/",tag:"Milestone",person:"Joey Pointer"},
+    {d:"2026-02-12",t:"Fleet Feet appoints Olympian Jenny Simpson as its first Chief Running Officer",s:"wwd.com",u:"https://wwd.com/footwear-news/shoe-industry-news/fleet-feet-chief-running-officer-jenny-simpson-1238563811/",tag:"Exec",person:"Jenny Simpson"}],
   "Implus Footcare":[
     {d:"2026-05-26",t:"Implus Brands launches a new B2B commerce portal on Shopify",s:"einpresswire.com",u:"https://www.einpresswire.com/article/913025563/",tag:"Product"},
     {d:"2025-12-01",t:"Balega to showcase new products at The Running Event 2025",s:"prnewswire.com",u:"https://www.prnewswire.com/news-releases/balega-to-showcase-new-products--host-demo-runs-at-the-running-event-2025-302629251.html",tag:"Product"},
@@ -1081,13 +1098,25 @@ const NEWS={
     {d:"2026-02-05",t:"Bankrupt Big Rock Sports problems were an 'open secret' in the trade",s:"angling-international.com",u:"https://angling-international.com/2026/02/05/bankrupt-big-rock-sports-problems-were-open-secret-in-the-trade/",tag:"Risk"}]
 };
 function newsFor(c){return NEWS[c.name]||[];}
+function allNews(){const a=[];DATA.forEach(c=>newsFor(c).forEach(n=>a.push({co:c.name,n})));return a.sort((x,y)=>y.n.d.localeCompare(x.n.d));}
 function fmtDate(d){const m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];const p=d.split("-");return m[+p[1]-1]+" "+(+p[2])+", "+p[0];}
+/* generated news-card thumbnail (CSP-safe — no external images) */
+const THUMB={Hiring:["🎯","#4B9CD3","#2F7DB5"],Funding:["💰","#1C7A45","#2F9E63"],Exec:["👤","#3B4E8C","#5A6FB5"],
+  "M&A":["🤝","#1E8A8A","#2FB0A6"],Product:["🏷️","#C8892B","#E0A94A"],Milestone:["🏆","#4B9CD3","#13294B"],
+  Partnership:["🤝","#4B9CD3","#3E86BE"],Marketing:["📣","#C8892B","#D9793A"],Expansion:["📈","#2F9E63","#4B9CD3"],
+  Risk:["⚠️","#D64C3F","#A83228"]};
+function newsThumb(n){const t=THUMB[n.tag]||["📰","#7A8AA0","#4B5C74"];
+  return `<div class="ni-thumb" style="background:linear-gradient(135deg,${t[1]},${t[2]})"><span>${t[0]}</span></div>`;}
+function isContactNews(co,n){if(!n.person)return false;const c=DATA.find(x=>x.name===co);return !!(c&&c.contacts.some(x=>x.n===n.person));}
+function contactNews(x,co){return newsFor({name:co}).filter(n=>n.person===x.n);}
 function newsItem(co,n,showCo){
   const tagcls=/risk/i.test(n.tag)?"risk":(/funding|exec|hiring|m&a/i.test(n.tag)?"hot":"");
   const title=n.u?`<a href="${n.u}" target="_blank" rel="noopener">${esc(n.t)} ↗</a>`:`<span>${esc(n.t)}</span>`;
-  return `<div class="news-item">
-     <div class="ni-meta"><span class="ni-date">${fmtDate(n.d)}</span>${showCo?`<span class="ni-co">${esc(co)}</span>`:""}<span class="ni-tag ${tagcls}">${esc(n.tag)}</span></div>
-     <div class="ni-title">${title}</div><div class="ni-src">${esc(n.s)}</div></div>`;
+  const contact=isContactNews(co,n)?`<span class="ni-contact">★ Your contact</span>`:"";
+  return `<div class="news-item">${newsThumb(n)}
+     <div class="ni-body">
+       <div class="ni-meta"><span class="ni-date">${fmtDate(n.d)}</span>${showCo?`<span class="ni-co">${esc(co)}</span>`:""}<span class="ni-tag ${tagcls}">${esc(n.tag)}</span>${contact}</div>
+       <div class="ni-title">${title}</div><div class="ni-src">${esc(n.s)}</div></div></div>`;
 }
 /* ---- Decision layer: best next step, deal health, event fit, ROI ---- */
 function bestNextStep(c){
@@ -1164,15 +1193,18 @@ function contactRow(x,co){
   const starText=r.str?("★".repeat(r.str)):"☆";
   const stars=[1,2,3,4,5].map(i=>`<button class="star${i<=r.str?" on":""}" data-star="${i}" aria-label="${i} of 5">★</button>`).join("");
   const chips=TOUCHPOINTS.map(t=>`<button class="tp${r.touches.includes(t)?" on":""}" data-tp="${esc(t)}">${esc(t)}</button>`).join("");
+  const cn=contactNews(x,co||"");
+  const cnRow=cn.length?`<div class="crm-row"><span class="crm-k">In the news</span><div class="crm-news">${cn.map(n=>`<a href="${n.u||"#"}" ${n.u?'target="_blank" rel="noopener"':""}>📰 ${esc(n.t)}${n.u?" ↗":""}</a>`).join("")}</div></div>`:"";
   const panel=open?`<div class="crm" data-crmkey="${esc(key)}">
       <div class="crm-row"><span class="crm-k">Relationship</span><span class="stars">${stars}</span></div>
       <div class="crm-row"><span class="crm-k">Touchpoints <small>(your timeline)</small></span><div class="tps">${chips}</div></div>
+      ${cnRow}
       <div class="crm-row"><span class="crm-k">Notes</span><textarea class="crm-notes" rows="2" placeholder="UNC MBA · loves fly fishing · daughter plays golf · Braves fan…">${esc(r.notes)}</textarea></div>
       <div class="crm-row"><span class="crm-k">Next touch</span><input class="crm-next" value="${esc(r.next)}" placeholder="Invite to Member-Guest"></div>
     </div>`:"";
   return `<div class="contact-block">
     <div class="crow">
-      <div class="cwho"><div class="cname">${esc(x.n)}</div><div class="ctitle">${esc(x.t)}</div></div>
+      <div class="cwho"><div class="cname">${esc(x.n)}${cn.length?`<span class="cnews-badge" title="In the news">📰</span>`:""}</div><div class="ctitle">${esc(x.t)}</div></div>
       <div class="cactions">${email}${phone}${draft}<button class="crm-toggle${open?" on":""}" data-crmtoggle="${esc(key)}" title="Relationship">${starText} ${open?"▾":"▸"}</button></div>
     </div>${panel}</div>`;
 }
@@ -1627,11 +1659,18 @@ $("#goalSec").addEventListener("change",e=>{
   if(e.target.id==="goalInput"){GOALS.annual=parseInt(e.target.value.replace(/[^0-9]/g,""))||0;saveGoals();renderGoal();}
 });
 
+/* ---- Latest news on the Today home ---- */
+function renderTodayNews(){
+  const all=allNews().slice(0,4);
+  if(!all.length){$("#todayNewsSec").innerHTML="";return;}
+  $("#todayNewsSec").innerHTML=`<div class="tn-head"><span class="tn-lbl">◆ Latest on your pipeline</span>
+      <button class="tn-more" data-goto="news">All news →</button></div>
+    <div class="news-list">${all.map(x=>newsItem(x.co,x.n,true)).join("")}</div>`;
+}
+$("#todayNewsSec").addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g)switchTab(g.dataset.goto);});
 /* ---- Pipeline newsroom ---- */
 function renderNews(){
-  const all=[];
-  DATA.forEach(c=>newsFor(c).forEach(n=>all.push({co:c.name,n})));
-  all.sort((a,b)=>b.n.d.localeCompare(a.n.d));
+  const all=allNews();
   const cos=new Set(all.map(x=>x.co)).size;
   $("#newsSec").innerHTML=`<div class="news-head">
       <h3>Pipeline newsroom</h3>
@@ -1648,6 +1687,7 @@ renderDeals();
 renderInventory();
 renderGoal();
 renderNews();
+renderTodayNews();
 renderCmd();
 renderLaunchQuick();
 renderCommQuick();
