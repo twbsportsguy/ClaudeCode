@@ -258,6 +258,12 @@
   .playbook .pb-v{font-size:.8rem;color:var(--ink-soft);line-height:1.4;font-weight:500;}
   .playbook .pb-v.health-green,.playbook .pb-v.health-amber,.playbook .pb-v.health-red{font-weight:700;}
   @media (max-width:680px){ .playbook{grid-template-columns:1fr;} }
+  .compintel{background:var(--card-2);border:1px solid var(--line-soft);border-left:3px solid var(--b);
+    border-radius:10px;padding:11px 14px;margin-bottom:14px;}
+  .compintel .ci-lbl{display:block;font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;font-weight:800;color:var(--b);margin-bottom:5px;}
+  .compintel .ci-invests{margin:0 0 6px;font-size:.85rem;color:var(--ink);line-height:1.5;}
+  .compintel .ci-angle{margin:0;font-size:.83rem;color:var(--ink-soft);line-height:1.5;}
+  .compintel .ci-angle b{color:var(--ink);font-weight:700;}
 
   /* ---------- Company cards ---------- */
   .board{margin-top:14px;display:flex;flex-direction:column;gap:14px;}
@@ -958,6 +964,18 @@ const SIGNALS={
   "Big Rock Sports":{tag:"⚠ Risk",date:"Feb 2026",text:"Trade press reported the company bankrupt. Pause outreach and verify the company's status before pursuing.",risk:true}
 };
 function whyNow(c){return SIGNALS[c.name]||null;}
+/* ---- Competitor intelligence: where a prospect already spends (real, researched) ---- */
+const SPONSORS={
+  "Anderson Automotive Group":{invests:"A Chapel Hill HS auto program ($10K + a student race car) and a $150K/yr 'Drive for a Difference' charity campaign.",angle:"they already fund youth & charity locally — Finley adds executive-level client hospitality and year-round brand reach a school program can't."},
+  "Lane & Associates":{invests:"Title support of the Hit Fore Hope charity golf tournament since 2010 ($500K+ raised) and Diamond Sponsor of Barton Pond Elementary.",angle:"they already sponsor a charity golf event — they clearly value golf as a channel; Finley turns a one-day event into a year-round partnership with real client entertainment."},
+  "Fleet Feet":{invests:"Running events (the Carrboro 10K, training programs) and brand collabs like Athletic Brewing.",angle:"their sponsorship DNA is running events and brand tie-ins; Finley reaches a different, affluent executive/golf audience plus hosted hospitality."},
+  "Great Outdoor Provision":{invests:"Conservation and community causes — the Triangle Land Conservancy and the Mountains-to-Sea Trail.",angle:"they lean community/conservation; Finley layers on an executive-entertainment and local-brand-visibility play they don't have."},
+  "Riccobene Associates Family Dentistry":{invests:"Charitable community dentistry ('Smiles on Us Dental Day', donated care).",angle:"they invest in community-health events; Finley adds client/referrer entertainment and brand reach to an affluent patient base — and they're PE-backed and expanding fast."},
+  "Sports Endeavors":{invests:"Soccer sponsorships and fan partnerships (Borussia Dortmund, via Soccer.com).",angle:"they're deep in soccer; Finley opens a different local executive audience plus hosted hospitality near their Hillsborough HQ."},
+  "Implus Footcare":{invests:"Retail brand activations across SKLZ/Balega, incl. a SKLZ × DICK's 'Ultimate Fan Experience'.",angle:"they run product/retail activations; Finley adds a local executive-hospitality and brand channel in their Durham backyard."},
+  "USA Baseball":{invests:"They're a sponsorship property themselves — national governing body with a Cary training complex hosting events & hospitality.",angle:"not a competitor for their dollars — pitch a cross-promotion / co-hosted hospitality partnership, not a straight sponsorship sale."}
+};
+function sponsorIntel(c){return SPONSORS[c.name]||null;}
 /* ---- Decision layer: best next step, deal health, event fit, ROI ---- */
 function bestNextStep(c){
   const st=stageOf(c), pkg=recommendPackage(c);
@@ -1061,12 +1079,18 @@ function card(c){
       <div class="pb"><span class="pb-k">Event fit</span><span class="pb-v">${esc(eventFit(c))}</span></div>
       <div class="pb"><span class="pb-k">Likely ROI for them</span><span class="pb-v">${esc(roiPredict(c))}</span></div>
     </div>`;
+  const si=sponsorIntel(c);
+  const compintel=si?`<div class="compintel">
+      <span class="ci-lbl">◆ Competitor intel · where they already spend</span>
+      <p class="ci-invests">${esc(si.invests)}</p>
+      <p class="ci-angle"><b>Position Finley —</b> ${esc(si.angle)}</p></div>`:"";
   const body=`<div class="co-body">
       ${stagepick}
       ${oppalert}
       ${play}
       ${nextstep}
       ${playbook}
+      ${compintel}
       <div class="signal"><p class="sl">Ad-spend signal</p><p>${esc(c.signal)}</p></div>
       <p class="why"><b>Why this rank:</b> ${esc(c.why)}</p>
       ${nContacts
@@ -1076,6 +1100,7 @@ function card(c){
         <span class="ca-lbl">Generate with Claude</span>
         <button class="co-act" data-act="brief">📋 Meeting brief</button>
         <button class="co-act" data-act="proposal">📄 Draft proposal</button>
+        <button class="co-act" data-act="compscan">🎯 Competitor scan</button>
         <button class="co-act" data-act="similar">🔎 Find similar in NC</button>
       </div>
     </div>`;
@@ -1340,6 +1365,7 @@ $("#board").addEventListener("click",e=>{
   let cmd="";
   if(a.dataset.act==="brief")   cmd=`Prep a meeting brief for ${name} (${c.ind}, ${c.city} NC): overview, revenue & marketing budget, key execs, recent news, recommended package, likely objections, questions to ask, and a closing strategy.`;
   if(a.dataset.act==="proposal")cmd=`Draft a ${pkg.name} (${pkg.price}) partnership proposal for ${name} — inclusions, the business case, and a follow-up email.`;
+  if(a.dataset.act==="compscan")cmd=`Research ${name}'s current sponsorships and community investments (charity/golf tournaments, college or pro sports, youth sports, chamber, events) and tell me how to position a Finley Golf Club partnership against what they already fund.`;
   if(a.dataset.act==="similar") cmd=`Prospect North Carolina ${c.ind} companies like ${name}.`;
   copyText(cmd);
   toast("Copied — paste to Claude to generate");
