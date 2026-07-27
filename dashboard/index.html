@@ -169,6 +169,45 @@
   .resultcount{width:100%;font-size:.8rem;color:var(--ink-faint);margin-top:-2px;
     font-variant-numeric:tabular-nums;}
 
+  /* ---------- Revenue Command Center ---------- */
+  .cmdcenter{margin-top:16px;}
+  .cmd-title{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;margin-bottom:9px;}
+  .cmd-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
+  .cmd-tile{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:13px 15px;
+    box-shadow:var(--shadow);cursor:pointer;font-family:inherit;color:inherit;display:flex;flex-direction:column;gap:3px;}
+  .cmd-tile.static{cursor:default;}
+  .cmd-tile:not(.static):hover{border-color:var(--accent);}
+  .cmd-tile.on{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 35%,transparent),var(--shadow);}
+  .cmd-tile .ct-k{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .cmd-tile .ct-v{font-family:var(--mono);font-size:1.65rem;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;}
+  .cmd-tile .ct-s{font-size:.72rem;color:var(--ink-soft);}
+  @media (max-width:760px){ .cmd-tiles{grid-template-columns:1fr 1fr;} }
+
+  /* ---------- Deal health / signals / decision layer ---------- */
+  .health-green{color:var(--a);} .health-amber{color:var(--b);} .health-red{color:#D64C3F;}
+  .metahealth{font-size:.7rem;line-height:1;vertical-align:1px;}
+  .metasig{font-size:.68rem;font-weight:700;color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 12%,var(--card));
+    border:1px solid color-mix(in srgb,var(--accent) 30%,var(--card));border-radius:999px;padding:2px 8px;}
+  .metasig.risk{color:#D64C3F;background:color-mix(in srgb,#D64C3F 12%,var(--card));border-color:color-mix(in srgb,#D64C3F 35%,var(--card));}
+  .oppalert{background:color-mix(in srgb,var(--accent) 9%,var(--card-2));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--card));
+    border-left:3px solid var(--accent);border-radius:10px;padding:11px 14px;margin-bottom:12px;}
+  .oppalert.risk{background:color-mix(in srgb,#D64C3F 9%,var(--card-2));border-color:color-mix(in srgb,#D64C3F 30%,var(--card));border-left-color:#D64C3F;}
+  .oppalert .oa-tag{display:inline-block;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;
+    color:var(--accent-ink);margin-bottom:5px;}
+  .oppalert.risk .oa-tag{color:#D64C3F;}
+  .oppalert p{margin:0;font-size:.86rem;color:var(--ink);line-height:1.5;}
+  .oppalert b{font-weight:700;}
+  .nextstep{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:12px;padding:9px 13px;
+    background:var(--card-2);border:1px solid var(--line-soft);border-radius:9px;}
+  .nextstep .ns-lbl{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--a);flex:none;}
+  .nextstep .ns-v{font-size:.9rem;font-weight:600;color:var(--ink);}
+  .playbook{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+  .playbook .pb{border:1px solid var(--line-soft);border-radius:9px;padding:9px 12px;background:var(--card-2);}
+  .playbook .pb-k{display:block;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-bottom:4px;}
+  .playbook .pb-v{font-size:.8rem;color:var(--ink-soft);line-height:1.4;font-weight:500;}
+  .playbook .pb-v.health-green,.playbook .pb-v.health-amber,.playbook .pb-v.health-red{font-weight:700;}
+  @media (max-width:680px){ .playbook{grid-template-columns:1fr;} }
+
   /* ---------- Company cards ---------- */
   .board{margin-top:14px;display:flex;flex-direction:column;gap:14px;}
   .co{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
@@ -412,6 +451,8 @@
     <div class="lz-quick" id="prospectQuick"></div>
     <div class="lz-out" id="prospectOut" hidden></div>
   </section>
+
+  <section class="cmdcenter" aria-label="Revenue Command Center" id="cmdSec"></section>
 
   <section class="scorecard" aria-label="Pipeline summary">
     <div class="cell"><p class="k">Companies</p><div class="v" id="kCos">0</div><div class="sub" id="kContacts">0 contacts</div></div>
@@ -745,7 +786,9 @@ const VIEW_KEY="finley.view";
 const FOCUS={
   callToday:{lbl:"Call today · drafts ready",test:c=>c.rank==="A"&&c.contacts.some(x=>x.d)},
   draftNext:{lbl:"Draft next",test:c=>c.contacts.length&&!c.contacts.some(x=>x.d)},
-  findContact:{lbl:"Find a contact",test:c=>!c.contacts.length}
+  findContact:{lbl:"Find a contact",test:c=>!c.contacts.length},
+  signals:{lbl:"Opportunity signals firing",test:c=>!!whyNow(c)},
+  atrisk:{lbl:"At-risk / needs attention",test:c=>{const h=dealHealth(c);return h.k==="red"||(stageOf(c)!=="prospect"&&h.k==="amber");}}
 };
 /* ---- Deal stages (progress) — probabilities mirror CLAUDE.md pipeline ---- */
 const STAGES=[
@@ -820,6 +863,58 @@ function region(city){
   if(W.some(x=>c.includes(x)))return"Western NC";
   return"Triangle";
 }
+/* ---- Opportunity signals (real ZoomInfo news/scoops — the "why now") ---- */
+const SIGNALS={
+  "Anderson Automotive Group":{tag:"Growth",date:"2023–24",text:"On an acquisition tear — bought multiple SC dealership groups and is now a top-75 U.S. dealer group. Growth-mode dealers lean into local brand and community partnerships."},
+  "Fleet Feet":{tag:"Community",date:"Jul 2026",text:"Celebrating its 50th anniversary in 2026 (~$600M, 300+ stores) and just posted a Community Outreach Director role — actively investing in local community presence."},
+  "Implus Footcare":{tag:"Brand push",date:"May 2026",text:"Durham HQ launched a new B2B commerce portal and keeps a steady cadence of Balega/SKLZ/Sport-Brella product launches — squarely in brand-building mode."},
+  "Riccobene Associates Family Dentistry":{tag:"PE-backed growth",date:"Jul 2026",text:"New PE backing (Comvest, late '24) is fueling fast expansion — multiple practice acquisitions in '25 and a 6-month hiring high. PE-backed DSOs invest in brand & community."},
+  "Sports Endeavors":{tag:"Expansion",date:"2025–26",text:"Hillsborough HQ on an acquisition streak (Soccer Master, '25) with a new Borussia Dortmund fan partnership and local hiring — actively expanding."},
+  "Affordable Dentures & Implants":{tag:"Scaling",date:"2024",text:"Nation's largest tooth-replacement DSO — constant new-practice openings and patient-tech upgrades. Scaling network, marketing-heavy."},
+  "Big Rock Sports":{tag:"⚠ Risk",date:"Feb 2026",text:"Trade press reported the company bankrupt. Pause outreach and verify the company's status before pursuing.",risk:true}
+};
+function whyNow(c){return SIGNALS[c.name]||null;}
+/* ---- Decision layer: best next step, deal health, event fit, ROI ---- */
+function bestNextStep(c){
+  const st=stageOf(c), pkg=recommendPackage(c);
+  const dm=c.contacts.find(x=>/owner|president|ceo|chief|vp|partner|principal|gm|general manager|director|marketing/i.test(x.t))||c.contacts[0];
+  const emailable=c.contacts.find(x=>x.e);
+  if(whyNow(c)&&whyNow(c).risk) return "Verify the company is still operating before any outreach";
+  if(st==="signed") return "Onboard the partner & set the renewal check-in";
+  if(st==="verbal") return `Send the ${pkg.name} proposal (${pkg.price}) to close`;
+  if(st==="redhot") return "Book the closing meeting — bring a proposal draft";
+  if(st==="interested") return `Invite ${dm?dm.n.split(" ")[0]:"them"} to a Wine & Nine, or lock a 15-min call`;
+  if(!c.contacts.length) return "Find the owner/GM — call the office";
+  if(c.contacts.some(x=>x.d)) return "Review & send the draft, then follow up Friday";
+  if(emailable) return `Draft outreach to ${emailable.n} (${emailable.t})`;
+  return `Enrich an email for ${dm?dm.n:"a contact"}, then draft`;
+}
+function dealHealth(c){
+  const st=stageOf(c), hasDM=c.contacts.length>0, emailable=c.contacts.some(x=>x.e), anyDraft=c.contacts.some(x=>x.d);
+  if(whyNow(c)&&whyNow(c).risk) return {k:"red",l:"Flagged — verify status"};
+  if(st==="signed") return {k:"green",l:"Won"};
+  if(st==="verbal"||st==="redhot") return hasDM?{k:"green",l:"Advancing"}:{k:"amber",l:"Advancing — confirm decision-maker"};
+  if(st==="interested") return hasDM?{k:"green",l:"Warm"}:{k:"amber",l:"Warm — no decision-maker yet"};
+  if(!hasDM) return {k:"red",l:"No contact yet"};
+  if(anyDraft) return {k:"amber",l:"Draft ready to send"};
+  if(emailable) return {k:"amber",l:"Contact found — not worked yet"};
+  return {k:"amber",l:"Contact found — needs an email"};
+}
+function eventFit(c){
+  const ind=(c.ind||"").toLowerCase();
+  if(/legal|financ|insur|auto|estate|bank/.test(ind)) return "Corporate Shootout or a Member-Guest — lead with client entertainment";
+  if(/health|dental|medical/.test(ind)) return "Executive Clinic + Wine & Nine — low-pressure, relationship-first";
+  if(/sport|outdoor|retail|goods|footwear|apparel/.test(ind)) return "Carolina Football Watch Party or the Summer Series — brand + audience";
+  return "Wine & Nine — an easy first touch before any ask";
+}
+function roiPredict(c){
+  const ind=(c.ind||"").toLowerCase();
+  if(/health|dental|medical/.test(ind)) return "Referrals, employee engagement, and recruiting reach into the Triangle medical community";
+  if(/auto/.test(ind)) return "Client hospitality plus brand lift with local car-buying households";
+  if(/legal|financ|insur|estate|bank/.test(ind)) return "Relationship ROI — a hosted round outperforms a lunch for these buyers";
+  if(/sport|outdoor|retail|goods|footwear|apparel/.test(ind)) return "Brand impressions with an affluent, active audience plus team hospitality";
+  return "Brand visibility plus a built-in way to host clients and reward staff";
+}
 function matches(c){
   if(state.focus&&!FOCUS[state.focus].test(c))return false;
   if(state.dealStage&&stageOf(c)!==state.dealStage)return false;
@@ -869,12 +964,25 @@ function card(c){
       <span class="pk">${esc(pkg.name)}</span><span class="pv">${pkg.price}</span>
       <span class="pf">${esc(pkg.why)}</span></div>`;
   const cur=stageOf(c);
+  const wn=whyNow(c), h=dealHealth(c);
   const stagepick=`<div class="stagepick" data-co="${esc(c.name)}">
       <span class="sp-lbl">Deal stage</span>
       ${STAGES.map(s=>`<button class="sp-btn${cur===s.key?" on":""}" data-stage="${s.key}" style="--sc:${s.c}">${s.lbl}</button>`).join("")}</div>`;
+  const oppalert=wn?`<div class="oppalert${wn.risk?" risk":""}">
+      <span class="oa-tag">${esc(wn.tag)} · ${esc(wn.date)}</span>
+      <p><b>Opportunity signal —</b> ${esc(wn.text)}</p></div>`:"";
+  const nextstep=`<div class="nextstep"><span class="ns-lbl">Best next step</span><span class="ns-v">${esc(bestNextStep(c))}</span></div>`;
+  const playbook=`<div class="playbook">
+      <div class="pb"><span class="pb-k">Deal health</span><span class="pb-v health-${h.k}">● ${esc(h.l)}</span></div>
+      <div class="pb"><span class="pb-k">Event fit</span><span class="pb-v">${esc(eventFit(c))}</span></div>
+      <div class="pb"><span class="pb-k">Likely ROI for them</span><span class="pb-v">${esc(roiPredict(c))}</span></div>
+    </div>`;
   const body=`<div class="co-body">
       ${stagepick}
+      ${oppalert}
       ${play}
+      ${nextstep}
+      ${playbook}
       <div class="signal"><p class="sl">Ad-spend signal</p><p>${esc(c.signal)}</p></div>
       <p class="why"><b>Why this rank:</b> ${esc(c.why)}</p>
       ${nContacts
@@ -887,6 +995,8 @@ function card(c){
       <div class="co-main">
         <h2 class="co-name">${esc(c.name)}</h2>
         <div class="co-meta">
+          <span class="metahealth health-${h.k}" title="Deal health: ${esc(h.l)}">●</span>
+          ${wn?`<span class="metasig${wn.risk?" risk":""}">◆ ${esc(wn.tag)}</span>`:""}
           ${cur!=="prospect"?`<span class="stage-pill" style="background:${STAGE_MAP[cur].c}">${STAGE_MAP[cur].lbl}</span>`:""}
           <span class="tag ind">${esc(c.ind)}</span>
           <span class="tag">${esc(c.city)}, NC</span>
@@ -1118,10 +1228,36 @@ $("#prospectQuick").addEventListener("click",e=>{
   launchProspect(x.q,x.cmd);
 });
 
+/* ---- Revenue Command Center — answers the morning questions ---- */
+function renderCmd(){
+  const active=DATA.filter(c=>stageOf(c)!=="prospect");
+  const weighted=active.reduce((a,c)=>a+dealValue(c)*STAGE_MAP[stageOf(c)].prob,0);
+  const workToday=new Set([...DATA.filter(FOCUS.callToday.test),...DATA.filter(c=>["redhot","verbal"].includes(stageOf(c)))].map(c=>c.name)).size;
+  const atrisk=DATA.filter(FOCUS.atrisk.test).length;
+  const sigs=DATA.filter(c=>whyNow(c)).length;
+  const tiles=[
+    {k:"Work today",v:workToday,s:"call-ready + hot deals",f:"callToday"},
+    {k:"Weighted pipeline",v:"$"+(weighted/1000).toFixed(0)+"K",s:"deal value × stage odds",f:null},
+    {k:"At-risk deals",v:atrisk,s:"active, needs attention",f:"atrisk"},
+    {k:"Signals firing",v:sigs,s:"why-now opportunities",f:"signals"}
+  ];
+  $("#cmdSec").innerHTML=`<div class="cmd-title">◆ Revenue Command Center — your day</div>
+    <div class="cmd-tiles">`+tiles.map(t=>{
+      const on=t.f&&state.focus===t.f;
+      return `<button class="cmd-tile${t.f?"":" static"}${on?" on":""}" ${t.f?`data-focus="${t.f}"`:""}>
+        <span class="ct-k">${t.k}</span><span class="ct-v">${t.v}</span><span class="ct-s">${t.s}</span></button>`;
+    }).join("")+`</div>`;
+}
+$("#cmdSec").addEventListener("click",e=>{
+  const b=e.target.closest("[data-focus]");
+  if(b)setFocus(b.dataset.focus);
+});
+
 render();
 renderFocus();
 renderTerritory();
 renderDeals();
+renderCmd();
 renderLaunchQuick();
 renderCommQuick();
 renderCommission();
@@ -1160,7 +1296,7 @@ $("#board").addEventListener("click",e=>{
 function setFocus(key){
   state.focus=(state.focus===key)?null:key;
   state.dealStage=null;
-  renderFocus();renderDeals();render();
+  renderFocus();renderDeals();renderCmd();render();
   if(state.focus)$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});
 }
 $("#focusSec").addEventListener("click",e=>{
