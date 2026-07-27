@@ -8,14 +8,18 @@ description: End-to-end sales prospecting pipeline. Give it any combination of c
 Inputs: **city, state, industry, company, person** — any combination, in any
 order, and **a single one alone is enough**. "Charlotte", "dentists",
 "North Carolina", "Acme Motors", or "Jane Smith" are each a valid full
-request. **Coverage is the entire state of North Carolina** — home base is the
-Triangle (Chapel Hill), but don't confine prospecting to it. Fill sensible
-defaults for whatever is missing rather than asking:
-- Industry only → sweep NC for that industry, Triangle-weighted but statewide.
-- City/state only → sweep the core industries there (home services, healthcare,
-  auto, legal/financial), a few top companies each.
-- `North Carolina` / no city → rotate NC metros per `config/autopilot.md`
-  (Triangle, Charlotte, Triad, coastal, west, Sandhills).
+request. **Coverage expands in rings — NC (home) → Southeast → East Coast →
+nationwide** — home base is the Triangle (Chapel Hill). Stay home-weighted, and
+on the outer rings prefer companies with a **Carolinas tie** (HQ, office,
+alumni leadership, or a travel/Stay-&-Play reason) so the Carolina-Golf pitch
+still lands. Fill sensible defaults for whatever is missing rather than asking:
+- Industry only → sweep that industry, NC-first but allowed to reach outward.
+- City/state/region only → sweep the core industries there (home services,
+  healthcare, auto, legal/financial), a few top companies each. Honor whatever
+  geography is named — "Atlanta", "Southeast", "nationwide" are all valid.
+- `North Carolina` / no city → rotate NC metros per `config/autopilot.md`.
+- `Southeast` / `East Coast` / `nationwide` → run the corresponding ring in
+  `config/autopilot.md`, leading with Carolinas-tied companies.
 - Person only → person lookup by name; ask for the company only if the name
   is too ambiguous to resolve.
 

@@ -7,7 +7,8 @@ keywords — choose the next targets here, act, and log why.
 follow-ups to non-repliers (`config/followups.md`), not new prospecting.
 
 ## Per-run budget
-- **2 segments** per run (a segment = one industry × one NC market).
+- **2 segments** per run (a segment = one industry × one market, where a market
+  is an NC sub-market or, on outer-ring runs, a Southeast / East Coast metro).
 - ~8–10 companies per segment (~15–20 companies total); pull the **full buying
   committee** per company — every useful contact, not just decision-makers
   (see SKILL.md Step 3). More contacts per company = more forward-up shots.
@@ -18,17 +19,29 @@ follow-ups to non-repliers (`config/followups.md`), not new prospecting.
   legal/financial.
 - **Expansion industries** (proven or promising): sports, hospitality &
   restaurants, commercial real estate, banking/wealth, insurance, med spa.
-- **Coverage mandate: all of North Carolina.** Home base is the Triangle, but
-  the goal is to work the whole state over time. Markets to rotate through:
-  - **Triangle (home):** Chapel Hill/Carrboro · Durham · Raleigh ·
-    Cary/Apex/Morrisville · Wake Forest/North Raleigh · Hillsborough/Graham.
-  - **Charlotte metro:** Charlotte · Concord · Huntersville · Gastonia · Rock Hill.
-  - **Triad:** Greensboro · Winston-Salem · High Point · Burlington.
-  - **Coastal / East:** Wilmington · Greenville · Jacksonville · New Bern.
-  - **West / Foothills:** Asheville · Hickory · Boone.
-  - **Sandhills / South:** Fayetteville · Pinehurst/Southern Pines · Lumberton.
-  Weight the Triangle most (drive-time to the club matters for hospitality),
-  but systematically give the other metros at-bats so NC gets full coverage.
+- **Coverage mandate: expand in rings — NC (home) → Southeast → East Coast →
+  nationwide.** Home base is the Triangle. Work outward over time, but stay
+  **home-weighted**, and on outer rings **prefer companies with an NC/Triangle
+  tie** (HQ, a regional office, a plant, alumni leadership, or a travel/tourism
+  reason to visit) so the Carolina-Golf hospitality pitch still lands.
+  - **Ring 1 — North Carolina (default, most at-bats):**
+    - *Triangle (home):* Chapel Hill/Carrboro · Durham · Raleigh ·
+      Cary/Apex/Morrisville · Wake Forest/North Raleigh · Hillsborough/Graham.
+    - *Charlotte metro:* Charlotte · Concord · Huntersville · Gastonia.
+    - *Triad:* Greensboro · Winston-Salem · High Point · Burlington.
+    - *Coastal / East:* Wilmington · Greenville · Jacksonville · New Bern.
+    - *West / Foothills:* Asheville · Hickory · Boone.
+    - *Sandhills / South:* Fayetteville · Pinehurst/Southern Pines · Lumberton.
+  - **Ring 2 — Southeast:** SC (Greenville/Charleston/Columbia) · GA (Atlanta/
+    Savannah) · VA (Richmond/Norfolk/NoVA) · TN (Nashville/Charlotte-adjacent) ·
+    FL (Jacksonville/Orlando/Tampa/Miami).
+  - **Ring 3 — East Coast:** DC/Baltimore · Philadelphia · NYC/NJ · Boston ·
+    Atlanta hubs — lead with firms that have Carolinas operations or leadership.
+  - **Ring 4 — Nationwide:** national brands with a Triangle/Carolinas footprint,
+    a golf-culture fit, or travel-driven prospects who'd fly in for a Stay & Play.
+  Weight is roughly **NC 60% · Southeast 25% · East Coast 10% · nationwide 5%**
+  until outer rings prove out — give the outer rings real at-bats but don't
+  starve the home turf where drive-time hospitality closes fastest.
 
 ## How to pick the 2 segments (priority order)
 1. **Dedupe first.** Load `tracker/prospects.csv`. Never re-pull a company
@@ -58,7 +71,8 @@ Until then, autopilot still fills the tracker and stages finished drafts in
 `outbox/` for review. Flip the scheduled Routine on once the voice is locked.
 
 ## Guardrails
-- Stay in the Triangle unless told otherwise.
+- Stay home-weighted: most at-bats in NC, and on outer rings prefer a
+  Carolinas tie (HQ/office/alumni/travel reason) so the pitch stays credible.
 - If a segment returns nothing, widen one filter once (drop employee minimum /
   widen metro to state), then move on and note it.
 - Respect the ZoomInfo credit rules in SKILL.md (batch enrichments; never

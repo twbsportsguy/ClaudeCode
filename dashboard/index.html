@@ -179,6 +179,32 @@
   .tabpanel{display:none;}
   .tabpanel.on{display:block;}
 
+  /* ---------- Inventory tab ---------- */
+  .inventory{margin-top:14px;}
+  .inv-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px 18px;margin-bottom:6px;}
+  .inventory h3{margin:0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .inv-kpis{display:flex;gap:18px;flex-wrap:wrap;}
+  .inv-kpi{font-size:.78rem;color:var(--ink-soft);}
+  .inv-kpi b{font-family:var(--mono);font-size:1.05rem;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;display:block;}
+  .inv-kpi b.accent{color:var(--accent-ink);} .inv-kpi small{font-weight:500;color:var(--ink-faint);font-family:var(--sans);}
+  .inv-cat{margin:16px 0 9px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;}
+  .inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:11px;}
+  .inv-row{border:1px solid var(--line);background:var(--card);border-radius:11px;padding:12px 14px;box-shadow:var(--shadow);}
+  .ir-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  .ir-name{font-weight:700;font-size:.9rem;color:var(--ink);}
+  .ir-avail{font-size:.76rem;font-weight:700;color:var(--a);white-space:nowrap;}
+  .ir-avail.out{color:#D64C3F;}
+  .ir-bar{height:6px;border-radius:3px;background:var(--line-soft);margin:9px 0;overflow:hidden;}
+  .ir-bar span{display:block;height:100%;background:var(--accent);border-radius:3px;}
+  .ir-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+  .ir-price{font-size:.78rem;color:var(--ink-soft);font-variant-numeric:tabular-nums;} .ir-price small{color:var(--ink-faint);}
+  .ir-ctl{display:inline-flex;align-items:center;gap:8px;}
+  .ir-sold{font-size:.76rem;color:var(--ink-soft);font-variant-numeric:tabular-nums;min-width:48px;text-align:center;}
+  .ir-btn{width:26px;height:26px;border:1px solid var(--line);background:var(--card-2);color:var(--accent-ink);border-radius:7px;
+    font-size:1.05rem;font-weight:700;line-height:1;cursor:pointer;font-family:var(--sans);}
+  .ir-btn:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--card-2));}
+  .inv-note{margin:16px 0 0;font-size:.78rem;color:var(--ink-faint);line-height:1.55;}
+
   /* ---------- Tools tab: objection coach ---------- */
   .coach{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:16px 18px;}
   .coach-input{width:100%;min-height:72px;resize:vertical;border:1.5px solid var(--line);border-radius:10px;background:var(--card-2);
@@ -197,7 +223,7 @@
   /* ---------- Revenue Command Center ---------- */
   .cmdcenter{margin-top:16px;}
   .cmd-title{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;margin-bottom:9px;}
-  .cmd-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
+  .cmd-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:11px;}
   .cmd-tile{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:13px 15px;
     box-shadow:var(--shadow);cursor:pointer;font-family:inherit;color:inherit;display:flex;flex-direction:column;gap:3px;}
   .cmd-tile.static{cursor:default;}
@@ -481,6 +507,7 @@
     <button class="tab on" data-tab="feed" role="tab" aria-selected="true">Feed</button>
     <button class="tab" data-tab="deals" role="tab" aria-selected="false">Deals</button>
     <button class="tab" data-tab="territory" role="tab" aria-selected="false">Territory</button>
+    <button class="tab" data-tab="inventory" role="tab" aria-selected="false">Inventory</button>
     <button class="tab" data-tab="tools" role="tab" aria-selected="false">Tools</button>
   </nav>
 
@@ -545,6 +572,10 @@
 
   <div class="tabpanel" data-panel="territory">
     <section class="territory" aria-label="Territory" id="terrSec"></section>
+  </div>
+
+  <div class="tabpanel" data-panel="inventory">
+    <section class="inventory" aria-label="Sponsorship inventory" id="invSec"></section>
   </div>
 
   <div class="tabpanel" data-panel="tools">
@@ -1240,7 +1271,10 @@ const LAUNCH_QUICK=[
   {lbl:"Triad",q:"triad",cmd:"Triad"},
   {lbl:"Coastal — Wilmington",q:"wilmington",cmd:"Wilmington"},
   {lbl:"Breweries",q:"brewer",cmd:"breweries"},
-  {lbl:"Law firms",q:"law firm",cmd:"law firms"}
+  {lbl:"Law firms",q:"law firm",cmd:"law firms"},
+  {lbl:"Southeast",q:"",cmd:"Southeast US companies with a Carolinas tie"},
+  {lbl:"East Coast",q:"",cmd:"East Coast companies with Carolinas operations or leadership"},
+  {lbl:"Nationwide",q:"",cmd:"national brands with a Triangle or golf-culture fit"}
 ];
 function renderLaunchQuick(){
   $("#prospectQuick").innerHTML=`<span class="lz-qlbl">Try</span>`+
@@ -1333,24 +1367,86 @@ function renderCmd(){
     {k:"Work today",v:workToday,s:"call-ready + hot deals",f:"callToday"},
     {k:"Weighted pipeline",v:"$"+(weighted/1000).toFixed(0)+"K",s:"deal value × stage odds",f:null},
     {k:"At-risk deals",v:atrisk,s:"active, needs attention",f:"atrisk"},
-    {k:"Signals firing",v:sigs,s:"why-now opportunities",f:"signals"}
+    {k:"Signals firing",v:sigs,s:"why-now opportunities",f:"signals"},
+    {k:"Unsold inventory",v:"$"+(unsoldValue()/1000).toFixed(0)+"K",s:"est. still to sell",goto:"inventory"}
   ];
   $("#cmdSec").innerHTML=`<div class="cmd-title">◆ Revenue Command Center — your day</div>
     <div class="cmd-tiles">`+tiles.map(t=>{
       const on=t.f&&state.focus===t.f;
-      return `<button class="cmd-tile${t.f?"":" static"}${on?" on":""}" ${t.f?`data-focus="${t.f}"`:""}>
+      const attr=t.f?`data-focus="${t.f}"`:(t.goto?`data-goto="${t.goto}"`:"");
+      return `<button class="cmd-tile${(t.f||t.goto)?"":" static"}${on?" on":""}" ${attr}>
         <span class="ct-k">${t.k}</span><span class="ct-v">${t.v}</span><span class="ct-s">${t.s}</span></button>`;
     }).join("")+`</div>`;
 }
 $("#cmdSec").addEventListener("click",e=>{
   const b=e.target.closest("[data-focus]");
-  if(b)setFocus(b.dataset.focus);
+  if(b){setFocus(b.dataset.focus);return;}
+  const g=e.target.closest("[data-goto]");
+  if(g)switchTab(g.dataset.goto);
+});
+
+/* ---- Sponsorship inventory (assets mirror the Package Builder) ---- */
+const INVENTORY=[
+  {cat:"Marketing real estate",name:"Cart advertising",cap:12,price:4500},
+  {cat:"Marketing real estate",name:"Tee-box signs",cap:18,price:1500},
+  {cat:"Marketing real estate",name:"Range / practice-facility sponsor",cap:2,price:1200},
+  {cat:"Marketing real estate",name:"Putting-green sponsor",cap:1,price:1500},
+  {cat:"Marketing real estate",name:"Clubhouse digital signage",cap:6,price:1500},
+  {cat:"Marketing real estate",name:"Website logo placement",cap:10,price:500},
+  {cat:"Marketing real estate",name:"Email campaign inclusion",cap:8,price:500},
+  {cat:"Events & experiences",name:"Premium outing (80 players)",cap:6,price:15000},
+  {cat:"Events & experiences",name:"Boutique outing",cap:12,price:5500},
+  {cat:"Events & experiences",name:"Night on the Range",cap:8,price:4500},
+  {cat:"Events & experiences",name:"Summer Series sponsorship",cap:3,price:5000},
+  {cat:"Events & experiences",name:"Watch-party sponsor",cap:5,price:2000},
+  {cat:"Events & experiences",name:"Executive clinic",cap:4,price:4000},
+  {cat:"Carolina athletics",name:"Football ticket package",cap:10,price:7500},
+  {cat:"Carolina athletics",name:"Basketball + Olympic package",cap:12,price:4500},
+  {cat:"Carolina athletics",name:"Olympic-sport package",cap:20,price:2000}
+];
+const INVSOLD=(function(){try{return JSON.parse(localStorage.getItem("finley.inv")||"{}");}catch(e){return{};}})();
+function saveInv(){try{localStorage.setItem("finley.inv",JSON.stringify(INVSOLD));}catch(e){}}
+function invSold(n){return Math.max(0,INVSOLD[n]||0);}
+function unsoldValue(){return INVENTORY.reduce((a,x)=>a+Math.max(0,x.cap-invSold(x.name))*x.price,0);}
+function renderInventory(){
+  const cats=[...new Set(INVENTORY.map(x=>x.cat))];
+  const totCap=INVENTORY.reduce((a,x)=>a+x.cap,0), totSold=INVENTORY.reduce((a,x)=>a+Math.min(x.cap,invSold(x.name)),0);
+  const pct=Math.round(totSold/totCap*100);
+  let html=`<div class="inv-head"><h3>Sponsorship inventory</h3>
+     <div class="inv-kpis">
+       <span class="inv-kpi">Committed<b>${totSold}/${totCap} <small>slots · ${pct}%</small></b></span>
+       <span class="inv-kpi">Unsold value<b class="accent">$${(unsoldValue()/1000).toFixed(0)}K <small>est.</small></b></span>
+     </div></div>`;
+  cats.forEach(cat=>{
+    html+=`<div class="inv-cat">${esc(cat)}</div><div class="inv-grid">`;
+    INVENTORY.filter(x=>x.cat===cat).forEach(x=>{
+      const sold=Math.min(x.cap,invSold(x.name)), avail=x.cap-sold, p=Math.round(sold/x.cap*100);
+      html+=`<div class="inv-row" data-inv="${esc(x.name)}">
+        <div class="ir-top"><span class="ir-name">${esc(x.name)}</span><span class="ir-avail${avail===0?" out":""}">${avail} of ${x.cap} open</span></div>
+        <div class="ir-bar"><span style="width:${p}%"></span></div>
+        <div class="ir-foot"><span class="ir-price">$${x.price.toLocaleString()} <small>ea. · est.</small></span>
+          <span class="ir-ctl"><button class="ir-btn" data-inv-dec aria-label="one fewer sold">–</button><span class="ir-sold">${sold} sold</span><button class="ir-btn" data-inv-inc aria-label="one more sold">+</button></span></div>
+      </div>`;
+    });
+    html+=`</div>`;
+  });
+  html+=`<p class="inv-note">Assets mirror the Finley Package Builder. Capacities and rates are editable placeholders — send me your real slot counts and rate card and I'll set them exactly. Sold counts save in this browser; tap +/− as you close deals.</p>`;
+  $("#invSec").innerHTML=html;
+}
+$("#invSec").addEventListener("click",e=>{
+  const row=e.target.closest("[data-inv]"); if(!row)return;
+  const name=row.dataset.inv, item=INVENTORY.find(x=>x.name===name); if(!item)return;
+  if(e.target.closest("[data-inv-inc]"))INVSOLD[name]=Math.min(item.cap,invSold(name)+1);
+  else if(e.target.closest("[data-inv-dec]"))INVSOLD[name]=Math.max(0,invSold(name)-1);
+  else return;
+  saveInv(); renderInventory(); renderCmd();
 });
 
 render();
 renderFocus();
 renderTerritory();
 renderDeals();
+renderInventory();
 renderCmd();
 renderLaunchQuick();
 renderCommQuick();
