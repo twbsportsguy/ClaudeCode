@@ -169,6 +169,31 @@
   .resultcount{width:100%;font-size:.8rem;color:var(--ink-faint);margin-top:-2px;
     font-variant-numeric:tabular-nums;}
 
+  /* ---------- Tab bar ---------- */
+  .tabbar{display:flex;gap:2px;margin-top:22px;border-bottom:2px solid var(--line);flex-wrap:wrap;}
+  .tab{border:0;background:none;color:var(--ink-soft);font-family:var(--sans);font-size:.95rem;font-weight:700;
+    padding:11px 20px;cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-2px;border-radius:8px 8px 0 0;
+    letter-spacing:.01em;}
+  .tab:hover{color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 6%,transparent);}
+  .tab.on{color:var(--accent-ink);border-bottom-color:var(--accent);}
+  .tabpanel{display:none;}
+  .tabpanel.on{display:block;}
+
+  /* ---------- Tools tab: objection coach ---------- */
+  .coach{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:16px 18px;}
+  .coach-input{width:100%;min-height:72px;resize:vertical;border:1.5px solid var(--line);border-radius:10px;background:var(--card-2);
+    color:var(--ink);font-family:var(--sans);font-size:.92rem;line-height:1.5;padding:10px 13px;margin-top:11px;outline:none;}
+  .coach-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent);}
+  .gen-note{margin-top:14px;font-size:.82rem;color:var(--ink-soft);line-height:1.55;}
+  .gen-note b{color:var(--ink);font-weight:600;}
+
+  /* ---------- Per-card generate actions ---------- */
+  .co-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:13px;border-top:1px solid var(--line-soft);}
+  .co-actions .ca-lbl{font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-right:2px;}
+  .co-act{border:1px solid var(--line);background:var(--card-2);color:var(--accent-ink);border-radius:999px;
+    padding:7px 13px;font-size:.79rem;font-weight:700;cursor:pointer;font-family:var(--sans);line-height:1;}
+  .co-act:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--card-2));}
+
   /* ---------- Revenue Command Center ---------- */
   .cmdcenter{margin-top:16px;}
   .cmd-title{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;margin-bottom:9px;}
@@ -452,6 +477,14 @@
     <div class="lz-out" id="prospectOut" hidden></div>
   </section>
 
+  <nav class="tabbar" role="tablist" aria-label="Sections">
+    <button class="tab on" data-tab="feed" role="tab" aria-selected="true">Feed</button>
+    <button class="tab" data-tab="deals" role="tab" aria-selected="false">Deals</button>
+    <button class="tab" data-tab="territory" role="tab" aria-selected="false">Territory</button>
+    <button class="tab" data-tab="tools" role="tab" aria-selected="false">Tools</button>
+  </nav>
+
+  <div class="tabpanel on" data-panel="feed">
   <section class="cmdcenter" aria-label="Revenue Command Center" id="cmdSec"></section>
 
   <section class="scorecard" aria-label="Pipeline summary">
@@ -466,27 +499,6 @@
   </section>
 
   <section class="focus" aria-label="Needs attention" id="focusSec"></section>
-  <section class="territory" aria-label="Territory" id="terrSec"></section>
-
-  <section class="deals" aria-label="Deals in progress" id="dealsSec"></section>
-
-  <section class="commission" aria-label="Commission calculator" id="commSec">
-    <div class="comm-head">
-      <h3>Commission calculator</h3>
-      <p class="comm-sub">14% total commission — 7% straight to you, 7% shared across a 3-person pool</p>
-    </div>
-    <div class="comm-body">
-      <div class="comm-row">
-        <label class="comm-input">
-          <span class="dollar">$</span>
-          <input id="dealAmt" type="text" inputmode="decimal" value="40,000" aria-label="Deal amount">
-        </label>
-        <div class="comm-quick" id="commQuick"></div>
-      </div>
-      <div class="comm-grid" id="commGrid"></div>
-      <p class="comm-note">Take-home assumes you're one of the three sharing the pool (7% + a ⅓ pool share = 9.33%). If you're not in the pool, your cut is the 7% direct. Placeholder rates — tell me the real split and I'll update it.</p>
-    </div>
-  </section>
 
   <section class="controls" aria-label="Filters">
     <div class="search">
@@ -525,6 +537,47 @@
 
   <div id="focusBanner"></div>
   <main class="board" id="board"></main>
+  </div><!-- /feed -->
+
+  <div class="tabpanel" data-panel="deals">
+    <section class="deals" aria-label="Deals in progress" id="dealsSec"></section>
+  </div>
+
+  <div class="tabpanel" data-panel="territory">
+    <section class="territory" aria-label="Territory" id="terrSec"></section>
+  </div>
+
+  <div class="tabpanel" data-panel="tools">
+    <section class="commission" aria-label="Commission calculator" id="commSec">
+      <div class="comm-head">
+        <h3>Commission calculator</h3>
+        <p class="comm-sub">14% total commission — 7% straight to you, 7% shared across a 3-person pool</p>
+      </div>
+      <div class="comm-body">
+        <div class="comm-row">
+          <label class="comm-input">
+            <span class="dollar">$</span>
+            <input id="dealAmt" type="text" inputmode="decimal" value="40,000" aria-label="Deal amount">
+          </label>
+          <div class="comm-quick" id="commQuick"></div>
+        </div>
+        <div class="comm-grid" id="commGrid"></div>
+        <p class="comm-note">Take-home assumes you're one of the three sharing the pool (7% + a ⅓ pool share = 9.33%). If you're not in the pool, your cut is the 7% direct. Placeholder rates — tell me the real split and I'll update it.</p>
+      </div>
+    </section>
+
+    <section class="coach" id="coachSec">
+      <div class="comm-head">
+        <h3>Objection coach</h3>
+        <p class="comm-sub">Paste what a prospect said — get a response, a revised package, a comparable partner, a concession, and a follow-up email.</p>
+      </div>
+      <textarea id="objInput" class="coach-input" placeholder="e.g. Price is too high · Wanted football tickets · Already sponsor a charity tournament · Not the right time"></textarea>
+      <button class="lz-go" id="objGo" style="margin-top:10px">Get coaching →</button>
+      <div class="lz-out" id="objOut" hidden></div>
+    </section>
+
+    <p class="gen-note">Meeting briefs and proposals generate from each company card in the <b>Feed</b> — the <b>Meeting brief</b> and <b>Draft proposal</b> buttons hand the request to Claude, who returns the finished one-pager.</p>
+  </div>
 
   <footer>
     <span>A/B/C ranking blends marketing spend, company size &amp; partnership fit — full rubric in <span style="font-family:var(--mono)">scoring.md</span>.</span>
@@ -775,12 +828,12 @@ const DATA = [
 
 const RANKV={A:3,B:2,C:1};
 const $=s=>document.querySelector(s);
-const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,open:new Set()};
+const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,tab:"feed",open:new Set()};
 /* Restore the view saved before an auto-refresh so a reload is seamless */
 const VIEW_KEY="finley.view";
 (function hydrateView(){try{
   const v=JSON.parse(sessionStorage.getItem(VIEW_KEY)||"null"); if(!v)return;
-  ["q","rank","ind","status","sort","focus","dealStage"].forEach(k=>{if(k in v&&v[k]!=null)state[k]=v[k];});
+  ["q","rank","ind","status","sort","focus","dealStage","tab"].forEach(k=>{if(k in v&&v[k]!=null)state[k]=v[k];});
   if(Array.isArray(v.open))state.open=new Set(v.open);
 }catch(e){}})();
 const FOCUS={
@@ -988,6 +1041,12 @@ function card(c){
       ${nContacts
         ? `<div class="contacts">${c.contacts.map(contactRow).join("")}</div>`
         : `<div class="research"><b>Next step —</b> ${esc(c.research)} ${c.researchPhone?`<a href="tel:${c.researchPhone.replace(/[^0-9]/g,"")}">${esc(c.researchPhone)}</a>`:""}</div>`}
+      <div class="co-actions">
+        <span class="ca-lbl">Generate with Claude</span>
+        <button class="co-act" data-act="brief">📋 Meeting brief</button>
+        <button class="co-act" data-act="proposal">📄 Draft proposal</button>
+        <button class="co-act" data-act="similar">🔎 Find similar in NC</button>
+      </div>
     </div>`;
   return `<article class="co" data-open="${open}" data-name="${esc(c.name)}">
     <button class="co-head" aria-expanded="${open}">
@@ -1164,7 +1223,7 @@ function setDealStage(key){
   state.dealStage=(state.dealStage===key)?null:key;
   state.focus=null;
   renderDeals();renderFocus();render();
-  if(state.dealStage)$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});
+  if(state.dealStage){switchTab("feed");$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});}
 }
 $("#dealsSec").addEventListener("click",e=>{
   const b=e.target.closest("[data-stage-filter]");
@@ -1196,7 +1255,7 @@ function launchProspect(filterQ,cmdPhrase){
   const cmd=cmdText(phrase);
   state.q=q; state.focus=null; state.dealStage=null;
   $("#prospectInput").value=q; $("#search").value=q;
-  renderFocus(); renderDeals(); render();
+  renderFocus(); renderDeals(); render(); switchTab("feed");
   const n=DATA.filter(matches).length;
   const out=$("#prospectOut"); out.hidden=false;
   if(q && n>0){
@@ -1219,13 +1278,48 @@ $("#prospectGo").addEventListener("click",()=>launchProspect($("#prospectInput")
 $("#prospectInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();launchProspect($("#prospectInput").value);}});
 $("#prospectInput").addEventListener("input",e=>{
   state.q=e.target.value.trim(); $("#search").value=e.target.value;
-  $("#prospectOut").hidden=true; render();
+  $("#prospectOut").hidden=true; render(); switchTab("feed");
 });
 $("#prospectQuick").addEventListener("click",e=>{
   const b=e.target.closest("[data-lq]");
   if(!b)return;
   const x=LAUNCH_QUICK[+b.dataset.lq];
   launchProspect(x.q,x.cmd);
+});
+
+/* ---- Tabs ---- */
+function switchTab(name){
+  state.tab=name;
+  document.querySelectorAll(".tab").forEach(t=>{const on=t.dataset.tab===name;t.classList.toggle("on",on);t.setAttribute("aria-selected",on);});
+  document.querySelectorAll(".tabpanel").forEach(p=>p.classList.toggle("on",p.dataset.panel===name));
+  if(typeof saveView==="function")saveView();
+}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>switchTab(t.dataset.tab)));
+
+/* ---- Per-card "generate with Claude" actions ---- */
+$("#board").addEventListener("click",e=>{
+  const a=e.target.closest(".co-act");
+  if(!a)return;
+  const name=a.closest(".co").dataset.name;
+  const c=DATA.find(x=>x.name===name); if(!c)return;
+  const pkg=recommendPackage(c);
+  let cmd="";
+  if(a.dataset.act==="brief")   cmd=`Prep a meeting brief for ${name} (${c.ind}, ${c.city} NC): overview, revenue & marketing budget, key execs, recent news, recommended package, likely objections, questions to ask, and a closing strategy.`;
+  if(a.dataset.act==="proposal")cmd=`Draft a ${pkg.name} (${pkg.price}) partnership proposal for ${name} — inclusions, the business case, and a follow-up email.`;
+  if(a.dataset.act==="similar") cmd=`Prospect North Carolina ${c.ind} companies like ${name}.`;
+  copyText(cmd);
+  toast("Copied — paste to Claude to generate");
+});
+
+/* ---- Objection coach ---- */
+$("#objGo").addEventListener("click",()=>{
+  const t=$("#objInput").value.trim();
+  if(!t){toast("Type what the prospect said first");return;}
+  const cmd=`Objection coach — a prospect said: “${t}”. Give me a response, a revised package, a comparable Finley partner, a suggested concession, and a follow-up email.`;
+  copyText(cmd);
+  const out=$("#objOut"); out.hidden=false;
+  out.innerHTML=`<p class="lz-olbl">✓ Coaching request copied — paste to Claude</p><code class="lz-cmd">${esc(cmd)}</code>`;
+  toast("Copied — paste to Claude");
 });
 
 /* ---- Revenue Command Center — answers the morning questions ---- */
@@ -1296,7 +1390,7 @@ $("#board").addEventListener("click",e=>{
 function setFocus(key){
   state.focus=(state.focus===key)?null:key;
   state.dealStage=null;
-  renderFocus();renderDeals();renderCmd();render();
+  renderFocus();renderDeals();renderCmd();render();switchTab("feed");
   if(state.focus)$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});
 }
 $("#focusSec").addEventListener("click",e=>{
@@ -1336,7 +1430,7 @@ $("#themeLbl").textContent=matchMedia("(prefers-color-scheme:dark)").matches?"Da
 /* ---- Live auto-refresh (reloads the page so republished data appears) ---- */
 function saveView(){try{sessionStorage.setItem(VIEW_KEY,JSON.stringify({
   q:state.q,rank:state.rank,ind:state.ind,status:state.status,sort:state.sort,
-  focus:state.focus,dealStage:state.dealStage,open:[...state.open],
+  focus:state.focus,dealStage:state.dealStage,tab:state.tab,open:[...state.open],
   theme:root.getAttribute("data-theme")||null,y:window.scrollY
 }));}catch(e){}}
 /* Re-sync the controls/inputs/scroll/theme to the hydrated state after a reload */
@@ -1347,6 +1441,7 @@ function saveView(){try{sessionStorage.setItem(VIEW_KEY,JSON.stringify({
   setPressed("[data-ind]",document.querySelector('[data-ind="'+state.ind+'"]'));
   setPressed("[data-status]",document.querySelector('[data-status="'+state.status+'"]'));
   if(v&&v.theme)applyTheme(v.theme);
+  if(state.tab&&state.tab!=="feed")switchTab(state.tab);
   if(v&&typeof v.y==="number")requestAnimationFrame(()=>window.scrollTo(0,v.y));
 }catch(e){}})();
 
