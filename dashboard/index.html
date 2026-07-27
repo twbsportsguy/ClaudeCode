@@ -220,6 +220,25 @@
     padding:7px 13px;font-size:.79rem;font-weight:700;cursor:pointer;font-family:var(--sans);line-height:1;}
   .co-act:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--card-2));}
 
+  /* ---------- Revenue goal (north star) ---------- */
+  .goals{margin-top:20px;background:linear-gradient(120deg,color-mix(in srgb,var(--navy) 5%,var(--card)),var(--card));
+    border:1px solid var(--accent);border-radius:14px;box-shadow:var(--shadow);padding:15px 18px;}
+  .goal-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .goal-lbl{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;}
+  .goal-edit{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:1.05rem;font-weight:600;color:var(--ink);
+    border:1.5px solid var(--line);border-radius:9px;padding:5px 11px;background:var(--card-2);}
+  .goal-edit input{border:0;background:none;color:var(--ink);font-family:var(--mono);font-size:1.05rem;font-weight:700;width:96px;outline:none;}
+  .goal-edit:focus-within{border-color:var(--accent);}
+  .goal-bar{height:12px;border-radius:7px;background:var(--line-soft);margin:13px 0 12px;overflow:hidden;position:relative;}
+  .goal-bar span{position:absolute;left:0;top:0;height:100%;border-radius:7px;}
+  .goal-bar .gb-weight{background:color-mix(in srgb,var(--accent) 35%,var(--card-2));}
+  .goal-bar .gb-book{background:var(--a);}
+  .goal-stats{display:flex;flex-wrap:wrap;gap:10px 26px;}
+  .goal-stats .gs{font-size:.75rem;color:var(--ink-faint);display:flex;flex-direction:column;}
+  .goal-stats .gs b{font-family:var(--mono);font-size:1.35rem;color:var(--ink);font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums;}
+  .goal-stats .gs.accent b{color:var(--accent-ink);}
+  .goal-note{margin:11px 0 0;font-size:.72rem;color:var(--ink-faint);}
+
   /* ---------- Revenue Command Center ---------- */
   .cmdcenter{margin-top:16px;}
   .cmd-title{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;margin-bottom:9px;}
@@ -311,9 +330,29 @@
   .why b{color:var(--ink);font-weight:600;}
 
   .contacts{border-top:1px solid var(--line-soft);}
-  .crow{display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center;
-    padding:11px 2px;border-bottom:1px solid var(--line-soft);}
-  .crow:last-child{border-bottom:0;}
+  .contact-block{border-bottom:1px solid var(--line-soft);}
+  .contact-block:last-child{border-bottom:0;}
+  .crow{display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center;padding:11px 2px;}
+  /* ---- Relationship CRM ---- */
+  .crm-toggle{border:1px solid var(--line);background:var(--card-2);color:var(--b);border-radius:7px;
+    padding:5px 9px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:var(--sans);letter-spacing:.04em;white-space:nowrap;}
+  .crm-toggle:hover{border-color:var(--accent);} .crm-toggle.on{border-color:var(--accent);color:var(--accent-ink);}
+  .crm{background:var(--card-2);border:1px solid var(--line-soft);border-radius:10px;padding:12px 14px;margin:0 2px 12px;
+    display:flex;flex-direction:column;gap:10px;}
+  .crm-row{display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:start;}
+  .crm-k{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;padding-top:4px;}
+  .crm-k small{text-transform:none;letter-spacing:0;font-weight:500;}
+  .stars{display:inline-flex;gap:2px;}
+  .star{border:0;background:none;color:var(--line);font-size:1.25rem;line-height:1;cursor:pointer;padding:0 1px;}
+  .star.on{color:#E8B23A;} .star:hover{color:#E8B23A;}
+  .tps{display:flex;flex-wrap:wrap;gap:6px;}
+  .tp{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);border-radius:999px;
+    padding:4px 10px;font-size:.74rem;font-weight:600;cursor:pointer;font-family:var(--sans);line-height:1;}
+  .tp:hover{border-color:var(--accent);} .tp.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .crm-notes,.crm-next{width:100%;border:1.5px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);
+    font-family:var(--sans);font-size:.85rem;padding:8px 11px;outline:none;resize:vertical;}
+  .crm-notes:focus,.crm-next:focus{border-color:var(--accent);}
+  @media (max-width:620px){ .crm-row{grid-template-columns:1fr;gap:5px;} }
   .cwho{min-width:0;}
   .cname{font-weight:600;font-size:.92rem;}
   .ctitle{font-size:.76rem;color:var(--ink-faint);margin-top:1px;}
@@ -518,6 +557,7 @@
   </nav>
 
   <div class="tabpanel on" data-panel="today">
+  <section class="goals" aria-label="Revenue goal" id="goalSec"></section>
   <section class="cmdcenter" aria-label="Revenue Command Center" id="cmdSec"></section>
   <section class="focus" aria-label="Needs attention" id="focusSec"></section>
   </div><!-- /today -->
@@ -864,7 +904,7 @@ const DATA = [
 
 const RANKV={A:3,B:2,C:1};
 const $=s=>document.querySelector(s);
-const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,tab:"today",open:new Set()};
+const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,tab:"today",open:new Set(),crmOpen:new Set()};
 /* Restore the view saved before an auto-refresh so a reload is seamless */
 const VIEW_KEY="finley.view";
 (function hydrateView(){try{
@@ -897,6 +937,12 @@ const TAKE_RATE=COMM_RATE();
 function COMM_RATE(){return 0.07+0.07/3;} /* 9.33% take-home */
 function dealValue(c){return recommendPackage(c).priceNum;}
 function dealComm(c){return dealValue(c)*TAKE_RATE;}
+/* ---- Relationship CRM (per contact — you log it; it saves in this browser) ---- */
+const TOUCHPOINTS=["Emailed","Called","Met in person","Lunch at Finley","Wine & Nine","Watch party","Football game","Member-Guest","Proposal sent"];
+const CRM=(function(){try{return JSON.parse(localStorage.getItem("finley.crm")||"{}");}catch(e){return {};}})();
+function saveCRM(){try{localStorage.setItem("finley.crm",JSON.stringify(CRM));}catch(e){}}
+function crmKey(x,co){return x.e?("e:"+x.e):("n:"+co+"|"+x.n);}
+function crmGet(k){return CRM[k]||(CRM[k]={str:0,touches:[],notes:"",next:""});}
 
 /* ---- Summary ---- */
 (function summary(){
@@ -1041,16 +1087,28 @@ function sortFn(a,b){
   if(state.sort==="name")return a.name.localeCompare(b.name);
   return (RANKV[b.rank]-RANKV[a.rank])||(b.score-a.score)||b.budNum-a.budNum;
 }
-function contactRow(x){
+function contactRow(x,co){
   const draft=x.d?`<span class="pill ready">Draft ready</span>`
     :(x.e?`<span class="pill none">No draft yet</span>`:`<span class="pill pending">Email pending</span>`);
   const email=x.e
     ? `<button class="emailbtn" data-email="${esc(x.e)}" title="Click to copy"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>${esc(x.e)}</span></button>`
     : `<span class="phone" style="color:var(--ink-faint)">— email to enrich —</span>`;
   const phone=x.p?`<a class="phone" href="tel:${x.p.replace(/[^0-9]/g,"")}">${esc(x.p)}</a>`:"";
-  return `<div class="crow">
-    <div class="cwho"><div class="cname">${esc(x.n)}</div><div class="ctitle">${esc(x.t)}</div></div>
-    <div class="cactions">${email}${phone}${draft}</div></div>`;
+  const key=crmKey(x,co||""), r=CRM[key]||{str:0,touches:[],notes:"",next:""}, open=state.crmOpen.has(key);
+  const starText=r.str?("★".repeat(r.str)):"☆";
+  const stars=[1,2,3,4,5].map(i=>`<button class="star${i<=r.str?" on":""}" data-star="${i}" aria-label="${i} of 5">★</button>`).join("");
+  const chips=TOUCHPOINTS.map(t=>`<button class="tp${r.touches.includes(t)?" on":""}" data-tp="${esc(t)}">${esc(t)}</button>`).join("");
+  const panel=open?`<div class="crm" data-crmkey="${esc(key)}">
+      <div class="crm-row"><span class="crm-k">Relationship</span><span class="stars">${stars}</span></div>
+      <div class="crm-row"><span class="crm-k">Touchpoints <small>(your timeline)</small></span><div class="tps">${chips}</div></div>
+      <div class="crm-row"><span class="crm-k">Notes</span><textarea class="crm-notes" rows="2" placeholder="UNC MBA · loves fly fishing · daughter plays golf · Braves fan…">${esc(r.notes)}</textarea></div>
+      <div class="crm-row"><span class="crm-k">Next touch</span><input class="crm-next" value="${esc(r.next)}" placeholder="Invite to Member-Guest"></div>
+    </div>`:"";
+  return `<div class="contact-block">
+    <div class="crow">
+      <div class="cwho"><div class="cname">${esc(x.n)}</div><div class="ctitle">${esc(x.t)}</div></div>
+      <div class="cactions">${email}${phone}${draft}<button class="crm-toggle${open?" on":""}" data-crmtoggle="${esc(key)}" title="Relationship">${starText} ${open?"▾":"▸"}</button></div>
+    </div>${panel}</div>`;
 }
 function card(c){
   const rk=c.rank.toLowerCase();
@@ -1095,7 +1153,7 @@ function card(c){
       <div class="signal"><p class="sl">Ad-spend signal</p><p>${esc(c.signal)}</p></div>
       <p class="why"><b>Why this rank:</b> ${esc(c.why)}</p>
       ${nContacts
-        ? `<div class="contacts">${c.contacts.map(contactRow).join("")}</div>`
+        ? `<div class="contacts">${c.contacts.map(x=>contactRow(x,c.name)).join("")}</div>`
         : `<div class="research"><b>Next step —</b> ${esc(c.research)} ${c.researchPhone?`<a href="tel:${c.researchPhone.replace(/[^0-9]/g,"")}">${esc(c.researchPhone)}</a>`:""}</div>`}
       <div class="co-actions">
         <span class="ca-lbl">Generate with Claude</span>
@@ -1469,11 +1527,41 @@ $("#invSec").addEventListener("click",e=>{
   saveInv(); renderInventory(); renderCmd();
 });
 
+/* ---- Revenue goal (north star) ---- */
+const GOALS=(function(){try{return JSON.parse(localStorage.getItem("finley.goals")||"{}");}catch(e){return{};}})();
+function saveGoals(){try{localStorage.setItem("finley.goals",JSON.stringify(GOALS));}catch(e){}}
+function renderGoal(){
+  const goal=GOALS.annual||250000;
+  const booked=DATA.filter(c=>stageOf(c)==="signed").reduce((a,c)=>a+dealValue(c),0);
+  const weighted=DATA.filter(c=>stageOf(c)!=="prospect").reduce((a,c)=>a+dealValue(c)*STAGE_MAP[stageOf(c)].prob,0);
+  const gap=Math.max(0,goal-booked);
+  const ml=Math.max(1,12-new Date().getMonth());
+  const need=gap/ml;
+  const bp=Math.min(100,booked/goal*100), wp=Math.min(100,(booked+weighted)/goal*100);
+  $("#goalSec").innerHTML=`
+    <div class="goal-top">
+      <span class="goal-lbl">◆ ${new Date().getFullYear()} corporate-partnership goal</span>
+      <label class="goal-edit">$ <input id="goalInput" type="text" inputmode="numeric" value="${goal.toLocaleString()}" aria-label="Annual revenue goal"></label>
+    </div>
+    <div class="goal-bar"><span class="gb-weight" style="width:${wp}%"></span><span class="gb-book" style="width:${bp}%"></span></div>
+    <div class="goal-stats">
+      <span class="gs"><b>$${(booked/1000).toFixed(0)}K</b>Booked (signed)</span>
+      <span class="gs"><b>$${(weighted/1000).toFixed(0)}K</b>Weighted pipeline</span>
+      <span class="gs"><b>$${(gap/1000).toFixed(0)}K</b>Gap to goal</span>
+      <span class="gs accent"><b>$${(need/1000).toFixed(1)}K</b>Needed / month · ${ml} left</span>
+    </div>
+    <p class="goal-note">Set your real number above. Booked counts Signed deals; weighted multiplies every active deal by its stage odds.</p>`;
+}
+$("#goalSec").addEventListener("change",e=>{
+  if(e.target.id==="goalInput"){GOALS.annual=parseInt(e.target.value.replace(/[^0-9]/g,""))||0;saveGoals();renderGoal();}
+});
+
 render();
 renderFocus();
 renderTerritory();
 renderDeals();
 renderInventory();
+renderGoal();
 renderCmd();
 renderLaunchQuick();
 renderCommQuick();
@@ -1492,6 +1580,12 @@ $("#board").addEventListener("click",e=>{
     em.classList.add("copied");setTimeout(()=>em.classList.remove("copied"),1200);
     toast("Copied "+addr);return;
   }
+  const tog=e.target.closest("[data-crmtoggle]");
+  if(tog){const k=tog.dataset.crmtoggle; if(state.crmOpen.has(k))state.crmOpen.delete(k);else state.crmOpen.add(k); render(); return;}
+  const star=e.target.closest("[data-star]");
+  if(star){const k=star.closest(".crm").dataset.crmkey; const v=+star.dataset.star; const r=crmGet(k); r.str=(r.str===v?0:v); saveCRM(); render(); return;}
+  const tp=e.target.closest("[data-tp]");
+  if(tp){const k=tp.closest(".crm").dataset.crmkey; const t=tp.dataset.tp; const r=crmGet(k); const i=r.touches.indexOf(t); if(i>=0)r.touches.splice(i,1);else r.touches.push(t); saveCRM(); render(); return;}
   const sp=e.target.closest(".sp-btn");
   if(sp){
     const name=sp.closest(".stagepick").dataset.co;
@@ -1499,7 +1593,7 @@ $("#board").addEventListener("click",e=>{
     if(st==="prospect"||DEALS[name]===st)delete DEALS[name]; else DEALS[name]=st;
     saveDeals();
     const lbl=STAGE_MAP[stageOf({name})].lbl;
-    render();renderDeals();
+    render();renderDeals();renderGoal();renderCmd();
     toast(name+" → "+lbl);return;
   }
   const head=e.target.closest(".co-head");
@@ -1509,6 +1603,15 @@ $("#board").addEventListener("click",e=>{
     const open=state.open.has(name);
     co.dataset.open=open;head.setAttribute("aria-expanded",open);
   }
+});
+/* CRM free-text (notes / next touch) — save on input without re-render to keep focus */
+$("#board").addEventListener("input",e=>{
+  const box=e.target.closest(".crm"); if(!box)return;
+  const k=box.dataset.crmkey;
+  if(e.target.classList.contains("crm-notes")) crmGet(k).notes=e.target.value;
+  else if(e.target.classList.contains("crm-next")) crmGet(k).next=e.target.value;
+  else return;
+  saveCRM();
 });
 function setFocus(key){
   state.focus=(state.focus===key)?null:key;
