@@ -179,6 +179,30 @@
   .tabpanel{display:none;}
   .tabpanel.on{display:block;}
 
+  /* ---------- News ---------- */
+  .newsroom{margin-top:14px;}
+  .news-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin-bottom:12px;}
+  .newsroom h3{margin:0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .news-sub{font-size:.78rem;color:var(--ink-soft);}
+  .news-list{display:flex;flex-direction:column;gap:9px;}
+  .news-item{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 15px;box-shadow:var(--shadow);}
+  .co-news{margin-bottom:14px;}
+  .co-news .sl{font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--accent-ink);margin:0 0 7px;}
+  .co-news .news-item{background:var(--card-2);box-shadow:none;padding:9px 12px;margin-bottom:7px;}
+  .co-news .news-item:last-child{margin-bottom:0;}
+  .ni-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:4px;}
+  .ni-date{font-size:.72rem;color:var(--ink-faint);font-variant-numeric:tabular-nums;font-family:var(--mono);}
+  .ni-co{font-size:.74rem;font-weight:700;color:var(--ink);}
+  .ni-tag{font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);
+    background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:1px 8px;}
+  .ni-tag.hot{color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 12%,var(--card));border-color:color-mix(in srgb,var(--accent) 30%,var(--card));}
+  .ni-tag.risk{color:#D64C3F;background:color-mix(in srgb,#D64C3F 12%,var(--card));border-color:color-mix(in srgb,#D64C3F 30%,var(--card));}
+  .ni-title{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.4;}
+  .ni-title a{color:var(--ink);text-decoration:none;}
+  .ni-title a:hover{color:var(--accent-ink);text-decoration:underline;}
+  .ni-src{font-size:.72rem;color:var(--ink-faint);margin-top:3px;font-family:var(--mono);}
+  .news-note{margin:14px 0 0;font-size:.76rem;color:var(--ink-faint);line-height:1.55;}
+
   /* ---------- Inventory tab ---------- */
   .inventory{margin-top:14px;}
   .inv-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px 18px;margin-bottom:6px;}
@@ -551,6 +575,7 @@
   <nav class="tabbar" role="tablist" aria-label="Sections">
     <button class="tab on" data-tab="today" role="tab" aria-selected="true">Today</button>
     <button class="tab" data-tab="pipeline" role="tab" aria-selected="false">Pipeline</button>
+    <button class="tab" data-tab="news" role="tab" aria-selected="false">News</button>
     <button class="tab" data-tab="territory" role="tab" aria-selected="false">Territory</button>
     <button class="tab" data-tab="inventory" role="tab" aria-selected="false">Inventory</button>
     <button class="tab" data-tab="tools" role="tab" aria-selected="false">Tools</button>
@@ -614,6 +639,10 @@
   <div id="focusBanner"></div>
   <main class="board" id="board"></main>
   </div><!-- /pipeline -->
+
+  <div class="tabpanel" data-panel="news">
+    <section class="newsroom" aria-label="Pipeline news" id="newsSec"></section>
+  </div>
 
   <div class="tabpanel" data-panel="territory">
     <section class="territory" aria-label="Territory" id="terrSec"></section>
@@ -911,7 +940,7 @@ const VIEW_KEY="finley.view";
   const v=JSON.parse(sessionStorage.getItem(VIEW_KEY)||"null"); if(!v)return;
   ["q","rank","ind","status","sort","focus","dealStage","tab"].forEach(k=>{if(k in v&&v[k]!=null)state[k]=v[k];});
   if(state.tab==="feed")state.tab="today"; else if(state.tab==="deals")state.tab="pipeline";
-  if(!["today","pipeline","territory","inventory","tools"].includes(state.tab))state.tab="today";
+  if(!["today","pipeline","news","territory","inventory","tools"].includes(state.tab))state.tab="today";
   if(Array.isArray(v.open))state.open=new Set(v.open);
 }catch(e){}})();
 const FOCUS={
@@ -1023,6 +1052,43 @@ const SPONSORS={
   "USA Baseball":{invests:"They're a sponsorship property themselves — national governing body with a Cary training complex hosting events & hospitality.",angle:"not a competitor for their dollars — pitch a cross-promotion / co-hosted hospitality partnership, not a straight sponsorship sale."}
 };
 function sponsorIntel(c){return SPONSORS[c.name]||null;}
+/* ---- Pipeline news (real ZoomInfo news/scoops — refreshed each /prospect run) ---- */
+const NEWS={
+  "Anderson Automotive Group":[
+    {d:"2024-08-13",t:"Presidio advises Anderson Automotive on the sale of SC Chevrolet & Nissan dealerships",s:"businesswire.com",u:"https://www.businesswire.com/news/home/20240813035573/en/",tag:"M&A"},
+    {d:"2023-08-23",t:"Anderson Automotive acquires seven South Carolina dealerships (MCE Auto Group)",s:"businesswire.com",u:"https://www.businesswire.com/news/home/20230823558820/en/",tag:"M&A"},
+    {d:"2023-02-08",t:"Anderson Automotive expands in South Carolina — adds Honda, Acura, Infiniti, Mazda",s:"autonews.com",u:"https://www.autonews.com/dealers/anderson-automotive-group-expands-south-carolina",tag:"Expansion"}],
+  "Fleet Feet":[
+    {d:"2026-07-18",t:"Fleet Feet is hiring a Community Outreach Director",s:"jobs.fleetfeet.com",u:"https://jobs.fleetfeet.com/jobs/5629",tag:"Hiring"},
+    {d:"2026-07-17",t:"CEO Joey Pointer on 300+ stores, ~$600M, and Fleet Feet's 50th anniversary",s:"unc.edu",u:"https://www.unc.edu/posts/2026/07/17/fleet-feet-ceo-knows-how-to-ring-the-money-bell/",tag:"Milestone"},
+    {d:"2026-02-12",t:"Fleet Feet appoints Olympian Jenny Simpson as its first Chief Running Officer",s:"wwd.com",u:"https://wwd.com/footwear-news/shoe-industry-news/fleet-feet-chief-running-officer-jenny-simpson-1238563811/",tag:"Exec"}],
+  "Implus Footcare":[
+    {d:"2026-05-26",t:"Implus Brands launches a new B2B commerce portal on Shopify",s:"einpresswire.com",u:"https://www.einpresswire.com/article/913025563/",tag:"Product"},
+    {d:"2025-12-01",t:"Balega to showcase new products at The Running Event 2025",s:"prnewswire.com",u:"https://www.prnewswire.com/news-releases/balega-to-showcase-new-products--host-demo-runs-at-the-running-event-2025-302629251.html",tag:"Product"},
+    {d:"2025-04-10",t:"SKLZ and DICK's Sporting Goods announce the Ultimate Fan Experience",s:"prnewswire.com",u:"https://www.prnewswire.com/news-releases/sklz-and-dicks-sporting-goods-announce-the-ultimate-fan-experience-302425680.html",tag:"Partnership"}],
+  "Sports Endeavors":[
+    {d:"2026-07-03",t:"Sports Endeavors is hiring an IT Project Manager (Hillsborough)",s:"dayforcehcm.com",u:"https://jobs.dayforcehcm.com/en-US/sports/SportsEndeavorsCareers/jobs/205",tag:"Hiring"},
+    {d:"2025-05-01",t:"Soccer.com and Borussia Dortmund announce a U.S. fan partnership",s:"prnewswire.com",u:"https://www.prnewswire.com/news-releases/soccercom-and-borussia-dortmund-announce-partnership-to-elevate-us-fan-experience-302443900.html",tag:"Partnership"},
+    {d:"2025-04-18",t:"Sports Endeavors expands to the Midwest with a Soccer Master acquisition",s:"sgbonline.com",u:"https://sgbonline.com/sports-endeavors-extends-reach-to-the-midwest-with-soccer-master-acquisition/",tag:"M&A"}],
+  "Riccobene Associates Family Dentistry":[
+    {d:"2026-07-12",t:"Riccobene at a 6-month high for open Medical & Health roles (hiring surge)",s:"ZoomInfo scoop",u:"",tag:"Hiring"},
+    {d:"2025-09-09",t:"Riccobene expands into Upstate SC via a partnership with Palms Dentistry",s:"prnewswire.com",u:"https://www.prnewswire.com/news-releases/riccobene-associates-family-dentistry-expands-into-upstate-south-carolina-with-partnership-with-palms-dentistry-302550876.html",tag:"Expansion"},
+    {d:"2024-11-04",t:"Comvest Private Equity announces a majority investment in Riccobene",s:"businesswire.com",u:"https://www.businesswire.com/news/home/20241101696782/en/",tag:"Funding"}],
+  "Affordable Dentures & Implants":[
+    {d:"2024-10-30",t:"Affordable Care selects Weave for patient communications & payments",s:"businesswire.com",u:"https://www.businesswire.com/news/home/20241030679207/en/",tag:"Product"},
+    {d:"2024-07-10",t:"Affordable Dentures & Implants announces a summer savings promotion",s:"prnewswire.com",u:"https://www.prnewswire.com/news-releases/affordable-dentures--implants-announces-summer-savings-302193157.html",tag:"Marketing"}],
+  "Big Rock Sports":[
+    {d:"2026-02-05",t:"Bankrupt Big Rock Sports problems were an 'open secret' in the trade",s:"angling-international.com",u:"https://angling-international.com/2026/02/05/bankrupt-big-rock-sports-problems-were-open-secret-in-the-trade/",tag:"Risk"}]
+};
+function newsFor(c){return NEWS[c.name]||[];}
+function fmtDate(d){const m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];const p=d.split("-");return m[+p[1]-1]+" "+(+p[2])+", "+p[0];}
+function newsItem(co,n,showCo){
+  const tagcls=/risk/i.test(n.tag)?"risk":(/funding|exec|hiring|m&a/i.test(n.tag)?"hot":"");
+  const title=n.u?`<a href="${n.u}" target="_blank" rel="noopener">${esc(n.t)} ↗</a>`:`<span>${esc(n.t)}</span>`;
+  return `<div class="news-item">
+     <div class="ni-meta"><span class="ni-date">${fmtDate(n.d)}</span>${showCo?`<span class="ni-co">${esc(co)}</span>`:""}<span class="ni-tag ${tagcls}">${esc(n.tag)}</span></div>
+     <div class="ni-title">${title}</div><div class="ni-src">${esc(n.s)}</div></div>`;
+}
 /* ---- Decision layer: best next step, deal health, event fit, ROI ---- */
 function bestNextStep(c){
   const st=stageOf(c), pkg=recommendPackage(c);
@@ -1143,6 +1209,10 @@ function card(c){
       <span class="ci-lbl">◆ Competitor intel · where they already spend</span>
       <p class="ci-invests">${esc(si.invests)}</p>
       <p class="ci-angle"><b>Position Finley —</b> ${esc(si.angle)}</p></div>`:"";
+  const cnews=newsFor(c);
+  const newsblock=cnews.length?`<div class="co-news">
+      <p class="sl">In the news</p>
+      ${cnews.slice(0,3).map(n=>newsItem(c.name,n,false)).join("")}</div>`:"";
   const body=`<div class="co-body">
       ${stagepick}
       ${oppalert}
@@ -1150,6 +1220,7 @@ function card(c){
       ${nextstep}
       ${playbook}
       ${compintel}
+      ${newsblock}
       <div class="signal"><p class="sl">Ad-spend signal</p><p>${esc(c.signal)}</p></div>
       <p class="why"><b>Why this rank:</b> ${esc(c.why)}</p>
       ${nContacts
@@ -1556,12 +1627,27 @@ $("#goalSec").addEventListener("change",e=>{
   if(e.target.id==="goalInput"){GOALS.annual=parseInt(e.target.value.replace(/[^0-9]/g,""))||0;saveGoals();renderGoal();}
 });
 
+/* ---- Pipeline newsroom ---- */
+function renderNews(){
+  const all=[];
+  DATA.forEach(c=>newsFor(c).forEach(n=>all.push({co:c.name,n})));
+  all.sort((a,b)=>b.n.d.localeCompare(a.n.d));
+  const cos=new Set(all.map(x=>x.co)).size;
+  $("#newsSec").innerHTML=`<div class="news-head">
+      <h3>Pipeline newsroom</h3>
+      <span class="news-sub">${all.length} recent stories across ${cos} companies · as of your last run</span></div>`+
+    (all.length?`<div class="news-list">${all.map(x=>newsItem(x.co,x.n,true)).join("")}</div>`
+      :`<div class="deals-empty">No news pulled yet — it lands here after a /prospect run.</div>`)+
+    `<p class="news-note">Headlines are captured from ZoomInfo on each prospecting run and link out to the source. Ask me to “refresh the news” anytime and I'll pull the latest.</p>`;
+}
+
 render();
 renderFocus();
 renderTerritory();
 renderDeals();
 renderInventory();
 renderGoal();
+renderNews();
 renderCmd();
 renderLaunchQuick();
 renderCommQuick();
