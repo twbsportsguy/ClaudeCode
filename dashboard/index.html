@@ -510,15 +510,20 @@
   </section>
 
   <nav class="tabbar" role="tablist" aria-label="Sections">
-    <button class="tab on" data-tab="feed" role="tab" aria-selected="true">Feed</button>
-    <button class="tab" data-tab="deals" role="tab" aria-selected="false">Deals</button>
+    <button class="tab on" data-tab="today" role="tab" aria-selected="true">Today</button>
+    <button class="tab" data-tab="pipeline" role="tab" aria-selected="false">Pipeline</button>
     <button class="tab" data-tab="territory" role="tab" aria-selected="false">Territory</button>
     <button class="tab" data-tab="inventory" role="tab" aria-selected="false">Inventory</button>
     <button class="tab" data-tab="tools" role="tab" aria-selected="false">Tools</button>
   </nav>
 
-  <div class="tabpanel on" data-panel="feed">
+  <div class="tabpanel on" data-panel="today">
   <section class="cmdcenter" aria-label="Revenue Command Center" id="cmdSec"></section>
+  <section class="focus" aria-label="Needs attention" id="focusSec"></section>
+  </div><!-- /today -->
+
+  <div class="tabpanel" data-panel="pipeline">
+  <section class="deals" aria-label="Deals in progress" id="dealsSec"></section>
 
   <section class="scorecard" aria-label="Pipeline summary">
     <div class="cell"><p class="k">Companies</p><div class="v" id="kCos">0</div><div class="sub" id="kContacts">0 contacts</div></div>
@@ -530,8 +535,6 @@
       <div class="ranklegend" id="ranklegend"></div>
     </div>
   </section>
-
-  <section class="focus" aria-label="Needs attention" id="focusSec"></section>
 
   <section class="controls" aria-label="Filters">
     <div class="search">
@@ -570,11 +573,7 @@
 
   <div id="focusBanner"></div>
   <main class="board" id="board"></main>
-  </div><!-- /feed -->
-
-  <div class="tabpanel" data-panel="deals">
-    <section class="deals" aria-label="Deals in progress" id="dealsSec"></section>
-  </div>
+  </div><!-- /pipeline -->
 
   <div class="tabpanel" data-panel="territory">
     <section class="territory" aria-label="Territory" id="terrSec"></section>
@@ -865,12 +864,14 @@ const DATA = [
 
 const RANKV={A:3,B:2,C:1};
 const $=s=>document.querySelector(s);
-const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,tab:"feed",open:new Set()};
+const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,tab:"today",open:new Set()};
 /* Restore the view saved before an auto-refresh so a reload is seamless */
 const VIEW_KEY="finley.view";
 (function hydrateView(){try{
   const v=JSON.parse(sessionStorage.getItem(VIEW_KEY)||"null"); if(!v)return;
   ["q","rank","ind","status","sort","focus","dealStage","tab"].forEach(k=>{if(k in v&&v[k]!=null)state[k]=v[k];});
+  if(state.tab==="feed")state.tab="today"; else if(state.tab==="deals")state.tab="pipeline";
+  if(!["today","pipeline","territory","inventory","tools"].includes(state.tab))state.tab="today";
   if(Array.isArray(v.open))state.open=new Set(v.open);
 }catch(e){}})();
 const FOCUS={
@@ -1279,7 +1280,7 @@ function setDealStage(key){
   state.dealStage=(state.dealStage===key)?null:key;
   state.focus=null;
   renderDeals();renderFocus();render();
-  if(state.dealStage){switchTab("feed");$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});}
+  if(state.dealStage){switchTab("pipeline");$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});}
 }
 $("#dealsSec").addEventListener("click",e=>{
   const b=e.target.closest("[data-stage-filter]");
@@ -1314,7 +1315,7 @@ function launchProspect(filterQ,cmdPhrase){
   const cmd=cmdText(phrase);
   state.q=q; state.focus=null; state.dealStage=null;
   $("#prospectInput").value=q; $("#search").value=q;
-  renderFocus(); renderDeals(); render(); switchTab("feed");
+  renderFocus(); renderDeals(); render(); switchTab("pipeline");
   const n=DATA.filter(matches).length;
   const out=$("#prospectOut"); out.hidden=false;
   if(q && n>0){
@@ -1337,7 +1338,7 @@ $("#prospectGo").addEventListener("click",()=>launchProspect($("#prospectInput")
 $("#prospectInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();launchProspect($("#prospectInput").value);}});
 $("#prospectInput").addEventListener("input",e=>{
   state.q=e.target.value.trim(); $("#search").value=e.target.value;
-  $("#prospectOut").hidden=true; render(); switchTab("feed");
+  $("#prospectOut").hidden=true; render(); switchTab("pipeline");
 });
 $("#prospectQuick").addEventListener("click",e=>{
   const b=e.target.closest("[data-lq]");
@@ -1512,7 +1513,7 @@ $("#board").addEventListener("click",e=>{
 function setFocus(key){
   state.focus=(state.focus===key)?null:key;
   state.dealStage=null;
-  renderFocus();renderDeals();renderCmd();render();switchTab("feed");
+  renderFocus();renderDeals();renderCmd();render();switchTab("pipeline");
   if(state.focus)$("#focusBanner").scrollIntoView({behavior:"smooth",block:"start"});
 }
 $("#focusSec").addEventListener("click",e=>{
@@ -1563,7 +1564,7 @@ function saveView(){try{sessionStorage.setItem(VIEW_KEY,JSON.stringify({
   setPressed("[data-ind]",document.querySelector('[data-ind="'+state.ind+'"]'));
   setPressed("[data-status]",document.querySelector('[data-status="'+state.status+'"]'));
   if(v&&v.theme)applyTheme(v.theme);
-  if(state.tab&&state.tab!=="feed")switchTab(state.tab);
+  if(state.tab&&state.tab!=="today")switchTab(state.tab);
   if(v&&typeof v.y==="number")requestAnimationFrame(()=>window.scrollTo(0,v.y));
 }catch(e){}})();
 
