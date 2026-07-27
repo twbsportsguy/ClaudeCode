@@ -46,8 +46,6 @@ body {
   height: 120px;
   width: auto;
   display: block;
-  mix-blend-mode: screen;
-  filter: brightness(1.4);
 }
 .hero {
   background: var(--carolina-dark);
@@ -1289,7 +1287,46 @@ body.quote-mode .parse-panel { display: block; }
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-logo" style="height:120px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:#fff;letter-spacing:.02em;">Finley<span style="color:var(--gold-light);font-style:italic;">&nbsp;Golf</span></div>
+      <svg class="hero-logo" viewBox="0 0 720 340" role="img" aria-label="Finley Golf Club">
+        <defs>
+          <path id="finleyArc" d="M 45 235 Q 360 20 675 235" fill="none"/>
+        </defs>
+        <text font-family="'Playfair Display', serif" font-weight="600" font-size="70" letter-spacing="4" fill="#ffffff">
+          <textPath href="#finleyArc" startOffset="50%" text-anchor="middle">FINLEY</textPath>
+        </text>
+        <g stroke="var(--carolina-blue)" stroke-width="2.5" stroke-linecap="round" fill="none">
+          <path d="M215,178 Q290,152 360,160 Q430,152 505,178"/>
+          <path d="M250,171 L235,150"/>
+          <path d="M267,166 L257,142"/>
+          <path d="M284,161 L280,135"/>
+          <path d="M302,159 L302,131"/>
+          <path d="M320,158 L325,131"/>
+          <path d="M338,158 L346,132"/>
+          <path d="M422,158 L414,132"/>
+          <path d="M440,158 L448,131"/>
+          <path d="M458,159 L468,131"/>
+          <path d="M476,161 L489,135"/>
+          <path d="M493,166 L509,142"/>
+          <path d="M470,171 L485,150"/>
+        </g>
+        <path d="M360,143 C395,143 415,178 410,218 C407,243 395,273 375,298 C368,307 352,307 345,298 C325,273 313,243 310,218 C305,178 325,143 360,143 Z" fill="none" stroke="var(--carolina-blue)" stroke-width="2.5"/>
+        <clipPath id="pineconeClip">
+          <path d="M360,143 C395,143 415,178 410,218 C407,243 395,273 375,298 C368,307 352,307 345,298 C325,273 313,243 310,218 C305,178 325,143 360,143 Z"/>
+        </clipPath>
+        <g clip-path="url(#pineconeClip)" stroke="var(--carolina-blue)" stroke-width="1.6" fill="none">
+          <path d="M300,158 Q320,171 340,158 Q360,171 380,158 Q400,171 420,158"/>
+          <path d="M298,178 Q318,191 338,178 Q358,191 378,178 Q398,191 418,178"/>
+          <path d="M300,198 Q320,211 340,198 Q360,211 380,198 Q400,211 420,198"/>
+          <path d="M302,218 Q322,231 342,218 Q362,231 382,218 Q402,231 422,218"/>
+          <path d="M308,238 Q326,250 344,238 Q362,250 380,238 Q398,250 416,238"/>
+          <path d="M315,258 Q332,269 349,258 Q366,269 383,258"/>
+          <path d="M325,276 Q340,286 355,276 Q370,286 385,276"/>
+        </g>
+        <text font-family="'Playfair Display', serif" font-weight="600" font-size="26" letter-spacing="5" fill="rgba(255,255,255,0.92)">
+          <tspan x="252" y="333" text-anchor="middle">GOLF</tspan>
+          <tspan x="468" y="333" text-anchor="middle">CLUB</tspan>
+        </text>
+      </svg>
       <div class="unc-nc-logo" style="margin-top: auto;">
         <span class="unc-badge-text">Official UNC Men&#39;s &amp; Women&#39;s<br>Golf Facility</span>
       </div>
