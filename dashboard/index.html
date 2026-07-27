@@ -178,14 +178,17 @@
   .tab.on{color:var(--accent-ink);border-bottom-color:var(--accent);}
   .tabpanel{display:none;}
   .tabpanel.on{display:block;}
-  .subtabs{display:none;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .subtabs{display:none;flex-wrap:wrap;gap:6px;align-items:center;
+    position:sticky;top:0;z-index:6;background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(6px);padding:10px 0;margin-top:2px;border-bottom:1px solid var(--line-soft);}
   .subtabs.show{display:flex;}
+  .subtabs .jump-lbl{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:800;margin-right:2px;}
   .subtab{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);border-radius:999px;
     padding:6px 14px;font-family:var(--sans);font-size:.82rem;font-weight:700;cursor:pointer;line-height:1;}
   .subtab:hover{border-color:var(--accent);color:var(--accent-ink);}
   .subtab.on{background:var(--navy);border-color:var(--navy);color:#fff;}
-  .subpanel{display:none;}
-  .subpanel.on{display:block;}
+  .subpanel{display:block;scroll-margin-top:64px;}
+  .subpanel + .subpanel{margin-top:8px;}
 
   /* ---------- News ---------- */
   .newsroom{margin-top:14px;}
@@ -1568,32 +1571,47 @@ const SUBS={
   territory:[["state","State"],["region","Region"],["nation","Nation"]],
   tools:[["commission","Commission"],["coach","Objection Coach"]]
 };
+/* Sub-tabs are a JUMP-TO nav (like a news site's section bar) — every section
+   stays visible on the page; clicking a chip scrolls to it, and a scrollspy
+   keeps the chip for the section you're reading highlighted. */
 function renderSubtabs(main){
   const items=SUBS[main], bar=$("#subtabs");
   if(!items){bar.innerHTML="";bar.classList.remove("show");return;}
   const active=state.sub[main]||items[0][0];
   bar.classList.add("show");
-  bar.innerHTML=items.map(([k,l])=>`<button class="subtab${k===active?" on":""}" data-subtab="${esc(k)}">${esc(l)}</button>`).join("");
+  bar.innerHTML=`<span class="jump-lbl">Jump to</span>`+
+    items.map(([k,l])=>`<button class="subtab${k===active?" on":""}" data-subtab="${esc(k)}">${esc(l)}</button>`).join("");
 }
-function applySub(main){
-  const items=SUBS[main]; if(!items)return;
-  const active=state.sub[main]||items[0][0];
-  document.querySelectorAll(`[data-panel="${main}"] > .subpanel`).forEach(p=>p.classList.toggle("on",p.dataset.sub===active));
+function markSub(sub){
+  state.sub[state.tab]=sub;
+  document.querySelectorAll("#subtabs .subtab").forEach(b=>b.classList.toggle("on",b.dataset.subtab===sub));
 }
 function switchTab(name){
   state.tab=name;
   document.querySelectorAll(".tab").forEach(t=>{const on=t.dataset.tab===name;t.classList.toggle("on",on);t.setAttribute("aria-selected",on);});
   document.querySelectorAll(".tabpanel").forEach(p=>p.classList.toggle("on",p.dataset.panel===name));
-  renderSubtabs(name); applySub(name);
+  renderSubtabs(name);
   if(typeof saveView==="function")saveView();
 }
+let SPY_HOLD=0;
 function switchSub(sub){
-  state.sub[state.tab]=sub; renderSubtabs(state.tab); applySub(state.tab);
+  markSub(sub);
+  const el=document.querySelector(`[data-panel="${state.tab}"] .subpanel[data-sub="${sub}"]`);
+  if(el){SPY_HOLD=Date.now()+700;el.scrollIntoView({behavior:"smooth",block:"start"});}
   if(typeof saveView==="function")saveView();
 }
-function gotoBoard(){state.sub.pipeline="dashboard";switchTab("pipeline");}
+function gotoBoard(){switchTab("pipeline");switchSub("dashboard");}
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>switchTab(t.dataset.tab)));
 $("#subtabs").addEventListener("click",e=>{const b=e.target.closest("[data-subtab]");if(b)switchSub(b.dataset.subtab);});
+/* scrollspy: highlight the section currently under the sticky bar */
+window.addEventListener("scroll",()=>{
+  if(Date.now()<SPY_HOLD)return;
+  const panels=document.querySelectorAll(`[data-panel="${state.tab}"] .subpanel`);
+  if(!panels.length)return;
+  let cur=panels[0].dataset.sub;
+  panels.forEach(p=>{if(p.getBoundingClientRect().top<=90)cur=p.dataset.sub;});
+  if(state.sub[state.tab]!==cur)markSub(cur);
+},{passive:true});
 
 /* ---- Per-card "generate with Claude" actions ---- */
 $("#board").addEventListener("click",e=>{
@@ -1773,7 +1791,6 @@ renderLaunchQuick();
 renderCommQuick();
 renderCommission();
 renderSubtabs(state.tab);
-applySub(state.tab);
 
 /* ---- Interactions ---- */
 function toast(msg){
