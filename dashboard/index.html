@@ -212,6 +212,19 @@
   .crm-news a{font-size:.82rem;color:var(--accent-ink);text-decoration:none;line-height:1.4;}
   .crm-news a:hover{text-decoration:underline;}
   .today-news{margin-top:16px;}
+  .tn-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:12px;align-items:stretch;}
+  .tn-side{display:flex;flex-direction:column;gap:10px;}
+  .tn-side .news-item{flex:1;}
+  .news-lead{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);
+    overflow:hidden;display:flex;flex-direction:column;}
+  .nl-banner{flex:1;min-height:168px;display:flex;align-items:center;justify-content:center;
+    box-shadow:inset 0 -42px 60px -38px rgba(0,0,0,.4);}
+  .nl-banner span{font-size:3.6rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));}
+  .nl-body{padding:14px 17px 16px;display:flex;flex-direction:column;gap:6px;}
+  .nl-title{margin:0;font-family:var(--serif);font-size:1.32rem;font-weight:700;line-height:1.28;letter-spacing:-.01em;}
+  .nl-title a{color:var(--ink);text-decoration:none;}
+  .nl-title a:hover{color:var(--accent-ink);text-decoration:underline;}
+  @media (max-width:860px){ .tn-grid{grid-template-columns:1fr;} .nl-banner{min-height:120px;} .nl-banner span{font-size:2.6rem;} }
   .tn-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
   .tn-lbl{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:800;}
   .tn-more{border:0;background:none;color:var(--accent-ink);font-family:var(--sans);font-size:.8rem;font-weight:700;cursor:pointer;}
@@ -1755,13 +1768,30 @@ $("#goalSec").addEventListener("change",e=>{
   if(e.target.id==="goalInput"){GOALS.annual=parseInt(e.target.value.replace(/[^0-9]/g,""))||0;saveGoals();renderGoal();}
 });
 
-/* ---- Latest news on the Today home ---- */
+/* ---- Latest news on the Today home (front-page grid: lead + side stack) ---- */
+function newsLead(co,n){
+  const t=THUMB[n.tag]||["📰","#7A8AA0","#4B5C74"];
+  const tagcls=/risk/i.test(n.tag)?"risk":(/funding|exec|hiring|m&a/i.test(n.tag)?"hot":"");
+  const title=n.u?`<a href="${n.u}" target="_blank" rel="noopener">${esc(n.t)} ↗</a>`:`<span>${esc(n.t)}</span>`;
+  const contact=isContactNews(co,n)?`<span class="ni-contact">★ Your contact</span>`:"";
+  return `<article class="news-lead">
+    <div class="nl-banner" style="background:linear-gradient(135deg,${t[1]},${t[2]})"><span>${t[0]}</span></div>
+    <div class="nl-body">
+      <div class="ni-meta"><span class="ni-date">${fmtDate(n.d)}</span><span class="ni-co">${esc(co)}</span><span class="ni-tag ${tagcls}">${esc(n.tag)}</span>${contact}</div>
+      <h4 class="nl-title">${title}</h4>
+      <div class="ni-src">${esc(n.s)}</div>
+    </div></article>`;
+}
 function renderTodayNews(){
   const all=allNews().slice(0,4);
   if(!all.length){$("#todayNewsSec").innerHTML="";return;}
+  const lead=all[0], rest=all.slice(1);
   $("#todayNewsSec").innerHTML=`<div class="tn-head"><span class="tn-lbl">◆ Latest on your pipeline</span>
       <button class="tn-more" data-goto="news">All news →</button></div>
-    <div class="news-list">${all.map(x=>newsItem(x.co,x.n,true)).join("")}</div>`;
+    <div class="tn-grid">
+      ${newsLead(lead.co,lead.n)}
+      <div class="tn-side">${rest.map(x=>newsItem(x.co,x.n,true)).join("")}</div>
+    </div>`;
 }
 $("#todayNewsSec").addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g)switchTab(g.dataset.goto);});
 /* ---- Pipeline newsroom ---- */
