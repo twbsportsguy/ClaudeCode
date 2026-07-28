@@ -277,6 +277,17 @@
   .gen-note{margin-top:14px;font-size:.82rem;color:var(--ink-soft);line-height:1.55;}
   .gen-note b{color:var(--ink);font-weight:600;}
 
+  /* ---------- Company notes ---------- */
+  .conote{margin-top:14px;padding-top:13px;border-top:1px solid var(--line-soft);}
+  .cn-head{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+  .cn-lbl{font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);font-weight:800;}
+  .cn-saved{font-size:.7rem;font-weight:700;color:var(--a);}
+  .cn-box{width:100%;border:1.5px solid var(--line);border-radius:9px;background:var(--card-2);color:var(--ink);
+    font-family:var(--sans);font-size:.87rem;line-height:1.5;padding:9px 12px;outline:none;resize:vertical;}
+  .cn-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent);}
+  .cn-box::placeholder{color:var(--ink-faint);}
+  .metanote{font-size:.78rem;vertical-align:1px;}
+
   /* ---------- Per-card generate actions ---------- */
   .co-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:13px;border-top:1px solid var(--line-soft);}
   .co-actions .ca-lbl{font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-right:2px;}
@@ -1022,6 +1033,10 @@ const CRM=(function(){try{return JSON.parse(localStorage.getItem("finley.crm")||
 function saveCRM(){try{localStorage.setItem("finley.crm",JSON.stringify(CRM));}catch(e){}}
 function crmKey(x,co){return x.e?("e:"+x.e):("n:"+co+"|"+x.n);}
 function crmGet(k){return CRM[k]||(CRM[k]={str:0,touches:[],notes:"",next:""});}
+/* ---- Company-level notes (yours — saved in this browser) ---- */
+const CONOTES=(function(){try{return JSON.parse(localStorage.getItem("finley.conotes")||"{}");}catch(e){return {};}})();
+function saveCoNotes(){try{localStorage.setItem("finley.conotes",JSON.stringify(CONOTES));}catch(e){}}
+function coNote(name){return CONOTES[name]||"";}
 
 /* ---- Summary ---- */
 (function summary(){
@@ -1291,6 +1306,10 @@ function card(c){
       ${nContacts
         ? `<div class="contacts">${c.contacts.map(x=>contactRow(x,c.name)).join("")}</div>`
         : `<div class="research"><b>Next step —</b> ${esc(c.research)} ${c.researchPhone?`<a href="tel:${c.researchPhone.replace(/[^0-9]/g,"")}">${esc(c.researchPhone)}</a>`:""}</div>`}
+      <div class="conote" data-conote="${esc(c.name)}">
+        <div class="cn-head"><span class="cn-lbl">📝 Your notes</span><span class="cn-saved" data-saved></span></div>
+        <textarea class="cn-box" rows="3" placeholder="Call outcomes, who to ask for, budget timing, what they said, anything to remember…">${esc(coNote(c.name))}</textarea>
+      </div>
       <div class="co-actions">
         <span class="ca-lbl">Generate with Claude</span>
         <button class="co-act" data-act="brief">📋 Meeting brief</button>
@@ -1306,6 +1325,7 @@ function card(c){
         <h2 class="co-name">${esc(c.name)}</h2>
         <div class="co-meta">
           <span class="metahealth health-${h.k}" title="Deal health: ${esc(h.l)}">●</span>
+          ${coNote(c.name)?`<span class="metanote" title="You have notes on this company">📝</span>`:""}
           ${wn?`<span class="metasig${wn.risk?" risk":""}">◆ ${esc(wn.tag)}</span>`:""}
           ${cur!=="prospect"?`<span class="stage-pill" style="background:${STAGE_MAP[cur].c}">${STAGE_MAP[cur].lbl}</span>`:""}
           <span class="tag ind">${esc(c.ind)}</span>
@@ -1859,8 +1879,19 @@ $("#board").addEventListener("click",e=>{
     co.dataset.open=open;head.setAttribute("aria-expanded",open);
   }
 });
-/* CRM free-text (notes / next touch) — save on input without re-render to keep focus */
+/* Free-text (CRM notes/next touch, company notes) — save on input without
+   re-rendering, so the cursor stays put while typing. */
 $("#board").addEventListener("input",e=>{
+  const co=e.target.closest(".conote");
+  if(co && e.target.classList.contains("cn-box")){
+    const name=co.dataset.conote;
+    CONOTES[name]=e.target.value;
+    if(!e.target.value.trim())delete CONOTES[name];
+    saveCoNotes();
+    const flag=co.querySelector("[data-saved]");
+    if(flag){flag.textContent="Saved";clearTimeout(co._t);co._t=setTimeout(()=>{flag.textContent="";},1400);}
+    return;
+  }
   const box=e.target.closest(".crm"); if(!box)return;
   const k=box.dataset.crmkey;
   if(e.target.classList.contains("crm-notes")) crmGet(k).notes=e.target.value;
