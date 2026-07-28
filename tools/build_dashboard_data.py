@@ -26,6 +26,15 @@ def money(s):
 STAGE={"Signed: 100%":"signed","Agreements: 90%":"verbal","Red-Hots: 75%":"redhot",
        "Interested: 50%":"interested","Re-approach: 25%":"prospect","Not Interested: 0%":"lost"}
 
+def clean_note(s):
+    """Tidy a tracker Notes cell for display. Drops the bookkeeping prefixes and
+    suffixes the importers added ('[old tracker | rep TB]', the split marker) so
+    the card shows what the prospect actually said, not our plumbing."""
+    s=(s or "").strip()
+    s=re.sub(r"\s*\|\s*split from packed legacy row [\d-]+\s*$","",s)
+    s=re.sub(r"^\[(?:old tracker|legacy)\s*\|\s*rep\s*([^\]]*)\]\s*","",s)
+    return s.strip(" |")
+
 html=open(DASH).read()
 s,e,block=existing_data(html)
 # hand-authored, ZoomInfo-enriched cards look like {name:"X"  (no quoted key).
@@ -53,13 +62,19 @@ for r in body:
         "web":r[7].strip().replace("www.",""),"rev":r[8].strip(),"emp":r[9].strip(),
         "budget":r[10].strip(),"signal":r[11].strip(),"why":r[12].strip(),
         "rank":r[1].strip(),"score":r[2].strip(),"status":r[19].strip(),
-        "notes":r[21].strip(),"pot":r[22].strip(),"contacts":[]})
+        "notes":clean_note(r[21]),"pot":r[22].strip(),"dead":False,"later":False,"contacts":[]})
     if r[13].strip():
         c["contacts"].append({"n":r[13].strip(),"t":r[14].strip(),
             "e":r[16].strip() if "@" in r[15] else (r[15].strip() or None),
             "p":r[16].strip() if "@" not in r[16] and r[16].strip() else None,
-            "d":r[18].strip().upper()=="Y"})
-    # strongest status wins for the company
+            "d":r[18].strip().upper()=="Y",
+            "tn":clean_note(r[21]),"st":r[19].strip()})
+    # A "no" and a "re-approach" are sticky facts about the company, not stages to
+    # be outranked. Track them on their own axis, otherwise a later `New` contact
+    # row silently promotes a dead account back into the active book.
+    if r[19].strip()=="Not Interested: 0%": c["dead"]=True
+    if r[19].strip()=="Re-approach: 25%":   c["later"]=True
+    # strongest live status wins for the company
     order=["","New","Re-approach: 25%","Interested: 50%","Red-Hots: 75%","Agreements: 90%","Signed: 100%"]
     if r[19].strip() in order and order.index(r[19].strip())>order.index(c["status"] if c["status"] in order else ""):
         c["status"]=r[19].strip()
@@ -83,7 +98,18 @@ for name,c in cos.items():
     revn=money(c["rev"]); budn=money(c["budget"])
     try: emp=int(re.sub(r'\D','',c["emp"]) or 0)
     except: emp=0
-    contacts=[{"n":x["n"],"t":x["t"],"e":x["e"],"p":x["p"],"d":x["d"]} for x in c["contacts"]]
+    # Splitting the packed legacy rows copied one shared note onto every contact.
+    # Show a note that everybody shares once, at company level; only attach a note
+    # to a contact when it is genuinely theirs.
+    cnotes=[x.get("tn","") for x in c["contacts"]]
+    shared = cnotes[0] if cnotes and len(set(cnotes))==1 else ""
+    contacts=[]
+    for x in c["contacts"]:
+        o={"n":x["n"],"t":x["t"],"e":x["e"],"p":x["p"],"d":x["d"]}
+        if x.get("tn") and x["tn"]!=shared: o["tn"]=x["tn"][:400]
+        if x.get("st"): o["st"]=x["st"]
+        contacts.append(o)
+    conote = shared or c["notes"]
     o={"name":name,"rank":(c["rank"] or "U"),"score":(int(c["score"]) if c["score"].isdigit() else None),
        "ind":c["ind"] or "Unclassified","city":c["city"],"web":c["web"],
        "rev":c["rev"] or "—","revNum":revn,"budget":c["budget"] or "—","budNum":budn,"emp":emp,
@@ -91,9 +117,11 @@ for name,c in cos.items():
        "why":c["why"] or "Imported from your existing book; needs enrichment to score.",
        "contacts":contacts}
     if c["status"] in STAGEMAP: o["stage"]=STAGEMAP[c["status"]]
-    if c["status"]=="Re-approach: 25%": o["reapproach"]=True
-    if c["status"]=="Not Interested: 0%": o["dead"]=True
-    if c["notes"]: o["tnotes"]=c["notes"][:300]
+    if c["later"]: o["reapproach"]=True
+    if c["dead"]:  o["dead"]=True
+    if conote: o["tnotes"]=conote[:600]
+    o["tstatus"]="Not Interested: 0%" if c["dead"] else ("Re-approach: 25%" if c["later"] else c["status"])
+    if not o["tstatus"]: del o["tstatus"]
     if c["pot"]: o["pot"]=c["pot"]
     if not contacts:
         o["research"]="No contact on file — find the owner/decision-maker."
