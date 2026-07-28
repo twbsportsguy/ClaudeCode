@@ -76,7 +76,22 @@ pipeline."
 4. Update the row's `Next Step` and `Notes` accordingly (e.g., "Replied 7/9 —
    wants pricing; send proposal"). Leave the user-filled `Potential Revenue`
    column untouched unless the reply gives you a concrete number.
-5. Commit + push so the Google Sheet reflects the new stages (Step 8).
+5. **Turn what they asked for into a task.** If the reply commits Tyler to
+   anything — send pricing, call Tuesday, meet on the 2nd, wait for the new
+   events chair — append a line to that row's `Notes` in this exact form:
+
+   `TODO: send the Gold Partner pricing sheet`
+
+   One `TODO:` per action, present tense, starting with a verb. The dashboard
+   reads these straight off the tracker and shows them as an unticked checkbox
+   on the company card, so anything a prospect asked for becomes visible work.
+   **Remove a `TODO:` line once the thread shows it's done** — a later reply
+   thanking Tyler for the pricing means the "send pricing" task is finished.
+   That is how the checklist stays true as a conversation goes back and forth.
+6. **Log a concrete number if they give one.** If the reply names a figure they
+   committed to, write it into `Potential Revenue` (that column is otherwise
+   Tyler's alone) and add `TODO: confirm what they bought in the dashboard`.
+7. Commit + push so the Google Sheet reflects the new stages (Step 8).
 
 The pipeline stages and their sheet colors are defined once in
 `tools/build_live_tracker_xlsx.py` (`STAGES`): Interested 50% = light yellow,
@@ -184,6 +199,30 @@ For each company (WebSearch, 1–2 searches each):
 
 Log what you find in one short phrase per company for the tracker's
 "Ad Spend Signals" column.
+
+### Step 4b — Re-score the warm book on the same news sweep
+New companies get scored from scratch in Step 5. **Companies already in the
+tracker go stale**, so every run also refreshes the ones that matter most.
+
+1. Pick the re-score set (cheap — no ZoomInfo credits, just search):
+   - every company at `Interested: 50%` or better, plus every `Re-approach: 25%`
+   - any Rank A company not re-checked in ~30 days
+   - cap it at ~15 companies per run so this stays a few minutes of work
+2. For each: `mcp__ZoomInfo__enrich_news` when the company has a ZoomInfo ID
+   (no credit cost for news), else one WebSearch:
+   `"<Company>" news 2026 sponsorship OR expansion OR hiring OR acquisition`
+3. Apply the **news adjustments table in `scoring.md`** — capped at ±12 points
+   per run, only on news you actually found and can cite.
+4. Write the result back into the row: new `Score`, re-banded `Rank`, a refreshed
+   `Why This Rank`, and a `Notes` line in exactly this shape —
+   `SCORE 68→81 2026-07-28: named title sponsor of the Durham Bulls season`
+   The dashboard parses that line to show the movement and the reason on the
+   card, so a rank change is never unexplained.
+5. If the news changes what to sell, update the recommended package reasoning
+   too (a company that just opened a Triangle office may jump from Gold to
+   Premier). Never change `Potential Revenue` — that column is Tyler's.
+6. **No news found = no change.** Leave the score alone and don't write a
+   `SCORE` line. A stale score beats an invented one.
 
 ## Step 5 — Score and rank
 

@@ -43,6 +43,39 @@ band on that score. Score the **company**; every contact row inherits it.
 | Active recruiting / hiring locally (partnership = talent-brand tool) | 3 |
 (Cap 30.)
 
+## Re-scoring on news (every run, for companies already in the book)
+
+A score is a snapshot, not a verdict. News moves the three pillars, so every
+run re-checks the companies you touch and **adjusts the score in place** rather
+than leaving a stale number on the card. Apply these on top of the base score,
+then re-band the rank.
+
+| What the news says | Pillar | Adjust |
+|--------------------|--------|--------|
+| Signed a sponsorship / named a title partner / launched a campaign | spend | **+6** |
+| Hired a CMO, VP Marketing, or head of brand/partnerships | spend | **+5** |
+| New Triangle office, plant, branch or relocation into NC | fit | **+8** |
+| Expansion / new location elsewhere in NC | fit | **+4** |
+| Raised funding, record year, strong earnings, acquisition *by* them | size | **+5** |
+| Named a Best Place to Work / actively hiring locally | fit | **+3** |
+| Won a major award or anniversary milestone worth a hook | fit | **+2** |
+| Layoffs, hiring freeze, closing locations | size | **−6** |
+| Acquired *by* someone else / HQ moving out of state | fit | **−8** |
+| Marketing leader who was our contact has left | spend | **−4** |
+| Bankruptcy, insolvency, shutting down | — | **set to 0, mark `Not Interested: 0%`** |
+
+Rules:
+- **Cap movement at ±12 points in a single run.** One article should not swing a
+  company two rank bands; repeated news over several runs can.
+- Never push a score above 100 or below 0, and keep each pillar within its cap.
+- **Only adjust on news you actually found and can cite.** No news = no change.
+  A stale score is better than an invented one.
+- Record every change in the row's `Notes` in this exact form, so the dashboard
+  can show what moved and why:
+  `SCORE 68→81 2026-07-28: named title sponsor of the Durham Bulls season`
+- If the adjusted score crosses a band, update the `Rank` column too, and say so
+  in `Why This Rank`.
+
 ## Rank bands (from the 0–100 score)
 - **A — 80–100** (Golf Fit: Elite/Strong): priority. Draft immediately, follow up within 3 days.
 - **B — 55–79** (Good): solid. Draft, normal cadence.

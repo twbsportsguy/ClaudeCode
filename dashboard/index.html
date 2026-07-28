@@ -443,6 +443,18 @@
   .td-btn{font:inherit;font-size:.74rem;font-weight:700;padding:6px 13px;border-radius:6px;
     border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;}
   .td-btn:hover{border-color:#2F7DB5;color:#2F7DB5;}
+  .td.hot .td-t b{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#D64C3F;
+    border:1px solid #D64C3F44;background:#D64C3F14;border-radius:99px;padding:1px 6px;margin-right:5px;}
+  .td.hot.done .td-t b{opacity:.45;}
+  /* Score movement from the news re-scoring pass */
+  .smove{margin:6px 0 2px;}
+  .sm{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;margin:3px 0;font-size:.74rem;}
+  .sm-n{font-family:var(--mono);font-weight:700;padding:1px 7px;border-radius:99px;
+    border:1px solid var(--line-soft);font-variant-numeric:tabular-nums;}
+  .sm.up .sm-n{color:#1C7A45;border-color:#1C7A4544;background:#1C7A4512;}
+  .sm.down .sm-n{color:#D64C3F;border-color:#D64C3F44;background:#D64C3F12;}
+  .sm-w{color:var(--ink-soft);}
+  .sm-d{color:var(--ink-faint);font-variant-numeric:tabular-nums;}
   .stat.todo .sv{font-size:.9rem;color:var(--ink-faint);}
   .stat.todo.has .sv{color:#2F7DB5;font-weight:700;}
   .ir-edit{display:flex;gap:8px;margin-top:8px;}
@@ -1441,7 +1453,7 @@ const DATA = [
   {"name": "Ingersoll Rand", "rank": "U", "score": null, "ind": "Manufacturing & Dealers", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker — section: Prospects block 2", "contacts": [{"n": "Vicente Reynal", "t": "", "e": "vicente\\_reynal@irco.com", "p": null, "d": false, "st": "New"}, {"n": "Elizabeth Hepding", "t": "", "e": "elizabeth\\_hepting@irco.com", "p": null, "d": false, "st": "New"}], "tnotes": "10/28/25 11/3/25", "tstatus": "New"},
   {"name": "Shrunkenhead", "rank": "U", "score": null, "ind": "Unclassified", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker", "contacts": [], "tstatus": "New", "research": "No contact on file — find the owner/decision-maker.", "researchPhone": null},
   {"name": "Johnny T Shirt", "rank": "U", "score": null, "ind": "Unclassified", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker", "contacts": [], "tstatus": "New", "research": "No contact on file — find the owner/decision-maker.", "researchPhone": null},
-  {"name": "Long Beverage", "rank": "U", "score": null, "ind": "Unclassified", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker", "contacts": [{"n": "Bradley Shore", "t": "", "e": "bshore@longbeverage.com", "p": null, "d": false, "st": "New"}, {"n": "Scott Tinervin", "t": "", "e": "stinervin@longbeverage.com", "p": null, "d": false, "st": "New"}, {"n": "Dylon Graham", "t": "", "e": "dgraham@longbeverage.com", "p": null, "d": false, "st": "New"}, {"n": "Thomas Gongs", "t": "", "e": "tgongs@longbeverage.com", "p": null, "d": false, "st": "New"}], "tnotes": "12/3/25 12/10/25 Will pass along the word to sales and marketing as wel as suppliers, will follow up if interest.....   gave number to call", "tstatus": "New"},
+  {"name": "Long Beverage", "rank": "U", "score": null, "ind": "Unclassified", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker", "contacts": [{"n": "Bradley Shore", "t": "", "e": "bshore@longbeverage.com", "p": null, "d": false, "st": "New"}, {"n": "Scott Tinervin", "t": "", "e": "stinervin@longbeverage.com", "p": null, "d": false, "st": "New"}, {"n": "Dylon Graham", "t": "", "e": "dgraham@longbeverage.com", "p": null, "d": false, "st": "New"}, {"n": "Thomas Gongs", "t": "", "e": "tgongs@longbeverage.com", "p": null, "d": false, "st": "New"}], "tnotes": "12/3/25 12/10/25 Will pass along the word to sales and marketing as wel as suppliers, will follow up if interest..... gave number to call", "tstatus": "New"},
   {"name": "YETI", "rank": "U", "score": null, "ind": "Unclassified", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker", "contacts": [], "tstatus": "New", "research": "No contact on file — find the owner/decision-maker.", "researchPhone": null},
   {"name": "YakAttack", "rank": "U", "score": null, "ind": "Unclassified", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker", "contacts": [], "tstatus": "New", "research": "No contact on file — find the owner/decision-maker.", "researchPhone": null},
   {"name": "Simms", "rank": "U", "score": null, "ind": "Unclassified", "city": "", "web": "", "rev": "—", "revNum": 0.0, "budget": "—", "budNum": 0.0, "emp": 0, "signal": "Imported from the FGC Master SalesTracker — not yet researched.", "why": "Imported from FGC Master SalesTracker", "contacts": [], "tstatus": "New", "research": "No contact on file — find the owner/decision-maker.", "researchPhone": null},
@@ -1779,7 +1791,10 @@ function noteClue(txt,re){
   return t.length>150?t.slice(0,147)+"…":t;
 }
 function autoTasks(c){
-  const out=[], add=(t,why)=>out.push({id:tid(c.name+"|"+t),t,why,auto:true});
+  const out=[], add=(t,why,hot)=>out.push({id:tid(c.name+"|"+t),t,why,auto:true,hot:!!hot});
+  /* Written straight into the tracker by the reply sync — these are things a
+     prospect actually asked for, so they lead the list. */
+  (c.tasks||[]).forEach(t=>add(t,"they asked for this in a reply",true));
   const allNotes=[c.tnotes||"",...c.contacts.map(x=>x.tn||"")].join(" | ");
   const stage=stageOf(c);
   const clue=(re,fallback,why)=>{const q=noteClue(allNotes,re);add(q?`${fallback} — “${q}”`:fallback,why);};
@@ -2062,8 +2077,17 @@ function card(c){
   const summaryTag=nContacts
     ? `<span class="tag">${nContacts} contact${nContacts>1?"s":""}</span><span class="tag">${nDraft} draft${nDraft!==1?"s":""}</span>`
     : `<span class="tag" style="color:var(--b);border-color:var(--b-line)">Needs research</span>`;
+  /* Score movements written by the news re-scoring pass, so a rank change is
+     never unexplained — most recent first. */
+  const sl=(c.scorelog||[]).slice().reverse();
+  const scoremove=sl.length?`<div class="smove">${sl.map(m=>{
+      const up=m.to>=m.from;
+      return `<p class="sm${up?" up":" down"}"><span class="sm-n">${m.from} → ${m.to}</span>
+        <span class="sm-w">${esc(m.why||"score updated on news")}</span>
+        ${m.on?`<span class="sm-d">${esc(m.on)}</span>`:""}</p>`;}).join("")}</div>`:"";
   const play=`<div class="play">
       <span class="pl">Recommended play${c.score!=null?` · Partnership Score ${c.score}/100 · Golf Fit ${fit.lbl}`:" · not yet scored"}</span>
+      ${scoremove}
       <span class="pk">${esc(pkg.name)}</span><span class="pv">${pkg.price}</span>
       <span class="pf">${esc(pkg.why)}</span></div>`;
   const cur=stageOf(c);
@@ -2109,9 +2133,9 @@ function card(c){
   const tasks=tasksFor(c), nOpen=tasks.filter(t=>!t.done).length, nTasks=tasks.length;
   const todoblock=nTasks?`<div class="todos" data-todo="${esc(c.name)}">
       <p class="sl">✓ To-do${nOpen?` · <b>${nOpen} open</b>`:" · all clear"}</p>
-      ${tasks.map(t=>`<label class="td${t.done?" done":""}">
+      ${tasks.map(t=>`<label class="td${t.done?" done":""}${t.hot?" hot":""}">
         <input type="checkbox" data-tdid="${t.id}"${t.done?" checked":""}>
-        <span class="td-t">${esc(t.t)}</span>
+        <span class="td-t">${t.hot?`<b>Asked for</b> `:""}${esc(t.t)}</span>
         ${t.why?`<span class="td-why">${esc(t.why)}</span>`:""}
         ${t.auto?"":`<button class="td-x" data-tdrm="${t.id}" title="Remove">×</button>`}
       </label>`).join("")}

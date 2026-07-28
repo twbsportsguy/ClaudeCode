@@ -26,6 +26,21 @@ def money(s):
 STAGE={"Signed: 100%":"signed","Agreements: 90%":"verbal","Red-Hots: 75%":"redhot",
        "Interested: 50%":"interested","Re-approach: 25%":"prospect","Not Interested: 0%":"lost"}
 
+TODO_RE  = re.compile(r"TODO:\s*([^|\n]+)", re.I)
+# e.g. "SCORE 68->81 2026-07-28: named title sponsor of the Durham Bulls season"
+SCORE_RE = re.compile(r"SCORE\s*(\d{1,3})\s*(?:->|→)\s*(\d{1,3})\s*(\d{4}-\d{2}-\d{2})?\s*:?\s*([^|\n]*)", re.I)
+
+def pull_tasks(s):
+    """Tasks the pipeline wrote from a real reply (SKILL.md Step 0)."""
+    return [t.strip(" .;") for t in TODO_RE.findall(s or "") if t.strip()]
+
+def pull_scorelog(s):
+    """Score movements written by the news re-scoring pass (SKILL.md Step 4b)."""
+    out=[]
+    for a,b,d,why in SCORE_RE.findall(s or ""):
+        out.append({"from":int(a),"to":int(b),"on":d or "","why":why.strip(" .;")})
+    return out
+
 def clean_note(s):
     """Tidy a tracker Notes cell for display. Drops the bookkeeping prefixes and
     suffixes the importers added ('[old tracker | rep TB]', the split marker) so
@@ -33,7 +48,10 @@ def clean_note(s):
     s=(s or "").strip()
     s=re.sub(r"\s*\|\s*split from packed legacy row [\d-]+\s*$","",s)
     s=re.sub(r"^\[(?:old tracker|legacy)\s*\|\s*rep\s*([^\]]*)\]\s*","",s)
-    return s.strip(" |")
+    # TODO / SCORE lines are machine-readable channels rendered as their own UI,
+    # so strip them from the prose note instead of showing them twice.
+    s=TODO_RE.sub("",s); s=SCORE_RE.sub("",s)
+    return re.sub(r"\s{2,}"," ",s).strip(" |")
 
 html=open(DASH).read()
 s,e,block=existing_data(html)
@@ -62,7 +80,12 @@ for r in body:
         "web":r[7].strip().replace("www.",""),"rev":r[8].strip(),"emp":r[9].strip(),
         "budget":r[10].strip(),"signal":r[11].strip(),"why":r[12].strip(),
         "rank":r[1].strip(),"score":r[2].strip(),"status":r[19].strip(),
-        "notes":clean_note(r[21]),"pot":r[22].strip(),"dead":False,"later":False,"contacts":[]})
+        "notes":clean_note(r[21]),"pot":r[22].strip(),"dead":False,"later":False,
+        "tasks":[],"scorelog":[],"contacts":[]})
+    for t in pull_tasks(r[21]):
+        if t not in c["tasks"]: c["tasks"].append(t)
+    for sl in pull_scorelog(r[21]):
+        if sl not in c["scorelog"]: c["scorelog"].append(sl)
     if r[13].strip():
         # r[15] is Contact Email, r[16] is Contact Phone. The original ternary had
         # these inverted, so any contact WITH an address rendered their phone
@@ -126,6 +149,8 @@ for name,c in cos.items():
     if conote: o["tnotes"]=conote[:600]
     o["tstatus"]="Not Interested: 0%" if c["dead"] else ("Re-approach: 25%" if c["later"] else c["status"])
     if not o["tstatus"]: del o["tstatus"]
+    if c["tasks"]:    o["tasks"]=c["tasks"][:8]
+    if c["scorelog"]: o["scorelog"]=c["scorelog"][-3:]
     if c["pot"]: o["pot"]=c["pot"]
     if not contacts:
         o["research"]="No contact on file — find the owner/decision-maker."
