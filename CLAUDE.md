@@ -53,6 +53,9 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
   fields, correct name/company/city, factually true hook, clean grammar, and
   the verbatim signature (SKILL.md Step 7).
 - **Pipeline stages live in the Status column.** New prospects are `New`.
+  `Re-approach: 25%` marks a prior no that was budget/timing/fit — legitimately
+  re-contactable now that packages are fully customizable. `Not Interested: 0%`
+  is permanent: never re-target those.
   Sync inbox replies (SKILL.md Step 0) into stages: any real reply →
   `Interested: 50%`; explicit no → `Not Interested: 0%`; advance to
   `Red-Hots: 75%` / `Agreements: 90%` / `Signed: 100%` only when the reply
