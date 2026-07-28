@@ -117,12 +117,41 @@ could buy, influence, or champion a partnership:
 - Marketing, brand, creative, digital
 - Events, sponsorship, partnerships, community, PR / communications
 - Sales leadership and business development
+- **Local site leadership** — branch / store / office / site / plant managers,
+  General Managers, territory / district / regional managers, market leaders
 - Owners, founders, and C-level / VP / GM / President
 
 Search these via `department`/`jobFunction` (e.g. Marketing, Sales) and
 `jobTitle` (e.g. `"Marketing OR Brand OR Events OR Sponsorship OR Partnerships
 OR Community OR Communications OR Sales OR Owner OR President OR General
-Manager"`). Include managers and individual contributors, not only Director+.
+Manager OR Branch Manager OR Store Manager OR Territory Manager OR District
+Manager OR Regional Manager"`). Include managers and individual contributors,
+not only Director+.
+
+### Location filter — find the person who can actually say yes
+Drive-time is the product, so the buyer is usually whoever runs the local site,
+not the corporate CxO in another state. Whenever a company is HQ'd outside the
+target market, re-run the search with:
+
+```
+locationSearchType: "Person",  state: "North Carolina"
+```
+
+(`PersonOrHQ` and the default both let out-of-state HQ staff flood the results;
+`Person` returns only people actually based in the state.) This is what surfaces
+the Raleigh branch manager instead of the Phoenix CEO, and it works even at huge
+employers — a 43,000-person manufacturer will still return a handful of NC names.
+
+Rules of thumb:
+- **Proximity outranks seniority.** Between a local manager and a more senior
+  out-of-state exec, lead outreach with the local one and treat the exec as a
+  secondary/parallel touch.
+- **Don't cut people for being below Director.** Local budget holders are often
+  Manager or Non-Manager level — a "Special Events Planner" or "Program Manager,
+  Culture & Events" is exactly who books an outing.
+- If the state filter returns nothing, the company has no local presence: fall
+  back to national marketing/sponsorship roles and pitch brand exposure rather
+  than hospitality (see the tier-4–6 note in `config/autopilot.md`).
 
 **Go deep — map the buying committee, not one contact.** Aim for the fullest
 useful set per company (at a big employer that's often 5–12 people across the

@@ -63,6 +63,17 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
   `tools/build_live_tracker_xlsx.py`.
 - **`Potential Revenue` is the user's column** — never overwrite it; only fill
   it from a concrete number the prospect gives.
+- **The local employee often IS the decision-maker.** At a multi-site company
+  the person who can say yes to an outing is usually the one running the local
+  site, not the corporate CxO in another state — branch/store/office/site
+  managers, GMs, territory/district/regional managers, market leaders, and
+  local events/community staff all carry discretionary entertainment budget.
+  So when a company is HQ'd out of state, filter ZoomInfo to
+  `locationSearchType: Person` + the target state and work the people actually
+  based here. **Proximity outranks seniority**: a Raleigh branch manager beats
+  a Phoenix CEO, because drive-time is the product. Pull both when available,
+  but lead the outreach with the local name. Do not filter these people out for
+  being below Director — a "Special Events Planner" books outings.
 - **Reach every useful contact, not just decision-makers.** Pull anyone who
   could buy, influence, or champion a partnership at any level — marketing/
   brand/creative, events, sponsorship/partnerships, community/PR, sales/BD,

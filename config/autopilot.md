@@ -68,6 +68,16 @@ SalesTracker) — not guesses. Counts are companies already logged.
   alumni leadership, or a travel/Stay-&-Play reason — so the Carolina-Golf
   hospitality pitch still lands. No cold national names without a tie.
 
+  **A distant HQ is not a distant company.** Before writing off an out-of-state
+  employer, check for local staff with
+  `locationSearchType: "Person"` + `state: "North Carolina"` (SKILL.md Step 3).
+  If it returns branch/store/territory managers or local events people, treat
+  the account as **local** — those people hold the budget and can drive to
+  Finley, so the normal hospitality pitch applies. Only when there are no NC
+  people does it become a true outer-ring account, and then the pitch shifts
+  from hospitality to brand exposure (aim at sponsorship / brand-partnership
+  titles instead of site leadership).
+
   Note the current tier + why in `tracker/autopilot-log.md` each run.
 
 ## How to pick the 2 segments (priority order)
