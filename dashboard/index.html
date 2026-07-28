@@ -1192,12 +1192,21 @@ function dealHealth(c){
   if(emailable) return {k:"amber",l:"Contact found — not worked yet"};
   return {k:"amber",l:"Contact found — needs an email"};
 }
+/* Recommends only real Package Builder inventory (no on-site branding,
+   tournament assets, Evening on The Heel or Stay & Play). */
 function eventFit(c){
   const ind=(c.ind||"").toLowerCase();
-  if(/legal|financ|insur|auto|estate|bank/.test(ind)) return "Corporate Shootout or a Member-Guest — lead with client entertainment";
-  if(/health|dental|medical/.test(ind)) return "Executive Clinic + Wine & Nine — low-pressure, relationship-first";
-  if(/sport|outdoor|retail|goods|footwear|apparel/.test(ind)) return "Carolina Football Watch Party or the Summer Series — brand + audience";
-  return "Wine & Nine — an easy first touch before any ask";
+  if(/legal|financ|insur|auto|estate|bank|wealth|consult|account/.test(ind))
+    return "Boutique outing (16) — a hosted round beats a lunch with these buyers";
+  if(/health|dental|medical/.test(ind))
+    return "Night on the Range — low-pressure first touch, works for non-golfers";
+  if(/sport|outdoor|retail|goods|footwear|apparel|brew|restaur/.test(ind))
+    return "Summer Series sponsorship or a Carolina watch party — brand + audience";
+  if(/construct|equipment|supply|manufact|real estate/.test(ind))
+    return "Premium outing (80 players) — crews, subs and clients in one day";
+  if(/greek|fraternity|sorority|university|school|student/.test(ind))
+    return "Night on the Range — high-volume, social, and priced to fit";
+  return "Night on the Range — the easiest first yes before a bigger ask";
 }
 function roiPredict(c){
   const ind=(c.ind||"").toLowerCase();
@@ -1703,23 +1712,31 @@ $("#cmdSec").addEventListener("click",e=>{
 });
 
 /* ---- Sponsorship inventory (assets mirror the Package Builder) ---- */
+/* Mirrors the Package Builder's real priced menu. Excluded per Tyler:
+   on-site/course branding, tournament assets, Evening on The Heel, Stay & Play.
+   Capacities are placeholders — set them to Finley's real slot counts. */
 const INVENTORY=[
-  {cat:"Marketing real estate",name:"Cart advertising",cap:12,price:4500},
-  {cat:"Marketing real estate",name:"Tee-box signs",cap:18,price:1500},
-  {cat:"Marketing real estate",name:"Range / practice-facility sponsor",cap:2,price:1200},
-  {cat:"Marketing real estate",name:"Putting-green sponsor",cap:1,price:1500},
-  {cat:"Marketing real estate",name:"Clubhouse digital signage",cap:6,price:1500},
-  {cat:"Marketing real estate",name:"Website logo placement",cap:10,price:500},
-  {cat:"Marketing real estate",name:"Email campaign inclusion",cap:8,price:500},
-  {cat:"Events & experiences",name:"Premium outing (80 players)",cap:6,price:15000},
-  {cat:"Events & experiences",name:"Boutique outing",cap:12,price:5500},
-  {cat:"Events & experiences",name:"Night on the Range",cap:8,price:4500},
-  {cat:"Events & experiences",name:"Summer Series sponsorship",cap:3,price:5000},
-  {cat:"Events & experiences",name:"Watch-party sponsor",cap:5,price:2000},
-  {cat:"Events & experiences",name:"Executive clinic",cap:4,price:4000},
-  {cat:"Carolina athletics",name:"Football ticket package",cap:10,price:7500},
-  {cat:"Carolina athletics",name:"Basketball + Olympic package",cap:12,price:4500},
-  {cat:"Carolina athletics",name:"Olympic-sport package",cap:20,price:2000}
+  {cat:"Rounds",name:"24 hosted rounds",cap:8,price:3800},
+  {cat:"Rounds",name:"60 hosted rounds",cap:6,price:9000},
+  {cat:"Rounds",name:"80 hosted rounds",cap:4,price:11200},
+  {cat:"Rounds",name:"100 hosted rounds",cap:3,price:12000},
+  {cat:"Events & outings",name:"Premium outing (80 players)",cap:6,price:15000},
+  {cat:"Events & outings",name:"Boutique outing (16 players)",cap:8,price:3500},
+  {cat:"Events & outings",name:"Boutique outing (24 players)",cap:6,price:5500},
+  {cat:"Events & outings",name:"Boutique outing (36 players)",cap:4,price:8000},
+  {cat:"Events & outings",name:"Night on the Range",cap:8,price:4500},
+  {cat:"Marketing",name:"Basic marketing",cap:10,price:1500},
+  {cat:"Marketing",name:"Standard marketing",cap:8,price:4500},
+  {cat:"Marketing",name:"Premium marketing",cap:4,price:7500},
+  {cat:"Marketing",name:"Summer Series sponsorship",cap:3,price:5000},
+  {cat:"Carolina athletics",name:"40 Olympic-sport tickets",cap:20,price:2000},
+  {cat:"Carolina athletics",name:"Basketball + 60 Olympic tickets",cap:12,price:4500},
+  {cat:"Carolina athletics",name:"Full Carolina access (football+)",cap:10,price:7500},
+  {cat:"Perks & credits",name:"F&B credit — $1,000",cap:12,price:1000},
+  {cat:"Perks & credits",name:"F&B credit — $2,500",cap:8,price:2500},
+  {cat:"Perks & credits",name:"Merch credit — $1,000",cap:12,price:1000},
+  {cat:"Perks & credits",name:"Heels Club prepaid credits",cap:15,price:850},
+  {cat:"Perks & credits",name:"Practice facility access",cap:12,price:1200}
 ];
 const INVSOLD=(function(){try{return JSON.parse(localStorage.getItem("finley.inv")||"{}");}catch(e){return{};}})();
 function saveInv(){try{localStorage.setItem("finley.inv",JSON.stringify(INVSOLD));}catch(e){}}
@@ -1747,7 +1764,7 @@ function renderInventory(){
     });
     html+=`</div>`;
   });
-  html+=`<p class="inv-note">Assets mirror the Finley Package Builder. Capacities and rates are editable placeholders — send me your real slot counts and rate card and I'll set them exactly. Sold counts save in this browser; tap +/− as you close deals.</p>`;
+  html+=`<p class="inv-note">Assets and prices mirror the Finley Package Builder's à-la-carte menu. On-site/course branding, tournament assets, Evening on The Heel and Stay &amp; Play are intentionally excluded. <b>Capacities are placeholders</b> — tell me Finley's real slot counts and I'll set them exactly. Sold counts save in this browser; tap +/− as you close deals.</p>`;
   $("#invSec").innerHTML=html;
 }
 $("#invSec").addEventListener("click",e=>{
