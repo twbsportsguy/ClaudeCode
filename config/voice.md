@@ -100,6 +100,12 @@ told me"*, **check the `OWNER:` tag on that row**. If it isn't Tyler:
 - Where a row has no `OWNER:` tag (204 companies), don't assert any prior
   conversation at all. Write it as a first approach.
 
+**Everything sends under Tyler's name** (decided 2026-07-28). Never ask a
+colleague to send a warm intro first and never draft on their behalf — one
+line inside Tyler's own email is all the handover needs. The point of the rule
+above is accuracy, not routing: name the right person for a past call, then get
+on with the ask.
+
 Getting this wrong is worse than a clumsy sentence: it tells a prospect Tyler
 was in a meeting he wasn't in, and they will remember who they actually spoke
 to.

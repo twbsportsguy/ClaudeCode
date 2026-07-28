@@ -16,3 +16,7 @@ just taking his accounts over. Reword both to a colleague handover per
 - **UNC Panhellenic** (draft `r-3145470369164582030`) — "I've picked it up on our
   end" → same handover phrasing.
 Christman (Bryce) is correct as written — Bryce has moved on.
+
+Decided 2026-07-28: everything sends under Tyler's name. No colleague intro
+emails, no drafting on Jake's or ML's behalf — a single handover line inside
+Tyler's own email covers it.
