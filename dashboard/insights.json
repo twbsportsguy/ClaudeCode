@@ -3,8 +3,8 @@
  "totals": {
   "companies": 663,
   "replied": 480,
-  "warm": 63,
-  "lost": 35
+  "warm": 66,
+  "lost": 32
  },
  "industries": [
   {
@@ -99,11 +99,11 @@
    "name": "Local businesses",
    "n": 22,
    "replied": 22,
-   "warm": 10,
-   "lost": 6,
+   "warm": 13,
+   "lost": 3,
    "quotes": [],
    "replyRate": 100,
-   "winRate": 62,
+   "winRate": 81,
    "answered": 16
   },
   {
@@ -513,7 +513,7 @@
   },
   {
    "label": "Wants pricing",
-   "n": 2,
+   "n": 3,
    "items": [
     {
      "co": "Chi Psi Fraternity",
@@ -524,6 +524,32 @@
      "co": "Prudent Growth Partners",
      "ind": "Wealth management & finance",
      "q": "This might be of interest \u2026 can you please send along any details you can share? I.e., pricing and typical terms of use? | OWNER: Jake | OWNER: Jake"
+    },
+    {
+     "co": "Shrunkenhead Boutique",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles | OWNER: Tyler | Restored 2026-07-28. Their words were 'the pricing is simply outside of what we're able to commit to as a small business. There's no lack of interest on our end' \u2014 a pr"
+    }
+   ]
+  },
+  {
+   "label": "Wants to donate in kind",
+   "n": 3,
+   "items": [
+    {
+     "co": "Bartaco",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles | OWNER: Tyler | Restored 2026-07-28 \u2014 the ban is on the in-kind ask, not the account. A. Greenberg was weighing a real partnership. | 11/10/2025 11/17/25 interested in donating for raf"
+    },
+    {
+     "co": "Shrunkenhead Boutique",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles | OWNER: Tyler | Restored 2026-07-28. Their words were 'the pricing is simply outside of what we're able to commit to as a small business. There's no lack of interest on our end' \u2014 a pr"
+    },
+    {
+     "co": "Alumni Hall",
+     "ind": "Local businesses",
+     "q": "interested in raffles | OWNER: Tyler | Restored 2026-07-28 \u2014 only ever offered raffle items; needs a proper partnership pitch instead. | 11/4/2025 11/10/2025 11/17/25 interested in raffles | split from packed legacy row "
     }
    ]
   }

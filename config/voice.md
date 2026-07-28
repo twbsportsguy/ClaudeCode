@@ -118,8 +118,14 @@ partnership, and the tracker filed them that way. **Do not pitch, accept or
 chase in-kind donations** — Finley sells partnerships, and asking a prospect
 for a gift card sets the relationship at the wrong level.
 
-If a company can only do in-kind, that is a **no** for our purposes. Log it and
-move on; don't invent a smaller ask to keep them alive.
+**This bans the ask, not the account** (clarified 2026-07-28). A company that
+once offered gift cards is still a live prospect — pitch them a partnership.
+Shrunkenhead is the case in point: the tracker filed them as a raffle donor, but
+what they actually wrote was *"the pricing is simply outside of what we're able
+to commit to as a small business. There's no lack of interest on our end."* That
+is a price objection, and a custom-built package answers it. Never respond to an
+in-kind offer by accepting it — respond with a partnership sized to their
+budget.
 
 ## Champion / forward-up variant (for non-executive contacts)
 When the recipient is mid-level (marketing coordinator, events, community, PR,

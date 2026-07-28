@@ -50,8 +50,9 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
   skill, Step 6, for when to rebuild).
 - **Gmail drafts only, never send.** The user reviews and sends everything.
 - **Never ask for raffle or in-kind donations** (Tyler, 2026-07-28). Finley sells
-  partnerships; a company that can only give gift cards is a no. See
-  `config/voice.md`.
+  partnerships. This bans the *ask*, not the account — a company that offered
+  gift cards is still a prospect, pitch them a partnership sized to their
+  budget. See `config/voice.md`.
 - **Respect the ruled-out list.** Companies Tyler has explicitly declined sit at
   `Not Interested: 0%` with "ruled out by Tyler" in Next Step. Never re-draft
   them, and never let a later `New` row resurrect one.
