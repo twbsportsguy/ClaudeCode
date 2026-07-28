@@ -49,6 +49,12 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
   originates from `tools/build_live_tracker_xlsx.py` (see the /prospect
   skill, Step 6, for when to rebuild).
 - **Gmail drafts only, never send.** The user reviews and sends everything.
+- **Never ask for raffle or in-kind donations** (Tyler, 2026-07-28). Finley sells
+  partnerships; a company that can only give gift cards is a no. See
+  `config/voice.md`.
+- **Respect the ruled-out list.** Companies Tyler has explicitly declined sit at
+  `Not Interested: 0%` with "ruled out by Tyler" in Next Step. Never re-draft
+  them, and never let a later `New` row resurrect one.
 - **Proofread every email before creating its draft** — no unfilled merge
   fields, correct name/company/city, factually true hook, clean grammar, and
   the verbatim signature (SKILL.md Step 7).

@@ -3,30 +3,30 @@
  "totals": {
   "companies": 663,
   "replied": 480,
-  "warm": 69,
-  "lost": 29
+  "warm": 63,
+  "lost": 35
  },
  "industries": [
   {
    "name": "Unclassified",
    "n": 238,
    "replied": 157,
-   "warm": 14,
-   "lost": 5,
+   "warm": 13,
+   "lost": 6,
    "quotes": [],
    "replyRate": 66,
-   "winRate": 74,
+   "winRate": 68,
    "answered": 19
   },
   {
    "name": "Wholesale, supply & equipment",
    "n": 81,
    "replied": 57,
-   "warm": 4,
-   "lost": 0,
+   "warm": 3,
+   "lost": 1,
    "quotes": [],
    "replyRate": 70,
-   "winRate": 100,
+   "winRate": 75,
    "answered": 4
   },
   {
@@ -99,11 +99,11 @@
    "name": "Local businesses",
    "n": 22,
    "replied": 22,
-   "warm": 13,
-   "lost": 3,
+   "warm": 10,
+   "lost": 6,
    "quotes": [],
    "replyRate": 100,
-   "winRate": 81,
+   "winRate": 62,
    "answered": 16
   },
   {
@@ -132,11 +132,11 @@
    "name": "Marketing & brands",
    "n": 9,
    "replied": 9,
-   "warm": 3,
-   "lost": 2,
+   "warm": 2,
+   "lost": 3,
    "quotes": [],
    "replyRate": 100,
-   "winRate": 60,
+   "winRate": 40,
    "answered": 5
   },
   {
@@ -451,17 +451,12 @@
   },
   {
    "label": "Wants a meeting or call",
-   "n": 7,
+   "n": 6,
    "items": [
     {
      "co": "Chapel Hill Tire",
      "ind": "Auto & travel",
      "q": "follow-up meeting on december 2nd | OWNER: Tyler | 11/4/2025 11/10/2025 follow-up meeting on december 2nd | split from packed legacy row 2026-07-28 | OWNER: Tyler | 11/4/2025 11/10/2025 follow-up meeting on december 2nd "
-    },
-    {
-     "co": "Brunt",
-     "ind": "Marketing & brands",
-     "q": "Interested in our agronomy team , meeting monday at 10:00 Call went well, sent ideas and will reach out to schedule another call | OWNER: Tyler | 11/12/25 11/20/2025 Interested in our agronomy team , meeting monday at 10"
     },
     {
      "co": "Ward and Smith PA",
@@ -518,7 +513,7 @@
   },
   {
    "label": "Wants pricing",
-   "n": 3,
+   "n": 2,
    "items": [
     {
      "co": "Chi Psi Fraternity",
@@ -529,32 +524,6 @@
      "co": "Prudent Growth Partners",
      "ind": "Wealth management & finance",
      "q": "This might be of interest \u2026 can you please send along any details you can share? I.e., pricing and typical terms of use? | OWNER: Jake | OWNER: Jake"
-    },
-    {
-     "co": "Shrunkenhead Boutique",
-     "ind": "Local businesses",
-     "q": "interested in donating for raffles | OWNER: Tyler | Two replies: not able to contribute financially, but asked about silent auctions/raffles. Then the real reason \u2014 'the pricing is simply outside of what we're able to co"
-    }
-   ]
-  },
-  {
-   "label": "Wants to donate in kind",
-   "n": 3,
-   "items": [
-    {
-     "co": "Bartaco",
-     "ind": "Local businesses",
-     "q": "interested in donating for raffles | OWNER: Tyler | 11/10/2025 11/17/25 interested in donating for raffles | split from packed legacy row 2026-07-28 | OWNER: Tyler | Engaged 11/2025, sent questions ahead of a scheduled c"
-    },
-    {
-     "co": "Shrunkenhead Boutique",
-     "ind": "Local businesses",
-     "q": "interested in donating for raffles | OWNER: Tyler | Two replies: not able to contribute financially, but asked about silent auctions/raffles. Then the real reason \u2014 'the pricing is simply outside of what we're able to co"
-    },
-    {
-     "co": "Alumni Hall",
-     "ind": "Local businesses",
-     "q": "interested in raffles | OWNER: Tyler | 11/4/2025 11/10/2025 11/17/25 interested in raffles | split from packed legacy row 2026-07-28 | OWNER: Tyler"
     }
    ]
   }

@@ -111,6 +111,16 @@ Getting this wrong is worse than a clumsy sentence: it tells a prospect Tyler
 was in a meeting he wasn't in, and they will remember who they actually spoke
 to.
 
+## Never ask for a raffle or in-kind donation
+Tyler ruled this out on 2026-07-28. Several local businesses replied to the
+2025 campaign offering gift cards or silent-auction items instead of buying a
+partnership, and the tracker filed them that way. **Do not pitch, accept or
+chase in-kind donations** — Finley sells partnerships, and asking a prospect
+for a gift card sets the relationship at the wrong level.
+
+If a company can only do in-kind, that is a **no** for our purposes. Log it and
+move on; don't invent a smaller ask to keep them alive.
+
 ## Champion / forward-up variant (for non-executive contacts)
 When the recipient is mid-level (marketing coordinator, events, community, PR,
 a specialist) rather than the owner/CxO, treat them as a **champion** who can
