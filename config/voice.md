@@ -95,11 +95,9 @@ told me"*, **check the `OWNER:` tag on that row**. If it isn't Tyler:
   phrase it as a handover between colleagues, not a vacancy:
   *"Jake and I have swapped a few accounts around and yours came to me."*
   Never write anything that reads as though they left.
-- **Bryce Jeske's status is unconfirmed.** He was still signing off as Finley's
-  Assistant GM in January 2026. Until Tyler confirms, use neutral past tense
-  that survives either answer: *"Your December call with Bryce got passed along
-  to me"* — true whether he left or simply handed the account over. Never write
-  anything that states or implies he has gone.
+- **Bryce Jeske has left Finley** (confirmed 2026-07-28), so his 181 accounts
+  are a genuine pass-along: *"Your December call with Bryce got passed along to
+  me."* Don't dwell on the departure — one clause, then the ask.
 - Where a row has no `OWNER:` tag (204 companies), don't assert any prior
   conversation at all. Write it as a first approach.
 

@@ -81,6 +81,12 @@ pipeline."
    than just the sender's signature), "athletes and families of youth sports",
    the PLAYERSNEXT foundation, or Max Lehmann's foundation work.
 
+   **The cleanest signal is the subject line.** The Finley campaign went out as
+   **"2026 UNC Finley Golf Club | Proud Partnership"** (and close variants —
+   "Proud Partnerships", "Proud Partners"). Searching that phrase isolates the
+   Finley book almost perfectly. The youth-sports campaign went out as "What's
+   Next for Youth Sports | PLAYERSNEXT".
+
    **Keep the thread** only when it is recognisably Finley: it mentions Finley
    Golf Club, Carolina Golf, rounds, an outing, Night on the Range, Old Well
    Patron, Heels Club, or club branding — **or** the counterparty is already a

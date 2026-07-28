@@ -49,3 +49,24 @@ Finley-side leads found but NOT yet in the tracker — capture on the next run:
   gifted by Dwight Anderson. Evidence the product delivers; usable as a
   reference.
 - **YogaSix Chapel Hill** (chapelhill@yogasix.com, Janina Churchwell) — met.
+
+## Archive read 2026-07-28 — what the second inbox actually held
+Finley campaign subject: **"2026 UNC Finley Golf Club | Proud Partnership"**.
+Searching that isolates the Finley book from the PLAYERSNEXT youth-sports push.
+9 rows recovered. Still unread: the bulk of 201 threads — do a full pass once
+both inboxes are reachable.
+
+Corrections the archive forced on the tracker's paraphrases:
+- **Shrunkenhead** was logged as "interested in donating for raffles". The real
+  words: *"the pricing is simply outside of what we're able to commit to as a
+  small business. There's no lack of interest on our end."* That is a **price**
+  objection, not a preference for in-kind — and it is exactly what the
+  now-customizable packages answer.
+- **Brunt** was logged only as warm. They also wrote: *"We focus our sponsorships
+  more around the people working"* — they back tradespeople, not golf. The
+  agronomy-team angle is what actually landed.
+
+Never logged at all: **Orange County, NC government** — *"we value our
+relationship with UNC Athletics and we don't want to limit that to Football and
+Basketball. I am all in with whatever events or special projects we can."*
+Strongest unworked reply in the archive; now in the tracker as Interested.
