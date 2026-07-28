@@ -75,3 +75,30 @@ Never logged at all: **Orange County, NC government** — *"we value our
 relationship with UNC Athletics and we don't want to limit that to Football and
 Basketball. I am all in with whatever events or special projects we can."*
 Strongest unworked reply in the archive; now in the tracker as Interested.
+
+## Forwarded archive read 2026-07-28 (48 Finley threads)
+Tyler forwarded the Finley campaign as attachments. Read in full.
+
+**Correction — Orange County / Sheriff Charles Blackwood.** I had logged him as
+the strongest unworked reply in the book on the strength of "I am all in with
+whatever events or special projects we can." That line came early in the thread.
+He then met Tyler, took the proposal to his partners, and declined on 7 Jan 2026:
+partners prefer **Chapel Hill Country Club** (two tournaments, two dinners a
+year), "no buy in due to the costs involved", and — the part worth acting on —
+"this is clearly to generate revenue for Finley, where CHCC is only interested
+in bonding, fellowship." Tyler's instruction to drop him was correct; my read was
+wrong because I judged a thread from one snippet. Recorded in scoring.md as a
+named competitor and a positioning objection.
+
+**New contacts.** Lisa Schiller, Chief Communications & Marketing Officer at UNC
+Health, made an unprompted internal introduction to Margaret Ann Bollmeier at the
+UNC Health Foundation about supporting their stewardship efforts — a warm
+referral at a Red-Hots account that nobody followed up. Also Vince Phelan (Belk
+CFO, who forwarded the pitch to Courtney Enright), Ryan Jerry (Carolina Brewery,
+declined), and Anna Greenberg's full name and title at bartaco, whose last
+message was "Sounds great, Tyler – keep us posted!"
+
+**Method note.** Most "replies" in the bundle are Tyler's own break-up email
+("It feels like a partnership between our two organizations may not be a good
+fit") sent to roughly 20 non-responders. Do not read those as prospect
+rejections — they are outbound.

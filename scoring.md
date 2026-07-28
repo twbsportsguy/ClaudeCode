@@ -76,6 +76,21 @@ Rules:
 - If the adjusted score crosses a band, update the `Rank` column too, and say so
   in `Why This Rank`.
 
+## Known competitor: Chapel Hill Country Club
+Sheriff Charles Blackwood's January 2026 decline named the incumbent outright —
+his group stays with **Chapel Hill Country Club** on a two-tournaments-and-two-
+dinners-a-year schedule. He also gave the objection to beat:
+
+> *"this is clearly to generate revenue for Finley, where CHCC is only
+> interested in bonding, fellowship, and allowing folks who may not have the
+> means to play a quality course that opportunity."*
+
+Treat that as a positioning problem, not a pricing one. Where a prospect already
+has a club relationship, lead with what Finley uniquely is — Carolina's home
+course, the UNC tie, a day nobody else can host — rather than with a package
+price, and name the relationship outcome before the revenue one. Score an
+existing club relationship as a **fit** obstacle worth **−4**, not as a loss.
+
 ## Rank bands (from the 0–100 score)
 - **A — 80–100** (Golf Fit: Elite/Strong): priority. Draft immediately, follow up within 3 days.
 - **B — 55–79** (Good): solid. Draft, normal cadence.
