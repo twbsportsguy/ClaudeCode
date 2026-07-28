@@ -1,0 +1,639 @@
+{
+ "generated": "2026-07-28",
+ "totals": {
+  "companies": 662,
+  "replied": 118,
+  "warm": 68,
+  "lost": 29
+ },
+ "industries": [
+  {
+   "name": "Unclassified",
+   "n": 237,
+   "replied": 27,
+   "warm": 13,
+   "lost": 5,
+   "quotes": [],
+   "replyRate": 11,
+   "winRate": 72,
+   "answered": 18
+  },
+  {
+   "name": "Local businesses",
+   "n": 22,
+   "replied": 14,
+   "warm": 13,
+   "lost": 3,
+   "quotes": [],
+   "replyRate": 64,
+   "winRate": 81,
+   "answered": 16
+  },
+  {
+   "name": "Wealth management & finance",
+   "n": 46,
+   "replied": 12,
+   "warm": 5,
+   "lost": 7,
+   "quotes": [],
+   "replyRate": 26,
+   "winRate": 42,
+   "answered": 12
+  },
+  {
+   "name": "Law firms",
+   "n": 27,
+   "replied": 12,
+   "warm": 2,
+   "lost": 5,
+   "quotes": [],
+   "replyRate": 44,
+   "winRate": 29,
+   "answered": 7
+  },
+  {
+   "name": "Construction & engineering",
+   "n": 70,
+   "replied": 10,
+   "warm": 6,
+   "lost": 2,
+   "quotes": [],
+   "replyRate": 14,
+   "winRate": 75,
+   "answered": 8
+  },
+  {
+   "name": "Greek organizations",
+   "n": 32,
+   "replied": 10,
+   "warm": 8,
+   "lost": 1,
+   "quotes": [],
+   "replyRate": 31,
+   "winRate": 89,
+   "answered": 9
+  },
+  {
+   "name": "Healthcare",
+   "n": 41,
+   "replied": 9,
+   "warm": 2,
+   "lost": 1,
+   "quotes": [],
+   "replyRate": 22,
+   "winRate": 67,
+   "answered": 3
+  },
+  {
+   "name": "Consulting & accounting",
+   "n": 31,
+   "replied": 6,
+   "warm": 2,
+   "lost": 3,
+   "quotes": [],
+   "replyRate": 19,
+   "winRate": 40,
+   "answered": 5
+  },
+  {
+   "name": "Wholesale, supply & equipment",
+   "n": 81,
+   "replied": 6,
+   "warm": 4,
+   "lost": 0,
+   "quotes": [],
+   "replyRate": 7,
+   "winRate": 100,
+   "answered": 4
+  },
+  {
+   "name": "UNC teams & schools",
+   "n": 19,
+   "replied": 5,
+   "warm": 5,
+   "lost": 0,
+   "quotes": [],
+   "replyRate": 26,
+   "winRate": 100,
+   "answered": 5
+  },
+  {
+   "name": "Marketing & brands",
+   "n": 9,
+   "replied": 4,
+   "warm": 3,
+   "lost": 2,
+   "quotes": [],
+   "replyRate": 44,
+   "winRate": 60,
+   "answered": 5
+  },
+  {
+   "name": "Auto & travel",
+   "n": 16,
+   "replied": 3,
+   "warm": 3,
+   "lost": 0,
+   "quotes": [],
+   "replyRate": 19,
+   "winRate": 100,
+   "answered": 3
+  },
+  {
+   "name": "Real estate",
+   "n": 31,
+   "replied": 0,
+   "warm": 2,
+   "lost": 0,
+   "quotes": [],
+   "replyRate": 0,
+   "winRate": 100,
+   "answered": 2
+  }
+ ],
+ "reasons": [
+  {
+   "label": "Not a fit / wrong audience",
+   "n": 15,
+   "items": [
+    {
+     "co": "Davenport & Company LLC",
+     "ind": "Wealth management & finance",
+     "q": "Thanks Jake, no interest.",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Brooks, Pierce, McLendon, Humphrey & Leonard",
+     "ind": "Law firms",
+     "q": "Unfortunately that is not something we would be interested in right now, but I appeciate you thinking of us - Jimmy",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "Alston & Bird",
+     "ind": "Law firms",
+     "q": "Not interested at this time",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "MKS Wealth Management",
+     "ind": "Wealth management & finance",
+     "q": "\"Thank you for the offer but I'll pass\"",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "Percivall Advertising",
+     "ind": "Marketing & brands",
+     "q": "No Interest please stop emailing",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "TMF Group",
+     "ind": "Consulting & accounting",
+     "q": "Thanks for reaching out but we are not interested. Thank you\\!",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Provision Wealth Management",
+     "ind": "Wealth management & finance",
+     "q": "Thanks for reaching back out. Unfortunately, not a fit at this time.",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "Thomas, Judy & Tucker PA",
+     "ind": "Consulting & accounting",
+     "q": "Correct. Not interested.",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Gaulden Wealth Management",
+     "ind": "Wealth management & finance",
+     "q": "Hi Jake\u2014thanks, but not right now.",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "Close HR Connections",
+     "ind": "Consulting & accounting",
+     "q": "Thank you for reaching out, but not interested at this time.",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "Wasserman Foundation",
+     "ind": "Unclassified",
+     "q": "Not a fit",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Liquid I.V.",
+     "ind": "Marketing & brands",
+     "q": "Not in the golf space",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Brasfield & Gorrie",
+     "ind": "Construction & engineering",
+     "q": "Not really a good fit",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Luca Partners",
+     "ind": "Wealth management & finance",
+     "q": "Hey Bryce - sorry for the delay. Yes, not a fit for us. Thank you",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Toole Design Group",
+     "ind": "Construction & engineering",
+     "q": "Hey Bryce - sorry for the delay. Yes, not a fit for us. Thank you",
+     "stage": "Not Interested: 0%"
+    }
+   ]
+  },
+  {
+   "label": "Budget spent this cycle",
+   "n": 3,
+   "items": [
+    {
+     "co": "Acacia Fraternity",
+     "ind": "Greek organizations",
+     "q": "Out of budget",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "Modern Wealth Management",
+     "ind": "Wealth management & finance",
+     "q": "Out of marketing budget",
+     "stage": "Re-approach: 25%"
+    },
+    {
+     "co": "Carolina Cat",
+     "ind": "Local businesses",
+     "q": "2026 Budget used",
+     "stage": "Re-approach: 25%"
+    }
+   ]
+  },
+  {
+   "label": "Policy forbids it",
+   "n": 3,
+   "items": [
+    {
+     "co": "Parexel",
+     "ind": "Healthcare",
+     "q": "Expenses are not allowed",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "North Carolina National Guard",
+     "ind": "Unclassified",
+     "q": "Department of War and can not do",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Resolute Building",
+     "ind": "Unclassified",
+     "q": "Does not advertise",
+     "stage": "Not Interested: 0%"
+    }
+   ]
+  },
+  {
+   "label": "Rival allegiance",
+   "n": 2,
+   "items": [
+    {
+     "co": "Fortress Financial Partners",
+     "ind": "Wealth management & finance",
+     "q": "Take me off your list. I am anti-UNC after your abhorrent cheating scandal and the way it was handled by the University. I didn\u2019t say anything for the first several emails, but as the drip continues, am taking the time t",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Charles Grey Millwork",
+     "ind": "Unclassified",
+     "q": "NC State Grads",
+     "stage": "Not Interested: 0%"
+    }
+   ]
+  },
+  {
+   "label": "Hard opt-out",
+   "n": 1,
+   "items": [
+    {
+     "co": "Manning, Fulton & Skinner",
+     "ind": "Law firms",
+     "q": "Reached out to Jason Blocked Me",
+     "stage": "Not Interested: 0%"
+    }
+   ]
+  },
+  {
+   "label": "Already committed elsewhere",
+   "n": 1,
+   "items": [
+    {
+     "co": "Belk's",
+     "ind": "Local businesses",
+     "q": "SET ON PARTNERSHIPS ATM",
+     "stage": "Re-approach: 25%"
+    }
+   ]
+  },
+  {
+   "label": "Too far to travel",
+   "n": 1,
+   "items": [
+    {
+     "co": "Cox Toyota",
+     "ind": "Unclassified",
+     "q": "too far",
+     "stage": "Not Interested: 0%"
+    }
+   ]
+  }
+ ],
+ "asks": [
+  {
+   "label": "Routing to someone else",
+   "n": 10,
+   "items": [
+    {
+     "co": "UNC Panhellenic Board",
+     "ind": "Greek organizations",
+     "q": "Met 11/12/25 - they love the offerings and are connecting us with IFC and individual sororities. They wanted to learn more and are thinking of ways to make things happen"
+    },
+    {
+     "co": "Zeta Psi",
+     "ind": "Greek organizations",
+     "q": "Very interested - turning over exec team this week and will put us in touch with new team. Love the night on the range idea 12/2 - sent followup"
+    },
+    {
+     "co": "Valley Peak Financial",
+     "ind": "Wealth management & finance",
+     "q": "Thanks for reaching out. I can't say we'll never be interested, but let's plan to have a conversation sometime next year. Copying my partners."
+    },
+    {
+     "co": "Sport Durst Automotive Group",
+     "ind": "Auto & travel",
+     "q": "Sent to VP and marketing director"
+    },
+    {
+     "co": "Hawthorne & Wood",
+     "ind": "Local businesses",
+     "q": "sent to marketing director"
+    },
+    {
+     "co": "Martin Marietta",
+     "ind": "Wholesale, supply & equipment",
+     "q": "sent to both fu 11/18 12/1"
+    },
+    {
+     "co": "Chi Omega Sorority",
+     "ind": "Greek organizations",
+     "q": "Unfortunately all of our events are booked for this semester. However, in two weeks we will be voting on a new executive board and social events chair and I will give her your contact information\\!"
+    },
+    {
+     "co": "Carpe Deodorant",
+     "ind": "Marketing & brands",
+     "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit."
+    },
+    {
+     "co": "Samet Corporation",
+     "ind": "Construction & engineering",
+     "q": "Intro sent to AS 10/24 fu 11/3"
+    },
+    {
+     "co": "Gregory Poole Equipment NC/SC",
+     "ind": "Wholesale, supply & equipment",
+     "q": "LinkedIn to greg intro sent 10/26 fu 11/3/ intro sent to joy"
+    }
+   ]
+  },
+  {
+   "label": "Reviewing internally",
+   "n": 7,
+   "items": [
+    {
+     "co": "Beta Theta Pi Fraternity",
+     "ind": "Greek organizations",
+     "q": "Hosts golf tourney every year - loves the idea and talking internally. Met with JH and ML on 11/13 12/2 - Sent followup"
+    },
+    {
+     "co": "Cherry Bekaert",
+     "ind": "Consulting & accounting",
+     "q": "Thanks for reaching out and will look into this internally. They are OOO till 11/15 12/2 - Sent followup"
+    },
+    {
+     "co": "UNC School of Law",
+     "ind": "UNC teams & schools",
+     "q": "This is interesting. Let me run up the flag pole and ill circle back."
+    },
+    {
+     "co": "UNC Gymnastics",
+     "ind": "UNC teams & schools",
+     "q": "My apologies for missing your first email, and thank you for the follow-up\\! Let me review this opportunity with our fundraising group so I can get their feedback."
+    },
+    {
+     "co": "Cambridge Fitness",
+     "ind": "Local businesses",
+     "q": "looking over internally"
+    },
+    {
+     "co": "Wyrick Robbins",
+     "ind": "Law firms",
+     "q": "Thanks, Jake. We\u2019ll take a look and will be back in touch if we feel like this is a good fit for us 10/29 Jake, thank you for sharing this information with us. After taking it into consideration, we are not interested in"
+    },
+    {
+     "co": "Carpe Deodorant",
+     "ind": "Marketing & brands",
+     "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit."
+    }
+   ]
+  },
+  {
+   "label": "Wants a meeting or call",
+   "n": 7,
+   "items": [
+    {
+     "co": "Chapel Hill Tire",
+     "ind": "Auto & travel",
+     "q": "follow-up meeting on december 2nd"
+    },
+    {
+     "co": "Brunt",
+     "ind": "Marketing & brands",
+     "q": "Interested in our agronomy team , meeting monday at 10:00 Call went well, sent ideas and will reach out to schedule another call"
+    },
+    {
+     "co": "Ward and Smith PA",
+     "ind": "Local businesses",
+     "q": "Meeting set for december"
+    },
+    {
+     "co": "Chi Psi Fraternity",
+     "ind": "Greek organizations",
+     "q": "Had 1 good meeting - waiting for follow-up 12/1 - sent prices"
+    },
+    {
+     "co": "Sigma Nu",
+     "ind": "Greek organizations",
+     "q": "Meeting set for Fri, 11/14 at 12:00 Solid Meeting on 12/3"
+    },
+    {
+     "co": "UNC Womens Basketball",
+     "ind": "UNC teams & schools",
+     "q": "Thank you for reaching out and happy holidays\\! I would love to hop on a call when we return from Christmas break. How does the week of 12/29 look for you?"
+    },
+    {
+     "co": "UNC Baseball",
+     "ind": "UNC teams & schools",
+     "q": "Let Dave and I connect after the Holidays and we\u2019ll get back to you if this is something we would like to pursue. We frequent Finley often, but let us figure out if it makes sense for a larger group experience in 2026\\!"
+    }
+   ]
+  },
+  {
+   "label": "Golf-culture affinity",
+   "n": 4,
+   "items": [
+    {
+     "co": "Beta Theta Pi Fraternity",
+     "ind": "Greek organizations",
+     "q": "Hosts golf tourney every year - loves the idea and talking internally. Met with JH and ML on 11/13 12/2 - Sent followup"
+    },
+    {
+     "co": "The Christman Company",
+     "ind": "Construction & engineering",
+     "q": "Good call- golf nut and impressed with how many rounds of golf they get"
+    },
+    {
+     "co": "Zeta Psi",
+     "ind": "Greek organizations",
+     "q": "Very interested - turning over exec team this week and will put us in touch with new team. Love the night on the range idea 12/2 - sent followup"
+    },
+    {
+     "co": "UNC Baseball",
+     "ind": "UNC teams & schools",
+     "q": "Let Dave and I connect after the Holidays and we\u2019ll get back to you if this is something we would like to pursue. We frequent Finley often, but let us figure out if it makes sense for a larger group experience in 2026\\!"
+    }
+   ]
+  },
+  {
+   "label": "Wants to donate in kind",
+   "n": 3,
+   "items": [
+    {
+     "co": "Bartaco",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles"
+    },
+    {
+     "co": "Shrunkenhead Boutique",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles"
+    },
+    {
+     "co": "Alumni Hall",
+     "ind": "Local businesses",
+     "q": "interested in raffles"
+    }
+   ]
+  },
+  {
+   "label": "Wants pricing",
+   "n": 2,
+   "items": [
+    {
+     "co": "Chi Psi Fraternity",
+     "ind": "Greek organizations",
+     "q": "Had 1 good meeting - waiting for follow-up 12/1 - sent prices"
+    },
+    {
+     "co": "Prudent Growth Partners",
+     "ind": "Wealth management & finance",
+     "q": "This might be of interest \u2026 can you please send along any details you can share? I.e., pricing and typical terms of use?"
+    }
+   ]
+  }
+ ],
+ "calendar": [
+  {
+   "co": "Chi Omega Sorority",
+   "ind": "Greek organizations",
+   "when": "Next semester",
+   "order": 1,
+   "stage": "Interested: 50%",
+   "q": "Unfortunately all of our events are booked for this semester. However, in two weeks we will be voting on a new executive board and social events chair and I will give her your contact information\\!"
+  },
+  {
+   "co": "UNC Baseball",
+   "ind": "UNC teams & schools",
+   "when": "New year",
+   "order": 1,
+   "stage": "Interested: 50%",
+   "q": "Let Dave and I connect after the Holidays and we\u2019ll get back to you if this is something we would like to pursue. We frequent Finley often, but let us figure out if it makes sense for a larger group e"
+  },
+  {
+   "co": "UNC Track and Field",
+   "ind": "UNC teams & schools",
+   "when": "New year",
+   "order": 1,
+   "stage": "Interested: 50%",
+   "q": "Thanks for reaching out\\! Let's touch base at the start of the new year\\!"
+  },
+  {
+   "co": "Valley Peak Financial",
+   "ind": "Wealth management & finance",
+   "when": "New year",
+   "order": 1,
+   "stage": "Interested: 50%",
+   "q": "Thanks for reaching out. I can't say we'll never be interested, but let's plan to have a conversation sometime next year. Copying my partners."
+  },
+  {
+   "co": "Chapel Hill Sportswear",
+   "ind": "Local businesses",
+   "when": "Spring",
+   "order": 3,
+   "stage": "Interested: 50%",
+   "q": "Interested in the spring"
+  },
+  {
+   "co": "Delta Kappa Epsilon Fraternity",
+   "ind": "Greek organizations",
+   "when": "Spring",
+   "order": 3,
+   "stage": "Interested: 50%",
+   "q": "Already allocated budget but are interested will be reallocated in the spring - should reach back out then"
+  },
+  {
+   "co": "Stanley",
+   "ind": "Unclassified",
+   "when": "Q2",
+   "order": 4,
+   "stage": "Interested: 50%",
+   "q": "Interested in Q2 of next year"
+  },
+  {
+   "co": "Baker Roofing",
+   "ind": "Construction & engineering",
+   "when": "August",
+   "order": 8,
+   "stage": "Interested: 50%",
+   "q": "Reach out in August"
+  },
+  {
+   "co": "Fujifilm Biotechnologies",
+   "ind": "Local businesses",
+   "when": "2027",
+   "order": 13,
+   "stage": "Interested: 50%",
+   "q": "reach out in 2027"
+  },
+  {
+   "co": "Sunstate Equipment",
+   "ind": "Wholesale, supply & equipment",
+   "when": "2027",
+   "order": 13,
+   "stage": "Interested: 50%",
+   "q": "Budget already tapped for 2026, stay on for 2027"
+  }
+ ]
+}

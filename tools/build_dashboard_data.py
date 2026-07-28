@@ -53,6 +53,13 @@ def clean_note(s):
     s=TODO_RE.sub("",s); s=SCORE_RE.sub("",s)
     return re.sub(r"\s{2,}"," ",s).strip(" |")
 
+# Win/loss insights are produced by tools/analyze_conversations.py and embedded
+# here so the page stays self-contained (artifacts cannot fetch anything).
+try:
+    INSIGHTS=json.load(open("dashboard/insights.json"))
+except Exception:
+    INSIGHTS=None
+
 html=open(DASH).read()
 s,e,block=existing_data(html)
 # hand-authored, ZoomInfo-enriched cards look like {name:"X"  (no quoted key).
@@ -160,5 +167,11 @@ for name,c in cos.items():
 # NB: reuse the already-filtered `block` from above — re-reading the file here
 # would silently restore the generated cards we just stripped.
 newblock=block.rstrip().rstrip("];").rstrip().rstrip(",")+",\n"+",\n".join(lines)+"\n];"
-open(DASH,"w").write(html[:s]+newblock+html[e:])
+html=html[:s]+newblock+html[e:]
+if INSIGHTS is not None:
+    # NB: lambda replacement — a plain string would let re.sub interpret the
+    # backslashes that appear inside quoted reply text as escape sequences.
+    _repl="const INSIGHTS = "+js(INSIGHTS)+";\n"
+    html=re.sub(r"const INSIGHTS = \{.*?\};\n", lambda m:_repl, html, count=1, flags=re.S)
+open(DASH,"w").write(html)
 print(f"\nwrote {len(lines)} new company cards into the dashboard")
