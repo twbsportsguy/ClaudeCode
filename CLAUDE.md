@@ -9,13 +9,24 @@ tickets, merch credit, and hosted events.
 ## How the user works with this repo
 
 The user gives **any one or more** of: city, state, industry, company, person
-— a single input alone is a complete request (default market: Chapel Hill /
-Triangle, NC).
+— a single input alone is a complete request. **Coverage now expands in rings:
+North Carolina (home) → Southeast → East Coast → nationwide.** Home base /
+default market is the Triangle (Chapel Hill), and prospecting stays
+home-weighted, but autopilot rotates outward through those rings — leading with
+companies that have an NC/Triangle presence (HQ, office, or plausible travel
+tie) so the Carolina-hospitality pitch still lands (see `config/autopilot.md`).
 Run the `/prospect` skill (`.claude/skills/prospect/SKILL.md`) with those
 inputs. It pulls companies/contacts from ZoomInfo, researches ad/marketing
 spend on the web, scores prospects A/B/C, appends them to the master tracker,
 republishes the tracker to Google Sheets, and creates one personalized Gmail
 draft per decision-maker contact.
+
+**Autopilot:** running `/prospect` with **no input** (or `auto`) makes it
+choose its own targets via `config/autopilot.md` (dedupe + rotate + double
+down on segments that are replying) and log the reasoning to
+`tracker/autopilot-log.md`. Email voice is tuned in `config/voice.md`.
+Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
+(autopilot), **Tue/Thu = follow-ups** to non-repliers (`config/followups.md`).
 
 ## Key files
 
@@ -26,6 +37,7 @@ draft per decision-maker contact.
 | `scoring.md` | A/B/C ranking rubric (even blend: spend / size / fit) |
 | `templates/*.md` | Catered outreach email templates per industry |
 | `tracker/prospects.csv` | Master prospect data — source of truth for the Google Sheet |
+| `dashboard/index.html` | Self-contained prospect dashboard (the shareable UI) — regenerated each run, republished to a fixed Artifact URL |
 
 ## Rules
 
@@ -37,7 +49,22 @@ draft per decision-maker contact.
   originates from `tools/build_live_tracker_xlsx.py` (see the /prospect
   skill, Step 6, for when to rebuild).
 - **Gmail drafts only, never send.** The user reviews and sends everything.
-- **Decision-makers only** from ZoomInfo: C-level, VP, Director, Owner,
-  President, GM. No managers or below unless the user asks.
+- **Proofread every email before creating its draft** — no unfilled merge
+  fields, correct name/company/city, factually true hook, clean grammar, and
+  the verbatim signature (SKILL.md Step 7).
+- **Pipeline stages live in the Status column.** New prospects are `New`.
+  Sync inbox replies (SKILL.md Step 0) into stages: any real reply →
+  `Interested: 50%`; explicit no → `Not Interested: 0%`; advance to
+  `Red-Hots: 75%` / `Agreements: 90%` / `Signed: 100%` only when the reply
+  clearly warrants it. Stage colors are defined in
+  `tools/build_live_tracker_xlsx.py`.
+- **`Potential Revenue` is the user's column** — never overwrite it; only fill
+  it from a concrete number the prospect gives.
+- **Reach every useful contact, not just decision-makers.** Pull anyone who
+  could buy, influence, or champion a partnership at any level — marketing/
+  brand/creative, events, sponsorship/partnerships, community/PR, sales/BD,
+  plus owners and C/VP/GM/President. Skip only clearly irrelevant back-office
+  roles (IT, HR, accounting, engineering, legal, logistics) unless they're the
+  owner/GM. One row per contact.
 - Commit tracker updates to this repo after every run so nothing is lost when
   the session container is reclaimed.
