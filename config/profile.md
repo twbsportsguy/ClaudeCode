@@ -5,7 +5,23 @@
 - **Organization / property:** Finley Golf Club — Home of Carolina Golf (https://www.finleygolfclub.com/)
 - **Market:** Chapel Hill / Triangle, North Carolina
 - **Phone:** (336) 225-6396
-- **Email:** twbaity@alumni.unc.edu
+- **Email:** twbaity@alumni.unc.edu — **send from this one.**
+- **Previous email:** tbaity@playersnext.com — older threads live here. Read it
+  for history (reply sync, last-touched dates, what a prospect actually said);
+  never send new outreach from it.
+
+## Who owned which conversation
+The legacy book was worked by several people. Tyler is now taking over the
+accounts, so a re-engagement often arrives from a new name — say so plainly
+rather than implying Tyler was on the earlier call (`config/voice.md`).
+
+| Stamp | Person | Still at Finley? | How to phrase a handoff |
+|-------|--------|------------------|--------------------------|
+| `TB` | Tyler | — | his own history; write it first-person |
+| `JH` | Jake | **yes** | "Jake and I have swapped this over" — a live colleague, not a departure |
+| `ML` | ML   | **yes** | same as Jake |
+| `BJ` | Bryce | no longer | "your call with Bryce got passed along to me" |
+| `JG` | JG | unknown | attribute in past tense, claim nothing about tenure |
 - **Scheduling link:** https://calendar.app.google/M9bXpDQ4sib6ekjq9
 
 ## Email signature (use verbatim in every draft)

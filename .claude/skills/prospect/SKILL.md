@@ -60,9 +60,49 @@ pipeline."
 1. `mcp__Gmail__search_threads` for replies to outreach, e.g.
    `in:inbox newer_than:60d` (and/or the template subject lines). For any
    promising thread, `mcp__Gmail__get_thread` to read the full latest message.
+   Search **both** of Tyler's addresses — `twbaity@alumni.unc.edu` and the
+   older `tbaity@playersnext.com`. A lot of the earlier book was worked from
+   the previous address, so a thread missing from one may be sitting in the
+   other. Outreach still goes out from the current address only.
+
 2. Match the sender to a tracker row by email (Contact Email column). If the
    reply is from someone not yet in the tracker but clearly at a prospect
    company, still act on it and note it.
+
+   ### Not everything from a prospect's domain is a reply
+   Tyler receives **marketing and sales email from companies he has pitched**.
+   Treating one of those as a reply would move a cold company to
+   `Interested: 50%` on the strength of a newsletter, corrupt the win/loss
+   analysis, and put a warm-sounding task on a card that nobody ever wrote.
+   So a message only counts as a reply when **both** hold:
+
+   **(a) It is on our thread.** The message sits in the same Gmail thread as
+   outreach Tyler (or a colleague) sent, or its subject is a `Re:` of ours.
+   A brand-new subject line from that domain is not a reply — it is a
+   coincidence of domain.
+
+   **(b) It is a person writing to Tyler**, not a broadcast. Reject when any
+   of these is true:
+   - sender local-part is a role or bulk address: `no-reply`, `noreply`,
+     `donotreply`, `marketing`, `newsletter`, `news`, `updates`,
+     `notifications`, `info`, `hello`, `team`, `events`, `support`, `sales`
+   - the message carries a `List-Unsubscribe` header, or the body contains
+     "unsubscribe", "view in browser", "manage your preferences", "you are
+     receiving this because"
+   - Gmail filed it under `category:promotions` or `category:updates`
+   - it opens with no salutation or a generic one ("Hi there", "Hello,") and
+     never names Tyler or Finley
+   - the body pitches *their* product — a demo, webinar, free trial, their
+     pricing, a conference booth. A reply discusses **our** offer; a vendor
+     email discusses theirs.
+
+   Useful Gmail query shape for the sweep:
+   `in:inbox newer_than:60d -category:promotions -category:updates -from:no-reply`
+
+   When a message is ambiguous, **leave the stage unchanged** and note
+   "unclear inbound — needs a human read" rather than guessing upward. A
+   missed reply costs one follow-up; a fabricated one costs credibility with
+   a prospect who never wrote.
 3. Read the reply and set that contact's **Status** (pipeline stage):
    - Any genuine reply that isn't a rejection → `Interested: 50%`.
    - Explicit "not interested" / "no thanks" / unsubscribe / "remove me" →

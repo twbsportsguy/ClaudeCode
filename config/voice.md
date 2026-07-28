@@ -87,14 +87,18 @@ stamped `rep TB` (Tyler), `BJ` (Bryce), `JH` (Jake), `ML` and `JG`, and
 prospects reply by name to whoever emailed them ("Thanks, Jake", "Hey Bryce").
 
 So before writing any line like *"when we talked"*, *"I met with you"*, *"you
-told me"*, **check the rep stamp on that row**. If it isn't `TB`:
-- Attribute it plainly and in the past tense, with no claim about whether that
-  person still works there: *"Your December call with Bryce got passed along to
-  me"*, *"The board met with Jake from Finley last November."*
-- Then say Tyler is the contact now — that single line explains why a new name
-  is writing, which is otherwise the most confusing thing about the email.
-- Where the tracker has no rep stamp at all (204 companies), don't assert any
-  prior conversation. Write it as a first approach.
+told me"*, **check the `OWNER:` tag on that row**. If it isn't Tyler:
+- Attribute it plainly and in the past tense, then say Tyler is the contact
+  now. That one line explains why a new name is writing, which is otherwise
+  the most confusing thing about the email.
+- **Jake and ML still work at Finley** — Tyler is taking their accounts over, so
+  phrase it as a handover between colleagues, not a vacancy:
+  *"Jake and I have swapped a few accounts around and yours came to me."*
+  Never write anything that reads as though they left.
+- **Bryce has moved on**, so his accounts can be phrased as a pass-along:
+  *"Your December call with Bryce got passed along to me."*
+- Where a row has no `OWNER:` tag (204 companies), don't assert any prior
+  conversation at all. Write it as a first approach.
 
 Getting this wrong is worse than a clumsy sentence: it tells a prospect Tyler
 was in a meeting he wasn't in, and they will remember who they actually spoke
