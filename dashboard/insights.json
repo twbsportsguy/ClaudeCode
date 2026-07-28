@@ -2,7 +2,7 @@
  "generated": "2026-07-28",
  "totals": {
   "companies": 662,
-  "replied": 118,
+  "replied": 119,
   "warm": 68,
   "lost": 29
  },
@@ -52,6 +52,17 @@
    "answered": 7
   },
   {
+   "name": "Healthcare",
+   "n": 41,
+   "replied": 10,
+   "warm": 2,
+   "lost": 1,
+   "quotes": [],
+   "replyRate": 24,
+   "winRate": 67,
+   "answered": 3
+  },
+  {
    "name": "Construction & engineering",
    "n": 70,
    "replied": 10,
@@ -72,17 +83,6 @@
    "replyRate": 31,
    "winRate": 89,
    "answered": 9
-  },
-  {
-   "name": "Healthcare",
-   "n": 41,
-   "replied": 9,
-   "warm": 2,
-   "lost": 1,
-   "quotes": [],
-   "replyRate": 22,
-   "winRate": 67,
-   "answered": 3
   },
   {
    "name": "Consulting & accounting",
@@ -359,12 +359,12 @@
     {
      "co": "UNC Panhellenic Board",
      "ind": "Greek organizations",
-     "q": "Met 11/12/25 - they love the offerings and are connecting us with IFC and individual sororities. They wanted to learn more and are thinking of ways to make things happen"
+     "q": "Met 11/12/25 - they love the offerings and are connecting us with IFC and individual sororities. They wanted to learn more and are thinking of ways to make things happen | 10/27/2025 11/4/2025 11/11/25 Met 11/12/25 - the"
     },
     {
      "co": "Zeta Psi",
      "ind": "Greek organizations",
-     "q": "Very interested - turning over exec team this week and will put us in touch with new team. Love the night on the range idea 12/2 - sent followup"
+     "q": "Very interested - turning over exec team this week and will put us in touch with new team. Love the night on the range idea 12/2 - sent followup | 10/28/2025 11/4/2025 12/22/25 Very interested - turning over exec team th"
     },
     {
      "co": "Valley Peak Financial",
@@ -374,7 +374,7 @@
     {
      "co": "Sport Durst Automotive Group",
      "ind": "Auto & travel",
-     "q": "Sent to VP and marketing director"
+     "q": "Sent to VP and marketing director | [old tracker | rep TB] 11/5/2025 11/10/2025 11/17/25 Sent to VP and marketing director"
     },
     {
      "co": "Hawthorne & Wood",
@@ -456,7 +456,7 @@
     {
      "co": "Chapel Hill Tire",
      "ind": "Auto & travel",
-     "q": "follow-up meeting on december 2nd"
+     "q": "follow-up meeting on december 2nd | 11/4/2025 11/10/2025 follow-up meeting on december 2nd | split from packed legacy row 2026-07-28 | Re-engage 2026-07-28 \u2014 revive the December meeting | [legacy | rep ] | Re-engage 2026"
     },
     {
      "co": "Brunt",
@@ -466,7 +466,7 @@
     {
      "co": "Ward and Smith PA",
      "ind": "Local businesses",
-     "q": "Meeting set for december"
+     "q": "Meeting set for december | Re-engage 2026-07-28 \u2014 champion ask, December meeting never happened"
     },
     {
      "co": "Chi Psi Fraternity",
@@ -502,12 +502,12 @@
     {
      "co": "The Christman Company",
      "ind": "Construction & engineering",
-     "q": "Good call- golf nut and impressed with how many rounds of golf they get"
+     "q": "Good call- golf nut and impressed with how many rounds of golf they get | Re-engage 2026-07-28 \u2014 leads on the rounds count he liked"
     },
     {
      "co": "Zeta Psi",
      "ind": "Greek organizations",
-     "q": "Very interested - turning over exec team this week and will put us in touch with new team. Love the night on the range idea 12/2 - sent followup"
+     "q": "Very interested - turning over exec team this week and will put us in touch with new team. Love the night on the range idea 12/2 - sent followup | 10/28/2025 11/4/2025 12/22/25 Very interested - turning over exec team th"
     },
     {
      "co": "UNC Baseball",
@@ -523,7 +523,7 @@
     {
      "co": "Bartaco",
      "ind": "Local businesses",
-     "q": "interested in donating for raffles"
+     "q": "interested in donating for raffles | Re-engage 2026-07-28 \u2014 in-kind raffle donation, not a cash partnership"
     },
     {
      "co": "Shrunkenhead Boutique",
@@ -588,6 +588,14 @@
    "q": "Thanks for reaching out. I can't say we'll never be interested, but let's plan to have a conversation sometime next year. Copying my partners."
   },
   {
+   "co": "Zeta Psi",
+   "ind": "Greek organizations",
+   "when": "Next semester",
+   "order": 1,
+   "stage": "Interested: 50%",
+   "q": "Very interested - turning over exec team this week and will put us in touch with new team. Love the night on the range idea 12/2 - sent followup | 10/28/2025 11/4/2025 12/22/25 Very interested - turni"
+  },
+  {
    "co": "Chapel Hill Sportswear",
    "ind": "Local businesses",
    "when": "Spring",
@@ -617,7 +625,7 @@
    "when": "August",
    "order": 8,
    "stage": "Interested: 50%",
-   "q": "Reach out in August"
+   "q": "Reach out in August | Re-engage 2026-07-28 \u2014 their 'reach out in August' window is open"
   },
   {
    "co": "Fujifilm Biotechnologies",
