@@ -6,16 +6,21 @@ Format: `YYYY-MM-DD | seg1: <industry> / <submarket> · seg2: <industry> / <subm
 <!-- runs below, newest last -->
 2026-07-28 | TEST RUN (manual, 1 segment) | tier: 1 (Triangle) | seg1: legal & financial / Raleigh-Durham-Chapel Hill | why: Tier 1 unsaturated — 9 core industries untouched; no repliers yet so breadth rotation picked legal/financial, a core industry with zero coverage and the strongest partnership-fit profile (relationship/client-entertainment buyers).
 
-## Pending — apply on next run (Gmail re-auth required)
-2026-07-28 | Two drafts created today imply Jake left Finley; he hasn't, Tyler is
-just taking his accounts over. Reword both to a colleague handover per
-`config/voice.md`:
-- **Zeta Psi** (Brady Rassin, draft `r-5880324898088797400`) — "I've taken over
-  partnerships on our end" → "Jake and I have swapped a few accounts around and
-  Zeta Psi came to me."
-- **UNC Panhellenic** (draft `r-3145470369164582030`) — "I've picked it up on our
-  end" → same handover phrasing.
-Christman (Bryce) is correct as written — Bryce has moved on.
+## Resolved 2026-07-28 — drafts corrected after the archive read
+Zeta Psi and UNC Panhellenic reworded: Jake is still at Finley, so both now read
+as a colleague handover ("Jake and I have swapped a few accounts around"), not a
+departure. Christman keeps the pass-along phrasing — Bryce has since been
+confirmed gone.
+
+bartaco retargeted. The tracker said "interested in donating for raffles", so the
+first draft asked for a raffle donation. The archive shows A. Greenberg was
+actually weighing a full partnership and had sent questions ahead of a call that
+never got answered. Draft now goes to Greenberg and offers to answer them.
+Victoria Grabe stays on file as a secondary contact.
+
+Two drafts added for replies that were never worked at all: Orange County NC
+(C.S. Blackwood, "I am all in") and Turtlebox (John Doxakis, who asked for our
+availability and never got it).
 
 Decided 2026-07-28: everything sends under Tyler's name. No colleague intro
 emails, no drafting on Jake's or ML's behalf — a single handover line inside

@@ -1,22 +1,22 @@
 {
  "generated": "2026-07-28",
  "totals": {
-  "companies": 662,
-  "replied": 479,
-  "warm": 68,
+  "companies": 663,
+  "replied": 480,
+  "warm": 69,
   "lost": 29
  },
  "industries": [
   {
    "name": "Unclassified",
-   "n": 237,
-   "replied": 156,
-   "warm": 13,
+   "n": 238,
+   "replied": 157,
+   "warm": 14,
    "lost": 5,
    "quotes": [],
    "replyRate": 66,
-   "winRate": 72,
-   "answered": 18
+   "winRate": 74,
+   "answered": 19
   },
   {
    "name": "Wholesale, supply & equipment",
@@ -333,7 +333,7 @@
     {
      "co": "Belk's",
      "ind": "Local businesses",
-     "q": "SET ON PARTNERSHIPS ATM | OWNER: Tyler | OWNER: Tyler",
+     "q": "SET ON PARTNERSHIPS ATM | OWNER: Tyler | OWNER: Tyler | Replied 11/2025: 'we're set on partnerships for the moment but will keep you in mind if that changes' | OWNER: Tyler",
      "stage": "Re-approach: 25%"
     }
    ]
@@ -374,12 +374,12 @@
     {
      "co": "Sport Durst Automotive Group",
      "ind": "Auto & travel",
-     "q": "Sent to VP and marketing director | split from packed legacy row 2026-07-28 | OWNER: Tyler | OWNER: Tyler | [old tracker | rep TB] 11/5/2025 11/10/2025 11/17/25 Sent to VP and marketing director | OWNER: Tyler"
+     "q": "Sent to VP and marketing director | split from packed legacy row 2026-07-28 | OWNER: Tyler | Brian Nelson routed it here 11/2025: 'I've sent this to our VP but I'm ccing Emily Henderson our Corporate Marketing Director' "
     },
     {
      "co": "Hawthorne & Wood",
      "ind": "Local businesses",
-     "q": "sent to marketing director | OWNER: Tyler"
+     "q": "sent to marketing director | OWNER: Tyler | Routed it: 'I sent your original inquiry to our Director of Marketing and Outreach' | OWNER: Tyler"
     },
     {
      "co": "Martin Marietta",
@@ -394,7 +394,7 @@
     {
      "co": "Carpe Deodorant",
      "ind": "Marketing & brands",
-     "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit. | OWNER: Tyler | OWNER: Tyler"
+     "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit. | OWNER: Tyler | OWNER: Tyler | Reviewed the packages, then: 'unable to move forward"
     },
     {
      "co": "Samet Corporation",
@@ -445,7 +445,7 @@
     {
      "co": "Carpe Deodorant",
      "ind": "Marketing & brands",
-     "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit. | OWNER: Tyler | OWNER: Tyler"
+     "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit. | OWNER: Tyler | OWNER: Tyler | Reviewed the packages, then: 'unable to move forward"
     }
    ]
   },
@@ -517,29 +517,8 @@
    ]
   },
   {
-   "label": "Wants to donate in kind",
-   "n": 3,
-   "items": [
-    {
-     "co": "Bartaco",
-     "ind": "Local businesses",
-     "q": "interested in donating for raffles | OWNER: Tyler | 11/10/2025 11/17/25 interested in donating for raffles | split from packed legacy row 2026-07-28 | OWNER: Tyler | Re-engage 2026-07-28 \u2014 in-kind raffle donation, not a "
-    },
-    {
-     "co": "Shrunkenhead Boutique",
-     "ind": "Local businesses",
-     "q": "interested in donating for raffles | OWNER: Tyler"
-    },
-    {
-     "co": "Alumni Hall",
-     "ind": "Local businesses",
-     "q": "interested in raffles | OWNER: Tyler | 11/4/2025 11/10/2025 11/17/25 interested in raffles | split from packed legacy row 2026-07-28 | OWNER: Tyler"
-    }
-   ]
-  },
-  {
    "label": "Wants pricing",
-   "n": 2,
+   "n": 3,
    "items": [
     {
      "co": "Chi Psi Fraternity",
@@ -550,6 +529,32 @@
      "co": "Prudent Growth Partners",
      "ind": "Wealth management & finance",
      "q": "This might be of interest \u2026 can you please send along any details you can share? I.e., pricing and typical terms of use? | OWNER: Jake | OWNER: Jake"
+    },
+    {
+     "co": "Shrunkenhead Boutique",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles | OWNER: Tyler | Two replies: not able to contribute financially, but asked about silent auctions/raffles. Then the real reason \u2014 'the pricing is simply outside of what we're able to co"
+    }
+   ]
+  },
+  {
+   "label": "Wants to donate in kind",
+   "n": 3,
+   "items": [
+    {
+     "co": "Bartaco",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles | OWNER: Tyler | 11/10/2025 11/17/25 interested in donating for raffles | split from packed legacy row 2026-07-28 | OWNER: Tyler | Engaged 11/2025, sent questions ahead of a scheduled c"
+    },
+    {
+     "co": "Shrunkenhead Boutique",
+     "ind": "Local businesses",
+     "q": "interested in donating for raffles | OWNER: Tyler | Two replies: not able to contribute financially, but asked about silent auctions/raffles. Then the real reason \u2014 'the pricing is simply outside of what we're able to co"
+    },
+    {
+     "co": "Alumni Hall",
+     "ind": "Local businesses",
+     "q": "interested in raffles | OWNER: Tyler | 11/4/2025 11/10/2025 11/17/25 interested in raffles | split from packed legacy row 2026-07-28 | OWNER: Tyler"
     }
    ]
   }
@@ -601,7 +606,7 @@
    "when": "Spring",
    "order": 3,
    "stage": "Interested: 50%",
-   "q": "Interested in the spring | OWNER: Tyler"
+   "q": "Interested in the spring | OWNER: Tyler | Replied 11/2025: apologised for the delay, 'This time of year is a little crazy with football, basketball and now the holiday shopping season' | OWNER: Tyler"
   },
   {
    "co": "Delta Kappa Epsilon Fraternity",
