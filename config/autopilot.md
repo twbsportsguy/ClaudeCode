@@ -19,31 +19,40 @@ follow-ups to non-repliers (`config/followups.md`), not new prospecting.
   legal/financial.
 - **Expansion industries** (proven or promising): sports, hospitality &
   restaurants, commercial real estate, banking/wealth, insurance, med spa.
-- **Coverage mandate: expand in rings — NC (home) → Southeast → East Coast →
-  nationwide.** Home base is the Triangle. Work outward over time, but stay
-  **home-weighted**, and on outer rings **prefer companies with an NC/Triangle
-  tie** (HQ, a regional office, a plant, alumni leadership, or a travel/tourism
-  reason to visit) so the Carolina-Golf hospitality pitch still lands.
-  - **Ring 1 — North Carolina (default, most at-bats):**
-    - *Triangle (home):* Chapel Hill/Carrboro · Durham · Raleigh ·
-      Cary/Apex/Morrisville · Wake Forest/North Raleigh · Hillsborough/Graham.
-    - *Charlotte metro:* Charlotte · Concord · Huntersville · Gastonia.
-    - *Triad:* Greensboro · Winston-Salem · High Point · Burlington.
-    - *Coastal / East:* Wilmington · Greenville · Jacksonville · New Bern.
-    - *West / Foothills:* Asheville · Hickory · Boone.
-    - *Sandhills / South:* Fayetteville · Pinehurst/Southern Pines · Lumberton.
-  - **Ring 2 — Southeast:** SC (Greenville/Charleston/Columbia) · GA (Atlanta/
-    Savannah) · VA (Richmond/Norfolk/NoVA) · TN (Nashville/Charlotte-adjacent) ·
-    FL (Jacksonville/Orlando/Tampa/Miami).
-  - **Ring 3 — East Coast:** DC/Baltimore · Philadelphia · NYC/NJ · Boston ·
-    Atlanta hubs — lead with firms that have Carolinas operations or leadership.
-  - **Ring 4 — Nationwide:** national brands with a Triangle/Carolinas footprint,
-    a golf-culture fit, or travel-driven prospects who'd fly in for a Stay & Play.
-  Weight is roughly **NC 60% · Southeast 25% · East Coast 10% · nationwide 5%**
-  until outer rings prove out — give the outer rings real at-bats but don't
-  starve the home turf where drive-time hospitality closes fastest.
+- **Coverage mandate: work outward by distance — saturate what's closest
+  before expanding.** Drive-time is the product: the closer a prospect is, the
+  easier the hospitality sell. So coverage is **gated, not weighted** — you do
+  not open a farther tier until the nearer one is genuinely worked.
+
+  | Tier | Territory | Open it when… |
+  |------|-----------|---------------|
+  | **1 — Triangle (home)** | Chapel Hill/Carrboro · Durham · Raleigh · Cary/Apex/Morrisville · Wake Forest/N. Raleigh · Hillsborough/Graham · Pittsboro | **always open** — the default for every run |
+  | **2 — NC near-ring** (~1–2 hr) | Triad (Greensboro · Winston-Salem · High Point · Burlington) · Sandhills (Pinehurst/Southern Pines · Fayetteville) · Fayetteville corridor | Tier 1 saturated |
+  | **3 — Rest of NC** (2–4 hr) | Charlotte metro · Coastal (Wilmington · Greenville · New Bern) · West (Asheville · Hickory · Boone) | Tiers 1–2 saturated |
+  | **4 — Southeast** | SC · VA · GA · TN · northern FL | Tier 3 saturated |
+  | **5 — East Coast** | DC/Baltimore · Philadelphia · NYC/NJ · Boston | Tier 4 saturated |
+  | **6 — Nationwide** | national brands anywhere | Tier 5 saturated |
+
+  **"Saturated" means:** every core industry in that tier has been swept at
+  least once, and it holds ≥ 25 logged companies with no obviously untouched
+  industry × sub-market pair left. Check `tracker/prospects.csv` before
+  choosing — if you can still name an uncovered core industry in a nearer tier,
+  **that** is the segment, not a farther one.
+
+  **Always start each run at the lowest unsaturated tier.** Both of a run's two
+  segments should normally come from that tier; only borrow from one tier
+  farther when the current tier truly has nothing uncovered left.
+
+  **On tiers 4–6, require a Carolinas tie** — HQ, a regional office, a plant,
+  alumni leadership, or a travel/Stay-&-Play reason — so the Carolina-Golf
+  hospitality pitch still lands. No cold national names without a tie.
+
+  Note the current tier + why in `tracker/autopilot-log.md` each run.
 
 ## How to pick the 2 segments (priority order)
+0. **Set the tier first.** Find the lowest unsaturated tier (see the coverage
+   table). Both segments come from that tier unless it has nothing uncovered
+   left. Never skip a nearer tier to chase a farther one.
 1. **Dedupe first.** Load `tracker/prospects.csv`. Never re-pull a company
    already there (match on company name / ZoomInfo ID). Skip a segment that's
    already well-covered (≥6 companies logged in the last ~60 days).
@@ -51,8 +60,9 @@ follow-ups to non-repliers (`config/followups.md`), not new prospecting.
    `Interested: 50%` or better in the tracker, make **one** of the two
    segments that industry in an uncovered sub-market — warm categories earn
    more at-bats.
-3. **Breadth rotation.** Fill the other segment with the **least-recently-
-   covered** core industry × sub-market, so coverage spreads evenly.
+3. **Breadth rotation within the tier.** Fill the other segment with the
+   **least-recently-covered** core industry × sub-market *inside the current
+   tier*, so the near territory fills in evenly before you move outward.
 4. **Explore occasionally.** Roughly every 3rd–4th run, make one segment a
    new expansion industry we haven't tried, to find new veins (this is how
    "sports" got discovered).
@@ -66,9 +76,11 @@ Then run the normal pipeline (SKILL.md Steps 0–8) for both segments.
 ## Draft policy
 Auto-create Gmail drafts for every A/B contact (**never send**), following
 `config/voice.md`.
-**Gate:** keep auto-drafting OFF until Tyler signs off on the email voice.
-Until then, autopilot still fills the tracker and stages finished drafts in
-`outbox/` for review. Flip the scheduled Routine on once the voice is locked.
+**Gate: OPEN** (Tyler signed off on the voice, 2026-07-28). Autopilot creates
+Gmail drafts directly. They land in Gmail's Drafts folder for Tyler to review,
+edit, and send — nothing is ever sent automatically. If Gmail auth is
+unavailable at run time, fall back to staging finished drafts in `outbox/` and
+say so in the run summary.
 
 ## Guardrails
 - Stay home-weighted: most at-bats in NC, and on outer rings prefer a

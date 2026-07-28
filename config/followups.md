@@ -33,5 +33,6 @@ update **Next Step** to the next planned touch.
 - Signature verbatim from `config/profile.md`. Drafts only, never send.
 
 ## Draft gate
-Same gate as autopilot: keep auto-drafting OFF until Tyler signs off on the
-voice; until then stage finished follow-ups in `outbox/`.
+Same gate as autopilot: **OPEN** (2026-07-28). Create follow-up Gmail drafts
+directly — never send. If Gmail auth is unavailable, stage them in `outbox/`
+and note it in the run summary.
