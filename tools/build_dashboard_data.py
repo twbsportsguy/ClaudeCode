@@ -64,9 +64,13 @@ for r in body:
         "rank":r[1].strip(),"score":r[2].strip(),"status":r[19].strip(),
         "notes":clean_note(r[21]),"pot":r[22].strip(),"dead":False,"later":False,"contacts":[]})
     if r[13].strip():
+        # r[15] is Contact Email, r[16] is Contact Phone. The original ternary had
+        # these inverted, so any contact WITH an address rendered their phone
+        # number in the email slot (and the copy-email button copied a phone).
+        email, phone = r[15].strip(), r[16].strip()
         c["contacts"].append({"n":r[13].strip(),"t":r[14].strip(),
-            "e":r[16].strip() if "@" in r[15] else (r[15].strip() or None),
-            "p":r[16].strip() if "@" not in r[16] and r[16].strip() else None,
+            "e":email if "@" in email else None,
+            "p":phone if phone and "@" not in phone else None,
             "d":r[18].strip().upper()=="Y",
             "tn":clean_note(r[21]),"st":r[19].strip()})
     # A "no" and a "re-approach" are sticky facts about the company, not stages to
