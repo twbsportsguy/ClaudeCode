@@ -28,9 +28,18 @@ STAGE={"Signed: 100%":"signed","Agreements: 90%":"verbal","Red-Hots: 75%":"redho
 
 html=open(DASH).read()
 s,e,block=existing_data(html)
+# hand-authored, ZoomInfo-enriched cards look like {name:"X"  (no quoted key).
+# Anything we generated ourselves looks like {"name": "X" — drop and rebuild those
+# so re-running this script is idempotent.
 rich={}
 for m in re.finditer(r'\{name:"((?:[^"\\]|\\.)*)"', block):
     rich[m.group(1)]=True
+keep_lines=[]
+depth=0
+for ln in block.split("\n"):
+    if ln.strip().startswith('{"name":'): continue   # previously generated — regenerate
+    keep_lines.append(ln)
+block="\n".join(keep_lines)
 
 # ---- group tracker by company ----
 rows=list(csv.reader(open(TRACK)))
@@ -91,9 +100,8 @@ for name,c in cos.items():
         o["researchPhone"]=None
     lines.append("  "+js(o))
 
-html=open(DASH).read()
-s,e,block=existing_data(html)
-# keep existing rich entries, append the new ones before the closing bracket
-newblock=block[:-3].rstrip().rstrip(",")+",\n"+",\n".join(lines)+"\n];"
+# NB: reuse the already-filtered `block` from above — re-reading the file here
+# would silently restore the generated cards we just stripped.
+newblock=block.rstrip().rstrip("];").rstrip().rstrip(",")+",\n"+",\n".join(lines)+"\n];"
 open(DASH,"w").write(html[:s]+newblock+html[e:])
 print(f"\nwrote {len(lines)} new company cards into the dashboard")
