@@ -18,9 +18,9 @@ rather than implying Tyler was on the earlier call (`config/voice.md`).
 | Stamp | Person | Still at Finley? | How to phrase a handoff |
 |-------|--------|------------------|--------------------------|
 | `TB` | Tyler | — | his own history; write it first-person |
-| `JH` | Jake | **yes** | "Jake and I have swapped this over" — a live colleague, not a departure |
-| `ML` | ML   | **yes** | same as Jake |
-| `BJ` | Bryce | no longer | "your call with Bryce got passed along to me" |
+| `JH` | Jake Hawkins (jhawkins@playersnext.com) | **yes** | "Jake and I have swapped this over" — a live colleague, not a departure |
+| `ML` | Max Lehmann (mlehmann@playersnext.com) | **yes** | same as Jake |
+| `BJ` | Bryce Jeske, Assistant GM Business Development | **unconfirmed** — he was still signing off as Finley staff in Jan 2026 | ask Tyler before phrasing; until then attribute in past tense and claim nothing about tenure |
 | `JG` | JG | unknown | attribute in past tense, claim nothing about tenure |
 - **Scheduling link:** https://calendar.app.google/M9bXpDQ4sib6ekjq9
 

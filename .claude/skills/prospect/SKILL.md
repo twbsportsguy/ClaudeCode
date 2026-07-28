@@ -69,6 +69,34 @@ pipeline."
    reply is from someone not yet in the tracker but clearly at a prospect
    company, still act on it and note it.
 
+   ### The playersnext inbox holds TWO campaigns — only one is ours
+   `tbaity@playersnext.com` was used for Finley corporate partnerships **and**
+   for a separate **PLAYERSNEXT youth-sports / foundation** push. Different
+   offer, different companies, different answers. A "no" to youth sports is not
+   a "no" to Finley, and importing one as the other would put false rejections
+   on cards and skew every number in the win/loss analysis.
+
+   **Skip the thread** when its subject or body carries the other campaign's
+   markers: `What's Next for Youth Sports`, `PLAYERSNEXT` as the offer (rather
+   than just the sender's signature), "athletes and families of youth sports",
+   the PLAYERSNEXT foundation, or Max Lehmann's foundation work.
+
+   **Keep the thread** only when it is recognisably Finley: it mentions Finley
+   Golf Club, Carolina Golf, rounds, an outing, Night on the Range, Old Well
+   Patron, Heels Club, or club branding — **or** the counterparty is already a
+   contact in `tracker/prospects.csv`.
+
+   Seen on the youth-sports side and **not** to be imported as Finley replies:
+   Vessi, Vessel Bags, Vanguard Charitable, NetJets, Red Hat, DriveShack,
+   McConnell Golf, the Hurricanes Foundation, Beast Philanthropy, 2nd Swing
+   Golf, Rock Bottom Golf, Herschel, Alamance-Caswell County Medical Society.
+   Note this excludes those *threads*, not those *companies* — several are good
+   Finley prospects in their own right (Red Hat is Triangle-HQ'd), they just
+   have not been pitched Finley yet.
+
+   When a thread genuinely covers both, take only the Finley portion and say so
+   in the note.
+
    ### Not everything from a prospect's domain is a reply
    Tyler receives **marketing and sales email from companies he has pitched**.
    Treating one of those as a reply would move a cold company to
