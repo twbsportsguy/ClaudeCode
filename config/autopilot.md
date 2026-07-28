@@ -15,10 +15,25 @@ follow-ups to non-repliers (`config/followups.md`), not new prospecting.
 - Hard stop: don't enrich a 3rd segment in one run (ZoomInfo credit control).
 
 ## The universe
-- **Core industries** (bread-and-butter): home services, healthcare, auto,
-  legal/financial.
-- **Expansion industries** (proven or promising): sports, hospitality &
-  restaurants, commercial real estate, banking/wealth, insurance, med spa.
+Derived from Tyler's actual book (397 companies imported from the FGC Master
+SalesTracker) — not guesses. Counts are companies already logged.
+
+- **Core industries** (the proven engine — most of the book):
+  - **Greek organizations** (32) — UNC fraternities/sororities. A Finley-specific
+    segment: high volume, price-sensitive, Night on the Range fits them.
+  - **Wealth management / family offices** (32) and **law firms** (24) —
+    relationship buyers; lead with hosted rounds, not signage.
+  - **Construction** (28) and **wholesale supply** (22) — crews, subs and
+    clients in one day; the 80-player outing is the natural pitch.
+  - **Local businesses** (24) — awareness-first, smaller entry points.
+- **Strong secondary:** tech (18), real estate (15), auto (10), dental (9),
+  rental equipment (9), marketing agencies (8), manufacturing/dealers (8),
+  finance (7), UNC groups & schools (6), electrical/HVAC (6), consulting/
+  accounting (5).
+- **Untested but promising:** hospitality & restaurants, insurance, med spa,
+  healthcare beyond dental.
+- Greek organizations and UNC groups only exist in the Triangle tier — don't
+  look for them on outer rings.
 - **Coverage mandate: work outward by distance — saturate what's closest
   before expanding.** Drive-time is the product: the closer a prospect is, the
   easier the hospitality sell. So coverage is **gated, not weighted** — you do
@@ -38,6 +53,12 @@ follow-ups to non-repliers (`config/followups.md`), not new prospecting.
   industry × sub-market pair left. Check `tracker/prospects.csv` before
   choosing — if you can still name an uncovered core industry in a nearer tier,
   **that** is the segment, not a farther one.
+
+  **Note (2026-07-28):** Tier 1 now holds ~397 companies from the imported
+  book, so raw count no longer proves saturation. Judge by *industry ×
+  sub-market* gaps instead — e.g. Greek orgs are well covered, but healthcare
+  beyond dental, hospitality/restaurants and insurance are still untouched
+  in the Triangle.
 
   **Always start each run at the lowest unsaturated tier.** Both of a run's two
   segments should normally come from that tier; only borrow from one tier
