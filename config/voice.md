@@ -81,6 +81,25 @@ of our audience and give your team a way to host partners and reward staff with
 golf and events. Would you be open to a 15-minute call to explore it? I'm free
 Tuesday or Thursday."
 
+## Never claim history Tyler didn't personally have
+The legacy book was worked by **five people**, not one — the imported rows are
+stamped `rep TB` (Tyler), `BJ` (Bryce), `JH` (Jake), `ML` and `JG`, and
+prospects reply by name to whoever emailed them ("Thanks, Jake", "Hey Bryce").
+
+So before writing any line like *"when we talked"*, *"I met with you"*, *"you
+told me"*, **check the rep stamp on that row**. If it isn't `TB`:
+- Attribute it plainly and in the past tense, with no claim about whether that
+  person still works there: *"Your December call with Bryce got passed along to
+  me"*, *"The board met with Jake from Finley last November."*
+- Then say Tyler is the contact now — that single line explains why a new name
+  is writing, which is otherwise the most confusing thing about the email.
+- Where the tracker has no rep stamp at all (204 companies), don't assert any
+  prior conversation. Write it as a first approach.
+
+Getting this wrong is worse than a clumsy sentence: it tells a prospect Tyler
+was in a meeting he wasn't in, and they will remember who they actually spoke
+to.
+
 ## Champion / forward-up variant (for non-executive contacts)
 When the recipient is mid-level (marketing coordinator, events, community, PR,
 a specialist) rather than the owner/CxO, treat them as a **champion** who can
