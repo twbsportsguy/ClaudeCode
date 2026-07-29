@@ -125,3 +125,34 @@ chasing a fresh hook.
 
 Applied to bartaco (his text verbatim), Chapel Hill Tire and Ward and Smith —
 the three drafts that carried self-blame. The other nine did not.
+
+## 2026-07-29 — food service × Triangle (autopilot)
+
+Picked food service over insurance deliberately. The win/loss analysis says the
+book's two biggest professional-services verticals are its worst converters —
+law firms 29%, wealth management 42% — while **local businesses win 81% of the
+conversations that get an answer**. Adding another relationship-professional
+vertical would have grown the part of the book that does not close. Food service
+was untouched, sits squarely in the local-business shape, and bartaco already
+proves the appetite.
+
+Two companies worked: **Catering Works** (Raleigh, 230 staff, $14.9M) and
+**Neomonde** (Morrisville, 93, $18.8M). Five verified contacts, five drafts.
+Both get the two-way angle bartaco taught us — they can buy a partnership *and*
+supply the club, so the pitch names what they bring, not only what they receive.
+
+**Segments dropped, and why:**
+- *Fitness/wellness.* The ZoomInfo industry filter returned McConnell Golf and
+  North Ridge Country Club — competitors, not prospects — and O2 Fitness came
+  back as twenty club-level GMs with no corporate marketing contact. Drafting a
+  partnership pitch at an individual gym manager is the wrong buyer. O2 is worth
+  a second pass to find the corporate marketing owner.
+- Mediterranean Deli and Safari Eatz returned no contacts at all.
+
+**Scoring problem worth fixing.** Both companies score **C** (38 and 28) because
+`scoring.md` gives 35 of 100 points to marketing-spend evidence, which a private
+local business simply does not publish. The rubric therefore ranks the
+best-converting segment in the entire book at the bottom, and C-rank formally
+means "draft only if asked". These were drafted anyway because Tyler asked for
+runs and the conversion data backs them — but the rubric and the evidence
+disagree, and the rubric is the one that is wrong.

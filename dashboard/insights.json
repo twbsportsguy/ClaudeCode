@@ -1,8 +1,8 @@
 {
  "generated": "2026-07-29",
  "totals": {
-  "companies": 669,
-  "replied": 487,
+  "companies": 672,
+  "replied": 495,
   "warm": 73,
   "lost": 37
  },
@@ -10,7 +10,7 @@
   {
    "name": "Unclassified",
    "n": 239,
-   "replied": 159,
+   "replied": 161,
    "warm": 14,
    "lost": 9,
    "quotes": [],
@@ -43,11 +43,11 @@
   {
    "name": "Healthcare",
    "n": 44,
-   "replied": 39,
+   "replied": 42,
    "warm": 5,
    "lost": 1,
    "quotes": [],
-   "replyRate": 89,
+   "replyRate": 95,
    "winRate": 83,
    "answered": 6
   },
@@ -97,8 +97,8 @@
   },
   {
    "name": "Local businesses",
-   "n": 23,
-   "replied": 23,
+   "n": 25,
+   "replied": 25,
    "warm": 15,
    "lost": 4,
    "quotes": [],
@@ -108,8 +108,8 @@
   },
   {
    "name": "Auto & travel",
-   "n": 17,
-   "replied": 16,
+   "n": 18,
+   "replied": 17,
    "warm": 3,
    "lost": 1,
    "quotes": [],
@@ -249,13 +249,13 @@
     {
      "co": "Adams School of Dentistry",
      "ind": "UNC teams & schools",
-     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"You're correct - we are not interested at this time.\" | 10/24/2025 11/3/2025 11/11/25 | split from packed legacy row 2026-07-28 | OWNER: Tyler",
+     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"You're correct - we are not interested at this time.\" | SENT 2026-01-12 | 10/24/2025 11/3/2025 11/11/25 | split from packed legacy row 2026-07-28 | OWNER: Tyler | SENT 2",
      "stage": "Not Interested: 0%"
     },
     {
      "co": "101 Mobility",
      "ind": "Unclassified",
-     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"Not interested. Thanks.\" | 2/4/26 2/11/2026 | split from packed legacy row 2026-07-28 | OWNER: Tyler",
+     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"Not interested. Thanks.\" | SENT 2026-02-11 | 2/4/26 2/11/2026 | split from packed legacy row 2026-07-28 | OWNER: Tyler",
      "stage": "Not Interested: 0%"
     },
     {
@@ -423,7 +423,7 @@
     {
      "co": "Biscuitville",
      "ind": "Local businesses",
-     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29: \"Your email below was forwarded to me, as I handle sponsorship requests.\" Never followed up. | OWNER: Tyler"
+     "q": "OWNER: Tyler | SENT 2025-12-17 | REPLY SWEEP 2026-07-29: \"Your email below was forwarded to me, as I handle sponsorship requests.\" Never followed up. | OWNER: Tyler"
     },
     {
      "co": "Samet Corporation",
@@ -438,7 +438,7 @@
     {
      "co": "Cutter & Buck",
      "ind": "Unclassified",
-     "q": "REPLY SWEEP 2026-07-29: \"I have forwarded to Marketing. It is not my call. Andrew Puddock will reach out if there is interest.\" Puddock never did. | OWNER: Tyler"
+     "q": "REPLY SWEEP 2026-07-29: \"I have forwarded to Marketing. It is not my call. Andrew Puddock will reach out if there is interest.\" Puddock never did. | OWNER: Tyler | SENT 2026-02-24"
     }
    ]
   },
@@ -469,7 +469,7 @@
     {
      "co": "Cambridge Fitness",
      "ind": "Local businesses",
-     "q": "looking over internally | OWNER: Tyler | 11/13/25 looking over internally | split from packed legacy row 2026-07-28 | OWNER: Tyler"
+     "q": "looking over internally | OWNER: Tyler | 11/13/25 looking over internally | split from packed legacy row 2026-07-28 | OWNER: Tyler | 11/13/25 looking over internally | split from packed legacy row 2026-07-28 | OWNER: Tyl"
     },
     {
      "co": "Wyrick Robbins",
@@ -495,7 +495,7 @@
     {
      "co": "Ward and Smith PA",
      "ind": "Local businesses",
-     "q": "Meeting set for december | OWNER: Tyler | Re-engage 2026-07-28 \u2014 champion ask, December meeting never happened | OWNER: Tyler"
+     "q": "Meeting set for december | OWNER: Tyler | Re-engage 2026-07-28 \u2014 champion ask, December meeting never happened | OWNER: Tyler | SENT 2026-07-29"
     },
     {
      "co": "Chi Psi Fraternity",
@@ -536,7 +536,7 @@
     {
      "co": "The Christman Company",
      "ind": "Construction & engineering",
-     "q": "Good call- golf nut and impressed with how many rounds of golf they get | OWNER: Bryce | Re-engage 2026-07-28 \u2014 leads on the rounds count he liked | OWNER: Bryce"
+     "q": "Good call- golf nut and impressed with how many rounds of golf they get | OWNER: Bryce | Re-engage 2026-07-28 \u2014 leads on the rounds count he liked | OWNER: Bryce | SENT 2026-07-29"
     },
     {
      "co": "Zeta Psi",
@@ -664,7 +664,7 @@
    "when": "August",
    "order": 8,
    "stage": "Interested: 50%",
-   "q": "Reach out in August | OWNER: Tyler | OWNER: Tyler | Re-engage 2026-07-28 \u2014 their 'reach out in August' window is open | OWNER: Tyler"
+   "q": "Reach out in August | OWNER: Tyler | OWNER: Tyler | Re-engage 2026-07-28 \u2014 their 'reach out in August' window is open | OWNER: Tyler | SENT 2026-07-29"
   },
   {
    "co": "Fujifilm Biotechnologies",
@@ -672,7 +672,7 @@
    "when": "2027",
    "order": 13,
    "stage": "Interested: 50%",
-   "q": "reach out in 2027 | OWNER: Tyler | OWNER: Tyler"
+   "q": "reach out in 2027 | OWNER: Tyler | SENT 2025-12-16 | OWNER: Tyler"
   },
   {
    "co": "Sunstate Equipment",
