@@ -2725,7 +2725,7 @@ const MONTH_NOW=new Date().getMonth()+1;
    "sent" counter would have reported as a productive morning. */
 function renderInbox(){
   const B=(typeof INBOX!=="undefined"&&INBOX)||{}, A=B.activity||{};
-  const stale=`<span class="ib-tag stale">stale data</span>`,
+  const stale=`<span class="ib-tag stale">mailbox gone</span>`,
         block=`<span class="ib-tag blocked">server block</span>`;
 
   const act=$("#ibActivitySec");
@@ -2811,18 +2811,20 @@ function renderInbox(){
     del.innerHTML=`<div class="ib">
       <h3>Deliverability</h3>
       <p class="ib-sub">Two different failures that need opposite responses.
-        <b>Stale data</b> means the address no longer exists — re-pull that company
-        from ZoomInfo. <b>Server block</b> means their mail system refuses outside
-        senders; the addresses may be perfectly correct and re-sourcing will change
+        <b>Mailbox gone</b> means the address no longer exists — and re-pulling all
+        eight on 29 Jul returned the <i>same</i> address for six and no address at all
+        for two, so the record isn't stale, the person has left. Find their
+        replacement. <b>Server block</b> means their mail system refuses outside
+        senders; the addresses may be perfectly correct and re-sourcing changes
         nothing, so switch to a phone call or a referral.</p>
       ${doms.length?`<div class="ib-tblwrap"><table>
-        <thead><tr><th>Domain</th><th>Sent</th><th>Stale</th><th>Blocked</th><th>Diagnosis</th></tr></thead>
+        <thead><tr><th>Domain</th><th>Sent</th><th>Gone</th><th>Blocked</th><th>Diagnosis</th></tr></thead>
         <tbody>${doms.map(([d,s])=>`<tr>
           <td class="mono">${esc(d)}</td><td>${s.sent}</td>
           <td>${s.stale||"—"}</td><td>${s.blocked||"—"}</td>
           <td class="ib-diag">${s.blocked>s.stale
             ? block+" their server refuses outside mail"
-            : stale+" our contact data is out of date"}</td>
+            : stale+" mailbox gone — the person has most likely left"}</td>
         </tr>`).join("")}</tbody></table></div>`
        :`<p class="ib-empty">No bounces on file.</p>`}
     </div>

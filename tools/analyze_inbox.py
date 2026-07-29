@@ -322,9 +322,14 @@ def main():
     W(f"  {'domain':34}{'sent':>5}{'stale':>6}{'blockd':>7}{'soft':>5}   diagnosis")
     for d, s in sorted(dom.items(), key=lambda kv: -(kv[1]["stale"] + kv[1]["blocked"])):
         if not (s["stale"] or s["blocked"] or s["soft"]): continue
-        note = ("their server refuses outside mail — re-sourcing addresses won't help, "
+        # Verified 2026-07-29: re-pulling all eight bounced contacts returned the
+        # SAME address for six and no address at all for two. ZoomInfo is not
+        # behind us — the mailbox is gone because the person is. So the fix is a
+        # replacement contact, not a refreshed record.
+        note = ("their server refuses outside mail — re-sourcing won't help, "
                 "find a phone or a referral" if s["blocked"] > s["stale"]
-                else "our contact data is stale — re-pull this company from ZoomInfo")
+                else "mailbox no longer exists — usually means they left; "
+                     "find their replacement, not a fresher record")
         W(f"  {d:34}{s['sent']:>5}{s['stale']:>6}{s['blocked']:>7}{s['soft']:>5}   {note}")
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
