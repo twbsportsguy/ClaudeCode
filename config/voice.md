@@ -222,11 +222,19 @@ phrases, word count outside 120–170, a missing "Best," close, and any signatur
 block that Gmail would duplicate on send. Run it after drafting and fix
 everything it flags — Tyler should never be the one to catch these.
 
-It cannot judge two things, so check them by eye:
-- **Subject reuse across the batch.** Four rotating re-engagement subjects will
-  collide once there are more than four drafts. Vary them, preferring a subject
+It also catches the two things it used to miss (added 2026-07-29):
+- **Subject collisions** across the whole batch. Four rotating re-engagement
+  subjects will collide once there are more than four drafts. Prefer a subject
   built from that company's own specifics ("August, as you asked") over a
   generic rotation entry.
+- **Repeated phrasing between two contacts at the same company.** Colleagues
+  forward each other's mail, so a shared sentence reads as a mail merge in a way
+  it never does across companies. Boilerplate ("rather than fixed tiers") is
+  exempt; anything else that recurs inside one domain gets flagged. Six drafts
+  to one dealer group failed this on the 2026-07-29 batch while passing every
+  other check — two of them opened with the same sentence.
+
+It still cannot judge one thing, so check it by eye:
 - **Whether the three tailored options are genuinely theirs.** The audit sees
   that options exist, not that they fit the business.
 
