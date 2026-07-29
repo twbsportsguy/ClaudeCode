@@ -201,6 +201,30 @@ is a price objection, and a custom-built package answers it. Never respond to an
 in-kind offer by accepting it — respond with a partnership sized to their
 budget.
 
+## Dental prospects: Tyler is applying to dental school
+Tyler is a prospective dental student, and that changes who the email is from
+(Tyler, 2026-07-29). To a practice owner or DSO exec it's the difference between
+a vendor and someone entering the field — so **every dental, orthodontic and DSO
+draft gets one line of it.**
+
+Rules that keep it working:
+- **One sentence, its own short paragraph, late in the email** — after the
+  options and before the ask. It's a reason to trust the sender, not the pitch.
+- **Never make it the ask.** No shadowing, advice, or "I'd love to learn from
+  you." It explains interest; it doesn't request a favour, and a partnership
+  email that turns into a career favour stops being a partnership email.
+- **Tie it to something specific about them**, the way the rest of the email
+  works: *"which is part of why the Free Day stuck with me rather than reading
+  as a press release"*, *"so how a practice grows to eight locations is
+  something I find genuinely interesting."*
+- **Vary the wording per contact at the same company.** Three Riccobene people
+  can compare emails. "I'm applying to dental school" / "I'm headed to dental
+  school" / "I'm a prospective dental student" are three different sentences —
+  use them, and change the clause that follows too. The audit's within-company
+  repetition check will catch a lazy copy.
+- Don't stretch this to adjacent healthcare (hospitals, medical practices,
+  UNC Health) where it isn't true to the audience.
+
 ## Champion / forward-up variant (for non-executive contacts)
 When the recipient is mid-level (marketing coordinator, events, community, PR,
 a specialist) rather than the owner/CxO, treat them as a **champion** who can

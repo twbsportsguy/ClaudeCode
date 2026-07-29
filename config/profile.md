@@ -24,6 +24,13 @@ rather than implying Tyler was on the earlier call (`config/voice.md`).
 | `JG` | JG | unknown | attribute in past tense, claim nothing about tenure |
 - **Scheduling link:** https://calendar.app.google/M9bXpDQ4sib6ekjq9
 
+## Personal context worth using
+- **Tyler is a prospective dental student** (applying). This is true and it is
+  the strongest warm-open available for dental, orthodontic and DSO prospects —
+  it turns a vendor email into one from someone entering their field. Use it in
+  every dental draft; see `config/voice.md`. Don't stretch it to adjacent
+  healthcare (hospitals, medical practices) where it isn't relevant.
+
 ## Email signature (use verbatim in every draft)
 
 ```
