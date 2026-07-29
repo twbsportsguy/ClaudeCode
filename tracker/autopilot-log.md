@@ -102,3 +102,26 @@ message was "Sounds great, Tyler – keep us posted!"
 ("It feels like a partnership between our two organizations may not be a good
 fit") sent to roughly 20 non-responders. Do not read those as prospect
 rejections — they are outbound.
+
+
+## Voice reset 2026-07-28 — Tyler's model email
+Tyler rewrote the bartaco draft himself and it is now the standard in
+`config/voice.md`. Three changes bind every future draft:
+
+1. **Never take the blame.** "That's on us / that's on me / my fault" is banned.
+   Use his line instead: *"Looking back, I don't think you ever received the
+   answers you needed."* Same fact, framed around the prospect's experience.
+2. **Premium and consultative.** Finley builds a programme around the business;
+   it does not sell a sponsorship package. Word budget raised 120 → 120-170,
+   because his version runs ~150 and reads better for it.
+3. **Tailor the options to what they do.** "Creating memorable food experiences
+   for golfers" uses what bartaco *brings*, not just what they receive. Name two
+   or three concrete possibilities, at least one drawn from their own business.
+
+Also: a **dual ask** (send the questions, or take 15 minutes) lowers the cost of
+replying; close on "Looking forward to reconnecting," sign off "Best,".
+Re-engagement subject lines rotate across his four suggestions rather than
+chasing a fresh hook.
+
+Applied to bartaco (his text verbatim), Chapel Hill Tire and Ward and Smith —
+the three drafts that carried self-blame. The other nine did not.

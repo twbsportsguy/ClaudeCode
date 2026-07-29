@@ -4,17 +4,40 @@ The drafting step (SKILL.md Step 7) must follow this. **This is the one place
 to tune how outreach reads** — edit it and every future draft changes.
 
 ## Core rules
-- Under 120 words; ~3 short paragraphs, ending on the ask (no signature block).
-- Warm, direct, peer-to-peer. No hard sell.
+- **120–170 words, four short paragraphs.** The old 120-word cap was too tight —
+  Tyler's own model email (below) runs ~150 and reads better for it. Brevity is
+  not the goal; earning the reply is.
+- Warm, direct, peer-to-peer. No hard sell. **Premium and relationship-driven**
+  — Finley is Carolina's home course, and the writing should carry that without
+  boasting.
+- **Consultative, not transactional.** Position Finley as building a programme
+  around the prospect's business, never as selling them a sponsorship package.
+  "Rather than fixed tiers, we build around what makes sense for each business"
+  is the core move.
 - Open with a **specific, true** hook about the prospect (their news, HQ,
   sponsorship, milestone). Never a generic compliment.
 - Sell the business *outcome* — brand visibility + a way to entertain clients
   and reward the team (golf, outings, events) — not the inventory list.
 - Lean on the Carolina Golf differentiator.
-- One clear ask: 15 minutes, Tuesday or Thursday.
-- **No signature block** — end right after the ask. Gmail appends Tyler's
-  signature automatically, so don't add name/title/phone/scheduling link
-  yourself. A short sign-off like "Thanks," is fine.
+- **A dual ask** where there's an open question: answer by email *or* take 15
+  minutes, whichever is easier for them. Otherwise one clear ask — 15 minutes,
+  Tuesday or Thursday.
+- **Sign off "Best,"** and stop there. **No signature block** — Gmail appends
+  Tyler's automatically, so adding name/title/phone/scheduling link would print
+  it twice. (Tyler's 2026-07-28 model email shows a signature; that was to
+  illustrate the finished article. His live drafts carry none.)
+
+## Never over-apologise
+When a thread went cold, **acknowledge it and move forward in the same breath**.
+Do not dwell on the miss, and never take the blame explicitly.
+
+- **Banned:** "That's on us." "That's on me." "My fault, not yours." "I dropped
+  the thread." Any sentence whose only job is to accept blame.
+- **Use instead:** *"Looking back, I don't think you ever received the answers
+  you needed."* — states the same fact, points at the prospect's experience
+  rather than Tyler's failure, and reads as attentive instead of sheepish.
+
+One clause of acknowledgement, then straight into what's changed since.
 
 ## Subject lines (specific-hook style)
 Build the subject from **this** email's specific angle — unique per company,
@@ -26,6 +49,15 @@ Good:
 - Great Outdoor + a local, outdoorsy crowd
 Avoid: "Partnership idea for X" (too generic), "A quick idea from a neighbor"
 (gimmicky), and anything with "exclusive," "!", or ALL CAPS.
+
+**Re-engagement subjects work differently** (Tyler, 2026-07-28). Reviving a cold
+thread doesn't need a fresh hook — it needs curiosity and a reason to reopen.
+Treat the subject as a real opportunity rather than an afterthought, and rotate
+across these rather than settling on one:
+- Worth revisiting our partnership conversation?
+- A fresh approach to partnering with Finley
+- Thought of <Company> when revisiting this
+- Picking up where we left off
 
 ## Make it feel human (not templated)
 The custom tailoring is working — keep it. The goal now is to kill the
@@ -40,7 +72,8 @@ The custom tailoring is working — keep it. The goal now is to kill the
 - Lead with a genuine, specific observation only someone who actually looked
   would make (a project, a milestone, a neighbor connection), phrased casually.
 - Make the ask sound like a person, not a calendar bot: "Any chance you've got
-  15 minutes?", "Worth kicking around?", "Tuesday or Thursday's easiest for me."
+  15 minutes?", "Would a quick 15 minutes work?", "Tuesday or Thursday are both
+  open on my end."
 - Keep it professional and grounded. Confident, not cutesy. A plain, factual
   reason for reaching out beats a clever opener every time.
 - When emailing several people at one company, give each a genuinely different
@@ -64,6 +97,47 @@ The custom tailoring is working — keep it. The goal now is to kill the
 - marketing-speak: leverage, activation, engaged audience, synergy, best-in-class
 - Style tells: keep em dashes to ~one per email; don't end every message with
   the identical "golf, outings, tickets, and events" list — vary what you name.
+
+## The model email — Tyler's own words (2026-07-28)
+This is the standard. Match its shape, warmth and pacing.
+
+> Hi Anna,
+>
+> Last November, we had started exploring a partnership between bartaco and
+> Finley Golf Club, and I know you'd sent over a few questions ahead of a call.
+> Looking back, I don't think you ever received the answers you needed.
+>
+> Since then, we've reworked how we approach partnerships. Rather than fixed
+> sponsorship tiers, we now build programs around what makes the most sense for
+> each business.
+>
+> For a restaurant like bartaco that's just a few minutes from the club, that
+> could mean introducing your brand at tournaments and member events, creating
+> memorable food experiences for golfers, or hosting an outing for your team and
+> guests.
+>
+> If you still have those questions, send them my way and I'll answer each one.
+> Or, if it's easier, I'd be happy to jump on a quick 15-minute call and walk
+> through everything.
+>
+> Looking forward to reconnecting.
+>
+> Best,
+
+**Why it works — the four beats to reuse:**
+1. **The history, factually.** What happened, when, and what they were owed. No
+   grovelling.
+2. **What's changed.** The reason it's worth reopening — customizable programmes
+   instead of fixed tiers. This is the whole argument for a re-approach.
+3. **Three concrete possibilities, tailored to what *they* do.** Note that
+   "memorable food experiences for golfers" uses what bartaco *brings*, not just
+   what they'd get. Always name two or three specific options, never a generic
+   benefit — and draw at least one from their own business.
+4. **A dual ask.** Answer your questions by email *or* take 15 minutes —
+   whichever is easier for them. Lowering the cost of replying beats pushing for
+   the meeting.
+
+Close on **"Looking forward to reconnecting."** and sign off **"Best,"**.
 
 ## Before → after (the feel we want)
 **Before (templated):** "Fleet Feet running its national HQ out of Carrboro
