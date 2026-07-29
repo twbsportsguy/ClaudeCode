@@ -138,7 +138,13 @@ pipeline."
    Judging a hundred messages by eye is where mistakes get made — the Blackwood
    error came from reading one snippet and calling a whole thread. Do this:
 
-   1. Sweep with `mcp__Gmail__search_threads`, at minimum these three queries:
+   1. Sweep with `mcp__Gmail__search_threads`. **`in:sent` is not optional** —
+      `sync_activity.py` counts the sends it is handed, so a dump built only
+      from bounce and reply searches contains every failure and almost none of
+      the successes. That mistake reported a 55-send morning as "7 sent, 0
+      delivered" on 2026-07-29. Run at minimum these four queries:
+      - `in:sent after:YYYY/MM/DD` — **paginate to the end**, and sanity-check
+        the total against what the user believes they sent
       - `from:mailer-daemon OR from:postmaster OR subject:"Delivery Status
         Notification" OR subject:"Undeliverable" OR subject:"Returned mail"`
       - `subject:"Automatic reply" OR subject:"Out of Office" OR "no longer with"`

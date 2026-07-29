@@ -97,6 +97,16 @@ def main():
     # reports negative deliveries.
     t_to = {s["to"] for s in t_sent}
     delivered = len(t_to - dead)
+    # This tool counts the sends it is given, so a dump assembled only from
+    # bounce and reply searches contains every failure and almost none of the
+    # successes. That is exactly how a 55-send morning first reported as
+    # "7 sent, 0 delivered". A bounce rate this high is far likelier to mean
+    # the dump is missing `in:sent` than that the send really failed.
+    if t_to and len(t_bounce) / len(t_to) > 0.5:
+        print("\n  !! WARNING: more than half the sends in this dump bounced.")
+        print("     That usually means the dump is incomplete, not that the send failed.")
+        print("     Re-run the sweep including  in:sent after:YYYY/MM/DD  (paginate to")
+        print("     the end) and check the sent total against what you actually sent.\n")
     print(f"  sent            {len(t_to):>4}")
     print(f"  delivered       {delivered:>4}"
           + (f"   ({delivered/len(t_to)*100:.0f}% of sent)" if t_to else ""))

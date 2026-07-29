@@ -1,7 +1,7 @@
 {
  "generated": "2026-07-29",
  "counts": {
-  "ours": 245,
+  "ours": 293,
   "reply-neutral": 94,
   "reply-negative": 14,
   "reply-referral": 9,
@@ -2416,13 +2416,13 @@
    "soft": 0
   },
   "leithcars.com": {
-   "sent": 3,
+   "sent": 6,
    "stale": 3,
    "blocked": 0,
    "soft": 0
   },
   "capitalautogroup.com": {
-   "sent": 4,
+   "sent": 7,
    "stale": 0,
    "blocked": 4,
    "soft": 0
@@ -2440,7 +2440,7 @@
    "soft": 0
   },
   "sportdurst.com": {
-   "sent": 1,
+   "sent": 4,
    "stale": 1,
    "blocked": 0,
    "soft": 0
