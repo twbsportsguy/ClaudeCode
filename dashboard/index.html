@@ -193,6 +193,18 @@
   .ib{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;}
   .ib h3{margin:0 0 2px;font-size:1.05rem;}
   .ib .ib-sub{margin:0 0 12px;font-size:.82rem;color:var(--ink-faint);line-height:1.45;}
+  .ib-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:2px;}
+  .ib-head h3{margin:0;}
+  .ib-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card-2);}
+  .ib-seg button{appearance:none;border:0;background:transparent;cursor:pointer;
+    font:inherit;font-size:.75rem;color:var(--ink-faint);padding:5px 12px;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:6px;}
+  .ib-seg button + button{border-left:1px solid var(--line);}
+  .ib-seg button b{font-variant-numeric:tabular-nums;color:var(--ink-faint);font-weight:600;}
+  .ib-seg button.on{background:var(--accent);color:#fff;}
+  .ib-seg button.on b{color:#fff;}
+  .ib-seg button:not(.on):hover{color:var(--ink);background:var(--card);}
+  .ib-seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;}
   .ib-kpis{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
   .ib-kpi{flex:1 1 110px;background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:9px 11px;}
   .ib-kpi span{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);}
@@ -1814,7 +1826,10 @@ const DATA = [
 
 const RANKV={A:3,B:2,C:1,U:0};
 const $=s=>document.querySelector(s);
-const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,tab:"today",sub:{},open:new Set(),crmOpen:new Set()};
+const state={rank:"all",ind:"all",status:"all",q:"",sort:"rank",focus:null,dealStage:null,tab:"today",sub:{},open:new Set(),crmOpen:new Set(),
+  /* Inbox sections default to today: the daily list is what gets acted on,
+     and the full history is one click away for the at-a-glance read. */
+  ibScope:{replies:"today",deliver:"today",people:"today"}};
 /* Restore the view saved before an auto-refresh so a reload is seamless */
 const VIEW_KEY="finley.view";
 (function hydrateView(){try{
@@ -1822,7 +1837,10 @@ const VIEW_KEY="finley.view";
   ["q","rank","ind","status","sort","focus","dealStage","tab"].forEach(k=>{if(k in v&&v[k]!=null)state[k]=v[k];});
   if(v.sub&&typeof v.sub==="object")state.sub=v.sub;
   if(state.tab==="feed")state.tab="today"; else if(state.tab==="deals")state.tab="pipeline";
-  if(!["today","pipeline","news","territory","inventory","tools"].includes(state.tab))state.tab="today";
+  /* "inbox" belongs in this whitelist — without it an auto-refresh silently
+     threw you back to Today whenever you were reading the Inbox. */
+  if(!["today","pipeline","news","inbox","territory","inventory","tools"].includes(state.tab))state.tab="today";
+  if(v.ibScope&&typeof v.ibScope==="object")Object.assign(state.ibScope,v.ibScope);
   if(Array.isArray(v.open))state.open=new Set(v.open);
 }catch(e){}})();
 const FOCUS={
@@ -2727,6 +2745,26 @@ function renderInbox(){
   const B=(typeof INBOX!=="undefined"&&INBOX)||{}, A=B.activity||{};
   const stale=`<span class="ib-tag stale">mailbox gone</span>`,
         block=`<span class="ib-tag blocked">server block</span>`;
+  /* "Today" means the day this data was gathered, not the reader's clock — the
+     page is a static snapshot, so a viewer opening it on Thursday must still
+     see Wednesday's run as that run's "today". The date is printed on the
+     control so it can never be ambiguous. */
+  const DAY=A.date||B.generated||"";
+  const DAYLBL=DAY?new Date(DAY+"T12:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric"}):"today";
+  const onDay=m=>(m&&m.date||"")===DAY;
+  const pick=(arr,k)=>state.ibScope[k]==="today"?(arr||[]).filter(onDay):(arr||[]);
+  const seg=(k,arr)=>{
+    const t=(arr||[]).filter(onDay).length, a=(arr||[]).length, on=state.ibScope[k];
+    return `<div class="ib-seg" role="group" aria-label="Time range">
+      <button class="${on==="today"?"on":""}" data-ibscope="${k}" data-ibval="today"
+        aria-pressed="${on==="today"}">${esc(DAYLBL)} <b>${t}</b></button>
+      <button class="${on==="all"?"on":""}" data-ibscope="${k}" data-ibval="all"
+        aria-pressed="${on==="all"}">All time <b>${a}</b></button>
+    </div>`;
+  };
+  const noneMsg=k=>state.ibScope[k]==="today"
+    ? `<p class="ib-empty">Nothing on ${esc(DAYLBL)}. Switch to <b>All time</b> for the full history.</p>`
+    : `<p class="ib-empty">None on file.</p>`;
 
   const act=$("#ibActivitySec");
   if(act){
@@ -2768,7 +2806,7 @@ function renderInbox(){
 
   const rep=$("#ibRepliesSec");
   if(rep){
-    const R=B.replies||[];
+    const ALLR=B.replies||[], R=pick(ALLR,"replies");
     /* Referral above positive on purpose: a referral names the person who can
        actually say yes, which is worth more than warm words from someone who
        has handed the file on. */
@@ -2780,7 +2818,7 @@ function renderInbox(){
       .sort((a,b)=>(ORD[a.kind]-ORD[b.kind])||String(b.date).localeCompare(a.date))
       .filter(m=>{const k=(m.from||"")+m.kind;if(seen.has(k))return false;seen.add(k);return true;});
     rep.innerHTML=`<div class="ib">
-      <h3>Replies</h3>
+      <div class="ib-head"><h3>Replies</h3>${seg("replies",ALLR)}</div>
       <p class="ib-sub">Only these four buckets are replies. Bounces, out-of-offices,
         newsletters from companies we happen to have pitched, and Tyler's own sent
         mail are filtered out before this list — reading one of those as a reply
@@ -2799,17 +2837,33 @@ function renderInbox(){
           <td class="mono">${esc(m.from||"")}</td>
           <td>${esc(m.company||"")||`<span class="ib-diag">not in tracker</span>`}</td>
           <td class="ib-diag">${esc(m.status||"—")}</td>
-        </tr>`).join("")}</tbody></table></div>`:`<p class="ib-empty">No replies on file.</p>`}
+        </tr>`).join("")}</tbody></table></div>`:noneMsg("replies")}
     </div>`;
   }
 
   const del=$("#ibDeliverSec");
   if(del){
-    const doms=Object.entries(B.domains||{})
-      .sort((a,b)=>(b[1].stale+b[1].blocked)-(a[1].stale+a[1].blocked));
-    const dead=B.dead||[];
+    const ALLD=B.dead||[], dead=pick(ALLD,"deliver");
+    /* Derive the domain table from whichever set is in scope rather than from
+       the precomputed totals, so "today" really means today here too — including
+       the sent column, which otherwise reports an all-time denominator against a
+       one-day numerator and quietly understates the day's failure rate. */
+    const sentBy={};
+    if(state.ibScope.deliver==="today"){
+      (A.sentList||[]).forEach(s=>{const d=(s.e||"").split("@")[1];
+        if(d)sentBy[d]=(sentBy[d]||0)+1;});
+    }else{
+      Object.entries(B.domains||{}).forEach(([d,v])=>{sentBy[d]=v.sent;});
+    }
+    const agg={};
+    dead.forEach(m=>{
+      const d=(m.address||"").split("@")[1]; if(!d)return;
+      agg[d]=agg[d]||{gone:0,blocked:0};
+      if(m.reason==="address not found")agg[d].gone++; else agg[d].blocked++;
+    });
+    const doms=Object.entries(agg).sort((a,b)=>(b[1].gone+b[1].blocked)-(a[1].gone+a[1].blocked));
     del.innerHTML=`<div class="ib">
-      <h3>Deliverability</h3>
+      <div class="ib-head"><h3>Deliverability</h3>${seg("deliver",ALLD)}</div>
       <p class="ib-sub">Two different failures that need opposite responses.
         <b>Mailbox gone</b> means the address no longer exists — and re-pulling all
         eight on 29 Jul returned the <i>same</i> address for six and no address at all
@@ -2820,13 +2874,13 @@ function renderInbox(){
       ${doms.length?`<div class="ib-tblwrap"><table>
         <thead><tr><th>Domain</th><th>Sent</th><th>Gone</th><th>Blocked</th><th>Diagnosis</th></tr></thead>
         <tbody>${doms.map(([d,s])=>`<tr>
-          <td class="mono">${esc(d)}</td><td>${s.sent}</td>
-          <td>${s.stale||"—"}</td><td>${s.blocked||"—"}</td>
-          <td class="ib-diag">${s.blocked>s.stale
+          <td class="mono">${esc(d)}</td><td>${sentBy[d]||"—"}</td>
+          <td>${s.gone||"—"}</td><td>${s.blocked||"—"}</td>
+          <td class="ib-diag">${s.blocked>s.gone
             ? block+" their server refuses outside mail"
             : stale+" mailbox gone — the person has most likely left"}</td>
         </tr>`).join("")}</tbody></table></div>`
-       :`<p class="ib-empty">No bounces on file.</p>`}
+       :noneMsg("deliver")}
     </div>
     <div class="ib">
       <h3>Dead addresses <span class="ib-tag blocked">${dead.length}</span></h3>
@@ -2840,15 +2894,17 @@ function renderInbox(){
           <td>${esc(m.contact||"—")}</td>
           <td class="ib-diag">${esc(m.reason||"")}</td>
           <td class="ib-diag">${esc(m.date||"")}</td>
-        </tr>`).join("")}</tbody></table></div>`:`<p class="ib-empty">None.</p>`}
+        </tr>`).join("")}</tbody></table></div>`:noneMsg("deliver")}
     </div>`;
   }
 
   const ppl=$("#ibPeopleSec");
   if(ppl){
-    const gone=B.gone||[], ooo=B.ooo||[];
+    const ALLG=B.gone||[], ALLO=B.ooo||[];
+    const gone=pick(ALLG,"people"), ooo=pick(ALLO,"people");
     ppl.innerHTML=`<div class="ib">
-      <h3>Contact has left <span class="ib-tag blocked">${gone.length}</span></h3>
+      <div class="ib-head"><h3>Contact has left <span class="ib-tag blocked">${gone.length}</span></h3>
+        ${seg("people",ALLG)}</div>
       <p class="ib-sub">A departure notice usually names the replacement, which is a
         <b>better</b> contact than the one that bounced — it opens with a colleague's
         referral instead of a cold approach. Replace the row; don't just kill it.</p>
@@ -2858,10 +2914,11 @@ function renderInbox(){
           ? m.replacements.map(r=>`<div class="ib-repl">→ ${esc(r.name||"(unnamed)")}
               &lt;${esc(r.email)}&gt;</div>`).join("")
           : `<div class="ib-diag">No replacement named — re-source this company.</div>`}
-      </div>`).join(""):`<p class="ib-empty">None.</p>`}
+      </div>`).join(""):noneMsg("people")}
     </div>
     <div class="ib">
-      <h3>Out of office <span class="ib-tag hold">${ooo.length}</span></h3>
+      <div class="ib-head"><h3>Out of office <span class="ib-tag hold">${ooo.length}</span></h3>
+        ${seg("people",ALLO)}</div>
       <p class="ib-sub">Not a no — a date to come back on, and often a delegate who
         can act while they're away.</p>
       ${ooo.length?`<div class="ib-tblwrap"><table>
@@ -2871,7 +2928,7 @@ function renderInbox(){
           <td>${esc(m.returns||"—")}</td>
           <td class="ib-diag">${(m.delegates||[]).map(d=>
             `${esc(d.name||"")} &lt;${esc(d.email)}&gt;`).join("<br>")||"—"}</td>
-        </tr>`).join("")}</tbody></table></div>`:`<p class="ib-empty">None.</p>`}
+        </tr>`).join("")}</tbody></table></div>`:noneMsg("people")}
     </div>`;
   }
 
@@ -2907,6 +2964,14 @@ function renderInbox(){
     }
   }
 }
+
+/* Delegated so it survives renderInbox() replacing the buttons it fires on. */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-ibscope]"); if(!b)return;
+  state.ibScope[b.dataset.ibscope]=b.dataset.ibval;
+  renderInbox();
+  if(typeof saveView==="function")saveView();
+});
 
 function renderWinLoss(){
   const el=$("#winlossSec"); if(!el)return;
@@ -3270,7 +3335,7 @@ $("#themeLbl").textContent=matchMedia("(prefers-color-scheme:dark)").matches?"Da
 /* ---- Live auto-refresh (reloads the page so republished data appears) ---- */
 function saveView(){try{sessionStorage.setItem(VIEW_KEY,JSON.stringify({
   q:state.q,rank:state.rank,ind:state.ind,status:state.status,sort:state.sort,
-  focus:state.focus,dealStage:state.dealStage,tab:state.tab,sub:state.sub,open:[...state.open],
+  focus:state.focus,dealStage:state.dealStage,tab:state.tab,sub:state.sub,open:[...state.open],ibScope:state.ibScope,
   theme:root.getAttribute("data-theme")||null,y:window.scrollY
 }));}catch(e){}}
 /* Re-sync the controls/inputs/scroll/theme to the hydrated state after a reload */
