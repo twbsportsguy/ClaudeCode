@@ -37,7 +37,9 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
 | `scoring.md` | A/B/C ranking rubric (even blend: spend / size / fit) |
 | `templates/*.md` | Catered outreach email templates per industry |
 | `tools/analyze_inbox.py` | Classifies everything that came back from a send — bounces, departures, out-of-offices, real replies — and reports deliverability by domain |
+| `tools/sync_activity.py` | Works out which drafts were actually **sent**, writes that to the tracker, and prints the day's activity |
 | `tracker/prospects.csv` | Master prospect data — source of truth for the Google Sheet |
+| `tracker/bass-classic.csv` | The Finley Bass Classic book — a **separate campaign**, same schema (see below) |
 | `dashboard/index.html` | Self-contained prospect dashboard (the shareable UI) — regenerated each run, republished to a fixed Artifact URL |
 
 ## Rules
@@ -57,6 +59,21 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
 - **Respect the ruled-out list.** Companies Tyler has explicitly declined sit at
   `Not Interested: 0%` with "ruled out by Tyler" in Next Step. Never re-draft
   them, and never let a later `New` row resurrect one.
+  **A "don't send" is not automatically a dead account.** Tyler's 2026-07-28
+  instruction covered the *ask* being wrong, not the company. TurtleBox is the
+  case in point: told not to send, but they took a Bass Classic call, helped
+  run the event, and have since asked about a **larger** Finley sponsorship —
+  the opportunity went up to UNC Athletics and flopped there. When told to stop
+  contacting someone, ask whether the account is dead or the pitch was wrong.
+- **The Finley Bass Classic is a separate campaign** with its own book at
+  `tracker/bass-classic.csv` (identical schema, so every tool works on it with
+  `--csv`). It is a fishing tournament, not a corporate partnership: the
+  prospects are national outdoor and tackle brands, so `scoring.md` — which
+  awards 8 points for a Triangle HQ — does not apply and would rank all of them
+  C. Keep it out of the autopilot rotation and out of the partnership win/loss
+  numbers. **Currently on HOLD (Tyler, 2026-07-29): draft nothing and make no
+  asks** until the 2027 event-sponsorship offer is defined; it will be a
+  different offer from the traditional partnership packages.
 - **Proofread every email before creating its draft** — no unfilled merge
   fields, correct name/company/city, factually true hook, clean grammar, and
   the verbatim signature (SKILL.md Step 7).
