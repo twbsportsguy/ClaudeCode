@@ -133,16 +133,32 @@ BULK = re.compile(r"unsubscribe|view (?:this )?in browser|manage your preference
                   r"you are receiving this|email preferences|privacy policy\s*\|", re.I)
 
 # ---------------------------------------------------------------- replies
-POSITIVE = re.compile(r"\b(?:interested|sounds good|let'?s (?:talk|chat|connect|set)|"
-                      r"happy to|would love|send (?:me |over )?(?:more|the|details|info)|"
-                      r"call (?:works|sounds)|available|schedule|calendar|"
-                      r"tell me more|great to hear|yes\b)", re.I)
-NEGATIVE = re.compile(r"\b(?:not interested|no thank|we'?ll pass|i'?ll pass|not a (?:good )?fit|"
-                      r"unable to|can'?t commit|outside of what|no budget|budget is|"
+POSITIVE = re.compile(r"\b(?:i'?m interested|very interested|sounds good|let'?s (?:talk|chat|connect|set)|"
+                      r"would love|send (?:me |over )?(?:more|the|details|info)|"
+                      r"call (?:works|sounds)|i am available|i'?m available|"
+                      r"(?:does|would) (?:that|this|tomorrow) work|"
+                      r"tell me more|great to hear|happy to (?:chat|talk|meet|connect|jump))", re.I)
+# "not something we are interested in" is a no. Matching the bare word
+# "interested" called it a yes, because the negation sits four words away.
+NEGATIVE = re.compile(r"\b(?:not (?:\w+ ){0,4}interested|no interest\b|not something we|"
+                      r"no thank|we'?ll pass|i'?ll pass|not a (?:good )?fit|"
+                      r"unable to|can'?t commit|outside of what|no budget|"
                       r"already (?:have|committed|work with)|remove me|unsubscribe|"
-                      r"stop emailing|take me off|decline)", re.I)
-REFERRAL = re.compile(r"(?:reach out to|contact|talk to|speak (?:with|to)|forwarded (?:this )?to|"
-                      r"passing (?:this|you) (?:on|along)|best person|handles (?:this|our))", re.I)
+                      r"stop emailing|take me off|decline|won'?t be able to)", re.I)
+REFERRAL = re.compile(r"(?:forwarded (?:your|this|it)|forwarded to|i(?:'ve| have) forwarded|"
+                      r"passed (?:it |this )?(?:on|along)|passing (?:this|you) (?:on|along)|"
+                      r"reach out to [A-Z@]|please contact [A-Z]|best person|"
+                      r"handles (?:this|these|our)|they will (?:reach|be in touch))", re.I)
+# Two things that look like warm replies and are neither. Tyler flagged the
+# first himself: he receives marketing mail from companies he has pitched, and
+# reading one as a reply moves a cold company to Interested on the strength of
+# a newsletter.
+VENDOR_PITCH = re.compile(r"overview of [A-Z]|our (?:pricing|program options|solution|platform)|"
+                          r"designed to help partners|/month|per month|\b\d+ month lease|"
+                          r"schedule a demo|book a demo|free trial|our team can help you", re.I)
+JOB_SEEKER = re.compile(r"(?:opportunity to work|potentially working|interested in working)\s+at|"
+                        r"my (?:resume|résumé|cv)\b|(?:applying|apply) for|"
+                        r"any (?:open )?positions|looking for (?:a job|work|employment)", re.I)
 
 def classify(msg, thread_sent_to, sent_subjects):
     sender  = (msg.get("sender") or "").lower()
@@ -171,9 +187,14 @@ def classify(msg, thread_sent_to, sent_subjects):
         for s in sent_subjects)
     if not on_thread:
         return "unsolicited", {}
+    if JOB_SEEKER.search(body):   return "job-seeker", {}
+    if VENDOR_PITCH.search(body): return "vendor-pitch", {}
+    # Order matters. A referral often contains warm words ("if they're
+    # interested, they'll be in touch") that would otherwise read as a yes from
+    # someone who has actually handed us off and stepped out.
     if NEGATIVE.search(body):  return "reply-negative", {}
-    if POSITIVE.search(body):  return "reply-positive", {}
     if REFERRAL.search(body):  return "reply-referral", {}
+    if POSITIVE.search(body):  return "reply-positive", {}
     return "reply-neutral", {}
 
 

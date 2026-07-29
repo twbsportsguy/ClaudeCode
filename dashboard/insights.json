@@ -1,32 +1,32 @@
 {
- "generated": "2026-07-28",
+ "generated": "2026-07-29",
  "totals": {
-  "companies": 663,
-  "replied": 480,
-  "warm": 66,
-  "lost": 32
+  "companies": 669,
+  "replied": 487,
+  "warm": 73,
+  "lost": 37
  },
  "industries": [
   {
    "name": "Unclassified",
-   "n": 238,
-   "replied": 157,
-   "warm": 13,
-   "lost": 6,
+   "n": 239,
+   "replied": 159,
+   "warm": 14,
+   "lost": 9,
    "quotes": [],
-   "replyRate": 66,
-   "winRate": 68,
-   "answered": 19
+   "replyRate": 67,
+   "winRate": 61,
+   "answered": 23
   },
   {
    "name": "Wholesale, supply & equipment",
    "n": 81,
    "replied": 57,
-   "warm": 3,
-   "lost": 1,
+   "warm": 4,
+   "lost": 0,
    "quotes": [],
    "replyRate": 70,
-   "winRate": 75,
+   "winRate": 100,
    "answered": 4
   },
   {
@@ -41,6 +41,17 @@
    "answered": 8
   },
   {
+   "name": "Healthcare",
+   "n": 44,
+   "replied": 39,
+   "warm": 5,
+   "lost": 1,
+   "quotes": [],
+   "replyRate": 89,
+   "winRate": 83,
+   "answered": 6
+  },
+  {
    "name": "Wealth management & finance",
    "n": 46,
    "replied": 39,
@@ -50,17 +61,6 @@
    "replyRate": 85,
    "winRate": 42,
    "answered": 12
-  },
-  {
-   "name": "Healthcare",
-   "n": 41,
-   "replied": 36,
-   "warm": 2,
-   "lost": 1,
-   "quotes": [],
-   "replyRate": 88,
-   "winRate": 67,
-   "answered": 3
   },
   {
    "name": "Greek organizations",
@@ -97,25 +97,25 @@
   },
   {
    "name": "Local businesses",
-   "n": 22,
-   "replied": 22,
-   "warm": 13,
-   "lost": 3,
+   "n": 23,
+   "replied": 23,
+   "warm": 15,
+   "lost": 4,
    "quotes": [],
    "replyRate": 100,
-   "winRate": 81,
-   "answered": 16
+   "winRate": 79,
+   "answered": 19
   },
   {
    "name": "Auto & travel",
-   "n": 16,
-   "replied": 15,
+   "n": 17,
+   "replied": 16,
    "warm": 3,
-   "lost": 0,
+   "lost": 1,
    "quotes": [],
    "replyRate": 94,
-   "winRate": 100,
-   "answered": 3
+   "winRate": 75,
+   "answered": 4
   },
   {
    "name": "Consulting & accounting",
@@ -144,17 +144,17 @@
    "n": 19,
    "replied": 6,
    "warm": 5,
-   "lost": 0,
+   "lost": 1,
    "quotes": [],
    "replyRate": 32,
-   "winRate": 100,
-   "answered": 5
+   "winRate": 83,
+   "answered": 6
   }
  ],
  "reasons": [
   {
    "label": "Not a fit / wrong audience",
-   "n": 15,
+   "n": 19,
    "items": [
     {
      "co": "Davenport & Company LLC",
@@ -244,6 +244,30 @@
      "co": "Toole Design Group",
      "ind": "Construction & engineering",
      "q": "Hey Bryce - sorry for the delay. Yes, not a fit for us. Thank you | OWNER: Bryce",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Adams School of Dentistry",
+     "ind": "UNC teams & schools",
+     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"You're correct - we are not interested at this time.\" | 10/24/2025 11/3/2025 11/11/25 | split from packed legacy row 2026-07-28 | OWNER: Tyler",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "101 Mobility",
+     "ind": "Unclassified",
+     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"Not interested. Thanks.\" | 2/4/26 2/11/2026 | split from packed legacy row 2026-07-28 | OWNER: Tyler",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Sports Endeavors, Inc.",
+     "ind": "Unclassified",
+     "q": "OWNER: Tyler | 2/4/26 2/11/2026 2/18/26 | split from packed legacy row 2026-07-28 | OWNER: Tyler | 2/4/26 2/11/2026 2/18/26 | split from packed legacy row 2026-07-28 | OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"N",
+     "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Capital Air Filters, Inc.",
+     "ind": "Unclassified",
+     "q": "OWNER: Tyler | 2/4/26 2/11/2026 2/18/26 | split from packed legacy row 2026-07-28 | OWNER: Tyler | 2/4/26 2/11/2026 2/18/26 | split from packed legacy row 2026-07-28 | OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"I",
      "stage": "Not Interested: 0%"
     }
    ]
@@ -354,7 +378,7 @@
  "asks": [
   {
    "label": "Routing to someone else",
-   "n": 10,
+   "n": 12,
    "items": [
     {
      "co": "UNC Panhellenic Board",
@@ -397,6 +421,11 @@
      "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit. | OWNER: Tyler | OWNER: Tyler | Reviewed the packages, then: 'unable to move forward"
     },
     {
+     "co": "Biscuitville",
+     "ind": "Local businesses",
+     "q": "OWNER: Tyler | REPLY SWEEP 2026-07-29: \"Your email below was forwarded to me, as I handle sponsorship requests.\" Never followed up. | OWNER: Tyler"
+    },
+    {
      "co": "Samet Corporation",
      "ind": "Construction & engineering",
      "q": "Intro sent to AS 10/24 fu 11/3 | OWNER: Bryce"
@@ -405,6 +434,11 @@
      "co": "Gregory Poole Equipment NC/SC",
      "ind": "Wholesale, supply & equipment",
      "q": "LinkedIn to greg intro sent 10/26 fu 11/3/ intro sent to joy | OWNER: Bryce"
+    },
+    {
+     "co": "Cutter & Buck",
+     "ind": "Unclassified",
+     "q": "REPLY SWEEP 2026-07-29: \"I have forwarded to Marketing. It is not my call. Andrew Puddock will reach out if there is interest.\" Puddock never did. | OWNER: Tyler"
     }
    ]
   },
@@ -451,7 +485,7 @@
   },
   {
    "label": "Wants a meeting or call",
-   "n": 6,
+   "n": 7,
    "items": [
     {
      "co": "Chapel Hill Tire",
@@ -482,6 +516,11 @@
      "co": "UNC Baseball",
      "ind": "UNC teams & schools",
      "q": "Let Dave and I connect after the Holidays and we\u2019ll get back to you if this is something we would like to pursue. We frequent Finley often, but let us figure out if it makes sense for a larger group experience in 2026\\! "
+    },
+    {
+     "co": "ATMA Hotel Group",
+     "ind": "Healthcare",
+     "q": "Stay & Play partnership pairing Courtyard Chapel Hill with Finley rounds. Meeting invite ACCEPTED 2026-07-20. A proposal draft is sitting unsent in Gmail. Martina Brooks <martina.brooks@atmahotelgroup.com> is the named d"
     }
    ]
   },
