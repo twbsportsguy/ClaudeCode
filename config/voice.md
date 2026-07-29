@@ -216,6 +216,20 @@ The goal: an email so easy to forward that it arrives internally as a warm
 hand-off ("this looks relevant — worth a look?") rather than a cold pitch.
 Executives get the direct ask; champions get the hand-off ask.
 
+## Check the batch before Tyler reads it
+`python3 tools/audit_drafts.py drafts.json` flags blame-taking, banned stock
+phrases, word count outside 120–170, a missing "Best," close, and any signature
+block that Gmail would duplicate on send. Run it after drafting and fix
+everything it flags — Tyler should never be the one to catch these.
+
+It cannot judge two things, so check them by eye:
+- **Subject reuse across the batch.** Four rotating re-engagement subjects will
+  collide once there are more than four drafts. Vary them, preferring a subject
+  built from that company's own specifics ("August, as you asked") over a
+  generic rotation entry.
+- **Whether the three tailored options are genuinely theirs.** The audit sees
+  that options exist, not that they fit the business.
+
 ## Tyler's personal tweaks (optional — tell me and I'll fold in)
 - Preferred sign-off (before Gmail's auto-signature): <e.g. "Thanks," / "Best," / none>
 - Anything above to dial up or down: <...>
