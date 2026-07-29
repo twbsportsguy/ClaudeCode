@@ -1,0 +1,265 @@
+{
+ "date": "2026-07-29",
+ "sent": 7,
+ "delivered": 0,
+ "bounced": 8,
+ "replies": 0,
+ "auto": 3,
+ "pending": 48,
+ "sentList": [
+  {
+   "e": "brad.smith@leithcars.com",
+   "co": "Leith Cars",
+   "who": "Brad Smith",
+   "dead": true
+  },
+  {
+   "e": "coy.lovell@leithcars.com",
+   "co": "Leith Cars",
+   "who": "Coy Lovell",
+   "dead": true
+  },
+  {
+   "e": "emountain@capitalautogroup.com",
+   "co": "Capital Automotive Group",
+   "who": "Eric Mountain",
+   "dead": true
+  },
+  {
+   "e": "joseph.wiedholz@capitalautogroup.com",
+   "co": "University Ford of Durham",
+   "who": "Joseph Wiedholz",
+   "dead": true
+  },
+  {
+   "e": "kevin.mills@leithcars.com",
+   "co": "Leith Cars",
+   "who": "Kevin Mills",
+   "dead": true
+  },
+  {
+   "e": "marina.abbott@capitalautogroup.com",
+   "co": "Capital Automotive Group",
+   "who": "Marina Abbott",
+   "dead": true
+  },
+  {
+   "e": "merexson@capitalautogroup.com",
+   "co": "Capital Automotive Group",
+   "who": "Michael Erexson",
+   "dead": true
+  }
+ ],
+ "pendingList": [
+  {
+   "e": "agreenberg@bartaco.com",
+   "co": "Bartaco"
+  },
+  {
+   "e": "andersonlittle@andersonautomotivegroup.com",
+   "co": "Anderson Automotive Group"
+  },
+  {
+   "e": "apd@wardandsmith.com",
+   "co": "Ward and Smith PA"
+  },
+  {
+   "e": "bgalloway@anderson-auto.net",
+   "co": "Anderson Automotive Group"
+  },
+  {
+   "e": "bhodgeman@johnsonlexus.com",
+   "co": "Johnson Lexus of Durham"
+  },
+  {
+   "e": "bob.lyon@andersonautomotivegroup.com",
+   "co": "Anderson Automotive Group"
+  },
+  {
+   "e": "bradyrassin@gmail.com",
+   "co": "Zeta Psi"
+  },
+  {
+   "e": "brooke.gerrell@brushandfloss.com",
+   "co": "Riccobene Associates Family Dentistry"
+  },
+  {
+   "e": "cmchargue@anderson-auto.net",
+   "co": "Anderson Automotive Group"
+  },
+  {
+   "e": "cwatts@capitalautogroup.com",
+   "co": "Capital Automotive Group"
+  },
+  {
+   "e": "david.coyle@leithcars.com",
+   "co": "Leith Cars"
+  },
+  {
+   "e": "dean@crossroadsford.com",
+   "co": "Crossroads Ford Group"
+  },
+  {
+   "e": "dkoballa@sportdurst.com",
+   "co": "Sport Durst Automotive"
+  },
+  {
+   "e": "donlane@lanegallery.com",
+   "co": "Lane & Associates"
+  },
+  {
+   "e": "drkornstein@wakeorthopedo.com",
+   "co": "Wake Orthodontics & Pediatric Dentistry"
+  },
+  {
+   "e": "dstar@lane.us",
+   "co": "Lane & Associates"
+  },
+  {
+   "e": "gabrielle@carolinasdentist.com",
+   "co": "CarolinasDentist"
+  },
+  {
+   "e": "hainesr@crossroadsford.com",
+   "co": "Crossroads Ford Group"
+  },
+  {
+   "e": "jennifer.mastrapasqua@captrustadvisors.com",
+   "co": "CAPTRUST"
+  },
+  {
+   "e": "jp.rigsbee@affordablecare.com",
+   "co": "Affordable Dentures & Implants"
+  },
+  {
+   "e": "kelly.demeester@rsmi.com",
+   "co": "RSM US LLP (Premier Package)"
+  },
+  {
+   "e": "kerry.heckle@unchealth.unc.edu",
+   "co": "UNC Health"
+  },
+  {
+   "e": "kevin.kane@leithcars.com",
+   "co": "Leith Cars"
+  },
+  {
+   "e": "knichols@sportdurst.com",
+   "co": "Sport Durst Automotive"
+  },
+  {
+   "e": "kristy.daniel@brushandfloss.com",
+   "co": "Riccobene Associates Family Dentistry"
+  },
+  {
+   "e": "lhicks@farrin.com",
+   "co": "Law Offices of James Scott Farrin"
+  },
+  {
+   "e": "line.dempsey@brushandfloss.com",
+   "co": "Riccobene Associates Family Dentistry"
+  },
+  {
+   "e": "llongo@capitalautogroup.com",
+   "co": "Capital Automotive Group"
+  },
+  {
+   "e": "matt.brownell@christmanco.com",
+   "co": "The Christman Company"
+  },
+  {
+   "e": "mike.jurasek@leithcars.com",
+   "co": "Leith Cars"
+  },
+  {
+   "e": "mike@westgatejeep.com",
+   "co": "WestGate Auto Group"
+  },
+  {
+   "e": "mmclachlan@sportdurst.com",
+   "co": "Sport Durst Automotive"
+  },
+  {
+   "e": "montgomery.webb@84lumber.com",
+   "co": "84 Lumber"
+  },
+  {
+   "e": "mostafa@johnsonlexus.com",
+   "co": "Johnson Lexus of Durham"
+  },
+  {
+   "e": "mstar@lane.us",
+   "co": "Lane & Associates"
+  },
+  {
+   "e": "natalie@ncimplant.com",
+   "co": "Russo Dentistry"
+  },
+  {
+   "e": "nate.kring@affordablecare.com",
+   "co": "Affordable Dentures & Implants"
+  },
+  {
+   "e": "paul.mcdonald@andersonautomotivegroup.com",
+   "co": "Anderson Automotive Group"
+  },
+  {
+   "e": "pete.bridgman@affordablecare.com",
+   "co": "Affordable Dentures & Implants"
+  },
+  {
+   "e": "pons.marc@chapelhilltire.com",
+   "co": "Chapel Hill Tire"
+  },
+  {
+   "e": "renee.pakkala@capitalautogroup.com",
+   "co": "Capital Automotive Group"
+  },
+  {
+   "e": "sheibanis@crossroadsmitsubishilumberton.com",
+   "co": "Crossroads Ford Group"
+  },
+  {
+   "e": "stephanie@andersonautomotivegroup.com",
+   "co": "Anderson Automotive Group"
+  },
+  {
+   "e": "tiffany.reynolds@axiomdentistry.com",
+   "co": "Axiom Dentistry"
+  },
+  {
+   "e": "tkavanaugh@bakerroofing.com",
+   "co": "Baker Roofing"
+  },
+  {
+   "e": "tserpe@andersonautomotive.com",
+   "co": "Anderson Automotive Group"
+  },
+  {
+   "e": "uncpanhelspecialevents@gmail.com",
+   "co": "UNC Panhellenic Board"
+  },
+  {
+   "e": "wayne.dubois@sportdurst.com",
+   "co": "Sport Durst Automotive"
+  }
+ ],
+ "history": [
+  [
+   "2026-03-19",
+   8
+  ],
+  [
+   "2026-03-26",
+   1
+  ],
+  [
+   "2026-03-30",
+   2
+  ],
+  [
+   "2026-07-29",
+   7
+  ]
+ ]
+}

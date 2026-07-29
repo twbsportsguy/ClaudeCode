@@ -46,6 +46,8 @@ def main():
     for r in data:
         if len(r) > 15 and "@" in r[15]:
             by_email.setdefault(r[15].strip().lower(), []).append(r)
+        for a in re.findall(r"DEAD-EMAIL:\s*([\w.+-]+@[\w.-]+)", r[21] if len(r) > 21 else ""):
+            by_email.setdefault(a.lower(), []).append(r)
 
     sent, inbound = [], []
     for th in load_threads(src):
@@ -133,13 +135,16 @@ def main():
         mine = [s for s in sent if s["to"] == e]
         if mine and "SENT " not in r[21]:
             last = max(x["date"] for x in mine)
-            changes.append((r, "sent", last))
+            changes.append((r, "sent", last, e))
         if e in dead and "BOUNCED" not in r[21]:
-            changes.append((r, "bounce", day))
+            # Carry the address in the record. Reading `e` in the apply loop
+            # below picks up whatever the last row of this loop left behind,
+            # which stamped every bounced row with one unrelated address.
+            changes.append((r, "bounce", day, e))
 
     print(f"\n{'-'*72}\nTRACKER UPDATES ({'applying' if apply_ else 'dry run'})\n{'-'*72}")
     if not changes: print("  nothing to change")
-    for r, what, when in changes:
+    for r, what, when, addr in changes:
         if what == "sent":
             print(f"  SENT    {r[3]:32} {r[13][:24]:26} {when}")
             if apply_:
@@ -151,10 +156,15 @@ def main():
         else:
             print(f"  BOUNCE  {r[3]:32} {r[13][:24]:26} address dead")
             if apply_:
+                # Keep the dead address on the row as DEAD-EMAIL. Clearing the
+                # Contact Email is what stops future runs drafting into a void,
+                # but doing only that made the next analyze_inbox run unable to
+                # match the bounce back to a company — the tool blinded itself
+                # to its own findings. Both readers index this tag as well.
                 r[21] = (r[21] + " | " if r[21].strip() else "") + \
-                        f"BOUNCED {when} — address dead, do not re-draft"
+                        f"BOUNCED {when} — address dead, do not re-draft (DEAD-EMAIL: {addr})"
                 r[20] = "Address dead — re-source this contact before any further outreach"
-                r[15] = ""          # stop every future run drafting into a void
+                r[15] = ""
 
     if apply_ and changes:
         csv.writer(open(track, "w", newline="")).writerows([hdr] + data)
@@ -164,6 +174,23 @@ def main():
 
     print("\n  NB: stages are never changed here. Whether a reply means "
           "'interested'\n      is a judgement call — analyze_inbox.py proposes, a human decides.")
+
+    # Embedded by build_dashboard_data.py — the page is a self-contained
+    # artifact and cannot fetch anything at view time.
+    import os
+    os.makedirs("dashboard", exist_ok=True)
+    named = lambda a: (by_email.get(a) or [[""]*23])[0]
+    json.dump({
+        "date": day,
+        "sent": len(t_to), "delivered": delivered, "bounced": len(t_bounce),
+        "replies": len(t_reply), "auto": len(t_auto),
+        "pending": len(still) if dpath else None,
+        "sentList": [{"e": a, "co": named(a)[3], "who": named(a)[13],
+                      "dead": a in dead} for a in sorted(t_to)],
+        "pendingList": [{"e": p, "co": named(p)[3]} for p in sorted(still)][:60],
+        "history": sorted(collections.Counter(s["date"] for s in sent).items())[-30:],
+    }, open("dashboard/activity.json", "w"), indent=1)
+    print("  wrote dashboard/activity.json")
 
 
 if __name__ == "__main__":

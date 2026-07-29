@@ -60,6 +60,41 @@ try:
 except Exception:
     INSIGHTS=None
 
+def _load(p, d=None):
+    try: return json.load(open(p))
+    except Exception: return d
+
+def _bassclassic():
+    """The Bass Classic is a separate campaign on the same schema. It is summarised
+    rather than merged: scoring.md gives 8 points for a Triangle HQ, so folding a
+    national tackle book into the main pipeline would rank all of it C and skew
+    every partnership number."""
+    try: rows=list(csv.reader(open("tracker/bass-classic.csv")))[1:]
+    except Exception: return None
+    stages=collections.Counter(r[19].strip() for r in rows if len(r)>19)
+    return {"n":len(rows),"stages":dict(stages),
+            "hold":any("HOLD" in r[20] for r in rows if len(r)>20),
+            "companies":[{"co":r[3],"who":r[13],"stage":r[19],
+                          "next":r[20].replace("HOLD (no ask until 2027 offer defined) — ",""),
+                          "note":r[21][:300]}
+                         for r in rows if len(r)>21]}
+
+# Everything the Inbox panel needs, in one embedded object.
+INBOX_RAW=_load("dashboard/inbox.json", {})
+ACTIVITY =_load("dashboard/activity.json", {})
+INBOX={
+  "generated": INBOX_RAW.get("generated",""),
+  "counts":    INBOX_RAW.get("counts",{}),
+  "domains":   INBOX_RAW.get("domains",{}),
+  "activity":  ACTIVITY,
+  "bass":      _bassclassic(),
+}
+for k, kinds in [("dead",("bounce-hard",)), ("soft",("bounce-soft",)),
+                 ("gone",("departed",)), ("ooo",("auto-ooo",)),
+                 ("replies",("reply-positive","reply-negative",
+                             "reply-referral","reply-neutral"))]:
+    INBOX[k]=[m for m in INBOX_RAW.get("messages",[]) if m["kind"] in kinds]
+
 html=open(DASH).read()
 s,e,block=existing_data(html)
 # hand-authored, ZoomInfo-enriched cards look like {name:"X"  (no quoted key).
@@ -173,5 +208,7 @@ if INSIGHTS is not None:
     # backslashes that appear inside quoted reply text as escape sequences.
     _repl="const INSIGHTS = "+js(INSIGHTS)+";\n"
     html=re.sub(r"const INSIGHTS = \{.*?\};\n", lambda m:_repl, html, count=1, flags=re.S)
+_ri="const INBOX = "+js(INBOX)+";\n"
+html=re.sub(r"const INBOX = \{.*?\};\n", lambda m:_ri, html, count=1, flags=re.S)
 open(DASH,"w").write(html)
 print(f"\nwrote {len(lines)} new company cards into the dashboard")

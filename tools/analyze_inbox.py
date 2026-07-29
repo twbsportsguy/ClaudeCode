@@ -197,6 +197,10 @@ def main():
     for r in body_rows:
         if len(r) > 15 and "@" in r[15]:
             by_email.setdefault(r[15].strip().lower(), r)
+        # Addresses retired by sync_activity.py stay indexed via their DEAD-EMAIL
+        # tag, so a bounce still resolves to a company on later runs.
+        for a in re.findall(r"DEAD-EMAIL:\s*([\w.+-]+@[\w.-]+)", r[21] if len(r) > 21 else ""):
+            by_email.setdefault(a.lower(), r)
 
     results, counts = [], collections.Counter()
     for th in load_threads(src):
