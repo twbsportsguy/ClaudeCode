@@ -36,6 +36,7 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
 | `config/profile.md` | Seller identity + offer details used in every email |
 | `scoring.md` | A/B/C ranking rubric (even blend: spend / size / fit) |
 | `templates/*.md` | Catered outreach email templates per industry |
+| `tools/analyze_inbox.py` | Classifies everything that came back from a send — bounces, departures, out-of-offices, real replies — and reports deliverability by domain |
 | `tracker/prospects.csv` | Master prospect data — source of truth for the Google Sheet |
 | `dashboard/index.html` | Self-contained prospect dashboard (the shareable UI) — regenerated each run, republished to a fixed Artifact URL |
 

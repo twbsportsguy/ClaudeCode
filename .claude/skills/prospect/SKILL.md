@@ -133,6 +133,39 @@ pipeline."
    Useful Gmail query shape for the sweep:
    `in:inbox newer_than:60d -category:promotions -category:updates -from:no-reply`
 
+   ### Run the classifier rather than eyeballing it
+   `tools/analyze_inbox.py` applies every rule in this step mechanically.
+   Judging a hundred messages by eye is where mistakes get made — the Blackwood
+   error came from reading one snippet and calling a whole thread. Do this:
+
+   1. Sweep with `mcp__Gmail__search_threads`, at minimum these three queries:
+      - `from:mailer-daemon OR from:postmaster OR subject:"Delivery Status
+        Notification" OR subject:"Undeliverable" OR subject:"Returned mail"`
+      - `subject:"Automatic reply" OR subject:"Out of Office" OR "no longer with"`
+      - `in:inbox newer_than:60d -category:promotions -category:updates`
+   2. Concatenate the responses into one JSON list and run
+      `python3 tools/analyze_inbox.py inbox.json`.
+   3. Act on its four sections. It **proposes** tracker edits and never makes
+      them — apply them yourself after reading.
+
+   It buckets every inbound message into: `bounce-hard` / `bounce-soft`,
+   `departed`, `auto-ooo`, `broadcast`, `unsolicited`, `irrelevant`,
+   `other-campaign`, `ours`, and `reply-{positive,negative,referral,neutral}`.
+   Only the `reply-*` buckets are replies; nothing else may move a stage.
+
+   **Three outputs matter more than the replies:**
+   - **Hard bounces.** The address is dead. Every future draft to it is wasted,
+     and the row will otherwise keep resurfacing in follow-up runs forever.
+   - **Departure notices.** These almost always name the replacement, which is
+     a *better* contact than the one that bounced — a warm "your colleague told
+     me to write to you". Add the new row; don't just kill the old one.
+   - **Deliverability by domain**, which separates the two systemic failures
+     because they need opposite responses. `stale` ("address not found") means
+     our contact data is old — re-pull the company from ZoomInfo. `blocked`
+     ("access denied", "recipient address rejected") means their mail server
+     refuses outside senders — the addresses may be perfectly correct and
+     re-sourcing will change nothing, so switch to a phone or a referral.
+
    When a message is ambiguous, **leave the stage unchanged** and note
    "unclear inbound — needs a human read" rather than guessing upward. A
    missed reply costs one follow-up; a fabricated one costs credibility with

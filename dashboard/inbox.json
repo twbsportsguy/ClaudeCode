@@ -1,0 +1,486 @@
+{
+ "generated": "2026-07-29",
+ "counts": {
+  "ours": 18,
+  "bounce-hard": 19,
+  "auto-ooo": 6,
+  "irrelevant": 5,
+  "departed": 3
+ },
+ "messages": [
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "postmaster@arifleet.com",
+   "subject": "Undeliverable: Retention between service visits",
+   "address": "brad.smith@leithcars.com",
+   "company": "Leith Cars",
+   "contact": "Brad Smith",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "failed": "brad.smith@leithcars.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "postmaster@arifleet.com",
+   "subject": "Undeliverable: A fresh approach for Leith in Chapel Hill",
+   "address": "kevin.mills@leithcars.com",
+   "company": "Leith Cars",
+   "contact": "Kevin Mills",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "failed": "kevin.mills@leithcars.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "postmaster@arifleet.com",
+   "subject": "Undeliverable: Keeping the Leith name visible locally",
+   "address": "coy.lovell@leithcars.com",
+   "company": "Leith Cars",
+   "contact": "Coy Lovell",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "failed": "coy.lovell@leithcars.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "mailer-daemon@googlemail.com",
+   "subject": "Delivery Status Notification (Failure)",
+   "address": "merexson@capitalautogroup.com",
+   "company": "Capital Automotive Group",
+   "contact": "Michael Erexson",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "finley-partnership",
+   "failed": "merexson@capitalautogroup.com",
+   "reason": "blocked / rejected"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "mailer-daemon@googlemail.com",
+   "subject": "Delivery Status Notification (Failure)",
+   "address": "marina.abbott@capitalautogroup.com",
+   "company": "Capital Automotive Group",
+   "contact": "Marina Abbott",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "failed": "marina.abbott@capitalautogroup.com",
+   "reason": "blocked / rejected"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "mailer-daemon@googlemail.com",
+   "subject": "Delivery Status Notification (Failure)",
+   "address": "joseph.wiedholz@capitalautogroup.com",
+   "company": "University Ford of Durham",
+   "contact": "Joseph Wiedholz",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "failed": "joseph.wiedholz@capitalautogroup.com",
+   "reason": "blocked / rejected"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "mailer-daemon@googlemail.com",
+   "subject": "Delivery Status Notification (Failure)",
+   "address": "emountain@capitalautogroup.com",
+   "company": "Capital Automotive Group",
+   "contact": "Eric Mountain",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "failed": "emountain@capitalautogroup.com",
+   "reason": "blocked / rejected"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-07-29",
+   "from": "mailer-daemon@googlemail.com",
+   "subject": "Delivery Status Notification (Failure)",
+   "address": "knichols@sportdurst.com",
+   "company": "Sport Durst Automotive",
+   "contact": "Ken Nichols",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "failed": "knichols@sportdurst.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "auto-ooo",
+   "date": "2026-07-29",
+   "from": "llongo@capitalautogroup.com",
+   "subject": "Automatic reply: Something different from the usual pitch",
+   "address": "llongo@capitalautogroup.com",
+   "company": "Capital Automotive Group",
+   "contact": "Lindsey Michael-Longo",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "returns": "",
+   "delegates": [
+    {
+     "name": "Curtis Driver",
+     "email": "curtis.driver@capitalautogroup.com"
+    }
+   ]
+  },
+  {
+   "kind": "auto-ooo",
+   "date": "2026-07-29",
+   "from": "renee.pakkala@capitalautogroup.com",
+   "subject": "Automatic reply: One agreement instead of a dozen spends",
+   "address": "renee.pakkala@capitalautogroup.com",
+   "company": "Capital Automotive Group",
+   "contact": "Renee Pakkala",
+   "status": "New",
+   "in_tracker": true,
+   "campaign": "unknown",
+   "returns": "",
+   "delegates": [
+    {
+     "name": "Mollie Fisher",
+     "email": "mollie.fisher@capitalautogroup.com"
+    }
+   ]
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-04-08",
+   "from": "postmaster@warehousesports.com",
+   "subject": "Undeliverable: Re: Finley Bass Classic | Official Partnership",
+   "address": "clark@tacklewarehouse.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "clark@tacklewarehouse.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-04-01",
+   "from": "mailer-daemon@googlemail.com",
+   "subject": "Delivery Status Notification (Failure)",
+   "address": "hunter@turtleboxaudio.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "hunter@turtleboxaudio.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-30",
+   "from": "mailer-daemon@googlemail.com",
+   "subject": "Delivery Status Notification (Failure)",
+   "address": "bonnie.smith@freeflyapparel.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "bonnie.smith@freeflyapparel.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "afreeman@basspro.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "afreeman@basspro.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "srichardson@cabelas.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "srichardson@cabelas.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "allie.saunders@cabelas.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "allie.saunders@cabelas.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "pat.snyder@cabelas.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "pat.snyder@cabelas.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "jennifer.murphy@cabelas.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "jennifer.murphy@cabelas.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "m_quilon@cabelas.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "m_quilon@cabelas.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "rverhulst@cabelas.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "rverhulst@cabelas.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "bounce-hard",
+   "date": "2026-03-19",
+   "from": "MAILER-DAEMON@mx0a-001a5c01.pphosted.com",
+   "subject": "Returned mail: see transcript for details",
+   "address": "trent.santero@cabelas.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "failed": "trent.santero@cabelas.com",
+   "reason": "address not found"
+  },
+  {
+   "kind": "departed",
+   "date": "2026-03-25",
+   "from": "Josh.ODonnell@purefishing.com",
+   "subject": "Automatic reply: Finley Bass Classic | Official Partnership",
+   "address": "josh.odonnell@purefishing.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "replacements": [
+    {
+     "name": "Justin Bones",
+     "email": "justin.bones@purefishing.com"
+    }
+   ]
+  },
+  {
+   "kind": "departed",
+   "date": "2026-03-24",
+   "from": "erin.cooper@yeti.com",
+   "subject": "Automatic reply: Finley Bass Classic | Official Partnership",
+   "address": "erin.cooper@yeti.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "replacements": [
+    {
+     "name": "Michelle Petersen",
+     "email": "michelle.petersen@yeti.com"
+    }
+   ]
+  },
+  {
+   "kind": "departed",
+   "date": "2026-03-19",
+   "from": "luke.merritt@yeti.com",
+   "subject": "Automatic reply: Finley Bass Classic | Official Partnership",
+   "address": "luke.merritt@yeti.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "replacements": [
+    {
+     "name": "Mitch Whitaker",
+     "email": "mitchell.whitaker@yeti.com"
+    }
+   ]
+  },
+  {
+   "kind": "auto-ooo",
+   "date": "2026-02-24",
+   "from": "Brent.Mallard@callawaygolf.com",
+   "subject": "Automatic reply:  Re: 2026 UNC Finley Golf Club | Proud Partnership",
+   "address": "brent.mallard@callawaygolf.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "finley-partnership",
+   "returns": "",
+   "delegates": []
+  },
+  {
+   "kind": "auto-ooo",
+   "date": "2026-02-18",
+   "from": "mpowell@bandwidth.com",
+   "subject": "Out of Office: Returning Monday, 2/23 Re: 2026 UNC Finley Golf Club | Proud Partnership",
+   "address": "mpowell@bandwidth.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "finley-partnership",
+   "returns": "2/23",
+   "delegates": [
+    {
+     "name": "",
+     "email": "thinton@bandwidth.com"
+    }
+   ]
+  },
+  {
+   "kind": "auto-ooo",
+   "date": "2026-02-18",
+   "from": "Michelle.Funk@lvepartners.com",
+   "subject": "Automatic reply: 2026 UNC Finley Golf Club | Proud Partnership",
+   "address": "michelle.funk@lvepartners.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "finley-partnership",
+   "returns": "February 24",
+   "delegates": [
+    {
+     "name": "Andrea",
+     "email": "andrearoberson@lvepartners.com"
+    }
+   ]
+  },
+  {
+   "kind": "auto-ooo",
+   "date": "2026-04-08",
+   "from": "hillary.lamont@rticoutdoors.com",
+   "subject": "Out of Office Re: Finley Bass Classic | Official Partnership",
+   "address": "hillary.lamont@rticoutdoors.com",
+   "company": "",
+   "contact": "",
+   "status": "",
+   "in_tracker": false,
+   "campaign": "bass-classic",
+   "returns": "",
+   "delegates": []
+  }
+ ],
+ "domains": {
+  "leithcars.com": {
+   "sent": 3,
+   "stale": 3,
+   "blocked": 0,
+   "soft": 0
+  },
+  "capitalautogroup.com": {
+   "sent": 4,
+   "stale": 0,
+   "blocked": 4,
+   "soft": 0
+  },
+  "tacklewarehouse.com": {
+   "sent": 1,
+   "stale": 1,
+   "blocked": 0,
+   "soft": 0
+  },
+  "turtleboxaudio.com": {
+   "sent": 1,
+   "stale": 1,
+   "blocked": 0,
+   "soft": 0
+  },
+  "freeflyapparel.com": {
+   "sent": 1,
+   "stale": 1,
+   "blocked": 0,
+   "soft": 0
+  },
+  "basspro.com": {
+   "sent": 1,
+   "stale": 1,
+   "blocked": 0,
+   "soft": 0
+  },
+  "cabelas.com": {
+   "sent": 7,
+   "stale": 7,
+   "blocked": 0,
+   "soft": 0
+  },
+  "sportdurst.com": {
+   "sent": 1,
+   "stale": 1,
+   "blocked": 0,
+   "soft": 0
+  }
+ }
+}
