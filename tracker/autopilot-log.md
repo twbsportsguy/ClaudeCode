@@ -596,3 +596,47 @@ address is `tom.pelletiers@`, so the draft says Tom. This is deliberately the
 opposite of the Cassandra Roberts call at Curtis Media, where a nickname sitting
 in a middle-name field was ignored in favour of the formal name. An address
 someone uses professionally is far stronger evidence than a database field.
+
+### Same run, second half — Tyler: "you should be creating more drafts than just a handful"
+
+Fair, and the budget in `config/autopilot.md` agreed with him: **2 segments, 8–10
+companies each, the full buying committee per company.** Recent runs have been
+delivering 5–7 drafts across 2 companies. That is a third of the documented
+budget, and the under-delivery was mine, not the config's.
+
+Scaled the run to **15 drafts across 7 companies**.
+
+First attempt to scale stayed inside building materials and failed on data, not
+effort: a contact sweep across Simonton, Prescient, Accu-Fab, Tucker
+Auto-Mation and The Steel Network returned **nothing** — five companies, zero
+contacts at 90+ accuracy. Only Second Nature came back. Building materials is
+genuinely thin in ZoomInfo below the top few names.
+
+So the second segment opened on **Triangle tech**, using the company list from
+the run-10 search that had never been worked. Coverage there is the opposite —
+insightsoftware alone carries a full marketing org.
+
+- **insightsoftware** (Raleigh, 2,262, $420M) — **B (71)**, five drafts. Grown
+  from $35M in 2018 to about $600M across **twenty-nine acquisitions**. That is
+  the hook and the marketing problem in one: the job there is making one company
+  out of many. Five genuinely separate angles — brand consolidation (CMO),
+  partner access (partner marketing), the audience itself (finance leaders are
+  expensive to reach digitally and thick on the ground at golf courses), rising
+  digital cost against a fixed pool of controllers, and operational simplicity.
+- **SoftPro** (Raleigh, 454, $72M) — **B (71)**, two drafts. Started **C (52)**
+  and moved on evidence, the fourth time this week: first corporate sponsor of
+  **Women in Title**, plus its own annual user group conference.
+- **Intelerad** (Raleigh, 900, $219M) — B (57), one draft to their global events
+  manager.
+- **Second Nature** (Raleigh, 160, $30M) — B (63), two drafts, including one to
+  an actual **VP of Partnerships**. That draft names the awkwardness in its first
+  line rather than pretending it isn't there.
+- **Trilliant** (Cary, 500, $122M) — **C (54)**, not drafted. Missed the B band
+  by one point, purely on absent spend evidence. Contact is enriched and parked
+  so the credit isn't wasted when a research pass clears it.
+
+**Third 303/910/828 case this week.** Danielle Lleras at Intelerad has a Denver
+area code. Her draft positions the club relative to *Intelerad's Raleigh office*,
+never relative to her. This is now a repeatable rule rather than three
+coincidences: **check the area code against the HQ before writing any proximity
+line.**

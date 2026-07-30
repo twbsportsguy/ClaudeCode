@@ -13,6 +13,13 @@ follow-ups to non-repliers (`config/followups.md`), not new prospecting.
   committee** per company — every useful contact, not just decision-makers
   (see SKILL.md Step 3). More contacts per company = more forward-up shots.
 - Hard stop: don't enrich a 3rd segment in one run (ZoomInfo credit control).
+- **This budget is a floor, not a ceiling** (Tyler, 2026-07-30: *"you should be
+  creating more drafts than just a handful"*). Runs had drifted to 5–7 drafts
+  across 2 companies — about a third of what's written above. If a segment turns
+  out thin in ZoomInfo, that is a reason to **open the second segment**, not a
+  reason to finish the run early. A run landing under ~12 drafts needs a stated
+  reason, and "the data wasn't there" only counts once both segments have been
+  swept.
 
 ## The universe
 Derived from Tyler's actual book (397 companies imported from the FGC Master

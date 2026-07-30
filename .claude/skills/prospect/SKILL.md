@@ -415,6 +415,15 @@ help"). For owners/execs, the direct ask is fine.
      `{{City}}` match the tracker row.
    - The hook is factually true per Step 2/4 research — no invented awards,
      sponsorships, or numbers.
+   - **Check the contact's area code against the company HQ before writing any
+     proximity line.** A company headquartered in Raleigh does not mean the
+     person is in Raleigh, and drive-time is the product — so getting this wrong
+     wastes the one argument that matters. Three cases in the week of
+     2026-07-30: Erica Lackey at Curtis Media (828) replied *"I actually run our
+     Boone location, so I am probably not your best bet"*; Debra Hause at North
+     State Bank (910); Danielle Lleras at Intelerad (303). When the code doesn't
+     match, either drop the proximity line or anchor it to **the company's local
+     office** rather than to the person.
    - Spelling/grammar clean, tone professional, under 120 words.
    - No signature block in the body (Gmail appends Tyler's); the email ends
      cleanly on the ask, no name/title/contact typed out.
