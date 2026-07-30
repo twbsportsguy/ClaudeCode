@@ -1,8 +1,8 @@
 {
  "generated": "2026-07-30",
  "totals": {
-  "companies": 675,
-  "replied": 498,
+  "companies": 680,
+  "replied": 503,
   "warm": 73,
   "lost": 37
  },
@@ -74,6 +74,17 @@
    "answered": 9
   },
   {
+   "name": "Local businesses",
+   "n": 30,
+   "replied": 30,
+   "warm": 15,
+   "lost": 4,
+   "quotes": [],
+   "replyRate": 100,
+   "winRate": 79,
+   "answered": 19
+  },
+  {
    "name": "Law firms",
    "n": 27,
    "replied": 27,
@@ -94,17 +105,6 @@
    "replyRate": 84,
    "winRate": 100,
    "answered": 2
-  },
-  {
-   "name": "Local businesses",
-   "n": 25,
-   "replied": 25,
-   "warm": 15,
-   "lost": 4,
-   "quotes": [],
-   "replyRate": 100,
-   "winRate": 79,
-   "answered": 19
   },
   {
    "name": "Auto & travel",

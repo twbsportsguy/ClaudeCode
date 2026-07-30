@@ -188,3 +188,39 @@ drive-time story), Ayatana (India), and Tanager Lodge / MCR Investors / Landmark
 The Pinehurst leak is now the hook in the Umstead marketing draft. It is the
 one line in this batch that names a real competitive dynamic rather than a
 benefit, and it is worth watching whether it outperforms.
+
+## 2026-07-29 (third run) — O2 Fitness corporate + breweries × Triangle
+
+**Closed the O2 Fitness gap** logged in run 1. The first pass returned twenty
+club-level general managers and no corporate buyer, which is why nothing was
+drafted then. Filtering to the marketing and sales departments while excluding
+"General Manager" surfaced **Cooper Elias, VP Marketing Operations** and
+**Judi Edelman, Director of Culture & Customer Experience** — the second being
+exactly the role SKILL.md says books outings. His address is `jelias@`, not
+`celias@`; a format guess would have bounced, which is now the third time this
+week enrichment has beaten a guessable pattern.
+
+**Breweries × Triangle** as the new segment. A brewery and a golf club want the
+same afternoon from the same people, and it is a genuine two-way deal: they
+pour, we host. Four companies, five contacts — Fullsteam (Durham), Clouds,
+Crank Arm and Raleigh Brewing.
+
+Crank Arm gets the shortest explanation of anyone in the batch because the
+brand is built around cycling events, so the founder already knows what a
+sponsorship is worth when it is not just a banner.
+
+**Tier discipline applied.** The statewide brewery search returned Wicked Weed,
+Highland, Catawba, Birdsong and Foothills — all Asheville, Charlotte or
+Winston-Salem, i.e. tiers 2–3. `config/autopilot.md` gates those until the
+Triangle is genuinely worked, and it is not, so the search was re-run against
+the Raleigh metro only. Drive-time is the product; a Charlotte brewery cannot
+use a Chapel Hill outing.
+
+**Carolina Brewery skipped, and it is a data problem.** Chapel Hill HQ, 356
+staff — on paper the best brewery on the list. It is already in the book across
+three rows, two of which are packed legacy rows with several people crammed into
+one cell ("Anthony Lazzari, Robert Po…", "Jason Waring, Shannon McGu…"). It sits
+at `New` and has never been worked. It belongs to the 31 packed rows still
+awaiting manual review, and it is the clearest argument yet for finishing that
+job: the single best home-market prospect in this segment is invisible because
+its row is malformed.
