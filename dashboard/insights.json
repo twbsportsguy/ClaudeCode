@@ -1,8 +1,8 @@
 {
  "generated": "2026-07-30",
  "totals": {
-  "companies": 691,
-  "replied": 514,
+  "companies": 694,
+  "replied": 517,
   "warm": 73,
   "lost": 37
  },
@@ -85,6 +85,17 @@
    "answered": 19
   },
   {
+   "name": "Real estate",
+   "n": 34,
+   "replied": 29,
+   "warm": 2,
+   "lost": 0,
+   "quotes": [],
+   "replyRate": 85,
+   "winRate": 100,
+   "answered": 2
+  },
+  {
    "name": "Law firms",
    "n": 27,
    "replied": 27,
@@ -94,17 +105,6 @@
    "replyRate": 100,
    "winRate": 29,
    "answered": 7
-  },
-  {
-   "name": "Real estate",
-   "n": 31,
-   "replied": 26,
-   "warm": 2,
-   "lost": 0,
-   "quotes": [],
-   "replyRate": 84,
-   "winRate": 100,
-   "answered": 2
   },
   {
    "name": "Auto & travel",

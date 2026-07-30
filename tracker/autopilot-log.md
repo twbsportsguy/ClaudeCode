@@ -362,3 +362,37 @@ compare the O2 Fitness first pass, which returned twenty club managers and no
 buyer at all.
 
 All four subjects name Finley under the rule that went live this morning.
+
+## 2026-07-30 (third run) — mid-size Triangle HQs, 300–999 staff
+
+Swept a band nobody had touched: privately held, Raleigh-metro HQ, 300–999
+employees, sorted by revenue. Big enough to have a budget, small enough that a
+club partnership is a real relationship rather than a rounding error.
+
+Tier discipline again — Prestage Farms, Barnhill, T.A. Loving, S.T. Wooten,
+Warren Oil and Fayetteville PWC all cleared the size filter but sit in Clinton,
+Rocky Mount, Goldsboro, Wilson, Dunn and Fayetteville. Tier 2, gated, skipped.
+
+Three Triangle names worked, all new:
+- **Fonville Morisey Realty** (Raleigh, 754) — **A (71)**. Real estate is the
+  book's best-converting segment on answered replies, and a brokerage has both
+  a VP of Marketing and a VP of Sales.
+- **HPW / Howard Perry & Walston** (Cary, 727) — the second big Triangle
+  brokerage.
+- **Preiss** (Raleigh, $512M) — student housing, where marketing and resident
+  experience both run on events.
+
+**The O2 Fitness lesson paid off immediately.** The first contact search on the
+brokerages returned **123 individual realtors** and no corporate buyer — the
+exact failure that wasted the first O2 pass. This time it was recognised on
+sight: re-running with `excludeJobTitle: Realtor,Broker,Agent…` plus a
+marketing/sales department filter surfaced Vickie Cardin (VP Marketing), Scott
+Gibson (VP Sales) and Ashley Darr at HPW within one extra call.
+
+Worth stating plainly: mailing 123 individual agents would also have been the
+wrong thing to do on compliance grounds, not just effectiveness. A partnership
+pitch goes to whoever can sign one.
+
+Two more guess-proof addresses: `darra@hpw.com` (surname plus initial) and
+Preiss on **@tpco.com** — The Preiss Company — not @preiss.com. That is eight
+this week that no format rule would have produced.
