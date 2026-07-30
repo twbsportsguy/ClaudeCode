@@ -483,3 +483,54 @@ not.
 Mackenzie **Dickerson**, while Pendo's two other verified contacts are
 firstname-only (`gracie@`, `laura@`). The mismatch is on the row with the
 fallback to try if it bounces.
+
+## 2026-07-30 (sixth run) — Triangle finance
+
+Segment picked from the Tier-1 industry tally: wealth management and finance
+are named a core engine in `config/autopilot.md` but held only five Tier-1 rows.
+
+**Coastal Credit Union** (Raleigh, 618, $193.6M) — **A (85)**, the highest score
+so far. Two things make it.
+
+First, they were **already in the book and had never been worked** — a legacy
+row with no score, no contact, no draft, and "not yet worked" sitting in Next
+Step. So this is an enrich in place rather than a new company, and the row was
+filled rather than duplicated. Worth remembering that dedupe cuts both ways: the
+same check that stops a company being added twice is what surfaces the ones
+already logged and abandoned.
+
+Second, the hook. Coastal holds the naming rights to **Coastal Credit Union
+Music Park at Walnut Creek** — a 20,000-seat Live Nation venue — and has since
+April 2016 (verified still current; WUNC covered the venue in January 2026).
+A company that buys venue naming rights needs no explanation of what we sell.
+The VP of Communications draft says so outright and then makes the honest
+argument: golf is a far smaller line item and reaches a completely different
+room.
+
+Four contacts, four genuinely different angles — comms (Mecca), field marketing
+(McEliece), community engagement (Dubose), and **employee events (Babb)**. That
+last one is not a marketing buyer but is a real one: she runs events for 618
+people and that is its own budget line.
+
+**North State Bank** (Raleigh, 189, $81.6M) — **B (76)**. Raleigh-founded
+community bank, 2000, still run by its founder. They run **Summer Salute**, a
+21-year charity event that has raised over $2.4M for Transitions LifeCare.
+
+**The Summer Salute nearly walked us into a banned ask.** It raises money
+through sponsorships, ticket sales, raffles and auctions, so the obvious move is
+to offer a donated foursome for the auction. That is exactly what Tyler ruled
+out on 2026-07-28. The event is used only as evidence that they already
+understand what a sponsor gets, and Debra Hause's draft states plainly that
+*"none of it needs to touch Summer Salute."* Flagged on her row so nobody
+re-derives the bad idea later.
+
+**A second 910 area code.** Debra Hause's number is southeastern NC, not
+Raleigh — the same tell that turned out to be right about Erica Lackey
+yesterday. Her draft makes no proximity claim at all.
+
+**Stopped at one segment, deliberately.** The budget allows two, but seven
+drafts is already a full review session for one person, and Tyler sends every
+one of these by hand. Wholesale supply and distribution is the standing Tier-1
+gap — zero rows in the tally against twenty-two in the imported book — and is
+the obvious segment for the next run. The Dillon Supply lesson applies when it
+happens: filter out inside sales reps before drafting.
