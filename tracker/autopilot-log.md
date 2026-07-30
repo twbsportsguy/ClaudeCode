@@ -534,3 +534,65 @@ one of these by hand. Wholesale supply and distribution is the standing Tier-1
 gap — zero rows in the tally against twenty-two in the imported book — and is
 the obvious segment for the next run. The Dillon Supply lesson applies when it
 happens: filter out inside sales reps before drafting.
+
+## 2026-07-30 (seventh run) — wholesale supply and building materials
+
+The Tier-1 gap flagged at the end of the last run. Only ZoomInfo's "Building
+Materials" code matched; "Wholesale" and "Industrial Supply" were silently
+dropped, which the fieldResolution block reported and which is worth reading
+every time.
+
+**This run is the clearest illustration yet of what the scoring rubric is
+actually measuring.** Three companies started at C, and research — not
+opinion — decided where they ended up.
+
+**Sunrock** (Raleigh, 439, $76.4M) — first pass **C (48)**, final **B (69)**.
+Another unworked legacy row, enriched in place. One search changed everything:
+**Sunrock runs its own annual charity golf tournament**, and a past one put
+$35,000 into the Boys & Girls Clubs of Granville & Vance Counties. That is not
+inferred marketing spend, it is proven golf spend, and it moved the spend pillar
+from 9 to 24.
+
+It also hands over the pitch intact. Alexander Culpepper's draft does not
+explain what a golf day is worth to a business, because he already runs one. It
+offers Finley as the venue.
+
+Two things to keep straight on that. First, **this is not a donation ask** —
+hosting a paid outing is exactly what Finley sells, and the banned move would be
+asking them to give something to us. Second, `scoring.md` has a **−4 penalty for
+an existing club relationship**, and they currently hold the tournament at
+another Wake Forest club. Applied, and the competing club is not named anywhere
+in the draft.
+
+**Triangle Brick** (Durham, 251, $54.1M) — stayed **C (43)**, not drafted.
+Durham brick maker since 1959, four NC plants, distribution across 37 states,
+sells to exactly the right people. The same search that rescued Sunrock found
+Triangle Brick no sponsorship spend at all, and the only marketing name on file
+is an administrative assistant. So the spend pillar scores 4/35 on evidence.
+Logged, flagged as a single-event candidate, no draft.
+
+That contrast is the point. CData went C→B this week, Sunrock went C→B, Triangle
+Brick did not move. The rubric punishes companies that have not been researched;
+once they have been, it discriminates properly. The fix for a C is a search, not
+a thumb on the scale.
+
+**Kymera International** (RTP/Durham, 600, $282.7M) — **B (57)**. Global
+non-ferrous metal powders, 1,500+ long-tenured customers, plants on four
+continents, run out of Research Triangle Park twenty minutes away. Three VPs,
+three angles: sales-and-marketing (Walker), hosting Americas customers who fly
+into RTP (Hines), long qualification cycles (Pelletiers). The score is low only
+because no sponsorship evidence turned up; that is recorded on the row as
+absence of evidence rather than evidence of absence.
+
+**CaptiveAire dropped — the biggest name in the segment.** $350M, 1,200 staff,
+Raleigh HQ, the largest US maker of commercial kitchen ventilation. Two searches
+returned exactly one contact, "Marketing and Photography" at accuracy 75, and a
+filtered pass for C/VP/Director at 90+ in NC returned zero. Famously private
+company, and the data reflects it. Logged for manual sourcing, same as Teamworks
+yesterday.
+
+**A name call worth recording.** ZoomInfo has Thomas Pelletiers, but his own
+address is `tom.pelletiers@`, so the draft says Tom. This is deliberately the
+opposite of the Cassandra Roberts call at Curtis Media, where a nickname sitting
+in a middle-name field was ignored in favour of the formal name. An address
+someone uses professionally is far stronger evidence than a database field.
