@@ -18,7 +18,11 @@ def existing_data(html):
 
 def money(s):
     if not s: return 0.0
-    m=re.search(r'([\d.]+)\s*([MBK]?)', s.replace(",","").replace("$",""), re.I)
+    # Must contain a digit. `[\d.]+` alone matches the bare full stop in prose
+    # like "full marketing org incl. ops director", and float(".") then takes the
+    # whole dashboard build down. The Marketing Budget column is free text, so
+    # this parser has to survive a sentence.
+    m=re.search(r'(\d[\d.]*)\s*([MBK]?)', s.replace(",","").replace("$",""), re.I)
     if not m: return 0.0
     v=float(m.group(1)); u=(m.group(2) or "").upper()
     return v*1000 if u=="B" else (v/1000 if u=="K" else v)

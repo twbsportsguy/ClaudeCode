@@ -426,3 +426,60 @@ is nearby — the same fix applied to Erin Farris at S&ME.
 
 Also addressed her colleague as **Cassandra** rather than the "Cassie" in the
 middle-name field. Formal is never wrong; a guessed nickname can be.
+
+## 2026-07-30 (fifth run) — Triangle tech
+
+Thursday is normally a follow-up day, but opening week is outreach-only through
+Friday (Tyler, 2026-07-29), so this ran as new prospecting.
+
+**Segment chosen: technology, Tier 1.** The industry tally showed zero Tier-1
+tech rows, which looked like a wide-open core segment. It was a labelling
+artifact — Prometheus Group, JAGGAER, Brightly, JMP and Eton Solutions are all
+already in the book under other industry strings. Deduping the ZoomInfo list
+against the tracker before enriching is what caught it, and it is the reason
+that step exists. Three names were genuinely new.
+
+**Pendo** (Raleigh, 850, $178.5M) — **A (80)**, the highest score of the week.
+The hook is not the HQ, it is **Pendomonium**: their own multi-day customer
+festival, held in Raleigh, next running 3–5 May 2027. A company that flies
+customers in and books Big Boi to entertain them is already buying hospitality
+at scale — the only question is whether a round is part of it. Gracie Bryant
+(Manager, Event Marketing) owns precisely that budget line, so she got the
+conference-week outing; Laura Baverman (Community VP, Comms) got the local-
+visibility angle with a forward-up close; Mackenzie Dickerson (Director, Digital
+Marketing) got the argument that the one channel she cannot measure is the one
+worth buying.
+
+**CData Software** (Chapel Hill, 560, $105M) — **B (73)**. Their office at 101
+Europa Dr is in **27517, the same zip code as the club**, about five minutes
+from the first tee. That is the shortest drive-time in the entire book and it
+led the marketing-ops draft.
+
+CData nearly scored **C (54)** on the first pass, purely because no
+marketing-spend evidence had been looked for yet. One search turned up an Excel
+World Cup sponsorship, a Snowflake Summit exhibit and their own Foundations
+Conference — proven sponsorship spend — which moved the spend pillar from 13 to
+28 and the rank from C to B. Worth remembering that the rubric punishes
+companies that have not been researched, not companies that do not spend.
+
+**Teamworks dropped — and this one hurt.** Durham-HQ software sold *to college
+athletic departments*, while Finley is UNC's home course. Thematically it is the
+best fit found all week. But ZoomInfo returned three contacts: a RevOps manager
+who cannot buy, a "CEO" validated April 2024 whose name does not match the
+founder-CEO, and a marketing manager validated December 2023. Two-year-old
+records on a fast-moving software company are precisely what produced this
+week's ten hard bounces. Logged at B (65) with `Draft Created = N` and a note to
+source it by hand.
+
+**Curtis Media, from yesterday's run, answered.** Erica Lackey: *"I actually run
+Curtis Media's Boone location, so I am probably not your best bet for this
+pitch."* The **828 area code flagged on her row at draft time was exactly this**
+— a statewide radio group's Raleigh HQ does not mean a Raleigh person. Her stage
+was left unchanged rather than moved: it is neither interest nor a no, and
+recording it as either would be wrong. The company stays live, the contact does
+not.
+
+**One address to watch.** ZoomInfo gave `mackenzie.enderson@pendo.io` for
+Mackenzie **Dickerson**, while Pendo's two other verified contacts are
+firstname-only (`gracie@`, `laura@`). The mismatch is on the row with the
+fallback to try if it bounces.
