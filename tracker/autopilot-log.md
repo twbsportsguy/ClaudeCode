@@ -156,3 +156,35 @@ best-converting segment in the entire book at the bottom, and C-rank formally
 means "draft only if asked". These were drafted anyway because Tyler asked for
 runs and the conversion data backs them — but the rubric and the evidence
 disagree, and the rubric is the one that is wrong.
+
+## 2026-07-29 (second run) — hotels × Triangle (autopilot)
+
+Doubled down rather than explored. ATMA Hotel Group is sitting at Red-Hots with
+a Stay & Play deal and an accepted meeting, which makes hotels the only segment
+in the book with live proof of a *different offer shape* — revenue share on
+room-nights and tee times, not signage. That is worth replicating before it
+goes cold.
+
+Three operators, six contacts, six drafts:
+- **The Umstead** (Cary, $57M) — luxury property fifteen minutes out whose
+  guests are exactly the golf-travel buyer. Three angles: marketing
+  (co-branded package), sales (golf inside a group proposal), group sales
+  (held tee times, with a forward-up close to the marketing director).
+- **Concord Hospitality** (Raleigh HQ, 6,000 staff, $777M) — runs hotels
+  nationally from Raleigh, so the Triangle is the one market where a local
+  golf tie gets *used* rather than resold.
+- **Summit Hospitality** (Raleigh, $90M) — closest in shape to the ATMA deal.
+
+**Excluded on purpose:** Pinehurst Resort, Pine Needles and Mid Pines all came
+back in the lodging filter. They are golf resorts — competitors, and Pinehurst
+is specifically where the Stay & Play pitch says Triangle golf travel leaks to.
+Pitching them would be selling to the people we are trying to win business
+back from.
+
+Also excluded: Divi Resorts (Chapel Hill HQ but Caribbean properties — no
+drive-time story), Ayatana (India), and Tanager Lodge / MCR Investors / Landmark
+(too small or not really lodging).
+
+The Pinehurst leak is now the hook in the Umstead marketing draft. It is the
+one line in this batch that names a real competitive dynamic rather than a
+benefit, and it is worth watching whether it outperforms.
