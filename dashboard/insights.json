@@ -1,8 +1,8 @@
 {
  "generated": "2026-07-30",
  "totals": {
-  "companies": 683,
-  "replied": 506,
+  "companies": 685,
+  "replied": 508,
   "warm": 73,
   "lost": 37
  },
@@ -31,12 +31,12 @@
   },
   {
    "name": "Construction & engineering",
-   "n": 72,
-   "replied": 46,
+   "n": 74,
+   "replied": 48,
    "warm": 6,
    "lost": 2,
    "quotes": [],
-   "replyRate": 64,
+   "replyRate": 65,
    "winRate": 75,
    "answered": 8
   },

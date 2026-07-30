@@ -258,3 +258,40 @@ its cost.
 Modern Mechanical and Warren-Hay returned no contacts at all despite being real
 Triangle companies of decent size. Worth a manual look rather than assuming
 they are unreachable.
+
+## 2026-07-29 (fifth run) — Raleigh-HQ engineering firms
+
+**The intended segment failed and the salvage was better.** The plan was
+Triangle homebuilders, but the keyword filter drifted badly: it returned
+engineering consultancies, a fabric printer (Spoonflower), a restaurant group
+(Boddie-Noell) and a marketing-tech company. Almost no actual homebuilders.
+
+What it did surface were two very large Raleigh-headquartered engineering firms
+that were not in the book at all — **Kimley-Horn** (7,500 staff, $1.6B) and
+**S&ME** (2,182, $1.4B). Kimley-Horn is among the biggest headcounts
+headquartered in Raleigh full stop. Worth noting that **McKim & Creed**, in the
+same segment, already sits at `Interested: 50%`, so this is a segment with
+evidence behind it rather than a guess.
+
+Kimley-Horn scores **A (74)** — the first A-rank of the day, and it comes from
+scale and local HQ rather than from ad spend, which is the pillar every earlier
+segment kept failing.
+
+Three Kimley-Horn angles: the Regional Business Manager gets the office-scale
+and client-entertainment pitch, the marketing manager gets recruiting and
+retention (an engineering firm hiring this hard is competing for people as much
+as for work), and the Practice Leader gets something sized to a practice rather
+than the firm.
+
+**Two data cautions recorded on the rows:**
+- Dan Ford's address is `dan.ford@`, not `danny.ford@`, despite the record
+  reading "Danny". Fifth guess-proof address this week.
+- Erin Farris and Kelly Wilson at S&ME share a **704 (Charlotte)** number, so
+  Erin may not be Triangle-based despite an NC person-location filter. Her
+  draft therefore leads on S&ME's Raleigh HQ and never claims she is nearby.
+  Kelly Wilson was dropped entirely — non-manager, energy-market marketing,
+  probably Charlotte: too weak a fit to spend a draft on.
+
+The audit earned its keep again: it caught "just down the road" in the S&ME
+draft, which is on voice.md's banned-gimmick list. That phrase would have gone
+out otherwise.
