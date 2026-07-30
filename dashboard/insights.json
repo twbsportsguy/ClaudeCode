@@ -1,20 +1,20 @@
 {
  "generated": "2026-07-30",
  "totals": {
-  "companies": 685,
-  "replied": 508,
+  "companies": 688,
+  "replied": 511,
   "warm": 73,
   "lost": 37
  },
  "industries": [
   {
    "name": "Unclassified",
-   "n": 239,
-   "replied": 161,
+   "n": 242,
+   "replied": 164,
    "warm": 14,
    "lost": 9,
    "quotes": [],
-   "replyRate": 67,
+   "replyRate": 68,
    "winRate": 61,
    "answered": 23
   },

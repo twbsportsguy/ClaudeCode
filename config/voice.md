@@ -39,16 +39,34 @@ Do not dwell on the miss, and never take the blame explicitly.
 
 One clause of acknowledgement, then straight into what's changed since.
 
-## Subject lines (specific-hook style)
-Build the subject from **this** email's specific angle — unique per company,
-never a reused template. ~4–8 words, sentence case, no exclamation marks, no
-"Re:", nothing salesy. It should preview the hook, not shout an offer.
+## Subject lines — always name Finley (Tyler, 2026-07-30)
+
+**Every subject line must reference Finley.** Not "a golf club", not "a course
+down the road" — the club by name, or unmistakably "Carolina's home course".
+
+The reason is recognition on the second contact. A prospect who skimmed one
+email and later sees another from the same sender should connect them
+instantly, and the only word that does that work is the club's name. Clever
+subjects that never say who is writing ("Two problems a golf club actually
+solves", "Where the commercial jobs get decided") read well in isolation and
+land as anonymous in a busy inbox.
+
+Build the rest from **this** email's specific angle — unique per company, never
+a reused template. ~5–9 words, sentence case, no exclamation marks, no "Re:",
+nothing salesy. It should preview the hook, not shout an offer.
+
 Good:
-- Getting Fleet Feet in front of the Triangle
-- An idea built around Implus's brands
-- Great Outdoor + a local, outdoorsy crowd
+- Finley Golf Club and Fleet Feet's Triangle crowd
+- An idea for Implus, from Finley
+- Finley + a local, outdoorsy audience
+- Carolina's home course and your group bookings
+
 Avoid: "Partnership idea for X" (too generic), "A quick idea from a neighbor"
-(gimmicky), and anything with "exclusive," "!", or ALL CAPS.
+(gimmicky), anything with "exclusive," "!", or ALL CAPS — and anything that
+never names the club.
+
+`tools/audit_drafts.py` enforces this: a subject with no Finley reference is
+flagged as `no-finley`.
 
 **Re-engagement subjects work differently** (Tyler, 2026-07-28). Reviving a cold
 thread doesn't need a fresh hook — it needs curiosity and a reason to reopen.

@@ -24,6 +24,12 @@ for d in drafts:
     words=len(re.findall(r"\S+",b))
     paras=len([p for p in b.split("\n\n") if p.strip()])
     hits=[w for w in BAN if w in b.lower()]
+    # Tyler, 2026-07-30: every subject must name the club. A prospect who
+    # skimmed one email and later sees another needs to connect them, and the
+    # club's name is the only word that does that. Applies to new drafts only —
+    # the batch sent on 2026-07-30 predates the rule and was not retrofitted.
+    if not re.search(r"finley|carolina's home course", d["subject"], re.I):
+        hits.append("no-finley")
     sig = "SIG!" if re.search(r"Tyler Baity|336\) 225|calendar\.app",b) else "-"
     em=b.count("—")
     rows.append((d["toRecipients"][0].split("@")[1][:22], words, paras, b.strip().endswith("Best,"),

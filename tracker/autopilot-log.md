@@ -295,3 +295,40 @@ than the firm.
 The audit earned its keep again: it caught "just down the road" in the S&ME
 draft, which is on voice.md's banned-gimmick list. That phrase would have gone
 out otherwise.
+
+## 2026-07-30 — insurance × Triangle (a thin segment, reported as thin)
+
+Insurance was the last untouched core segment. It produced **two drafts**, and
+the more useful output was what could not be drafted.
+
+**The dedupe nearly went wrong.** Substring matching flagged "James River" and
+"Builders Mutual" as already in the book — but the matches were *James River
+**Equipment*** (a machinery dealer) and *Builders **Firstsource*** (building
+materials). Different companies entirely. Both insurers were genuinely new. A
+looser check would have skipped two of the best prospects on the list.
+
+**Two Chapel Hill headquarters, neither contactable.** James River Group
+Holdings ($667M, 576 staff) and Builders Mutual ($384M, 394) both returned
+**zero** marketing or business-development contacts with emails at accuracy 88+,
+with and without a location filter. James River scores **A (72)** on HQ and
+scale alone. Both are logged with `Draft Created = N` and an explicit
+"NO EMAIL IN ZOOMINFO — source manually" next step, so they surface for a human
+rather than being quietly rediscovered and re-skipped every run.
+
+Builders Mutual is worth the manual effort specifically: they insure builders
+and contractors, which is precisely the segment worked yesterday — Newcomb,
+Bryant-Durham, Weather Master. Shared audience is the whole pitch.
+
+**Farm Bureau's contacts are the wrong marketers.** All nine returned work in
+*health* insurance marketing, not brand or sponsorship. Rather than pretend
+otherwise, two were drafted on angles that genuinely fit their jobs: the
+outreach specialist gets a champion ask that routes to whoever owns
+sponsorships, and the agency-marketing director gets the argument that her
+audience is agents who need something to use with their own clients.
+
+Farm Bureau runs **two email domains** — `@ncfb.org` and `@ncfbins.com` — split
+across colleagues. Sixth guess-proof address pattern this week.
+
+**New rule live from this run:** every subject line names Finley (Tyler,
+2026-07-30). `audit_drafts.py` now flags `no-finley`. Applied to new drafts
+only — yesterday's batch was already sent and was not retrofitted.
