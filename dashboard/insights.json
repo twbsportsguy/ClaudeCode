@@ -1,16 +1,16 @@
 {
  "generated": "2026-07-30",
  "totals": {
-  "companies": 688,
-  "replied": 511,
+  "companies": 691,
+  "replied": 514,
   "warm": 73,
   "lost": 37
  },
  "industries": [
   {
    "name": "Unclassified",
-   "n": 242,
-   "replied": 164,
+   "n": 243,
+   "replied": 165,
    "warm": 14,
    "lost": 9,
    "quotes": [],
@@ -53,8 +53,8 @@
   },
   {
    "name": "Wealth management & finance",
-   "n": 46,
-   "replied": 39,
+   "n": 47,
+   "replied": 40,
    "warm": 5,
    "lost": 7,
    "quotes": [],
@@ -75,8 +75,8 @@
   },
   {
    "name": "Local businesses",
-   "n": 31,
-   "replied": 31,
+   "n": 32,
+   "replied": 32,
    "warm": 15,
    "lost": 4,
    "quotes": [],

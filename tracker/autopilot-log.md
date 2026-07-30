@@ -332,3 +332,33 @@ across colleagues. Sixth guess-proof address pattern this week.
 **New rule live from this run:** every subject line names Finley (Tyler,
 2026-07-30). `audit_drafts.py` now flags `no-finley`. Applied to new drafts
 only — yesterday's batch was already sent and was not retrofitted.
+
+## 2026-07-30 (second run) — largest Triangle-HQ employers
+
+**Targeted the pattern rather than an industry.** Six runs of evidence say the
+prospects that score A are large employers headquartered locally — Kimley-Horn
+scored 74 on scale and HQ, James River 72 — not the local businesses that
+convert best but never earn the spend pillar. So this run searched by
+`employeeRangeMin: 1000` + Raleigh-metro HQ, sorted by revenue, and deduped.
+
+Of the twenty largest, most were already logged. Genuinely new and worth
+working:
+- **Blue Cross NC** (Durham, $10.1B) — **A (78)**, the highest score to date.
+  It has a named *Senior Community Relations Advisor* and a dedicated events
+  planner: two roles that exist specifically to say yes to this.
+- **First Citizens Bank** (Raleigh, $9.3B, 17,876 staff) — **A (76)**. Client
+  entertainment is native to commercial banking, and they employ a Manager of
+  Corporate Events.
+- **VICTRA** (Raleigh, $2.4B) — national Verizon retailer run out of Raleigh.
+
+**Duke Health excluded on positioning, not fit.** 26,278 staff and Raleigh-
+listed, so it clears every numeric filter. But Finley is *Home of Carolina
+Golf*, and pitching the Duke health system is the same category of error as
+pitching Pinehurst a Stay & Play package. Filters do not know about rivalries.
+
+The role mix here is the best of any run this week. Community relations and
+corporate events are not adjacent to the buying decision, they *are* it —
+compare the O2 Fitness first pass, which returned twenty club managers and no
+buyer at all.
+
+All four subjects name Finley under the rule that went live this morning.
