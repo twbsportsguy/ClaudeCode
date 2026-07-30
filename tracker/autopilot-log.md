@@ -396,3 +396,33 @@ pitch goes to whoever can sign one.
 Two more guess-proof addresses: `darra@hpw.com` (surname plus initial) and
 Preiss on **@tpco.com** — The Preiss Company — not @preiss.com. That is eight
 this week that no format rule would have produced.
+
+## 2026-07-30 (fourth run) — Triangle HQs, 120–299 staff
+
+Dropped a band lower. Two companies worth working, and one of them is the most
+interesting prospect of the week.
+
+**Curtis Media Group** (Raleigh, 242, $125M) — **A (70)**. North Carolina's
+largest private radio group, headquartered in Raleigh. They *sell reach for a
+living*, which cuts both ways: they will not be impressed by a vague audience
+claim, but they are the one prospect on the entire list who already knows
+exactly what a sponsorship is worth and can co-sell one to their own
+advertisers. The GM draft says so directly rather than pretending otherwise —
+"Finley is one of the few places offering a Triangle audience that cannot be
+bought as a spot."
+
+**Kane Realty** (Raleigh, 163) — major mixed-use developer. Tenant renewals and
+broker relationships are precisely what rounds are for, so the GM gets the
+renewal angle and the marketing manager gets the tenant-experience one.
+
+**Dillon Supply dropped.** 260 staff and $268M, but every contact returned was
+an inside sales rep. No buyer, so no drafts — same discipline as the O2 club
+managers and the 123 realtors.
+
+**One caution on the row:** Erica Lackey's number is an **828** area code
+(western NC). Curtis Media runs stations across the state, so she may not be
+Raleigh-based. Her draft leads on the group's Raleigh HQ and never claims she
+is nearby — the same fix applied to Erin Farris at S&ME.
+
+Also addressed her colleague as **Cassandra** rather than the "Cassie" in the
+middle-name field. Formal is never wrong; a guessed nickname can be.

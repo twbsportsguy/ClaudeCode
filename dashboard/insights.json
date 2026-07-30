@@ -1,8 +1,8 @@
 {
  "generated": "2026-07-30",
  "totals": {
-  "companies": 694,
-  "replied": 517,
+  "companies": 696,
+  "replied": 519,
   "warm": 73,
   "lost": 37
  },
@@ -86,12 +86,12 @@
   },
   {
    "name": "Real estate",
-   "n": 34,
-   "replied": 29,
+   "n": 35,
+   "replied": 30,
    "warm": 2,
    "lost": 0,
    "quotes": [],
-   "replyRate": 85,
+   "replyRate": 86,
    "winRate": 100,
    "answered": 2
   },
@@ -130,8 +130,8 @@
   },
   {
    "name": "Marketing & brands",
-   "n": 9,
-   "replied": 9,
+   "n": 10,
+   "replied": 10,
    "warm": 2,
    "lost": 3,
    "quotes": [],
