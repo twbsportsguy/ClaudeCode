@@ -1,0 +1,113 @@
+{
+ "generated": "2026-07-30",
+ "sent": 1,
+ "replied": 1,
+ "baseline": 1.0,
+ "bodies_known": 0,
+ "maturity_days": 3,
+ "cohorts": {
+  "cold": {
+   "n": 89,
+   "replied": 1
+  },
+  "warm": {
+   "n": 3,
+   "replied": 3
+  },
+  "blast": {
+   "n": 77,
+   "replied": 28
+  },
+  "untracked": {
+   "n": 28,
+   "replied": 27
+  }
+ },
+ "inflight": {
+  "n": 88,
+  "since": "2026-07-29",
+  "spread": {
+   "subj_words": {
+    "5-7": 66,
+    "8+": 19,
+    "1-4": 3
+   },
+   "subj_names_finley": {
+    "yes": 20,
+    "no": 68
+   },
+   "subj_em_dash": {
+    "no": 83,
+    "yes": 5
+   },
+   "subj_question": {
+    "no": 86,
+    "yes": 2
+   },
+   "subj_names_company": {
+    "yes": 35,
+    "no": 53
+   },
+   "greeting": {
+    "hi-firstname": 88
+   },
+   "open_question": {
+    "no": 88
+   },
+   "open_first_sentence": {
+    "long": 55,
+    "medium": 26,
+    "short": 7
+   },
+   "open_about": {
+    "them": 85,
+    "us": 3
+   },
+   "open_names_them": {
+    "no": 41,
+    "yes": 47
+   },
+   "body_words": {
+    "110-139": 4
+   },
+   "body_paras": {
+    "5-6": 4
+   },
+   "you_we_ratio": {
+    "you-heavy": 2,
+    "balanced": 1,
+    "we-heavy": 1
+   },
+   "three_options": {
+    "yes": 3,
+    "no": 1
+   },
+   "names_days": {
+    "yes": 3,
+    "no": 1
+   },
+   "cta_minutes": {
+    "yes": 3,
+    "no": 1
+   },
+   "cta_shape": {
+    "question": 4
+   },
+   "mentions_tiers": {
+    "yes": 4
+   },
+   "drive_time": {
+    "yes": 3,
+    "no": 1
+   },
+   "dental_angle": {
+    "no": 4
+   },
+   "em_dashes": {
+    "0": 4
+   }
+  }
+ },
+ "tests": [],
+ "rules": []
+}

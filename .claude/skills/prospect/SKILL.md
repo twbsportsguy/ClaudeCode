@@ -153,6 +153,12 @@ pipeline."
       `python3 tools/analyze_inbox.py inbox.json`.
    3. Act on its four sections. It **proposes** tracker edits and never makes
       them — apply them yourself after reading.
+   4. Feed the same dump to the learner:
+      `python3 tools/reply_features.py <dump>.json --drafts <drafts>.json --write`.
+      It banks every email body it sees into `tracker/email-corpus.jsonl`,
+      recomputes which copy features actually earn replies, and rewrites
+      `config/what-works.md` — which Step 7 then drafts against. Skipping it
+      does not break the run; it just means this batch taught us nothing.
 
    It buckets every inbound message into: `bounce-hard` / `bounce-soft`,
    `departed`, `auto-ooo`, `broadcast`, `unsolicited`, `irrelevant`,
@@ -387,6 +393,13 @@ same personalized hook, but a close that invites a hand-off (e.g. "if
 partnerships sit with someone else on your team, even a quick pointer would
 help"). For owners/execs, the direct ask is fine.
 
+0. **Read `config/what-works.md` first.** It is regenerated from the reply data
+   by `tools/reply_features.py` and lists the copy features that measurably
+   earn replies. Anything in its **Rules** section is binding on this batch;
+   anything in **Watching** is not yet proven — do not act on it. If the Rules
+   section is empty, that is the honest state of the evidence and
+   `config/voice.md` alone governs. `config/voice.md` outranks it wherever the
+   two disagree, because a human judgement beats a correlation.
 1. Pick the industry template from `templates/`; fall back to `generic.md`.
 2. Fill merge fields. `{{Hook}}` must be a real, specific fact from Step 2/4
    research — if nothing real was found, open with a market-specific line

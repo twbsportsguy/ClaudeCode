@@ -46,7 +46,17 @@ CAMPAIGNS = [
     ("youth-sports",       r"what's next for youth sports|playersnext foundation|"
                            r"athletes and families of youth sports"),
 ]
+# Tyler's signature says "Home of Carolina Golf" on every message he sends,
+# including Bass Classic mail and his day job. Matching campaign patterns
+# against it tagged a T-shirt pickup as finley-partnership; the signature has
+# to come off before anything is matched. Found 2026-07-30 by reply_features.py.
+SIGNATURE = re.compile(
+    r"tyler baity|senior manager\s*\|?\s*business development|home of carolina golf|"
+    r"\(336\)\s*225-6396|calendar\.app|twbaity@alumni\.unc\.edu", re.I)
+
+
 def campaign(text):
+    text = SIGNATURE.sub(" ", text or "")
     for name, pat in CAMPAIGNS:
         if re.search(pat, text, re.I): return name
     return "unknown"

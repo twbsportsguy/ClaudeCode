@@ -9,7 +9,8 @@ outside the 120-170 word budget, forgets to close on "Best,", or prints a
 signature block that Gmail would then duplicate on send.
 """
 
-import sys, re, json
+import sys, re, json, os, csv
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 BAN=["that's on us","that's on me","my fault","i dropped the thread",
      "does two jobs at once","in front of thousands of engaged locals",
      "a built-in way to entertain clients and reward your team","under one agreement",
@@ -93,3 +94,55 @@ print("\nDUPLICATE SUBJECT LINES:")
 col=[(s,v) for s,v in subs.items() if len(v)>1]
 for s,v in col: print(f"  \"{s}\" -> {', '.join(v)}")
 print("  none" if not col else f"  {len(col)} collision(s)")
+
+# ---------------------------------------------------------------------------
+# Learned rules. tools/reply_features.py measures which features actually earn
+# replies and writes the survivors to dashboard/reply-features.json; this reads
+# them back and holds new drafts to them. That is the whole loop: a finding in
+# the data becomes a check on the next batch with nobody having to remember it.
+#
+# Deliberately fails open. Today the rules list is empty because the cold book
+# is days old and nothing has cleared the evidence bar, so this section prints
+# and does nothing. It starts biting the moment a rule is earned.
+FEED="dashboard/reply-features.json"
+print("\nLEARNED RULES (from reply-features.json):")
+try:
+    feed=json.load(open(FEED))
+except (OSError, ValueError):
+    feed=None
+if not feed:
+    print("  no analysis on disk — run tools/reply_features.py --write")
+elif not feed.get("rules"):
+    print(f"  none earned yet ({feed.get('sent',0)} mature cold emails, "
+          f"{feed.get('replied',0)} replies). Nothing to enforce.")
+else:
+    from reply_features import subject_features, opening_features, body_features
+    # Company comes from the tracker, so a rule about naming the prospect can be
+    # checked the same way the analysis measured it.
+    by_email={}
+    try:
+        for r in list(csv.reader(open("tracker/prospects.csv")))[1:]:
+            if len(r)>15 and "@" in r[15]: by_email[r[15].strip().lower()]=r
+    except OSError: pass
+    want=dict(t.split("=",1) for t in feed["rules"])
+    hurt={f"{t['feat']}={t['val']}" for t in feed.get("tests",[])
+          if t.get("verdict")=="HURTS"}
+    bad=0
+    for d in drafts:
+        if d["subject"].startswith("[VOID") or "ATMA" in d["subject"]: continue
+        to=d["toRecipients"][0].lower()
+        row=by_email.get(to)
+        co=row[3] if row else ""
+        b=d["plaintextBody"].replace("\r","")
+        f={**subject_features(d["subject"],co), **opening_features(b,co),
+           **body_features(b)}
+        miss=[f"{k} is {f.get(k)!r}, earned rule says {v!r}"
+              for k,v in want.items() if k in f and f[k]!=v]
+        hits=[f"{k}={f[k]}" for k in f if f"{k}={f[k]}" in hurt]
+        if miss or hits:
+            bad+=1
+            print(f"  {to}")
+            for m in miss: print(f"     miss: {m}")
+            for h in hits: print(f"     uses a feature measured as HURTS: {h}")
+    print("  all drafts consistent with the earned rules" if not bad
+          else f"  {bad} draft(s) diverge from what the replies say works")

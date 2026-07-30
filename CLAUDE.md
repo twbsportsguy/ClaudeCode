@@ -38,6 +38,9 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
 | `templates/*.md` | Catered outreach email templates per industry |
 | `tools/analyze_inbox.py` | Classifies everything that came back from a send — bounces, departures, out-of-offices, real replies — and reports deliverability by domain |
 | `tools/sync_activity.py` | Works out which drafts were actually **sent**, writes that to the tracker, and prints the day's activity |
+| `tools/reply_features.py` | Scores every sent email on the choices it made and tests those choices against whether it got answered — writes the survivors to `config/what-works.md` |
+| `config/what-works.md` | **Generated.** The copy features proven to earn replies; read by SKILL.md Step 7, enforced by `audit_drafts.py` |
+| `tracker/email-corpus.jsonl` | Accumulating bank of sent/draft bodies so body-level analysis sharpens over time |
 | `tracker/prospects.csv` | Master prospect data — source of truth for the Google Sheet |
 | `tracker/bass-classic.csv` | The Finley Bass Classic book — a **separate campaign**, same schema (see below) |
 | `dashboard/index.html` | Self-contained prospect dashboard (the shareable UI) — regenerated each run, republished to a fixed Artifact URL |
@@ -74,6 +77,17 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
   numbers. **Currently on HOLD (Tyler, 2026-07-29): draft nothing and make no
   asks** until the 2027 event-sponsorship offer is defined; it will be a
   different offer from the traditional partnership packages.
+- **Learn from replies, but only when the evidence earns it.**
+  `tools/reply_features.py` measures which copy features actually correlate with
+  getting answered and rewrites `config/what-works.md`; Step 7 drafts against it
+  and `audit_drafts.py` enforces it. Three separations are load-bearing and must
+  not be collapsed: **cold 1:1 vs renewal blast vs warm** (pooling them once
+  "proved" that naming Finley in a subject lifted replies from 0% to 97%, which
+  was really that renewal mail to existing partners gets answered), **copy vs
+  audience** (that dealerships reply is a targeting fact, not a writing rule),
+  and **mature vs in-flight** (an email sent yesterday has not failed to get a
+  reply). An empty Rules section is a valid and expected result — never fill it
+  by lowering the bar. `config/voice.md` outranks it wherever they disagree.
 - **Proofread every email before creating its draft** — no unfilled merge
   fields, correct name/company/city, factually true hook, clean grammar, and
   the verbatim signature (SKILL.md Step 7).

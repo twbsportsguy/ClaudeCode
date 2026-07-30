@@ -88,6 +88,8 @@ INBOX={
   "domains":   INBOX_RAW.get("domains",{}),
   "activity":  ACTIVITY,
   "bass":      _bassclassic(),
+  # What the replies have taught us about the copy itself (reply_features.py).
+  "learn":     _load("dashboard/reply-features.json", {}),
 }
 for k, kinds in [("dead",("bounce-hard",)), ("soft",("bounce-soft",)),
                  ("gone",("departed",)), ("ooo",("auto-ooo",)),
