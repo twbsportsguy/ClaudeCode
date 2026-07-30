@@ -224,3 +224,37 @@ at `New` and has never been worked. It belongs to the 31 packed rows still
 awaiting manual review, and it is the clearest argument yet for finishing that
 job: the single best home-market prospect in this segment is invisible because
 its row is malformed.
+
+## 2026-07-29 (fourth run) — home services × Triangle
+
+Chosen to test the scoring complaint rather than repeat it. Runs 1 and 3 kept
+producing C-ranked prospects because `scoring.md` puts 35 of 100 points on
+marketing-spend evidence, which restaurants and breweries do not publish. Home
+services is the segment where that pillar is genuinely earnable: residential
+HVAC advertises on radio, billboards and truck wraps, and commercial mechanical
+contractors run 250–350 staff. These score **B (58–66)** on the same rubric that
+ranked Neomonde a 28 — so the rubric is not broken, it is just blind to
+businesses that market without buying media.
+
+Three companies, five contacts:
+- **Newcomb and Company** (Raleigh, 357, $70.9M) — commercial mechanical.
+  Three angles, because the buyers differ: the GM gets the outing for firms
+  they bid alongside, the VP of Construction gets the full-closure day, and
+  business development gets the "four hours with someone who will not take a
+  lunch meeting" argument with a forward-up close.
+- **Bryant-Durham Services** (Durham, 261) — decades-old name, so the pitch is
+  staying present with the GCs and property managers who keep specifying them
+  rather than introducing the company.
+- **Weather Master** (Knightdale, 114) — the only consumer-facing one, and the
+  only draft in four runs to lead on **staff retention**: keeping trained
+  technicians is a real cost problem in that trade, and rounds are a credible
+  answer to it.
+
+Robert Shackleford's address is `shack@bryantdurham.com` — a nickname. That is
+the fourth address this week that no format rule would have produced, after
+`ebony.moe@`, `jelias@` and the Leith per-store domains. Enrichment is earning
+its cost.
+
+Modern Mechanical and Warren-Hay returned no contacts at all despite being real
+Triangle companies of decent size. Worth a manual look rather than assuming
+they are unreachable.

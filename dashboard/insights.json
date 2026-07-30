@@ -1,8 +1,8 @@
 {
  "generated": "2026-07-30",
  "totals": {
-  "companies": 680,
-  "replied": 503,
+  "companies": 683,
+  "replied": 506,
   "warm": 73,
   "lost": 37
  },
@@ -30,6 +30,17 @@
    "answered": 4
   },
   {
+   "name": "Construction & engineering",
+   "n": 72,
+   "replied": 46,
+   "warm": 6,
+   "lost": 2,
+   "quotes": [],
+   "replyRate": 64,
+   "winRate": 75,
+   "answered": 8
+  },
+  {
    "name": "Healthcare",
    "n": 47,
    "replied": 45,
@@ -39,17 +50,6 @@
    "replyRate": 96,
    "winRate": 83,
    "answered": 6
-  },
-  {
-   "name": "Construction & engineering",
-   "n": 70,
-   "replied": 44,
-   "warm": 6,
-   "lost": 2,
-   "quotes": [],
-   "replyRate": 63,
-   "winRate": 75,
-   "answered": 8
   },
   {
    "name": "Wealth management & finance",
@@ -75,8 +75,8 @@
   },
   {
    "name": "Local businesses",
-   "n": 30,
-   "replied": 30,
+   "n": 31,
+   "replied": 31,
    "warm": 15,
    "lost": 4,
    "quotes": [],
