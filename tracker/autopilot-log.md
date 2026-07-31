@@ -761,3 +761,42 @@ volunteer board that turns over every year, so the trust-rebuilding never stops.
 the floor of the search filter — and was last validated 2025-10-13, about nine
 months ago. Everything else in this batch is 94+. If anything here bounces, it
 is that one, and the row says so.
+
+### Inbox sync, 2026-07-31 11:30am ET — first real reply on the cold book
+
+Ran the sweep by hand after an artifact-publish conflict revealed the fired
+refresh Routine was alive. Three things came back that matter.
+
+**Tyler is sending these.** The run-12 batch went out 2026-07-30 19:00–19:03 and
+the run-13 batch 2026-07-31 14:44–14:47. Jim Tiller at Thomas Judy and Tucker
+was sent at 15:28 — about a minute after the draft was created.
+
+**A referral, two minutes after send.** Tom Pelletiers, VP Business Development
+at Kymera: *"Tyler, I am not the right person for this, you want our head of
+sales, Adam. I am sending it to him for his review."*
+
+That is **Adam Hines, who was drafted in the same batch**. So Kymera got hit
+twice on the same day — once directly, once by an internal forward from a VP.
+That is precisely what the full-buying-committee rule in CLAUDE.md is for, and
+it is the first time this week it has visibly paid.
+
+Stages left where they are, per the rule written this morning: a wrong-person
+reply is neither interest nor a no. But this is a warmer variant than Erica
+Lackey's — he moved it along rather than just declining — and Adam's row now
+says to follow up by name referencing Tom.
+
+**Two hard bounces, both within fifteen seconds.**
+
+- `jul@cshlaw.com` (Julia Belcher, Cranfill Sumner). The row already warned this
+  was "first three letters only, completely unguessable." **The warning was
+  right.** Address dead, tagged DEAD-EMAIL, Cranfill needs a fresh pull.
+- `rick.hansen@three-ships.com`. Worth being precise about this one: the
+  Rick-versus-Richard name call was probably still correct, since ZoomInfo
+  supplied the whole address rather than it being constructed. The record was
+  just stale — accuracy 93, last validated 2026-04-16. Not a naming error, a
+  data-age error.
+
+Running deliverability note: of the 12 run-13 sends, 2 bounced. Both were the
+lowest-confidence addresses in the batch, and both were flagged as such on their
+rows before sending. The flags are doing their job; what they cannot do is
+prevent the bounce.
