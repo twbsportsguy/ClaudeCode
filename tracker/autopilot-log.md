@@ -704,3 +704,60 @@ reply. An address gives a name only when it actually spells one.
 letters of a first name. Smith Anderson runs `loriebeam@` and `sberry@` side by
 side. Sokal's website is gosokal.com but its mail is @sokalmediagroup.com. No
 format rule would have produced any of them.
+
+## 2026-07-31 (second Friday run) — accounting + commercial real estate
+
+**12 drafts, 6 companies.** Segments picked from the two remaining core-engine
+gaps in Tier 1: consulting/accounting (5 rows) and commercial real estate — the
+17 "Real Estate" rows are almost entirely residential brokerages.
+
+**Accounting is nearly empty in ZoomInfo.** The Raleigh-metro accounting search
+returned eleven companies and only **one real CPA firm**: Thomas Judy and
+Tucker. The rest were payroll, PEO and medical-billing outfits mis-tagged as
+accounting. The big Triangle firms are HQ'd elsewhere or not indexed this way.
+
+**Thomas Judy and Tucker** (Raleigh, 225, $23M) — **B (62)**, five drafts.
+In a CPA firm the **partners are the buyers**: each owns client relationships
+and originations personally, so there is no single marketing decision-maker to
+find. Ten partners were returned; five were worked, on five deliberately
+different arguments:
+
+- the window right after busy season, when everyone has time and no plan (Tiller)
+- the audit cycle — weeks inside a client's building, then months invisible (Habich)
+- tax work, where every conversation is a deadline or a number (Hicks)
+- retention and recruiting, a completely different axis (Butterly)
+- referral sources: bankers, attorneys, wealth managers (Welker)
+
+**Five emails into one firm is exactly where the mail-merge tell shows up**, and
+the audit caught it twice. Welker's draft overlapped Habich's on the
+sponsorship-tier boilerplate variant, was rewritten, then overlapped Hicks's on
+"for your practice that could be rounds", and was rewritten again. Worth noting
+the SKIP list in `audit_drafts.py` covers the *standard* boilerplate line but not
+the "what each business actually needs" variant — which is why the check earned
+its keep here.
+
+**Grubb Ventures — a legacy row that pointed at the wrong company.** It carried
+company *Grubb Ventures* (Gordon Grubb, Raleigh) with contact *Gordon Grubb* at
+**cgrubb@grubbproperties.com**. Grubb Properties is a different firm. Drafting
+that row would have addressed the wrong person at the wrong company on the wrong
+domain. Replaced with verified `@grubbventures.com` contacts.
+
+Also worth recording: I nearly opened Savannah Wicker's draft on **Smoky
+Hollow**, which I was confident was theirs. A search says it is not — Grubb
+Ventures' flagship is **Raleigh Iron Works**, a $150M adaptive reuse and their
+largest project to date. Smoky Hollow is Kane's. The hook rule exists for
+exactly this: confidence is not verification.
+
+**Fifth area-code catch.** Wicker's number is a **347** — New York — against a
+Raleigh HQ. Her draft makes no proximity claim. Running tally this week: Boone
+(828), southeastern NC (910 twice), Denver (303), New York (347).
+
+**Tri Properties** (Durham/RTP, 63, $81M, B 60), **TradeMark Residential**
+(Raleigh, 65, B 58) and **Elite Management Professionals** (Raleigh, 81, B 57)
+round it out. Elite is the sleeper: HOA management, where the client is a
+volunteer board that turns over every year, so the trust-rebuilding never stops.
+
+**One record to watch.** Sandra Geist at Plaza Associates is accuracy 90 —
+the floor of the search filter — and was last validated 2025-10-13, about nine
+months ago. Everything else in this batch is 94+. If anything here bounces, it
+is that one, and the row says so.
