@@ -1,5 +1,32 @@
 # Scheduled Routines
 
+## READ THIS FIRST — there are FIVE Routines, not three (found 2026-07-31)
+
+Two older Routines created **2026-07-20** are **enabled and firing**. The three
+documented below were created 2026-07-29 and are **disabled**. That is why
+Tyler saw no output on Friday 2026-07-31 despite a Routine firing at 7:33am ET:
+
+| Routine | ID | State |
+|---|---|---|
+| Finley prospecting autopilot (Mon/Wed/Fri) | `trig_01UoHSH8buAT6XeLYa673zBK` | **enabled** |
+| Finley follow-ups (Tue/Thu) | `trig_018QSnQzvaXZksfBrieNB1ar` | **enabled** |
+
+Both were pointed at **`main`**, which is frozen at 2026-07-29 and has none of
+the tracker, the learner, `config/what-works.md` or the current voice rules. So
+the job ran against a stale tree, had no Gmail, and committed nothing.
+
+**Fixed 2026-07-31:** both now target
+`claude/sales-prospecting-workflow-wcsfty` and carry the current rules,
+including the 12–20 draft floor and the area-code check. They still have no
+Gmail connector, so they can research and stage to `outbox/` but cannot create
+drafts.
+
+**Tyler's call:** five Routines for three jobs is the real problem. Either grant
+connectors to the three below and delete the two above, or delete the three
+below and keep the two. Don't leave both sets live.
+
+---
+
 Three Routines drive the week. All are created and **currently disabled** —
 see the blocker below before enabling.
 

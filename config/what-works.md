@@ -4,7 +4,7 @@
 <!-- Hand edits are overwritten on the next run. Human judgement calls -->
 <!-- belong in config/voice.md, which outranks this file. -->
 
-Regenerated 2026-07-30. **The cold book is too young to have taught us anything yet** — 1 cold 1:1 email has come of age, with 88 more still awaiting a verdict. Nothing below is a rule yet.
+Regenerated 2026-07-31. **The cold book is too young to have taught us anything yet** — 1 cold 1:1 email has come of age, with 88 more still awaiting a verdict. Nothing below is a rule yet.
 
 ## Rules — apply these when drafting (SKILL.md Step 7)
 

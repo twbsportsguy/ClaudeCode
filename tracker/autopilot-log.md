@@ -640,3 +640,67 @@ area code. Her draft positions the club relative to *Intelerad's Raleigh office*
 never relative to her. This is now a repeatable rule rather than three
 coincidences: **check the area code against the HQ before writing any proximity
 line.**
+
+## 2026-07-31 (Friday) — law firms + marketing agencies
+
+**Why this ran by hand.** Tyler: *"You didnt run this morning."* A Routine **did**
+fire, at 7:33am ET. It was the wrong one.
+
+There were **five** Routines, not the three documented in `config/routines.md`:
+two created 2026-07-20 that are **enabled**, and the three created 2026-07-29
+that are **disabled** pending a connector grant. The enabled pair were still
+pointed at **`main`** — frozen at 2026-07-29 00:52 and missing the tracker
+(1,200+ rows), the reply-feature learner, `config/what-works.md`, the email
+corpus and every voice rule added since. So the 7:33am run checked out a stale
+branch, had no Gmail, and committed nothing. Nothing was broken; nothing was
+produced either.
+
+Both enabled Routines have now been repointed at
+`claude/sales-prospecting-workflow-wcsfty` and rewritten with the current rules,
+including the 12–20 draft floor and the area-code check. The three disabled ones
+are left alone — Tyler should either grant them connectors or delete them, but
+five Routines for three jobs is the underlying problem and that is his call.
+
+**Segments: law firms and marketing agencies**, both named core-engine industries
+in `config/autopilot.md` and both thin in Tier 1. **13 drafts, 10 companies.**
+
+**Law firms (7 drafts, 5 firms).** Smith Anderson (308), Cranfill Sumner (229),
+Manning Fulton (85), Teague Campbell (71), Tharrington Smith (72).
+
+The wrong-buyer filter did most of the work here: of 21 contacts returned across
+eight firms, **eleven were administrative assistants**. Young Moore returned five
+of them and nothing else; Ellis & Winters returned a systems administrator;
+Bagwell Holt Smith a legal assistant. Those three firms were dropped rather than
+drafted — same discipline as Dillon Supply's inside sales reps and the 123
+Fonville Morisey realtors.
+
+**Marketing agencies (6 drafts, 5 agencies).** Sokal (120, automotive
+advertising), Three Ships (400), Adwerx (159), Centerline Digital (96), L&E
+Research (326).
+
+The agency angle is one gap stated plainly: they buy attention for a living and
+have nothing to entertain their own clients with beyond a dinner. **Sokal is the
+pick of them** — an automotive agency whose clients are dealer principals, the
+exact audience this book has been working all week.
+
+**The `&amp;` bug bit again.** The first agency search passed
+`Advertising &amp; Marketing`; ZoomInfo silently dropped the filter and returned
+Raleigh's largest employers. It is documented, it has happened before, and it was
+still nearly missed — only the `fieldResolution` warning caught it. **Read
+fieldResolution on every search.**
+
+**Fourth area-code catch this week.** Lorie Beam, COO of Raleigh-headquartered
+Smith Anderson, has a 910 number. Her draft makes no proximity claim. The rule
+added to SKILL.md yesterday earned its place within a day.
+
+**Two name calls, opposite directions.** Rick Hansen at Three Ships is recorded
+as Richard but writes from `rick.hansen@`, so the draft says Rick — same logic as
+Tom Pelletiers. Phonepaseuth Sourinsack at Tharrington Smith writes from
+`tsourinsack@`, which implies a preferred name starting with T that could not be
+verified; the recorded first name was used and the row says to correct it on any
+reply. An address gives a name only when it actually spells one.
+
+**Guess-proof addresses keep appearing.** `jul@cshlaw.com` is the first three
+letters of a first name. Smith Anderson runs `loriebeam@` and `sberry@` side by
+side. Sokal's website is gosokal.com but its mail is @sokalmediagroup.com. No
+format rule would have produced any of them.
