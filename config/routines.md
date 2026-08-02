@@ -1,5 +1,55 @@
 # Scheduled Routines
 
+## Smoke-test verdict, 2026-08-02: DID NOT CLEAR
+
+Three fired runs, **zero commits** on any branch. Connectors are attached and at
+least one run reached the artifact-publish step, so this is not a permissions
+problem with Gmail — it is that **work does not come back into the repo**.
+
+| Fire | When | Instruction | Result |
+|---|---|---|---|
+| 1 | Fri 07-31 15:03 | full refresh | **Published the artifact** (proven by a 409 publish conflict). No commit. |
+| 2 | Sun 08-02 17:10 | minimal, "reply in chat" | Nothing observable — see the design error below. |
+| 3 | Sun 08-02 17:10 | minimal, "commit a report file" | No commit after 11 minutes. |
+
+**A design error of mine on fire 2:** a fired Routine runs in a *different
+container*, so a chat reply and a `/tmp` file are both invisible from here. Git
+is the only channel between the two. Fire 3 corrected for that and still
+produced nothing.
+
+**Hypothesis, explicitly not a conclusion:** fired sessions may lack git push
+credentials for this branch. It fits both observations — the Artifact service
+worked, `git push` never landed — but nothing here proves it, and the
+instruction on this test was not to guess.
+
+### What this means for Monday
+
+The 7:30am prospecting Routine will fire. Two outcomes are possible and they are
+very different:
+
+- **Drafts appear in Gmail but the tracker does not update.** Partially useful,
+  and fully recoverable — the tracker can be reconciled from Gmail afterwards,
+  which is exactly what was done by hand on 2026-07-31 (the inbox sync that
+  caught the Kymera referral and two bounces).
+- **Nothing appears at all.** Then the Routines are not load-bearing and the
+  working model is Tyler asking for runs in-session, which has produced every
+  draft in this book so far.
+
+**Let Monday run.** It costs nothing to watch, and Gmail drafts are the outcome
+that actually matters — a commit is bookkeeping that can be replayed.
+
+### The check that is actually valid
+
+Do **not** test "is there a commit newer than baseline X" while also committing
+from this session — that produces a false pass, which nearly happened on
+2026-08-02. The valid checks are:
+
+1. Did a commit appear that **this session did not make**? (`git log` across all
+   branches, compared against what you pushed.)
+2. Did **new Gmail drafts** appear that nobody here created?
+
+---
+
 **Status as of 2026-07-31, 11:03am ET: connectors granted, three Routines live.**
 
 | Routine | ID | Cron (UTC) | Local (ET) | State |
