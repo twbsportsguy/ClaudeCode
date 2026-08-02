@@ -800,3 +800,56 @@ Running deliverability note: of the 12 run-13 sends, 2 bounced. Both were the
 lowest-confidence addresses in the batch, and both were flagged as such on their
 rows before sending. The flags are doing their job; what they cannot do is
 prevent the bounce.
+
+## 2026-08-02 (Sunday) — inbox sync
+
+Ran on request. Covers everything inbound since the 07-31 sync.
+
+**One real reply, and it is a good no.** Sean Lilly Wilson, CEO of **Fullsteam
+Brewery**: *"With our impending opening at American Tobacco, I don't believe
+we're in a position to add any more sponsorships. Happy to revisit this down the
+line once we launch this large project!"*
+
+Filed **`Re-approach: 25%`**, not `Not Interested: 0%`. That distinction is the
+whole point of the stage: this is a no on **budget and timing** with an explicit
+invitation back. Revisit once the American Tobacco site opens. Direct line added
+to the row (919-225-4982) and his title corrected to CEO.
+
+**Eight soft-bounces from the 07-29 batch have now hard-failed**, all after 48
+hours of Gmail retries, and all with the same reason: *"the recipient server did
+not accept our message."* That is a **server block, not a stale address**, and
+it clusters by company:
+
+- **Anderson Automotive Group** — 4 of 4 addresses blocked
+- **Crossroads Ford** (incl. the Lumberton Mitsubishi domain) — 3 of 3 blocked
+- **RSM** — 1 blocked
+
+Per `analyze_inbox.py`'s rule, re-sourcing these from ZoomInfo is wasted effort:
+the addresses may be perfectly correct and the server is refusing outside mail
+regardless. **Two entire dealer groups are now unreachable by email.** They need
+a phone call or a referral, and their rows say so.
+
+**Plaza Associates: the domain does not exist.** `sandrag@plazaassociates.com`
+bounced with *"the domain plazaassociates.com couldn't be found."* Not a dead
+mailbox — the domain fails to resolve. This row was flagged pre-send as the
+stalest record in the batch (accuracy 90, validated 2025-10-13). The flag was
+right and, if anything, understated it. Worth verifying the company is still
+trading before spending anything else on it.
+
+**Two out-of-offices, and one of them is a lead.** Diane Taylor at Tri Properties
+names a delegate — **Carrie Miller, cmiller@triprop.com** — which is a second way
+into an account that is otherwise waiting. Becca Welker at Thomas Judy and Tucker
+was away until Monday 3 August; that date has now passed, which per SKILL.md is
+the reason to follow up rather than a silence to wait out.
+
+**HealthSource is a live negotiation and was not visible in the tracker.** From
+Tyler's own thread with Jake Hawkins on 07-31: the practice wants an on-site
+activation trial before committing, Tyler quoted $1,000–1,500 and got a balk,
+and he is weighing ~$700 as an entry price to prove return. Jake is sceptical —
+*"$700 is what we'd get out of a weekend foursome."* Recorded on the row as an
+open pricing decision. **Potential Revenue left blank on purpose**: it is Tyler's
+column and no number has been agreed.
+
+Also seen and correctly ignored: an Adwerx support auto-acknowledgement (Geoff's
+address routes into a ticket queue), a job applicant chasing twice, pro-shop
+hiring admin, and starter-shift scheduling. None are outreach replies.
