@@ -138,19 +138,35 @@ pipeline."
    Judging a hundred messages by eye is where mistakes get made — the Blackwood
    error came from reading one snippet and calling a whole thread. Do this:
 
-   1. Sweep with `mcp__Gmail__search_threads`. **`in:sent` is not optional** —
-      `sync_activity.py` counts the sends it is handed, so a dump built only
-      from bounce and reply searches contains every failure and almost none of
-      the successes. That mistake reported a 55-send morning as "7 sent, 0
-      delivered" on 2026-07-29. Run at minimum these four queries:
-      - `in:sent after:YYYY/MM/DD` — **paginate to the end**, and sanity-check
-        the total against what the user believes they sent
-      - `from:mailer-daemon OR from:postmaster OR subject:"Delivery Status
-        Notification" OR subject:"Undeliverable" OR subject:"Returned mail"`
-      - `subject:"Automatic reply" OR subject:"Out of Office" OR "no longer with"`
-      - `in:inbox newer_than:60d -category:promotions -category:updates`
-   2. Concatenate the responses into one JSON list and run
-      `python3 tools/analyze_inbox.py inbox.json`.
+   1. **`python3 tools/fetch_inbox.py --queries`** — it prints the exact sweep
+      to run and is the single source of truth for it. Do not retype the
+      queries from memory; they used to be duplicated here and in two Routine
+      prompts, and drifted apart.
+
+      **`in:sent` is not optional** — `sync_activity.py` counts the sends it is
+      handed, so a dump built only from bounce and reply searches contains every
+      failure and almost none of the successes. That mistake reported a 55-send
+      morning as "7 sent, 0 delivered" on 2026-07-29.
+
+   2. Run those queries with `mcp__Gmail__search_threads`, then write the
+      results **as one TSV**, not as JSON, and ingest it:
+
+      ```
+      python3 tools/fetch_inbox.py --ingest dump.tsv   # writes threads.json
+      python3 tools/analyze_inbox.py threads.json
+      ```
+
+      **Why TSV.** Gmail results have to pass through the assistant's context —
+      there is no way around that, since a script in this container cannot reach
+      Gmail (see the header of `fetch_inbox.py` for what was tried). But writing
+      them back out as indented JSON with full bodies is a second full copy, and
+      on 2026-08-02 that roughly tripled the token cost of the run. One terse
+      line per message carries the same information for about a fifth of it.
+
+      `--ingest` also keeps a ledger at `tracker/inbox-seen.jsonl` and drops any
+      thread whose message count has not changed since the last sweep. Check
+      `--stats` first and skip those threads when writing the TSV — that is
+      where most of the saving comes from on a daily refresh.
    3. Act on its four sections. It **proposes** tracker edits and never makes
       them — apply them yourself after reading.
    4. Feed the same dump to the learner:
