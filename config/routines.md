@@ -75,9 +75,15 @@ working directory or the starting branch, because both have been wrong.
     That branch is not where the work lives. Get the real tree:
       git fetch origin claude/sales-prospecting-workflow-wcsfty
       git checkout -B work origin/claude/sales-prospecting-workflow-wcsfty
-    Confirm before continuing: CLAUDE.md and tracker/prospects.csv must exist
-    and prospects.csv must have >1000 rows. If it has ~0 rows you are on a
-    stale tree (main is frozen at 2026-07-29) — stop and report that.
+    Confirm before continuing:
+      test -f tools/fetch_inbox.py && test -f config/what-works.md || \
+        echo "STALE TREE — stop and report"
+    Do NOT use the row count of tracker/prospects.csv as the staleness check.
+    Frozen main carries 1,131 rows against the branch's 1,240, so any
+    "more than 1000 rows" test passes on the stale tree and proves nothing.
+    The four files added since the freeze — tools/fetch_inbox.py,
+    tools/reply_features.py, config/what-works.md, tracker/email-corpus.jsonl —
+    are absent from main entirely, so their presence is a real discriminator.
     
     At the end, push in this order and stop at the first that succeeds:
       1. git push origin HEAD:claude/sales-prospecting-workflow-wcsfty
