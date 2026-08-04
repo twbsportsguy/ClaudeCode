@@ -52,6 +52,50 @@ A replacement is therefore strictly worse than what is already there: same
 branch problem, plus no Gmail, no ZoomInfo, no repo. **Repair in place with
 `update_trigger`, or change it in the UI. Never delete-and-recreate.**
 
+## The standard preamble
+
+`update_trigger` can change the **prompt**, name, cron, model and enabled state.
+It cannot change `outcomes`, `sources` or `mcp_connections`. So the pinned
+branch cannot be unpinned from here — the prompt has to stop depending on it.
+
+Every Routine prompt starts with this block. It assumes nothing about the
+working directory or the starting branch, because both have been wrong.
+
+    ## Preamble — run this before anything else, and do not skip it on failure.
+    
+    Do not assume a working directory. Find the clone:
+      ls; git rev-parse --show-toplevel 2>/dev/null
+    If there is no clone, call add_repo (owner twbsportsguy, repo ClaudeCode,
+    access push), run the clone command it returns, then call
+    register_repo_root with the clone path. Do NOT pre-check with curl or
+    git ls-remote — unauthenticated checks 404 on private repos and will
+    mislead you into reporting "repo not connected" when it is fine.
+    
+    You may start on an auto-assigned branch such as claude/cool-lovelace.
+    That branch is not where the work lives. Get the real tree:
+      git fetch origin claude/sales-prospecting-workflow-wcsfty
+      git checkout -B work origin/claude/sales-prospecting-workflow-wcsfty
+    Confirm before continuing: CLAUDE.md and tracker/prospects.csv must exist
+    and prospects.csv must have >1000 rows. If it has ~0 rows you are on a
+    stale tree (main is frozen at 2026-07-29) — stop and report that.
+    
+    At the end, push in this order and stop at the first that succeeds:
+      1. git push origin HEAD:claude/sales-prospecting-workflow-wcsfty
+      2. git push -u origin HEAD          (your assigned branch; say which)
+      3. GitHub API fallback: commit the changed files with
+         mcp__github__create_or_update_file against branch
+         claude/sales-prospecting-workflow-wcsfty. This path does not use git
+         credentials at all, so it survives a push sandbox.
+    Whichever worked, say so by name. If all three failed, paste the verbatim
+    error from each — that text is worth more than a summary.
+
+**Why the API fallback matters.** Three fires on 2026-08-02 produced no commit
+and no error anyone could read, because a fired session's chat reply lands in a
+container nobody opens and the refresh Routine has all notifications off. Git
+was the only channel and git was the thing failing. `create_or_update_file`
+writes through the GitHub API instead, so a run can report its own failure even
+when `git push` is what broke.
+
 ## Smoke-test verdict, 2026-08-02: DID NOT CLEAR
 
 Three fired runs, **zero commits** on any branch. Connectors are attached and at
