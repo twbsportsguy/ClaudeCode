@@ -102,6 +102,45 @@ was the only channel and git was the thing failing. `create_or_update_file`
 writes through the GitHub API instead, so a run can report its own failure even
 when `git push` is what broke.
 
+## Second smoke test, 2026-08-04: ALSO DID NOT CLEAR
+
+Two more fires, both silent. Running total: **five fires, zero writes.**
+
+| Fire | Trigger | What it was asked to do | Result |
+|---|---|---|---|
+| 4 | `[TEST]` (since deleted) | add_repo → clone → commit a self-test file | nothing |
+| 5 | refresh `trig_01Dgemdpn6S9hEDWUmg4iq4x` | **git commands only** — no Gmail, no tools, no artifact | nothing |
+
+Fire 5 is the one that matters. It ran against the fully-configured Routine —
+repo in `sources`, Gmail and ZoomInfo in `mcp_connections` — and was asked for
+nothing but `pwd`, `git branch`, a one-line file, and two pushes. Fifteen
+minutes later: no new branch on origin, no `tracker/routine-selftest.md`, and
+no commit this session did not make. So the failure is not the pipeline, not
+Gmail, not ZoomInfo, and not the volume of work. **A fired session cannot get
+a byte back into this repo.**
+
+What has been ruled out, each by evidence rather than reasoning:
+
+- *Missing repo* — `sources` carries twbsportsguy/ClaudeCode on all three.
+- *Missing connectors* — `mcp_connections` carries Gmail + ZoomInfo on all three.
+- *Wrong branch in the prompt* — fire 5 was told to push to `HEAD` as well, so
+  it did not need to know any branch name.
+- *Too much work to finish* — fire 5 had about six commands to run.
+
+Still unknown: whether `git push` fails, or whether the session never reaches
+it. Nothing distinguishes the two from here, because the only channel that
+would carry the error is the one that is broken. Hence the API fallback in the
+preamble above — `mcp__github__create_or_update_file` and `issue_write` use no
+git credentials, so the next fire can report its own failure even if push is
+what breaks. **That fallback is untested. It is the best remaining hypothesis,
+not a fix.**
+
+### The working model, meanwhile
+
+Every draft in this book was produced by Tyler asking for a run in-session.
+That is the load-bearing path and it has never failed. Treat the Routines as an
+experiment running in the background until one of them writes something.
+
 ## Smoke-test verdict, 2026-08-02: DID NOT CLEAR
 
 Three fired runs, **zero commits** on any branch. Connectors are attached and at
