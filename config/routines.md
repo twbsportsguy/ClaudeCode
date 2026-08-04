@@ -1,5 +1,57 @@
 # Scheduled Routines
 
+## Root cause, 2026-08-04: the outcome branch, not the repo
+
+Two diagnoses before this one were wrong and are recorded here so nobody spends
+another week on them.
+
+**Wrong #1 — "the environment needs a repo attached."** Mine, 2026-08-04. Cloud
+environments hold network policy, environment variables and setup scripts. They
+do not hold repositories; repos attach per session. Adding an environment fixes
+nothing. (https://code.claude.com/docs/en/claude-code-on-the-web)
+
+**Wrong #2 — "fired sessions have no repo, because `create_trigger` has no repo
+parameter."** Also mine. The tool has no such parameter, which is true and
+misleading. Reading the stored config back shows all three live Routines already
+carry the repo:
+
+    sources: [{git_repository: {url: "https://github.com/twbsportsguy/ClaudeCode"}}]
+
+**What the config actually shows.** Each Routine is pinned to an auto-generated
+*outcome branch* that has never existed on the remote:
+
+| Routine | `outcomes` branch | on origin? |
+|---|---|---|
+| Finley prospecting `trig_01UoHSH8buAT6XeLYa673zBK` | `claude/brave-noether` | no |
+| Finley follow-ups `trig_018QSnQzvaXZksfBrieNB1ar` | `claude/optimistic-gauss` | no |
+| SalesFlow refresh `trig_01Dgemdpn6S9hEDWUmg4iq4x` | `claude/cool-lovelace` | no |
+| ~~superseded prospecting~~ | `claude/exciting-thompson` | no |
+| ~~superseded follow-ups~~ | `claude/tender-babbage` | no |
+
+Every prompt tells the session to check out
+`claude/sales-prospecting-workflow-wcsfty`. The Routine is pinned somewhere else.
+Five branches assigned, five branches that do not exist — consistent with "three
+fires, zero commits" below.
+
+## Do NOT delete and recreate these Routines
+
+The obvious repair — recreate them correctly — destroys what works. A Routine
+created by the assistant via `create_trigger` from this session comes back with:
+
+- **no `mcp_connections`.** The tool warns: *"this trigger stores no MCP
+  connectors ... Connectors on triggers created via this tool are limited to
+  those the calling session itself holds; this call had none to pass through."*
+  Passing `connectors` explicitly returns *"not available for this
+  organization."* The Gmail + ZoomInfo grants on the three live Routines were
+  added **by Tyler in the claude.ai UI on 2026-07-31** and cannot be reproduced
+  from here.
+- **no `sources`.** So a replacement genuinely would have no repo — the failure
+  mode I wrongly attributed to the existing ones.
+
+A replacement is therefore strictly worse than what is already there: same
+branch problem, plus no Gmail, no ZoomInfo, no repo. **Repair in place with
+`update_trigger`, or change it in the UI. Never delete-and-recreate.**
+
 ## Smoke-test verdict, 2026-08-02: DID NOT CLEAR
 
 Three fired runs, **zero commits** on any branch. Connectors are attached and at
