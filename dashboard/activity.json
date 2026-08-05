@@ -1,464 +1,133 @@
 {
- "date": "2026-07-29",
- "sent": 55,
- "delivered": 47,
- "bounced": 8,
+ "date": "2026-08-05",
+ "sent": 0,
+ "delivered": 0,
+ "bounced": 0,
  "replies": 0,
- "auto": 3,
- "pending": 0,
- "sentList": [
-  {
-   "e": "agreenberg@bartaco.com",
-   "co": "Bartaco",
-   "who": "Anna Greenberg",
-   "dead": false
-  },
-  {
-   "e": "andersonlittle@andersonautomotivegroup.com",
-   "co": "Anderson Automotive Group",
-   "who": "Andy Little",
-   "dead": false
-  },
-  {
-   "e": "apd@wardandsmith.com",
-   "co": "Ward and Smith PA",
-   "who": "Angela Doughty",
-   "dead": false
-  },
-  {
-   "e": "bgalloway@anderson-auto.net",
-   "co": "Anderson Automotive Group",
-   "who": "Bryan Galloway",
-   "dead": false
-  },
-  {
-   "e": "bhodgeman@johnsonlexus.com",
-   "co": "Johnson Lexus of Durham",
-   "who": "Bradley Hodgeman",
-   "dead": false
-  },
-  {
-   "e": "bob.lyon@andersonautomotivegroup.com",
-   "co": "Anderson Automotive Group",
-   "who": "Robert Lyon",
-   "dead": false
-  },
-  {
-   "e": "brad.smith@leithcars.com",
-   "co": "Leith Cars",
-   "who": "Brad Smith",
-   "dead": true
-  },
-  {
-   "e": "bradyrassin@gmail.com",
-   "co": "Zeta Psi",
-   "who": "Brady Rassin",
-   "dead": false
-  },
-  {
-   "e": "brooke.gerrell@brushandfloss.com",
-   "co": "Riccobene Associates Family Dentistry",
-   "who": "Brooke Gerrell",
-   "dead": false
-  },
-  {
-   "e": "cmchargue@anderson-auto.net",
-   "co": "Anderson Automotive Group",
-   "who": "Chad McHargue",
-   "dead": false
-  },
-  {
-   "e": "coy.lovell@leithcars.com",
-   "co": "Leith Cars",
-   "who": "Coy Lovell",
-   "dead": true
-  },
-  {
-   "e": "cwatts@capitalautogroup.com",
-   "co": "Capital Automotive Group",
-   "who": "Christopher Watts",
-   "dead": false
-  },
-  {
-   "e": "david.coyle@leithcars.com",
-   "co": "Leith Cars",
-   "who": "David Coyle",
-   "dead": false
-  },
-  {
-   "e": "dean@crossroadsford.com",
-   "co": "Crossroads Ford Group",
-   "who": "Dean Conforti",
-   "dead": false
-  },
-  {
-   "e": "dkoballa@sportdurst.com",
-   "co": "Sport Durst Automotive",
-   "who": "Dennis Koballa",
-   "dead": false
-  },
-  {
-   "e": "donlane@lanegallery.com",
-   "co": "Lane & Associates",
-   "who": "Don Lane",
-   "dead": false
-  },
-  {
-   "e": "drkornstein@wakeorthopedo.com",
-   "co": "Wake Orthodontics & Pediatric Dentistry",
-   "who": "David Kornstein",
-   "dead": false
-  },
-  {
-   "e": "dstar@lane.us",
-   "co": "Lane & Associates",
-   "who": "Diane Star",
-   "dead": false
-  },
-  {
-   "e": "emountain@capitalautogroup.com",
-   "co": "Capital Automotive Group",
-   "who": "Eric Mountain",
-   "dead": true
-  },
-  {
-   "e": "gabrielle@carolinasdentist.com",
-   "co": "CarolinasDentist",
-   "who": "Gabrielle Smallwood",
-   "dead": false
-  },
-  {
-   "e": "hainesr@crossroadsford.com",
-   "co": "Crossroads Ford Group",
-   "who": "Richard Haines",
-   "dead": false
-  },
-  {
-   "e": "jennifer.mastrapasqua@captrustadvisors.com",
-   "co": "CAPTRUST",
-   "who": "Jennifer Mastrapasqua",
-   "dead": false
-  },
-  {
-   "e": "joseph.wiedholz@capitalautogroup.com",
-   "co": "University Ford of Durham",
-   "who": "Joseph Wiedholz",
-   "dead": true
-  },
-  {
-   "e": "jp.rigsbee@affordablecare.com",
-   "co": "Affordable Dentures & Implants",
-   "who": "Jp Rigsbee",
-   "dead": false
-  },
-  {
-   "e": "kelly.demeester@rsmi.com",
-   "co": "RSM US LLP (Premier Package)",
-   "who": "Kelly DeMeester",
-   "dead": false
-  },
-  {
-   "e": "kerry.heckle@unchealth.unc.edu",
-   "co": "UNC Health",
-   "who": "Kerry Grace",
-   "dead": false
-  },
-  {
-   "e": "kevin.kane@leithcars.com",
-   "co": "Leith Cars",
-   "who": "Kevin Kane",
-   "dead": false
-  },
-  {
-   "e": "kevin.mills@leithcars.com",
-   "co": "Leith Cars",
-   "who": "Kevin Mills",
-   "dead": true
-  },
-  {
-   "e": "knichols@sportdurst.com",
-   "co": "Sport Durst Automotive",
-   "who": "Ken Nichols",
-   "dead": true
-  },
-  {
-   "e": "kristy.daniel@brushandfloss.com",
-   "co": "Riccobene Associates Family Dentistry",
-   "who": "Kristy Daniel",
-   "dead": false
-  },
-  {
-   "e": "lhicks@farrin.com",
-   "co": "Law Offices of James Scott Farrin",
-   "who": "Lisa Hicks",
-   "dead": false
-  },
-  {
-   "e": "line.dempsey@brushandfloss.com",
-   "co": "Riccobene Associates Family Dentistry",
-   "who": "Line Dempsey",
-   "dead": false
-  },
-  {
-   "e": "llongo@capitalautogroup.com",
-   "co": "Capital Automotive Group",
-   "who": "Lindsey Michael-Longo",
-   "dead": false
-  },
-  {
-   "e": "marina.abbott@capitalautogroup.com",
-   "co": "Capital Automotive Group",
-   "who": "Marina Abbott",
-   "dead": true
-  },
-  {
-   "e": "matt.brownell@christmanco.com",
-   "co": "The Christman Company",
-   "who": "Matthew Brownell",
-   "dead": false
-  },
-  {
-   "e": "merexson@capitalautogroup.com",
-   "co": "Capital Automotive Group",
-   "who": "Michael Erexson",
-   "dead": true
-  },
-  {
-   "e": "mike.jurasek@leithcars.com",
-   "co": "Leith Cars",
-   "who": "Michael Jurasek",
-   "dead": false
-  },
-  {
-   "e": "mike@westgatejeep.com",
-   "co": "WestGate Auto Group",
-   "who": "Michael Frazier",
-   "dead": false
-  },
-  {
-   "e": "mmclachlan@sportdurst.com",
-   "co": "Sport Durst Automotive",
-   "who": "Mike McLachlan",
-   "dead": false
-  },
-  {
-   "e": "montgomery.webb@84lumber.com",
-   "co": "84 Lumber",
-   "who": "Montgomery Webb",
-   "dead": false
-  },
-  {
-   "e": "mostafa@johnsonlexus.com",
-   "co": "Johnson Lexus of Durham",
-   "who": "Mostafa Abou-Auf",
-   "dead": false
-  },
-  {
-   "e": "mstar@lane.us",
-   "co": "Lane & Associates",
-   "who": "Michael Star",
-   "dead": false
-  },
-  {
-   "e": "natalie@ncimplant.com",
-   "co": "Russo Dentistry",
-   "who": "Natalie Pearce",
-   "dead": false
-  },
-  {
-   "e": "nate.kring@affordablecare.com",
-   "co": "Affordable Dentures & Implants",
-   "who": "Nate Kring",
-   "dead": false
-  },
-  {
-   "e": "paul.mcdonald@andersonautomotivegroup.com",
-   "co": "Anderson Automotive Group",
-   "who": "Paul McDonald",
-   "dead": false
-  },
-  {
-   "e": "pete.bridgman@affordablecare.com",
-   "co": "Affordable Dentures & Implants",
-   "who": "Pete Bridgman",
-   "dead": false
-  },
-  {
-   "e": "pons.marc@chapelhilltire.com",
-   "co": "Chapel Hill Tire",
-   "who": "Marc Pons",
-   "dead": false
-  },
-  {
-   "e": "renee.pakkala@capitalautogroup.com",
-   "co": "Capital Automotive Group",
-   "who": "Renee Pakkala",
-   "dead": false
-  },
-  {
-   "e": "sheibanis@crossroadsmitsubishilumberton.com",
-   "co": "Crossroads Ford Group",
-   "who": "Shayan Sheibani",
-   "dead": false
-  },
-  {
-   "e": "stephanie@andersonautomotivegroup.com",
-   "co": "Anderson Automotive Group",
-   "who": "Stephanie Lange",
-   "dead": false
-  },
-  {
-   "e": "tiffany.reynolds@axiomdentistry.com",
-   "co": "Axiom Dentistry",
-   "who": "Tiffany Reynolds",
-   "dead": false
-  },
-  {
-   "e": "tkavanaugh@bakerroofing.com",
-   "co": "Baker Roofing",
-   "who": "Todd Kavanaugh",
-   "dead": false
-  },
-  {
-   "e": "tserpe@andersonautomotive.com",
-   "co": "Anderson Automotive Group",
-   "who": "Thomas Serpe",
-   "dead": false
-  },
-  {
-   "e": "uncpanhelspecialevents@gmail.com",
-   "co": "UNC Panhellenic Board",
-   "who": "Lilly Fountain",
-   "dead": false
-  },
-  {
-   "e": "wayne.dubois@sportdurst.com",
-   "co": "Sport Durst Automotive",
-   "who": "Wayne DuBois",
-   "dead": false
-  }
- ],
+ "auto": 0,
+ "pending": null,
+ "sentList": [],
  "pendingList": [],
  "history": [
   [
-   "2026-02-18",
-   7
-  ],
-  [
-   "2026-02-24",
-   3
-  ],
-  [
-   "2026-03-02",
-   1
-  ],
-  [
-   "2026-03-19",
-   14
-  ],
-  [
-   "2026-03-23",
-   1
-  ],
-  [
-   "2026-03-24",
-   1
-  ],
-  [
-   "2026-03-25",
-   8
-  ],
-  [
-   "2026-03-26",
-   14
-  ],
-  [
-   "2026-03-27",
-   2
-  ],
-  [
    "2026-03-30",
-   7
-  ],
-  [
-   "2026-03-31",
-   5
-  ],
-  [
-   "2026-04-01",
-   9
-  ],
-  [
-   "2026-04-02",
-   3
-  ],
-  [
-   "2026-04-03",
    1
-  ],
-  [
-   "2026-04-06",
-   4
-  ],
-  [
-   "2026-04-07",
-   3
   ],
   [
    "2026-04-08",
-   8
-  ],
-  [
-   "2026-04-09",
    2
   ],
   [
-   "2026-04-10",
-   1
+   "2026-05-21",
+   3
   ],
   [
-   "2026-04-14",
-   1
-  ],
-  [
-   "2026-04-29",
-   1
-  ],
-  [
-   "2026-05-04",
+   "2026-05-26",
    1
   ],
   [
    "2026-06-01",
-   5
+   1
   ],
   [
-   "2026-06-22",
+   "2026-06-13",
+   1
+  ],
+  [
+   "2026-06-15",
    2
   ],
   [
+   "2026-06-22",
+   3
+  ],
+  [
    "2026-06-23",
+   4
+  ],
+  [
+   "2026-06-24",
+   2
+  ],
+  [
+   "2026-06-25",
    2
   ],
   [
    "2026-06-26",
+   5
+  ],
+  [
+   "2026-06-29",
    4
   ],
   [
    "2026-07-02",
-   4
+   6
   ],
   [
-   "2026-07-22",
-   3
-  ],
-  [
-   "2026-07-24",
+   "2026-07-03",
    1
   ],
   [
+   "2026-07-06",
+   56
+  ],
+  [
+   "2026-07-10",
+   1
+  ],
+  [
+   "2026-07-13",
+   3
+  ],
+  [
+   "2026-07-15",
+   1
+  ],
+  [
+   "2026-07-17",
+   1
+  ],
+  [
+   "2026-07-20",
+   3
+  ],
+  [
+   "2026-07-22",
+   6
+  ],
+  [
+   "2026-07-24",
+   3
+  ],
+  [
+   "2026-07-27",
+   1
+  ],
+  [
+   "2026-07-28",
+   3
+  ],
+  [
    "2026-07-29",
-   55
+   18
+  ],
+  [
+   "2026-07-30",
+   13
+  ],
+  [
+   "2026-07-31",
+   8
+  ],
+  [
+   "2026-08-03",
+   1
+  ],
+  [
+   "2026-08-04",
+   1
   ]
  ]
 }

@@ -1,31 +1,31 @@
 {
- "generated": "2026-07-30",
+ "generated": "2026-08-05",
  "totals": {
-  "companies": 696,
-  "replied": 519,
+  "companies": 723,
+  "replied": 547,
   "warm": 73,
-  "lost": 37
+  "lost": 38
  },
  "industries": [
   {
    "name": "Unclassified",
-   "n": 243,
-   "replied": 165,
+   "n": 250,
+   "replied": 173,
    "warm": 14,
    "lost": 9,
    "quotes": [],
-   "replyRate": 68,
+   "replyRate": 69,
    "winRate": 61,
    "answered": 23
   },
   {
    "name": "Wholesale, supply & equipment",
-   "n": 81,
-   "replied": 57,
+   "n": 84,
+   "replied": 60,
    "warm": 4,
    "lost": 0,
    "quotes": [],
-   "replyRate": 70,
+   "replyRate": 71,
    "winRate": 100,
    "answered": 4
   },
@@ -53,14 +53,25 @@
   },
   {
    "name": "Wealth management & finance",
-   "n": 47,
-   "replied": 40,
+   "n": 49,
+   "replied": 42,
    "warm": 5,
    "lost": 7,
    "quotes": [],
-   "replyRate": 85,
+   "replyRate": 86,
    "winRate": 42,
    "answered": 12
+  },
+  {
+   "name": "Real estate",
+   "n": 39,
+   "replied": 34,
+   "warm": 2,
+   "lost": 0,
+   "quotes": [],
+   "replyRate": 87,
+   "winRate": 100,
+   "answered": 2
   },
   {
    "name": "Greek organizations",
@@ -78,27 +89,16 @@
    "n": 32,
    "replied": 32,
    "warm": 15,
-   "lost": 4,
+   "lost": 5,
    "quotes": [],
    "replyRate": 100,
-   "winRate": 79,
-   "answered": 19
-  },
-  {
-   "name": "Real estate",
-   "n": 35,
-   "replied": 30,
-   "warm": 2,
-   "lost": 0,
-   "quotes": [],
-   "replyRate": 86,
-   "winRate": 100,
-   "answered": 2
+   "winRate": 75,
+   "answered": 20
   },
   {
    "name": "Law firms",
-   "n": 27,
-   "replied": 27,
+   "n": 32,
+   "replied": 32,
    "warm": 2,
    "lost": 5,
    "quotes": [],
@@ -118,24 +118,24 @@
    "answered": 4
   },
   {
-   "name": "Consulting & accounting",
-   "n": 31,
-   "replied": 10,
-   "warm": 2,
-   "lost": 3,
-   "quotes": [],
-   "replyRate": 32,
-   "winRate": 40,
-   "answered": 5
-  },
-  {
    "name": "Marketing & brands",
-   "n": 10,
-   "replied": 10,
+   "n": 15,
+   "replied": 15,
    "warm": 2,
    "lost": 3,
    "quotes": [],
    "replyRate": 100,
+   "winRate": 40,
+   "answered": 5
+  },
+  {
+   "name": "Consulting & accounting",
+   "n": 32,
+   "replied": 11,
+   "warm": 2,
+   "lost": 3,
+   "quotes": [],
+   "replyRate": 34,
    "winRate": 40,
    "answered": 5
   },
@@ -154,7 +154,7 @@
  "reasons": [
   {
    "label": "Not a fit / wrong audience",
-   "n": 19,
+   "n": 20,
    "items": [
     {
      "co": "Davenport & Company LLC",
@@ -269,6 +269,12 @@
      "ind": "Unclassified",
      "q": "OWNER: Tyler | 2/4/26 2/11/2026 2/18/26 | split from packed legacy row 2026-07-28 | OWNER: Tyler | 2/4/26 2/11/2026 2/18/26 | split from packed legacy row 2026-07-28 | OWNER: Tyler | REPLY SWEEP 2026-07-29 - declined: \"I",
      "stage": "Not Interested: 0%"
+    },
+    {
+     "co": "Fullsteam Brewery",
+     "ind": "Local businesses",
+     "q": "Autopilot 2026-07-29 run 3. ZI acc 90. | OWNER: Tyler | SENT 2026-07-30 | Autopilot 2026-07-29 run 3: breweries x Triangle. ZI acc 99. | OWNER: Tyler. REPLY 2026-08-02 from Sean Lilly Wilson (he/him), CEO: \"Thank you for",
+     "stage": "Re-approach: 25%"
     }
    ]
   },
@@ -345,7 +351,7 @@
     {
      "co": "Manning, Fulton & Skinner",
      "ind": "Law firms",
-     "q": "Reached out to Jason Blocked Me | OWNER: Jake",
+     "q": "Reached out to Jason Blocked Me | OWNER: Jake | 10/24/2025 11/5/2025 12/3/25 Reached out to Jason Blocked Me | OWNER: Jake | SENT 2026-07-31",
      "stage": "Not Interested: 0%"
     }
    ]
@@ -444,7 +450,7 @@
   },
   {
    "label": "Reviewing internally",
-   "n": 7,
+   "n": 9,
    "items": [
     {
      "co": "Beta Theta Pi Fraternity",
@@ -480,6 +486,16 @@
      "co": "Carpe Deodorant",
      "ind": "Marketing & brands",
      "q": "Looking over internally,, forwarded to Head of marketing Unable to move forward at this time. Will keep info if future collab is a fit. | OWNER: Tyler | OWNER: Tyler | Reviewed the packages, then: 'unable to move forward"
+    },
+    {
+     "co": "HealthSource Chiropractic of Chapel Hill",
+     "ind": "Healthcare",
+     "q": "INBOUND 2026-07-22: proposed a free swing assessment and treatment tent at Finley. Call held 7/23; Tyler sent marketing options 7/24; calendar invite ACCEPTED 7/29 by mdavies@healthsourcechiro.com. Found by the 2026-07-2"
+    },
+    {
+     "co": "Kymera International",
+     "ind": "Wholesale, supply & equipment",
+     "q": "Accuracy 98, validated 2026-07-01. Kymera email format is firstname.lastname@ \u2014 except Pelletiers, see his row. Now the live thread at Kymera: hit twice on 2026-07-30 \u2014 once directly, once via an internal forward from To"
     }
    ]
   },
@@ -552,7 +568,7 @@
   },
   {
    "label": "Wants pricing",
-   "n": 3,
+   "n": 4,
    "items": [
     {
      "co": "Chi Psi Fraternity",
@@ -568,12 +584,17 @@
      "co": "Shrunkenhead Boutique",
      "ind": "Local businesses",
      "q": "interested in donating for raffles | OWNER: Tyler | Restored 2026-07-28. Their words were 'the pricing is simply outside of what we're able to commit to as a small business. There's no lack of interest on our end' \u2014 a pr"
+    },
+    {
+     "co": "HealthSource Chiropractic of Chapel Hill",
+     "ind": "Healthcare",
+     "q": "INBOUND 2026-07-22: proposed a free swing assessment and treatment tent at Finley. Call held 7/23; Tyler sent marketing options 7/24; calendar invite ACCEPTED 7/29 by mdavies@healthsourcechiro.com. Found by the 2026-07-2"
     }
    ]
   },
   {
    "label": "Wants to donate in kind",
-   "n": 3,
+   "n": 4,
    "items": [
     {
      "co": "Bartaco",
@@ -589,6 +610,11 @@
      "co": "Alumni Hall",
      "ind": "Local businesses",
      "q": "interested in raffles | OWNER: Tyler | Restored 2026-07-28 \u2014 only ever offered raffle items; needs a proper partnership pitch instead. | 11/4/2025 11/10/2025 11/17/25 interested in raffles | split from packed legacy row "
+    },
+    {
+     "co": "North State Bank",
+     "ind": "Wealth management & finance",
+     "q": "LOCATION FLAG: her phone is a 910 area code (southeastern NC), not 919. Same tell as Erica Lackey at Curtis Media, so her draft makes NO claim that she is near Chapel Hill. COMPLIANCE NOTE: Summer Salute raises money thr"
     }
    ]
   }
