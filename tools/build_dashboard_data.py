@@ -159,7 +159,6 @@ imported=[c for n,c in cos.items() if n not in rich]
 print(f"to add as new cards: {len(imported)}")
 st=collections.Counter(c["status"] for c in cos.values())
 for k,v in st.most_common(): print(f"   {v:>4}  {k or '(blank)'}")
-json.dump({"companies":list(cos.values()),"rich":list(rich)},open("/tmp/claude-0/-home-user-ClaudeCode/3dd1bda5-ad54-5e57-ae74-cbe9fdce4115/scratchpad/dashdata.json","w"))
 
 # ---------- emit the new DATA array ----------
 def js(v): return json.dumps(v, ensure_ascii=False)
