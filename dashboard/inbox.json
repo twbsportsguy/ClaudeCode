@@ -1,11 +1,11 @@
 {
  "generated": "2026-08-05",
  "counts": {
-  "ours": 106,
+  "ours": 101,
   "reply-neutral": 19,
-  "irrelevant": 87,
-  "bounce-unknown": 30,
-  "bounce-hard": 12,
+  "irrelevant": 91,
+  "bounce-unknown": 12,
+  "bounce-hard": 11,
   "auto-ooo": 9,
   "departed": 1,
   "reply-positive": 2,
@@ -90,7 +90,7 @@
    "contact": "Malea Washington",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "mwashington@summithospitality.com",
    "reason": "unspecified"
   },
@@ -104,7 +104,7 @@
    "contact": "Malea Washington",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "mwashington@summithospitality.com",
    "reason": "unspecified"
   },
@@ -118,7 +118,7 @@
    "contact": "Malea Washington",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "mwashington@summithospitality.com",
    "reason": "unspecified"
   },
@@ -165,48 +165,6 @@
    "reason": "address not found"
   },
   {
-   "kind": "bounce-unknown",
-   "date": "2026-07-30",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "andersonlittle@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "andersonlittle@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-31",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "andersonlittle@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "andersonlittle@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-08-01",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Failure)",
-   "address": "andersonlittle@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "andersonlittle@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
    "kind": "bounce-hard",
    "date": "2026-07-30",
    "from": "mailer-daemon@googlemail.com",
@@ -225,48 +183,6 @@
    "date": "2026-07-30",
    "from": "mailer-daemon@googlemail.com",
    "subject": "Delivery Status Notification (Delay)",
-   "address": "hainesr@crossroadsford.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "hainesr@crossroadsford.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-31",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "hainesr@crossroadsford.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "hainesr@crossroadsford.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-08-01",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Failure)",
-   "address": "hainesr@crossroadsford.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "hainesr@crossroadsford.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-30",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
    "address": "dean@crossroadsford.com",
    "company": "",
    "contact": "",
@@ -302,132 +218,6 @@
    "in_tracker": false,
    "campaign": "finley-partnership",
    "failed": "dean@crossroadsford.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-30",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "paul.mcdonald@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "paul.mcdonald@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-31",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "paul.mcdonald@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "paul.mcdonald@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-08-01",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Failure)",
-   "address": "paul.mcdonald@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "paul.mcdonald@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-30",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "sheibanis@crossroadsmitsubishilumberton.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "sheibanis@crossroadsmitsubishilumberton.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-31",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "sheibanis@crossroadsmitsubishilumberton.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "sheibanis@crossroadsmitsubishilumberton.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-08-01",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Failure)",
-   "address": "sheibanis@crossroadsmitsubishilumberton.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "sheibanis@crossroadsmitsubishilumberton.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-30",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "kelly.demeester@rsmi.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "kelly.demeester@rsmi.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-31",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "kelly.demeester@rsmi.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "kelly.demeester@rsmi.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-08-01",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Failure)",
-   "address": "kelly.demeester@rsmi.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "kelly.demeester@rsmi.com",
    "reason": "unspecified"
   },
   {
@@ -443,48 +233,6 @@
    "campaign": "finley-partnership",
    "failed": "vcardin@fmrealty.com",
    "reason": "address not found"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-30",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "bob.lyon@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "bob.lyon@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-07-31",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Delay)",
-   "address": "bob.lyon@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "bob.lyon@andersonautomotivegroup.com",
-   "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-unknown",
-   "date": "2026-08-01",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Failure)",
-   "address": "bob.lyon@andersonautomotivegroup.com",
-   "company": "",
-   "contact": "",
-   "status": "",
-   "in_tracker": false,
-   "campaign": "finley-partnership",
-   "failed": "bob.lyon@andersonautomotivegroup.com",
-   "reason": "unspecified"
   },
   {
    "kind": "bounce-hard",
@@ -524,7 +272,7 @@
    "contact": "Brad Smith",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "brad.smith@leithcars.com",
    "reason": "address not found"
   },
@@ -552,7 +300,7 @@
    "contact": "Kevin Mills",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "kevin.mills@leithcars.com",
    "reason": "address not found"
   },
@@ -566,7 +314,7 @@
    "contact": "Coy Lovell",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "coy.lovell@leithcars.com",
    "reason": "address not found"
   },
@@ -594,7 +342,7 @@
    "contact": "Joseph Wiedholz",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "joseph.wiedholz@capitalautogroup.com",
    "reason": "unspecified"
   },
@@ -608,23 +356,9 @@
    "contact": "Eric Mountain",
    "status": "New",
    "in_tracker": true,
-   "campaign": "finley-partnership",
+   "campaign": "unknown",
    "failed": "emountain@capitalautogroup.com",
    "reason": "unspecified"
-  },
-  {
-   "kind": "bounce-hard",
-   "date": "2026-07-29",
-   "from": "mailer-daemon@googlemail.com",
-   "subject": "Delivery Status Notification (Failure)",
-   "address": "knichols@sportdurst.com",
-   "company": "Sport Durst Automotive",
-   "contact": "Ken Nichols",
-   "status": "New",
-   "in_tracker": true,
-   "campaign": "unknown",
-   "failed": "knichols@sportdurst.com",
-   "reason": "address not found"
   },
   {
    "kind": "auto-ooo",
@@ -1228,12 +962,6 @@
    "blocked": 0,
    "soft": 0
   },
-  "andersonautomotivegroup.com": {
-   "sent": 9,
-   "stale": 0,
-   "blocked": 9,
-   "soft": 0
-  },
   "kymerainternational.com": {
    "sent": 2,
    "stale": 1,
@@ -1241,18 +969,6 @@
    "soft": 0
   },
   "crossroadsford.com": {
-   "sent": 6,
-   "stale": 0,
-   "blocked": 6,
-   "soft": 0
-  },
-  "crossroadsmitsubishilumberton.com": {
-   "sent": 3,
-   "stale": 0,
-   "blocked": 3,
-   "soft": 0
-  },
-  "rsmi.com": {
    "sent": 3,
    "stale": 0,
    "blocked": 3,
@@ -1270,21 +986,15 @@
    "blocked": 0,
    "soft": 0
   },
-  "leithcars.com": {
-   "sent": 3,
-   "stale": 3,
-   "blocked": 0,
-   "soft": 0
-  },
   "capitalautogroup.com": {
    "sent": 4,
    "stale": 0,
    "blocked": 4,
    "soft": 0
   },
-  "sportdurst.com": {
-   "sent": 1,
-   "stale": 1,
+  "leithcars.com": {
+   "sent": 3,
+   "stale": 3,
    "blocked": 0,
    "soft": 0
   }
