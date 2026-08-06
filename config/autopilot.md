@@ -6,20 +6,36 @@ keywords — choose the next targets here, act, and log why.
 **Weekly rhythm:** Mon/Wed/Fri = new prospecting (this file). Tue/Thu =
 follow-ups to non-repliers (`config/followups.md`), not new prospecting.
 
-## Per-run budget
-- **2 segments** per run (a segment = one industry × one market, where a market
-  is an NC sub-market or, on outer-ring runs, a Southeast / East Coast metro).
-- ~8–10 companies per segment (~15–20 companies total); pull the **full buying
-  committee** per company — every useful contact, not just decision-makers
-  (see SKILL.md Step 3). More contacts per company = more forward-up shots.
-- Hard stop: don't enrich a 3rd segment in one run (ZoomInfo credit control).
-- **This budget is a floor, not a ceiling** (Tyler, 2026-07-30: *"you should be
-  creating more drafts than just a handful"*). Runs had drifted to 5–7 drafts
-  across 2 companies — about a third of what's written above. If a segment turns
-  out thin in ZoomInfo, that is a reason to **open the second segment**, not a
-  reason to finish the run early. A run landing under ~12 drafts needs a stated
-  reason, and "the data wasn't there" only counts once both segments have been
-  swept.
+## Per-run budget — 100 drafts (Tyler, 2026-08-05)
+
+*"I want to send 100 drafts a day MWF."*
+
+- **Target: 100 drafts per MWF run.** This is the number to work toward, not a
+  cap to stop at.
+- **4–6 segments** per run (a segment = one industry × one market, where a
+  market is an NC sub-market or, on outer-ring runs, a Southeast / East Coast
+  metro). The old 2-segment limit cannot reach 100 and is retired.
+- ~10–12 companies per segment; pull the **full buying committee** per company —
+  every useful contact, not just decision-makers (see SKILL.md Step 3). At 3–4
+  contacts per company, ~30 companies gets you to 100.
+- Open segments until the target is met. A thin segment is a reason to open the
+  next one, never a reason to end the run.
+
+### What 100 realistically looks like
+
+Be honest in the run report rather than quietly under-delivering. A run doing
+real research on ~30 companies and writing 100 personalised emails is five to
+eight times the previous workload, and runs have died partway six times. So:
+
+- **Commit every 10 drafts.** A run that dies at 40 must leave 40 drafts and a
+  synced tracker, not nothing. This matters more at 100 than it ever did at 15.
+- **Expect 30–60 on early runs** and say so plainly in the report. Under-
+  delivering is acceptable; silently pretending the target was met is not.
+- **Depth is the thing to cut, not honesty.** If research per company has to get
+  shallower to reach volume, say which companies got the shallow pass so they
+  can be revisited. A draft with a fabricated hook is worse than no draft.
+- ZoomInfo credit control still applies: if the subscription rate-limits, stop
+  pulling and finish drafting what you already have.
 
 ## The universe
 Derived from Tyler's actual book (397 companies imported from the FGC Master
