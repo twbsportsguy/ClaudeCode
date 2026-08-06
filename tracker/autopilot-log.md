@@ -887,3 +887,21 @@ competitors), UNC Athletics (Finley's own relationship), Summit Hospitality
 in the book).
 
 **15 new companies after dedupe** — 6 CRE, 9 hospitality/restaurant.
+
+## 2026-08-05 (2nd run) | Tier 1 | seg: insurance brokerages & benefits / Triangle
+
+**Why:** insurance was untested as a segment but is structurally identical to law
+firms and wealth management — relationship businesses whose producers already
+entertain clients — and those are two of the warmest categories in the book.
+Lawyers Mutual is the standout: it insures NC law firms exclusively, so its
+customers are the same people already producing live conversations here.
+
+**ZoomInfo caveat, third time this session:** `fieldResolution` again named only
+`metroRegion`, so `industryKeywords` was silently dropped and the search returned
+SECU, UNC Medical Center and an electrical contractor. Companies hand-picked.
+
+**Curi already in the book** as "Curi Capital" — caught by dedupe before spend.
+
+**10 contacts enriched, drafts not yet written** (session context ran out). All
+rows carry validation metadata and sit at `Draft Created = N`, so the next run
+picks them up without re-spending ZoomInfo credits.
