@@ -32,9 +32,33 @@ runs have died partway and delivered nothing; a run that dies at 60% should bank
 
 ### What one morning run produces
 
-Inbox swept, tracker updated, 12–20 drafts waiting in Gmail, dashboard
-republished. Mon/Wed/Fri it prospects; Tue/Thu it follows up. Opening the
-tracker should be the only step Tyler takes.
+Inbox swept, tracker updated, **50 drafts** waiting in Gmail (Mon/Wed/Fri) or
+every 7-day-overdue follow-up (Tue/Thu), **12 companies' news refreshed**, and
+the dashboard republished. Opening the tracker should be the only step Tyler
+takes.
+
+### The newsroom rotation, and why 12
+
+Added 2026-08-06, after Tyler noticed the headlines never changed — the block
+was a hardcoded literal nothing wrote. `tools/build_news.py --targets` picks
+which companies to look up, prioritised so the ones in a live conversation are
+never stale.
+
+| Band | Companies | Covered at 12/run |
+|---|---:|---|
+| Live conversation | 75 | — |
+| A-rank | 20 | **~1.6 weeks** for both |
+| Already drafted | 65 | |
+| Not yet worked | 544 | ~12 weeks for the whole book |
+| Ruled out | 19 | never queried |
+
+12 per run is 60 a week. The 95 companies that matter get re-checked well inside
+the 21-day staleness window, and the long tail still moves. Raising it buys
+faster coverage of band 3, which is the least valuable band — so 12 is the
+right knob setting unless the live pipeline grows a lot.
+
+A company checked with **no news** is recorded as checked. "Nothing found" is a
+real answer and stops it being re-queried tomorrow.
 
 **Deliberately not hourly.** "Drafts appearing through the day" costs 13x more
 and delivers the same thing later — prospects do not arrive hourly, and a
