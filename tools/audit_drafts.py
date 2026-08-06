@@ -39,7 +39,14 @@ print(f"{'domain':24}{'wds':>4}{'par':>4}{'Best,':>7}{'sig':>5}{'em—':>5}  {'b
 for r in sorted(rows):
     print(f"{r[0]:24}{r[1]:>4}{r[2]:>4}{str(r[3]):>7}{r[4]:>5}{r[5]:>5}  {r[6][:22]:22} {r[7]}")
 print(f"\n{len(rows)} live drafts audited")
-bad=[r for r in rows if r[6]!='-' or not r[3] or r[4]!='-' or not (110<=r[1]<=180)]
+# Follow-ups are a different animal: config/followups.md sets 40-70 words
+# against voice.md's 120-170 for cold outreach. Without this flag the audit
+# flagged every correctly-written follow-up for being too short, which trains
+# whoever is running it to ignore the output — worse than not checking.
+FU = "--followups" in sys.argv
+LO, HI = (35, 90) if FU else (110, 180)
+bad=[r for r in rows if r[6]!='-' or not r[3] or r[4]!='-' or not (LO<=r[1]<=HI)]
+print(f"(word budget {LO}-{HI}: {'follow-up' if FU else 'cold outreach'})")
 print("FLAGGED:",len(bad))
 for r in bad: print("  ",r)
 
