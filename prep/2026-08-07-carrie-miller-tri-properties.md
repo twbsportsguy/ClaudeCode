@@ -78,6 +78,26 @@ tracker is deliberately blank — fill it once she gives you a number.
 
 ---
 
+## Two things you can credibly open with
+
+Both from a web search on 2026-08-06. **Neither carries a publication date I
+could verify**, so treat them as true-but-undated: safe to reference as "I saw",
+not as "last week".
+
+- **Their brokerage team was involved in 4 of the Top 10 Triangle commercial
+  real-estate transactions of 2026**, per Triangle Business Journal's rankings.
+  This is the better opener of the two — it is specific, flattering, and about
+  the part of the business that a golf outing actually serves.
+- **Imperial Tower is 50% leased**, with a headquarters tenant signing more than
+  a floor.
+
+Do not oversell either. If she corrects a detail, take the correction — you saw
+it in passing, you are not claiming to have studied their portfolio.
+
+*(ZoomInfo has no news on Tri Properties since Aug 2025, so this is the whole
+public picture. That gap is recorded so the newsroom does not re-query them
+tomorrow.)*
+
 ## Questions worth asking her
 
 1. What made your CEO forward it — is there a specific client group or event
