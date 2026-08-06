@@ -41,8 +41,38 @@ Record each follow-up in the row's **Notes**: `FU1 2026-07-22`, `FU2 …`.
 Derive "due" from Date Added + the most recent `FU#` date in Notes, and
 update **Next Step** to the next planned touch.
 
+## Reply IN THE THREAD. Not a new email. (Tyler, 2026-08-05)
+
+A follow-up is a reply, always — never a fresh message with its own subject.
+The prospect sees what was said the first time, and it reads as a person
+continuing a conversation instead of a second cold approach.
+
+How, concretely:
+
+1. Find the original send:
+   `mcp__Gmail__search_threads` with `in:sent (to:a@x.com OR to:b@y.com OR …)`.
+   Batch a dozen addresses per query — one query per contact is wasteful, and
+   paginating a broad date range to find them is worse.
+2. Take the **message** id of Tyler's send (not the thread id).
+3. `mcp__Gmail__create_draft` with `replyToMessageId: <that id>`.
+   **Omit the subject** — it inherits `Re: <original>`, which already names
+   Finley, so the every-subject-names-Finley rule is satisfied by inheritance.
+
+Two limits worth knowing before you get this wrong:
+
+- **`update_draft` cannot add `replyToMessageId`.** A standalone draft cannot be
+  converted into a threaded one. It has to be created as a reply from the start.
+- **There is no delete-draft tool.** So a wrong draft cannot be cleaned up
+  silently. Retitle it `[VOID - delete me] …` with a body saying not to send —
+  `audit_drafts.py` already skips subjects beginning `[VOID`, and Tyler can
+  clear them in one pass.
+
+This happened on 2026-08-05: 23 follow-ups were created standalone, then had to
+be rebuilt as replies and the originals voided by hand. Doing it right the first
+time costs one extra search.
+
 ## Writing the follow-up (follow config/voice.md)
-- Short — 40–70 words; reply on the original thread when possible.
+- Short — 40–70 words.
 - Briefly reference the first note, add ONE new angle or proof point, keep the
   same 15-minute ask. Never guilt-trip. Vary wording across FU1/FU2/FU3.
 - Signature verbatim from `config/profile.md`. Drafts only, never send.
