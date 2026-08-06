@@ -96,6 +96,40 @@ for s,v in col: print(f"  \"{s}\" -> {', '.join(v)}")
 print("  none" if not col else f"  {len(col)} collision(s)")
 
 # ---------------------------------------------------------------------------
+# Address freshness. A ~14% hard-bounce rate is what gets a sender flagged, far
+# more than the daily volume is — see tools/check_addresses.py for the numbers.
+# This is the last gate before a draft exists, so a BLOCK here is a draft that
+# should not be created at all.
+print("\nADDRESS FRESHNESS (from check_addresses.py):")
+try:
+    from check_addresses import verdict as addr_verdict
+    trk = {}
+    for row in list(csv.reader(open("tracker/prospects.csv")))[1:]:
+        if len(row) > 21 and "@" in row[15]:
+            trk[row[15].strip().lower()] = row[21] + " " + row[20]
+    tally = {"PASS": 0, "WARN": 0, "BLOCK": 0, "NOROW": 0}
+    for d in drafts:
+        if d["subject"].startswith("[VOID") or "ATMA" in d["subject"]: continue
+        to = d["toRecipients"][0].lower()
+        if to not in trk:
+            tally["NOROW"] += 1
+            continue
+        v, why = addr_verdict(trk[to])
+        tally[v] += 1
+        if v == "BLOCK":
+            print(f"  BLOCK {to} — {why}")
+            print(f"        do not create this draft; find another contact")
+    print(f"  {tally['PASS']} fresh · {tally['WARN']} unverified · "
+          f"{tally['BLOCK']} blocked · {tally['NOROW']} not in tracker")
+    if tally["WARN"]:
+        # Not a failure. Stating it keeps the coverage gap visible rather than
+        # letting 95%-unverified quietly read as 95%-fine.
+        print(f"  {tally['WARN']} draft(s) go to addresses with no recent "
+              f"validation — that pool is where the bounces come from.")
+except (OSError, ImportError, IndexError) as e:
+    print(f"  could not run the freshness gate ({e})")
+
+# ---------------------------------------------------------------------------
 # Learned rules. tools/reply_features.py measures which features actually earn
 # replies and writes the survivors to dashboard/reply-features.json; this reads
 # them back and holds new drafts to them. That is the whole loop: a finding in

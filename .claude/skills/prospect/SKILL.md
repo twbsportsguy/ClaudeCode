@@ -271,6 +271,29 @@ could buy, influence, or champion a partnership:
   General Managers, territory / district / regional managers, market leaders
 - Owners, founders, and C-level / VP / GM / President
 
+### Record freshness on every contact — this is not optional
+
+For each contact pulled, write into the row's **Notes**, verbatim shape:
+
+```
+Accuracy <contactAccuracyScore>, validated <lastUpdatedDate as YYYY-MM-DD>
+```
+
+`tools/check_addresses.py` parses exactly that, and `tools/audit_drafts.py`
+refuses a draft to any address it can prove is stale. Skipping it is not
+neutral — an unrecorded contact is indistinguishable from an unverified one and
+lands in the WARN pool, which is where the bounces come from.
+
+**Why it matters more than the draft count.** This book runs a ~14% hard-bounce
+rate (186 drafted → 25 DEAD-EMAIL; 55 sent on 2026-07-29 → 8 bounced). Healthy
+is under 2–3%, and over 5% is where mailbox providers throttle and block. That
+rate — not the daily volume — is what gets a sending address flagged, and
+Tyler sends from `alumni.unc.edu`, a domain he does not control. Coverage of
+this field was **6.2%** on 2026-08-05; every run should raise it.
+
+Never draft to a contact `check_addresses.py` returns **BLOCK** for. Find
+someone else at that company.
+
 Search these via `department`/`jobFunction` (e.g. Marketing, Sales) and
 `jobTitle` (e.g. `"Marketing OR Brand OR Events OR Sponsorship OR Partnerships
 OR Community OR Communications OR Sales OR Owner OR President OR General
