@@ -1,0 +1,405 @@
+{
+ "generated": "2026-08-06",
+ "companies": [
+  {
+   "company": "Leith Cars",
+   "city": "Raleigh",
+   "state": "NC",
+   "rank": "B",
+   "score": "60",
+   "industry": "Auto",
+   "kind": "stale",
+   "contacts": [
+    {
+     "name": "Brad Smith",
+     "title": "Director, Fixed Operations",
+     "phone": "(919) 366-8000",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Coy Lovell",
+     "title": "General Manager",
+     "phone": "(919) 481-2880",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "David Coyle",
+     "title": "General Manager, Jaguar Land Rover (Cary)",
+     "phone": "(919) 469-1000",
+     "email": "david.coyle@leithcars.com",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Kevin Mills",
+     "title": "General Manager",
+     "phone": "(919) 467-4747",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Michael Jurasek",
+     "title": "General Manager",
+     "phone": "(919) 842-5686",
+     "email": "mike.jurasek@leithcars.com",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Kevin Kane",
+     "title": "General Manager",
+     "phone": "",
+     "email": "kevin.kane@leithcars.com",
+     "age": 34,
+     "kind": "stale"
+    }
+   ]
+  },
+  {
+   "company": "Sport Durst Automotive",
+   "city": "Durham",
+   "state": "NC",
+   "rank": "B",
+   "score": "55",
+   "industry": "Auto",
+   "kind": "stale",
+   "contacts": [
+    {
+     "name": "Dennis Koballa",
+     "title": "Director, Finance",
+     "phone": "(919) 489-6531",
+     "email": "dkoballa@sportdurst.com",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Ken Nichols",
+     "title": "General Manager",
+     "phone": "(919) 489-6531",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Mike McLachlan",
+     "title": "Sales Director, Used Car",
+     "phone": "(919) 924-5655",
+     "email": "mmclachlan@sportdurst.com",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Wayne DuBois",
+     "title": "Chief Operating Officer & Vice President",
+     "phone": "(919) 489-6531",
+     "email": "wayne.dubois@sportdurst.com",
+     "age": 34,
+     "kind": "stale"
+    }
+   ]
+  },
+  {
+   "company": "Kymera International",
+   "city": "Durham",
+   "state": "NC",
+   "rank": "B",
+   "score": "57",
+   "industry": "Wholesale Supply",
+   "kind": "stale",
+   "contacts": [
+    {
+     "name": "Tom Pelletiers",
+     "title": "Vice President, Business Development",
+     "phone": "(919) 544-8090",
+     "email": "tom.pelletiers@kymerainternational.com",
+     "age": 7,
+     "kind": "stale"
+    },
+    {
+     "name": "Adam Hines",
+     "title": "Vice President, Sales (Americas)",
+     "phone": "",
+     "email": "adam.hines@kymerainternational.com",
+     "age": 7,
+     "kind": "stale"
+    },
+    {
+     "name": "Graham Walker",
+     "title": "Vice President, Sales & Marketing",
+     "phone": "",
+     "email": "",
+     "age": 7,
+     "kind": "stale"
+    }
+   ]
+  },
+  {
+   "company": "O2 Fitness",
+   "city": "Raleigh",
+   "state": "NC",
+   "rank": "B",
+   "score": "57",
+   "industry": "Local businesses",
+   "kind": "stale",
+   "contacts": [
+    {
+     "name": "Cooper Elias",
+     "title": "Vice President, Marketing Operations",
+     "phone": "(919) 846-5002",
+     "email": "",
+     "age": 8,
+     "kind": "stale"
+    },
+    {
+     "name": "Judi Edelman",
+     "title": "Director, Culture & Customer Experience",
+     "phone": "(919) 676-5802",
+     "email": "",
+     "age": 8,
+     "kind": "stale"
+    }
+   ]
+  },
+  {
+   "company": "Fonville Morisey Realty",
+   "city": "Raleigh",
+   "state": "NC",
+   "rank": "A",
+   "score": "71",
+   "industry": "Real Estate",
+   "kind": "stale",
+   "contacts": [
+    {
+     "name": "Scott Gibson",
+     "title": "Vice President and Sales Manager",
+     "phone": "(919) 469-6301",
+     "email": "sgibson@fmrealty.com",
+     "age": 7,
+     "kind": "stale"
+    },
+    {
+     "name": "Vickie Cardin",
+     "title": "Vice President, Marketing",
+     "phone": "(919) 595-4364",
+     "email": "",
+     "age": 7,
+     "kind": "stale"
+    }
+   ]
+  },
+  {
+   "company": "University Ford of Durham",
+   "city": "Durham",
+   "state": "NC",
+   "rank": "B",
+   "score": "55",
+   "industry": "Auto",
+   "kind": "stale",
+   "contacts": [
+    {
+     "name": "Joseph Wiedholz",
+     "title": "General Manager",
+     "phone": "(919) 929-3115",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    }
+   ]
+  },
+  {
+   "company": "Anderson Automotive Group",
+   "city": "Raleigh",
+   "state": "NC",
+   "rank": "A",
+   "score": "85",
+   "industry": "Auto",
+   "kind": "blocked",
+   "contacts": [
+    {
+     "name": "Bryan Galloway",
+     "title": "Vice President, Fixed Operations",
+     "phone": "(919) 571-3910",
+     "email": "bgalloway@anderson-auto.net",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Chad McHargue",
+     "title": "Corporate Director, Fixed Operations",
+     "phone": "(828) 365-1624",
+     "email": "cmchargue@anderson-auto.net",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Paul McDonald",
+     "title": "Vice President, Sales",
+     "phone": "(760) 390-2996",
+     "email": "",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Robert Lyon",
+     "title": "Vice President, Finance & Risk Management",
+     "phone": "(919) 608-0974",
+     "email": "",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Stephanie Lange",
+     "title": "Director, Marketing",
+     "phone": "(608) 346-2171",
+     "email": "",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Thomas Serpe",
+     "title": "Chief Financial Officer",
+     "phone": "(410) 554-1500",
+     "email": "tserpe@andersonautomotive.com",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Andy Little",
+     "title": "Director, Variable Operations",
+     "phone": "",
+     "email": "",
+     "age": 34,
+     "kind": "blocked"
+    }
+   ]
+  },
+  {
+   "company": "Capital Automotive Group",
+   "city": "Raleigh",
+   "state": "NC",
+   "rank": "B",
+   "score": "65",
+   "industry": "Auto",
+   "kind": "blocked",
+   "contacts": [
+    {
+     "name": "Christopher Watts",
+     "title": "Director, Service Operations",
+     "phone": "(864) 238-8791",
+     "email": "cwatts@capitalautogroup.com",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Eric Mountain",
+     "title": "Director, Sales & Business Development",
+     "phone": "(919) 874-9824",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Lindsey Michael-Longo",
+     "title": "Chief Strategy Officer",
+     "phone": "(919) 853-7761",
+     "email": "llongo@capitalautogroup.com",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Michael Erexson",
+     "title": "Director of Rental",
+     "phone": "(919) 414-8275",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    },
+    {
+     "name": "Renee Pakkala",
+     "title": "Chief Financial Officer",
+     "phone": "(919) 812-5902",
+     "email": "renee.pakkala@capitalautogroup.com",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Marina Abbott",
+     "title": "Chief Financial Officer",
+     "phone": "",
+     "email": "",
+     "age": 34,
+     "kind": "stale"
+    }
+   ]
+  },
+  {
+   "company": "Crossroads Ford Group",
+   "city": "Wake Forest",
+   "state": "NC",
+   "rank": "B",
+   "score": "62",
+   "industry": "Auto",
+   "kind": "blocked",
+   "contacts": [
+    {
+     "name": "Dean Conforti",
+     "title": "Director, Variable Operations",
+     "phone": "(201) 370-8607",
+     "email": "",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Richard Haines",
+     "title": "General Manager",
+     "phone": "(407) 394-4551",
+     "email": "",
+     "age": 34,
+     "kind": "blocked"
+    },
+    {
+     "name": "Shayan Sheibani",
+     "title": "General Manager",
+     "phone": "(919) 358-9818",
+     "email": "",
+     "age": 34,
+     "kind": "blocked"
+    }
+   ]
+  },
+  {
+   "company": "Summit Hospitality Group",
+   "city": "Raleigh",
+   "state": "NC",
+   "rank": "B",
+   "score": "58",
+   "industry": "Hospitality",
+   "kind": "blocked",
+   "contacts": [
+    {
+     "name": "Malea Washington",
+     "title": "General Manager",
+     "phone": "(919) 881-9800",
+     "email": "mwashington@summithospitality.com",
+     "age": 8,
+     "kind": "blocked"
+    },
+    {
+     "name": "Rushell Jones",
+     "title": "General Manager",
+     "phone": "(919) 933-4848",
+     "email": "jones.rushell@summithospitality.com",
+     "age": 8,
+     "kind": "blocked"
+    }
+   ]
+  }
+ ],
+ "contacts": 36,
+ "withPhone": 31
+}
