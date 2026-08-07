@@ -320,3 +320,35 @@ at a stranger.
 **One practical blocker:** there is no partnership packet in this repo. Nothing
 can be attached until Tyler puts the file somewhere the pipeline can read it —
 `assets/` is the obvious home.
+
+## Two things the Carrie Miller call proved wrong (2026-08-07)
+
+First real feedback from a prospect who read the material and then talked to us.
+Both problems are ours, not hers, and both are cheap to fix.
+
+**1. It reads as though we're asking them to sponsor a golf tournament.**
+
+Her words: at first glance people might think that's the ask. That is close to
+the opposite of the offer — Finley sells hospitality and marketing, and the
+prospect is the *guest*, not the donor. A sponsorship read makes it a charity
+request, which is exactly the frame Tyler banned for raffles and in-kind on
+2026-07-28.
+
+The phrase doing the damage was ours: *"rather than selling fixed sponsorship
+tiers"*. It was meant as a contrast and lands as a topic. **Do not use the word
+"sponsorship" in cold copy at all**, even in the negative — a skim-reader takes
+the noun and drops the "rather than".
+
+Say instead, early and plainly: *"this isn't asking you to sponsor a
+tournament — it's a way to host clients"*.
+
+**2. Nobody knows the items can be bought on their own.**
+
+She could not tell whether à-la-carte pieces were standalone or add-ons **on top
+of** a package price. That ambiguity stops a small first purchase, which is the
+entry point for most of this book. State it: **the pieces work individually, and
+a single item is a complete purchase.**
+
+Both fixes went into the nine insurance drafts of 2026-08-07 mid-batch. The
+three sent before the call (Zureich, Stroud, Beavers at Lawyers Mutual) still
+carry the old framing — worth a look before sending.
