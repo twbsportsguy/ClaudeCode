@@ -1,5 +1,70 @@
 # Scheduled Routines
 
+## Current setup, 2026-08-05: ONE Routine, once a weekday morning
+
+| Routine | ID | Cron (UTC) | Local | State |
+|---|---|---|---|---|
+| **Finley daily — sweep, tracker, drafts** | `trig_01Dgemdpn6S9hEDWUmg4iq4x` | `30 11 * * 1-5` | weekdays 7:30am ET | **live** |
+| ~~Finley prospecting autopilot~~ | `trig_01UoHSH8buAT6XeLYa673zBK` | — | — | folded in, disabled |
+| ~~Finley follow-ups~~ | `trig_018QSnQzvaXZksfBrieNB1ar` | — | — | folded in, disabled |
+| ~~SalesFlow new prospecting / follow-ups~~ | `…64Hb` / `…ihXTs` | — | — | superseded, disabled |
+
+**Why one:** the old shape ran **70 jobs a week** — 65 of them the hourly
+dashboard refresh. On 2026-08-05 that refresh fired 7 times before noon and
+committed nothing, doing a full Gmail sweep each time. Its entire week of
+output was four commits, all in one night, all the same refresh. Meanwhile the
+two Routines that actually make drafts ran 5 times a week and produced nothing
+at all. The new shape is **5 jobs a week**, a 14x cut, and the one surviving
+job does the whole pipeline.
+
+**Why this trigger and not the other two:** `trig_01Dgemdpn6S9hEDWUmg4iq4x` is
+the only trigger that has ever written to this repo (five commits, 2026-08-05
+01:34–01:48Z, including two merge commits resolving concurrent runs). Six fires
+of the other two produced nothing. Rather than keep debugging why, the work
+moved onto the one with a proven write path. This is evidence, not certainty —
+the refresh job is also much shorter, so its success may be about length rather
+than the trigger. Checkpointing (below) is the hedge either way.
+
+**Checkpoint commits are the important part.** The prompt commits and pushes
+after the inbox sync, then after every 5 drafts, instead of once at the end. Six
+runs have died partway and delivered nothing; a run that dies at 60% should bank
+60%. A partial push is a success.
+
+### What one morning run produces
+
+Inbox swept, tracker updated, **50 drafts** waiting in Gmail (Mon/Wed/Fri) or
+every 7-day-overdue follow-up (Tue/Thu), **12 companies' news refreshed**, and
+the dashboard republished. Opening the tracker should be the only step Tyler
+takes.
+
+### The newsroom rotation, and why 12
+
+Added 2026-08-06, after Tyler noticed the headlines never changed — the block
+was a hardcoded literal nothing wrote. `tools/build_news.py --targets` picks
+which companies to look up, prioritised so the ones in a live conversation are
+never stale.
+
+| Band | Companies | Covered at 12/run |
+|---|---:|---|
+| Live conversation | 75 | — |
+| A-rank | 20 | **~1.6 weeks** for both |
+| Already drafted | 65 | |
+| Not yet worked | 544 | ~12 weeks for the whole book |
+| Ruled out | 19 | never queried |
+
+12 per run is 60 a week. The 95 companies that matter get re-checked well inside
+the 21-day staleness window, and the long tail still moves. Raising it buys
+faster coverage of band 3, which is the least valuable band — so 12 is the
+right knob setting unless the live pipeline grows a lot.
+
+A company checked with **no news** is recorded as checked. "Nothing found" is a
+real answer and stops it being re-queried tomorrow.
+
+**Deliberately not hourly.** "Drafts appearing through the day" costs 13x more
+and delivers the same thing later — prospects do not arrive hourly, and a
+morning batch is already a day's work waiting. If volume needs to go up, raise
+the per-run draft target before adding a second run.
+
 ## Root cause, 2026-08-04: the outcome branch, not the repo
 
 Two diagnoses before this one were wrong and are recorded here so nobody spends

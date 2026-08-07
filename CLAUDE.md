@@ -39,6 +39,8 @@ Weekly rhythm via scheduled Routines: **Mon/Wed/Fri = new prospecting**
 | `tools/analyze_inbox.py` | Classifies everything that came back from a send — bounces, departures, out-of-offices, real replies — and reports deliverability by domain |
 | `tools/sync_activity.py` | Works out which drafts were actually **sent**, writes that to the tracker, and prints the day's activity |
 | `tools/reply_features.py` | Scores every sent email on the choices it made and tests those choices against whether it got answered — writes the survivors to `config/what-works.md` |
+| `tools/check_addresses.py` | Address-freshness gate. A ~14% hard-bounce rate is what gets a sender flagged, far more than daily volume — this blocks drafts to addresses known bad and counts the unverified pool |
+| `tools/build_news.py` | Keeps the dashboard newsroom fresh. Rotates through the book — live conversations first, then A-rank — and injects the result into `index.html`; the block was a frozen literal until 2026-08-06 |
 | `config/what-works.md` | **Generated.** The copy features proven to earn replies; read by SKILL.md Step 7, enforced by `audit_drafts.py` |
 | `tracker/email-corpus.jsonl` | Accumulating bank of sent/draft bodies so body-level analysis sharpens over time |
 | `tracker/prospects.csv` | Master prospect data — source of truth for the Google Sheet |

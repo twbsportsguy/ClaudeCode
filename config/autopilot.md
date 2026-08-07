@@ -6,20 +6,57 @@ keywords — choose the next targets here, act, and log why.
 **Weekly rhythm:** Mon/Wed/Fri = new prospecting (this file). Tue/Thu =
 follow-ups to non-repliers (`config/followups.md`), not new prospecting.
 
-## Per-run budget
-- **2 segments** per run (a segment = one industry × one market, where a market
-  is an NC sub-market or, on outer-ring runs, a Southeast / East Coast metro).
-- ~8–10 companies per segment (~15–20 companies total); pull the **full buying
-  committee** per company — every useful contact, not just decision-makers
-  (see SKILL.md Step 3). More contacts per company = more forward-up shots.
-- Hard stop: don't enrich a 3rd segment in one run (ZoomInfo credit control).
-- **This budget is a floor, not a ceiling** (Tyler, 2026-07-30: *"you should be
-  creating more drafts than just a handful"*). Runs had drifted to 5–7 drafts
-  across 2 companies — about a third of what's written above. If a segment turns
-  out thin in ZoomInfo, that is a reason to **open the second segment**, not a
-  reason to finish the run early. A run landing under ~12 drafts needs a stated
-  reason, and "the data wasn't there" only counts once both segments have been
-  swept.
+## Per-run budget — 50 drafts (Tyler, 2026-08-05)
+
+Asked for 100/day, then asked what was actually safe and set it to **50**.
+
+**The binding constraint is the bounce rate, not the daily count.** Two
+independent measures put this book at ~14% hard bounces (186 drafted → 25
+DEAD-EMAIL = 13.4%; 2026-07-29's 55 sent → 8 bounced = 14.5%). Healthy is under
+2–3%; over 5% is where mailbox providers start throttling and blocking. At ~14%
+the volume barely matters — the list quality is what gets an address flagged,
+and this book already carries 10 SERVER BLOCK domains.
+
+Compounding it: `twbaity@alumni.unc.edu` is a domain Tyler does not control. No
+SPF/DKIM/DMARC to tune, no subdomain to warm, reputation shared with the whole
+university, and a flag lands on his real professional identity. Volume beyond a
+single well-behaved mailbox needs a Finley-owned domain, not a bigger number
+here.
+
+- **Target: 50 drafts per MWF run** (~150/week, matching a safe 30/day send rate
+  across five weekdays). Raise toward 50/day sends only once bounces hold under
+  3% for two to three weeks.
+- **3–4 segments** per run. The old 2-segment cap was too tight; 4–6 was set
+  briefly for the 100 target and is more than 50 needs.
+- ~8–10 companies per segment, **full buying committee** per company (SKILL.md
+  Step 3). At 3–4 contacts per company, ~15 companies reaches 50.
+- Open segments until the target is met. A thin segment is a reason to open the
+  next one, never a reason to end the run.
+
+### Address freshness is part of the budget
+
+Run `python3 tools/check_addresses.py` before drafting. Never draft to a
+**BLOCK** address — accuracy below 85, validated over a year ago, or already
+carrying DEAD-EMAIL / SERVER BLOCK. Find another contact at that company.
+
+**Record validation metadata on every new pull.** ZoomInfo returns a validation
+date and an accuracy score; write them into Notes as
+`Accuracy <n>, validated <YYYY-MM-DD>`. Coverage is currently **6.2%** (77 of
+1,243 rows), which is why the gate is mostly advisory — it sharpens on its own
+as coverage rises, and that is the single highest-value change available to
+deliverability.
+
+### Honesty about the number
+
+- **Commit every 10 drafts.** A run that dies at 30 must leave 30 drafts and a
+  synced tracker, not nothing. Runs have died partway six times.
+- **Report the real count**, not the target. Under-delivering is acceptable;
+  pretending is not.
+- **Depth is what gets cut, not honesty.** If research has to go shallower to
+  reach volume, name the companies that got the shallow pass so they can be
+  revisited. A draft with a fabricated hook is worse than no draft.
+- ZoomInfo credit control still applies: if the subscription rate-limits, stop
+  pulling and finish drafting what you already have.
 
 ## The universe
 Derived from Tyler's actual book (397 companies imported from the FGC Master

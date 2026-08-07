@@ -48,8 +48,24 @@ TSV COLUMNS (tab-separated, no header, one line per MESSAGE):
 """
 import sys, os, json, datetime
 
-LEDGER = "tracker/inbox-seen.jsonl"
+LEDGER = "tracker/inbox-seen.jsonl"   # legacy: thread -> message COUNT only
+CORPUS = "tracker/inbox-corpus.jsonl" # thread -> the messages themselves
 OUT    = "threads.json"
+
+# WHY THE CORPUS EXISTS (bug found 2026-08-05)
+# -------------------------------------------
+# The ledger above saves tokens by not re-FETCHING settled threads, which is
+# correct and worth keeping. The mistake was writing only the survivors to
+# threads.json, because analyze_inbox.py:346 does a plain json.dump over
+# dashboard/inbox.json — a full overwrite, not a merge. So a refresh that
+# legitimately found 9 new threads rebuilt the entire dashboard from those 9
+# and dropped dashboard/inbox.json from 188 messages to 88.
+#
+# Fetching incrementally and REPORTING incrementally are different things. The
+# saving is in the first; the bug was in the second. So the corpus keeps every
+# message ever ingested on disk and threads.json is always the complete union.
+# Emitting the full set costs nothing in tokens — it never enters anyone's
+# context, it goes straight to a local file that local scripts read.
 
 # The sweep. Bounded where bounding is safe and unbounded where it is not.
 #
@@ -94,7 +110,22 @@ def print_queries(since):
           "ledger, and skip any threadId in it whose message count is unchanged.")
 
 
+def load_corpus():
+    """thread id -> list of message dicts, for every thread ever ingested."""
+    corpus = {}
+    if os.path.exists(CORPUS):
+        for line in open(CORPUS):
+            line = line.strip()
+            if line:
+                r = json.loads(line)
+                corpus[r["thread"]] = r.get("msgs", [])
+    return corpus
+
+
 def load_ledger():
+    """Legacy count-only ledger. Still read so an existing install knows which
+    threads it has already seen, but it cannot rebuild threads.json on its own
+    — it never stored the messages. See migrate note in ingest()."""
     seen = {}
     if os.path.exists(LEDGER):
         for line in open(LEDGER):
@@ -105,8 +136,28 @@ def load_ledger():
     return seen
 
 
+def save_corpus(corpus):
+    os.makedirs(os.path.dirname(CORPUS), exist_ok=True)
+    with open(CORPUS, "w") as fh:
+        for tid, msgs in sorted(corpus.items()):
+            fh.write(json.dumps({"thread": tid, "msgs": msgs}) + "\n")
+
+
 def ingest(path, use_ledger=True):
-    seen = load_ledger() if use_ledger else {}
+    corpus = load_corpus()
+    # The ledger is ALWAYS loaded, even under --all. --all means "re-ingest
+    # these threads rather than trusting the skip test"; it must never mean
+    # "forget every thread not in today's dump". Loading it only when
+    # use_ledger was true meant a --all run against a two-thread dump rewrote
+    # the 126-thread ledger with two lines. Caught on 2026-08-05 by doing
+    # exactly that; the file was tracked, so git had the original.
+    ledger = load_ledger()
+    seen = dict(ledger)
+    skip = ledger if use_ledger else {}
+    # A thread already in the corpus counts as seen even if the legacy ledger
+    # was never written, so the two stay consistent as the old file ages out.
+    for tid, msgs in corpus.items():
+        seen.setdefault(tid, len(msgs))
     threads, order = {}, []
     for ln in open(path):
         ln = ln.rstrip("\n")
@@ -126,37 +177,61 @@ def ingest(path, use_ledger=True):
             "subject": subject, "snippet": snippet,
         })
 
-    fresh, skipped = [], 0
+    changed, unchanged = 0, 0
     for tid in order:
         msgs = threads[tid]
-        if use_ledger and seen.get(tid) == len(msgs):
-            skipped += 1
+        if skip.get(tid) == len(msgs) and tid in corpus:
+            unchanged += 1
             continue
-        fresh.append({"id": tid, "messages": msgs})
+        corpus[tid] = msgs          # new thread, or one that gained a message
+        changed += 1
 
-    json.dump({"threads": fresh}, open(OUT, "w"), indent=1)
+    # threads.json is the COMPLETE picture, always. analyze_inbox.py overwrites
+    # dashboard/inbox.json wholesale from this file, so handing it a partial set
+    # silently deletes history — that is exactly what happened on 2026-08-05.
+    allthreads = [{"id": t, "messages": m} for t, m in corpus.items()]
+    json.dump({"threads": allthreads}, open(OUT, "w"), indent=1)
+    save_corpus(corpus)
 
-    # Ledger is rewritten whole so a thread that gained a message updates its
-    # count rather than accumulating duplicate lines.
-    for tid in order:
-        seen[tid] = len(threads[tid])
+    # Legacy ledger kept in step so an older checkout still skips correctly.
+    for tid, msgs in corpus.items():
+        seen[tid] = len(msgs)
     os.makedirs(os.path.dirname(LEDGER), exist_ok=True)
     with open(LEDGER, "w") as fh:
         for t, n in sorted(seen.items()):
             fh.write(json.dumps({"thread": t, "msgs": n}) + "\n")
 
-    print(f"ingested {len(order)} threads, {sum(len(v) for v in threads.values())} messages")
-    print(f"  {len(fresh)} new or changed -> {OUT}")
-    print(f"  {skipped} unchanged, skipped (ledger now holds {len(seen)} threads)")
-    if not fresh:
-        print("  nothing changed since the last sweep — no need to run analyze_inbox.py")
+    msgs_total = sum(len(m) for m in corpus.values())
+    print(f"dump held {len(order)} threads, "
+          f"{sum(len(v) for v in threads.values())} messages")
+    print(f"  {changed} new or changed, {unchanged} unchanged and reused from corpus")
+    print(f"  -> {OUT}: {len(allthreads)} threads / {msgs_total} messages (COMPLETE set)")
+    if not changed:
+        print("  nothing changed since the last sweep — dashboard rebuild optional")
+
+    # The pre-2026-08-05 install has a count-only ledger and no corpus, so the
+    # first run after this fix knows which threads it has seen but not what was
+    # in them. Say so loudly rather than quietly emitting a short file.
+    missing = [t for t in seen if t not in corpus]
+    if missing:
+        print(f"\n  WARNING: {len(missing)} thread(s) are in the legacy ledger but "
+              f"have no stored messages.\n"
+              f"  threads.json is incomplete by that many. Re-run the sweep once "
+              f"with --all to\n  seed the corpus in full; after that this warning "
+              f"goes away for good.")
 
 
 def main():
     a = sys.argv[1:]
     if "--stats" in a:
-        seen = load_ledger()
+        seen, corpus = load_ledger(), load_corpus()
         print(f"{LEDGER}: {len(seen)} threads settled")
+        print(f"{CORPUS}: {len(corpus)} threads / "
+              f"{sum(len(m) for m in corpus.values())} messages stored")
+        missing = [t for t in seen if t not in corpus]
+        if missing:
+            print(f"  {len(missing)} settled thread(s) have no stored messages — "
+                  f"run one sweep with --all to seed the corpus")
         return
     if "--ingest" in a:
         ingest(a[a.index("--ingest") + 1], use_ledger="--all" not in a)

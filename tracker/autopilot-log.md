@@ -853,3 +853,55 @@ column and no number has been agreed.
 Also seen and correctly ignored: an Adwerx support auto-acknowledgement (Geoff's
 address routes into a ticket queue), a job applicant chasing twice, pro-shop
 hiring admin, and starter-shift scheduling. None are outreach replies.
+
+---
+
+## 2026-08-05 | Tier 1 (Triangle) | seg1: commercial real estate / Raleigh-Durham · seg2: hospitality & restaurant groups / Triangle
+
+**Why seg1 (double down, autopilot.md rule 2):** real estate carries 14 live
+conversations across 39 companies, and two of them are already at
+`Interested: 50%` — York Properties (10 contacts) and Prudent Growth Partners
+(4). Tri Properties sits at `Red-Hots: 75%` with a call booked for Friday 8 Aug
+off exactly the broker/tenant-renewal angle. The segment is demonstrably
+answering, so it earns more at-bats.
+
+**Why seg2 (explore, rule 4):** hospitality holds only 4 logged companies and
+restaurants none at all, against a book of 723. The vein is not untested though
+— the ATMA Hotel Group Stay-&-Play thread shows Triangle hotel operators engage
+with a Finley tie-in, so this is an under-covered segment rather than a guess.
+
+**Tier 1 confirmed, not assumed:** both segments are Chapel Hill / Durham /
+Raleigh / Cary. No farther tier opened.
+
+**ZoomInfo caveat worth recording.** Both company searches returned
+`fieldResolution` naming **only** `metroRegion` — the `industryKeywords` and
+`industryList` filters were silently dropped, which is why a "commercial real
+estate" search returned Syneos Health and Extreme Networks. Same class of
+failure as the `&` in `industryCodes`. Companies were hand-picked from the
+results rather than trusted wholesale; anyone repeating this run should read
+`fieldResolution` before believing a filter applied.
+
+**Deliberately excluded:** McConnell Golf and Pinehurst Resort (direct golf
+competitors), UNC Athletics (Finley's own relationship), Summit Hospitality
+(SERVER BLOCK, two dead addresses), O2 Fitness and Concord Hospitality (already
+in the book).
+
+**15 new companies after dedupe** — 6 CRE, 9 hospitality/restaurant.
+
+## 2026-08-05 (2nd run) | Tier 1 | seg: insurance brokerages & benefits / Triangle
+
+**Why:** insurance was untested as a segment but is structurally identical to law
+firms and wealth management — relationship businesses whose producers already
+entertain clients — and those are two of the warmest categories in the book.
+Lawyers Mutual is the standout: it insures NC law firms exclusively, so its
+customers are the same people already producing live conversations here.
+
+**ZoomInfo caveat, third time this session:** `fieldResolution` again named only
+`metroRegion`, so `industryKeywords` was silently dropped and the search returned
+SECU, UNC Medical Center and an electrical contractor. Companies hand-picked.
+
+**Curi already in the book** as "Curi Capital" — caught by dedupe before spend.
+
+**10 contacts enriched, drafts not yet written** (session context ran out). All
+rows carry validation metadata and sit at `Draft Created = N`, so the next run
+picks them up without re-spending ZoomInfo credits.

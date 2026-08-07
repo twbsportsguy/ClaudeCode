@@ -1,3 +1,8 @@
 # Generated build artifact from tools/build_live_tracker_xlsx.py
 Sales Tracker (live).xlsx
 *.xlsx
+
+# Python bytecode. Was tracked until 2026-08-05, so every Routine run
+# committed a "Bin 28287 -> 28287 bytes" no-op diff alongside real work.
+__pycache__/
+*.pyc
