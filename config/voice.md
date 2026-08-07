@@ -284,3 +284,39 @@ It still cannot judge one thing, so check it by eye:
 - Preferred sign-off (before Gmail's auto-signature): <e.g. "Thanks," / "Best," / none>
 - Anything above to dial up or down: <...>
 - A real email in your own voice to mirror: <paste and I'll match it>
+
+## Attachments (Tyler asked 2026-08-06)
+
+**Capability: unconfirmed.** `mcp__Gmail__create_draft` exposes an `attachments`
+parameter and accepts it without error, but the same tool's description says
+*"Creating drafts with attachments is not supported yet"*, and `list_drafts`
+does not report attachments back. A test draft was created on 2026-08-06
+(`[VOID - delete me] attachment capability test`) for Tyler to open and confirm.
+Do not tell him attachments work until someone has actually seen one.
+
+**Policy, assuming it does work: do NOT attach to cold first contact.**
+
+This is a deliverability decision, not a design preference. An attachment from
+an unknown sender is a spam signal, and this book cannot afford another one:
+hard bounces run ~14% against a healthy 2-3%, and Tyler sends from
+`alumni.unc.edu`, a domain he does not control and cannot tune. Adding
+attachments to 50 cold emails a run is the kind of change that turns a bad
+reputation into a blocked one.
+
+So:
+
+| Stage | Attachment? |
+|---|---|
+| Cold first contact | **No.** Link to the packet if it must be referenced at all. |
+| Follow-up to a non-replier | **No.** Still cold in every way that matters to a filter. |
+| They replied, or asked for detail | **Yes** — send it, that is what it is for. |
+| A booked call (e.g. Carrie Miller) | **Yes**, before or after. |
+
+A prospect who wants the packet will ask, and the ask is a better signal than
+the send. Carrie Miller is the case in point: she came in off a flyer, asked
+what the offerings were, and booked a call — none of which needed a PDF fired
+at a stranger.
+
+**One practical blocker:** there is no partnership packet in this repo. Nothing
+can be attached until Tyler puts the file somewhere the pipeline can read it —
+`assets/` is the obvious home.
