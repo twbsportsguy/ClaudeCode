@@ -321,34 +321,45 @@ at a stranger.
 can be attached until Tyler puts the file somewhere the pipeline can read it —
 `assets/` is the obvious home.
 
-## Two things the Carrie Miller call proved wrong (2026-08-07)
+## What the Carrie Miller call taught us (2026-08-07)
 
 First real feedback from a prospect who read the material and then talked to us.
-Both problems are ours, not hers, and both are cheap to fix.
+Her two points, and Tyler's correction to my first attempt at fixing them.
 
 **1. It reads as though we're asking them to sponsor a golf tournament.**
 
-Her words: at first glance people might think that's the ask. That is close to
-the opposite of the offer — Finley sells hospitality and marketing, and the
-prospect is the *guest*, not the donor. A sponsorship read makes it a charity
-request, which is exactly the frame Tyler banned for raffles and in-kind on
-2026-07-28.
+Her words: at first glance people might think that's the ask.
 
-The phrase doing the damage was ours: *"rather than selling fixed sponsorship
-tiers"*. It was meant as a contrast and lands as a topic. **Do not use the word
-"sponsorship" in cold copy at all**, even in the negative — a skim-reader takes
-the noun and drops the "rather than".
+**My first fix was wrong** and Tyler caught it: I wrote *"this isn't asking you
+to sponsor a tournament"* and banned the word sponsorship outright. That
+oversteers. Sponsorship IS the product — some packages do include tournament
+sponsorship. The issue is that a one-day tournament is the *smallest* part of
+it, and leading with the word makes a prospect picture a single event.
 
-Say instead, early and plainly: *"this isn't asking you to sponsor a
-tournament — it's a way to host clients"*.
+**What they're actually buying is the course, year-round.** Brand exposure that
+runs all season, with tournament sponsorship as one component of some packages
+and hospitality alongside it. So do not avoid the word — **place it correctly**:
 
-**2. Nobody knows the items can be bought on their own.**
+> *"Most of it is year-round brand presence at the course, with tournament
+> sponsorship included in some packages."*
 
-She could not tell whether à-la-carte pieces were standalone or add-ons **on top
-of** a package price. That ambiguity stops a small first purchase, which is the
-entry point for most of this book. State it: **the pieces work individually, and
-a single item is a complete purchase.**
+Year-round first, tournament second, and never tournament alone.
 
-Both fixes went into the nine insurance drafts of 2026-08-07 mid-batch. The
-three sent before the call (Zureich, Stroud, Beavers at Lawyers Mutual) still
-carry the old framing — worth a look before sending.
+**2. Nobody knows whether items can be bought on their own.**
+
+She could not tell whether a la carte pieces were standalone or added **on top
+of** a package price. They are standalone.
+
+**My first fix was also wrong here.** Writing *"the pieces can be bought
+individually rather than only as a package"* reads as though Tyler would rather
+they bought piecemeal. He would not. It is **genuinely either/or, stated
+neutrally, with no preference showing**:
+
+> *"It works either as a full package or as individual pieces, whichever suits."*
+
+Not "rather than". Not "you don't have to take the whole thing". Either/or.
+
+**Cost of getting this wrong:** nine insurance emails went out on 2026-08-07
+before the correction landed — three with the original sponsorship-tier framing
+and six with my over-correction. Neither is fatal, but it is a reminder to fix
+the rule before the batch, not during it.
