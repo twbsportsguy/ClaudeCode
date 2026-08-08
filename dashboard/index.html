@@ -918,7 +918,7 @@
     <section class="commission" aria-label="Commission calculator" id="commSec">
       <div class="comm-head">
         <h3>Commission calculator</h3>
-        <p class="comm-sub">14% total commission — 7% straight to you, 7% shared across a 3-person pool</p>
+        <p class="comm-sub">7% on what you sell &middot; 2% on what Max sells &middot; Jake takes 2.5% on everything</p>
       </div>
       <div class="comm-body">
         <div class="comm-row">
@@ -1934,8 +1934,14 @@ const STAGE_MAP={}; STAGES.forEach(s=>STAGE_MAP[s.key]=s);
 const DEALS=(function(){try{return JSON.parse(localStorage.getItem("finley.deals")||"{}");}catch(e){return {};}})();
 function saveDeals(){try{localStorage.setItem("finley.deals",JSON.stringify(DEALS));}catch(e){}}
 function stageOf(c){return DEALS[c.name]||c.stage||"prospect";}
+/* Commission, per Tyler 2026-08-07. Replaces the placeholder 7%+pool guess.
+   Tyler takes 7% on what he sells himself and 2% on what Max sells. Jake takes a
+   flat 2.5% on everything, which is a cost to the club rather than a deduction
+   from Tyler, so it does NOT reduce the number shown here.
+   The tracker records no seller per deal, so every card assumes Tyler sold it —
+   the 7% rate. A deal Max closed is worth 2% and has to be read off separately. */
 const TAKE_RATE=COMM_RATE();
-function COMM_RATE(){return 0.07+0.07/3;} /* 9.33% take-home */
+function COMM_RATE(){return 0.07;}
 function potNum(c){if(!c.pot)return 0;const m=String(c.pot).replace(/[$,]/g,"").match(/[\d.]+/);return m?parseFloat(m[0]):0;}
 function dealValue(c){return bookedAmt(c.name)||potNum(c)||recommendPackage(c).priceNum;}
 /* Where the number on screen came from, so nothing looks more certain than it is */
@@ -2480,7 +2486,7 @@ function renderTerritory(){
     <p class="terrnote">100 NC counties shaded by pipeline opportunity in their region · dots mark major cities · ⛳ home base, Chapel Hill · pale = whitespace to go after next.</p>`;
 }
 /* ---- Commission calculator (14% total · 7% direct · 7% pooled among 3) ---- */
-const COMM={total:0.14,direct:0.07,pool:0.07,poolPeople:3};
+const COMM={own:0.07,onMax:0.02,jake:0.025};
 function fmtUSD(n){return "$"+Math.round(n).toLocaleString();}
 function parseAmt(s){return parseFloat((s||"").replace(/[^0-9.]/g,""))||0;}
 function renderCommQuick(){
@@ -2492,15 +2498,15 @@ function renderCommQuick(){
 }
 function renderCommission(){
   const amt=parseAmt($("#dealAmt").value);
-  const total=amt*COMM.total, direct=amt*COMM.direct, pool=amt*COMM.pool;
-  const per=pool/COMM.poolPeople, take=direct+per;
-  const takePct=((COMM.direct+COMM.pool/COMM.poolPeople)*100).toFixed(2);
+  /* Tyler 2026-08-07: 7% on his own sales, 2% on Max's, Jake flat 2.5% on
+     everything. Jake's cut is the club's cost, not a deduction from Tyler, so it
+     is shown for context and never subtracted from the take-home figure. */
+  const own=amt*COMM.own, onMax=amt*COMM.onMax, jake=amt*COMM.jake;
   const cells=[
     {k:"Deal value",v:fmtUSD(amt)},
-    {k:"Total commission",s:"14%",v:fmtUSD(total)},
-    {k:"Your direct cut",s:"7%",v:fmtUSD(direct)},
-    {k:"Pool share",s:"7% ÷ 3",v:fmtUSD(per),sub:fmtUSD(pool)+" pool"},
-    {k:"Your take-home",s:takePct+"%",v:fmtUSD(take),cls:"hot"}
+    {k:"If you sell it",s:"7%",v:fmtUSD(own),cls:"hot"},
+    {k:"If Max sells it",s:"2%",v:fmtUSD(onMax),sub:"your override"},
+    {k:"Jake's cut",s:"2.5%",v:fmtUSD(jake),sub:"club's cost, not yours"}
   ];
   $("#commGrid").innerHTML=cells.map(c=>`<div class="comm-cell ${c.cls||""}">
     <p class="ck">${c.k}${c.s?` <span class="cpct">${c.s}</span>`:""}</p>

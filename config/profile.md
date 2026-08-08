@@ -58,3 +58,26 @@ give them a client-entertainment engine (golf, tickets, events) their
 competitors don't have. Emails should sell the *business outcome* (visibility,
 client relationships, employee rewards), not the inventory list. The Carolina
 Golf association is a differentiator — lean on it.
+
+## Commission (Tyler, 2026-08-07)
+
+Replaces the placeholder 7% + three-person-pool guess that was sitting in the
+dashboard. These are the real rates.
+
+| Who sold it | Tyler gets |
+|---|---|
+| Tyler | **7%** |
+| Max Lehmann | **2%** (override) |
+| Anyone | Jake Hawkins takes a flat **2.5%** |
+
+Two things that matter when this is used in a calculation:
+
+- **Jake's 2.5% is the club's cost, not a deduction from Tyler.** It comes off
+  the house side. Never subtract it from Tyler's take-home — the dashboard shows
+  it for context only.
+- **The tracker does not record who sold a deal.** There is no seller column, so
+  every figure defaults to Tyler's 7%. A deal Max closed is worth 2% and has to
+  be read off separately. If that distinction starts mattering, the fix is a
+  Seller column, not a cleverer estimate.
+
+`Potential Revenue` stays Tyler's column and is still never written by a run.
